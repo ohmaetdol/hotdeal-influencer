@@ -518,15 +518,15 @@
                     <button class="mobile-sidebar-close" onclick="closeMobileSidebar()">✕</button>
                 </div>
                 <div class="mobile-sidebar-menu">
-                    <a class="active" onclick="showSectionMobile('overview',this)"><span class="menu-icon">📊</span> 대시보드</a>
-                    <a onclick="showSectionMobile('applications',this)"><span class="menu-icon">📋</span> 가입 신청</a>
-                    <a onclick="showSectionMobile('influencers',this)"><span class="menu-icon">👥</span> 인플루언서</a>
-                    <a onclick="showSectionMobile('influencerDB',this)"><span class="menu-icon">🗂️</span> 인플루언서 DB</a>
-                    <a onclick="showSectionMobile('matching',this)"><span class="menu-icon">🎯</span> 인플루언서 매칭</a>
-                    <a onclick="showSectionMobile('analytics',this)"><span class="menu-icon">📈</span> 성과분석</a>
-                    <a onclick="showSectionMobile('products',this)"><span class="menu-icon">📦</span> 상품 관리</a>
-                    <a onclick="showSectionMobile('sales',this)"><span class="menu-icon">💰</span> 판매 입력</a>
-                    <a onclick="logout()"><span class="menu-icon">🚪</span> 로그아웃</a>
+                    <a class="active" onclick="showSectionMobile('overview',this)">대시보드</a>
+                    <a onclick="showSectionMobile('applications',this)">가입 신청</a>
+                    <a onclick="showSectionMobile('influencers',this)">인플루언서</a>
+                    <a onclick="showSectionMobile('influencerDB',this)">인플루언서 DB</a>
+                    <a onclick="showSectionMobile('matching',this)">인플루언서 매칭</a>
+                    <a onclick="showSectionMobile('analytics',this)">성과분석</a>
+                    <a onclick="showSectionMobile('products',this)">상품 관리</a>
+                    <a onclick="showSectionMobile('sales',this)">판매 입력</a>
+                    <a onclick="logout()">로그아웃</a>
                 </div>
             </nav>
         </div>
@@ -534,33 +534,33 @@
         <aside class="sidebar">
             <div class="sidebar-logo">핫딜공구<span>인플루언서</span></div>
             <nav class="sidebar-menu">
-                <a class="active" onclick="showSection('overview',this)">📊 대시보드</a>
-                <a onclick="showSection('applications',this)">📋 가입 신청</a>
-                <a onclick="showSection('influencers',this)">👥 인플루언서</a>
-                <a onclick="showSection('influencerDB',this)">🗂️ 인플루언서 DB</a>
-                <a onclick="showSection('matching',this)">🎯 인플루언서 매칭</a>
-                <a onclick="showSection('analytics',this)">📈 성과분석</a>
-                <a onclick="showSection('products',this)">📦 상품 관리</a>
-                <a onclick="showSection('sales',this)">💰 판매 입력</a>
-                <a onclick="logout()">🚪 로그아웃</a>
+                <a class="active" onclick="showSection('overview',this)">대시보드</a>
+                <a onclick="showSection('applications',this)">가입 신청</a>
+                <a onclick="showSection('influencers',this)">인플루언서</a>
+                <a onclick="showSection('influencerDB',this)">인플루언서 DB</a>
+                <a onclick="showSection('matching',this)">인플루언서 매칭</a>
+                <a onclick="showSection('analytics',this)">성과분석</a>
+                <a onclick="showSection('products',this)">상품 관리</a>
+                <a onclick="showSection('sales',this)">판매 입력</a>
+                <a onclick="logout()">로그아웃</a>
             </nav>
         </aside>
 
         <main class="main">
             <div id="sectionOverview">
-                <h1 class="page-title">📊 대시보드</h1>
+                <h1 class="page-title">대시보드</h1>
                 
                 <!-- 핵심 지표 카드 -->
                 <div class="stats-grid">
-                    <div class="stat-card highlight"><div class="stat-label">🔔 승인 대기</div><div class="stat-value warning" id="pendingCount">0</div></div>
-                    <div class="stat-card"><div class="stat-label">👥 활성 인플루언서</div><div class="stat-value" id="activeCount">0</div></div>
-                    <div class="stat-card"><div class="stat-label">💰 이번 달 매출</div><div class="stat-value primary" id="monthSales">₩0</div></div>
-                    <div class="stat-card"><div class="stat-label">📈 이번 달 수익 지급</div><div class="stat-value success" id="monthCommission">₩0</div></div>
+                    <div class="stat-card highlight"><div class="stat-label">승인 대기</div><div class="stat-value warning" id="pendingCount">0</div></div>
+                    <div class="stat-card"><div class="stat-label">활성 인플루언서</div><div class="stat-value" id="activeCount">0</div></div>
+                    <div class="stat-card"><div class="stat-label">이번 달 매출</div><div class="stat-value primary" id="monthSales">₩0</div></div>
+                    <div class="stat-card"><div class="stat-label">이번 달 수익 지급</div><div class="stat-value success" id="monthCommission">₩0</div></div>
                 </div>
 
                 <!-- 오늘의 할 일 -->
                 <div class="card todo-card">
-                    <div class="card-header">🎯 오늘의 할 일</div>
+                    <div class="card-header">오늘의 할 일</div>
                     <div class="card-body">
                         <div id="todoList" class="todo-list">
                             <!-- 동적 생성 -->
@@ -570,7 +570,7 @@
                 
                 <!-- 등급별 인플루언서 현황 -->
                 <div class="card">
-                    <div class="card-header">🏆 등급별 인플루언서 현황</div>
+                    <div class="card-header">등급별 인플루언서 현황</div>
                     <div class="card-body">
                         <div id="gradeDistribution" class="grade-distribution">
                             <!-- 동적 생성 -->
@@ -582,7 +582,7 @@
                 <div class="dashboard-grid">
                     <!-- 매칭 추천 -->
                     <div class="card">
-                        <div class="card-header">🎯 오늘의 매칭 추천</div>
+                        <div class="card-header">오늘의 매칭 추천</div>
                         <div class="card-body">
                             <div id="matchRecommendations" class="match-list">
                                 <!-- 동적 생성 -->
@@ -592,7 +592,7 @@
 
                     <!-- TOP 인플루언서 -->
                     <div class="card">
-                        <div class="card-header">🏆 이번 주 TOP 인플루언서</div>
+                        <div class="card-header">이번 주 TOP 인플루언서</div>
                         <div class="card-body">
                             <div id="topInfluencers" class="top-list">
                                 <!-- 동적 생성 -->
@@ -603,13 +603,13 @@
 
                 <!-- 최근 활동 -->
                 <div class="card">
-                    <div class="card-header">📋 최근 활동</div>
+                    <div class="card-header">최근 활동</div>
                     <table><thead><tr><th>시간</th><th>활동</th><th>인플루언서</th><th>상품</th><th>금액</th></tr></thead><tbody id="recentSalesTable"></tbody></table>
                 </div>
             </div>
 
             <div id="sectionApplications" class="hidden">
-                <h1 class="page-title">📋 가입 신청</h1>
+                <h1 class="page-title">가입 신청</h1>
                 <div class="card">
                     <div class="card-header">승인 대기 목록 <span class="header-badge" id="pendingBadge">0</span></div>
                     <table><thead><tr><th>신청일</th><th>이메일</th><th>이름</th><th>연락처</th><th>채널</th><th>관리</th></tr></thead><tbody id="applicationsTable"></tbody></table>
@@ -617,7 +617,7 @@
             </div>
 
             <div id="sectionInfluencers" class="hidden">
-                <h1 class="page-title">👥 인플루언서 관리</h1>
+                <h1 class="page-title">인플루언서 관리</h1>
                 <div class="card">
                     <div class="card-header">승인된 인플루언서</div>
                     <table><thead><tr><th>이름</th><th>추천코드</th><th>채널</th><th>판매</th><th>매출</th><th>수익</th></tr></thead><tbody id="influencersTable"></tbody></table>
@@ -625,7 +625,7 @@
             </div>
 
             <div id="sectionInfluencerDB" class="hidden">
-                <h1 class="page-title">🗂️ 인플루언서 DB</h1>
+                <h1 class="page-title">인플루언서 DB</h1>
                 
                 <!-- 검색/필터 -->
                 <div class="card" style="margin-bottom:20px">
@@ -675,13 +675,13 @@
                                 <label>등급</label>
                                 <select id="dbGradeFilter" onchange="filterInfluencerDB()">
                                     <option value="all">전체 등급</option>
-                                    <option value="seed">🌱 씨앗</option>
-                                    <option value="sprout">🌿 새싹</option>
-                                    <option value="bronze">🥉 브론즈</option>
-                                    <option value="silver">🥈 실버</option>
-                                    <option value="gold">🥇 골드</option>
-                                    <option value="diamond">💎 다이아</option>
-                                    <option value="master">👑 마스터</option>
+                                    <option value="seed">씨앗</option>
+                                    <option value="sprout">새싹</option>
+                                    <option value="bronze">브론즈</option>
+                                    <option value="silver">실버</option>
+                                    <option value="gold">골드</option>
+                                    <option value="diamond">다이아</option>
+                                    <option value="master">마스터</option>
                                 </select>
                             </div>
                         </div>
@@ -704,7 +704,7 @@
                     <div class="modal-body">
                         <!-- 등급 정보 -->
                         <div class="detail-section">
-                            <h3>🏆 등급 정보</h3>
+                            <h3>등급 정보</h3>
                             <div class="modal-grade-card" id="modalGradeCard">
                                 <div class="modal-grade-header">
                                     <span class="modal-grade-icon" id="modalGradeIcon">🌱</span>
@@ -712,7 +712,7 @@
                                         <span class="modal-grade-name" id="modalGradeName">씨앗</span>
                                         <span class="modal-grade-commission" id="modalGradeCommission">수수료 8%</span>
                                     </div>
-                                    <div class="modal-grade-benefit" id="modalGradeBenefit">🎁 일반 상품</div>
+                                    <div class="modal-grade-benefit" id="modalGradeBenefit">일반 상품</div>
                                 </div>
                                 <div class="modal-grade-progress">
                                     <div class="modal-grade-progress-bar"><div class="modal-grade-progress-fill" id="modalGradeProgressFill"></div></div>
@@ -722,7 +722,7 @@
                         </div>
                         
                         <div class="detail-section">
-                            <h3>📋 기본 정보</h3>
+                            <h3>기본 정보</h3>
                             <div class="detail-grid">
                                 <div class="detail-item"><label>이름</label><span id="modalName">-</span></div>
                                 <div class="detail-item"><label>추천코드</label><span id="modalCode">-</span></div>
@@ -733,17 +733,17 @@
                         </div>
                         
                         <div class="detail-section">
-                            <h3>📱 채널 정보</h3>
+                            <h3>채널 정보</h3>
                             <div id="modalChannels" class="modal-channels"></div>
                         </div>
                         
                         <div class="detail-section">
-                            <h3>🏷️ 관심 카테고리</h3>
+                            <h3>관심 카테고리</h3>
                             <div id="modalCategories" class="modal-categories"></div>
                         </div>
                         
                         <div class="detail-section">
-                            <h3>📊 판매 실적</h3>
+                            <h3>판매 실적</h3>
                             <div class="detail-stats">
                                 <div class="detail-stat"><span class="stat-num" id="modalTotalSales">0</span><span class="stat-label">총 판매</span></div>
                                 <div class="detail-stat"><span class="stat-num" id="modalTotalAmount">₩0</span><span class="stat-label">총 매출</span></div>
@@ -752,28 +752,28 @@
                         </div>
 
                         <div class="detail-section">
-                            <h3>🛒 판매 이력 (최근 10건)</h3>
+                            <h3>판매 이력 (최근 10건)</h3>
                             <div id="modalSalesHistory" class="modal-sales-history"></div>
                         </div>
                         
                         <div class="detail-section">
-                            <h3>🎯 추천 상품 매칭</h3>
+                            <h3>추천 상품 매칭</h3>
                             <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px">이 인플루언서에게 추천할 상품을 선택하세요</p>
                             <div id="modalProductMatch" class="modal-product-match"></div>
                         </div>
                         
                         <div class="detail-section">
-                            <h3>📝 관리자 메모</h3>
+                            <h3>관리자 메모</h3>
                             <textarea id="modalMemo" placeholder="이 인플루언서에 대한 메모를 입력하세요 (특징, 협업 이력, 주의사항 등)" rows="3"></textarea>
                         </div>
                         
                         <div class="detail-section">
-                            <h3>⭐ 등급 설정</h3>
+                            <h3>등급 설정</h3>
                             <div class="grade-selector">
                                 <label><input type="radio" name="influencerGrade" value="normal"> 일반</label>
-                                <label><input type="radio" name="influencerGrade" value="silver"> 🥈 실버</label>
-                                <label><input type="radio" name="influencerGrade" value="gold"> 🥇 골드</label>
-                                <label><input type="radio" name="influencerGrade" value="vip"> 💎 VIP</label>
+                                <label><input type="radio" name="influencerGrade" value="silver"> 실버</label>
+                                <label><input type="radio" name="influencerGrade" value="gold"> 골드</label>
+                                <label><input type="radio" name="influencerGrade" value="vip"> VIP</label>
                             </div>
                         </div>
                     </div>
@@ -787,11 +787,11 @@
 
             <!-- 인플루언서 매칭 섹션 -->
             <div id="sectionMatching" class="hidden">
-                <h1 class="page-title">🎯 인플루언서 매칭</h1>
+                <h1 class="page-title">인플루언서 매칭</h1>
                 
                 <!-- 상품 선택 -->
                 <div class="card">
-                    <div class="card-header">📦 상품 선택</div>
+                    <div class="card-header">상품 선택</div>
                     <div class="card-body">
                         <div class="matching-product-select">
                             <select id="matchingProductSelect" onchange="updateMatching()">
@@ -813,7 +813,7 @@
 
                 <!-- 인플루언서 필터 -->
                 <div class="card">
-                    <div class="card-header">🔍 인플루언서 필터</div>
+                    <div class="card-header">인플루언서 필터</div>
                     <div class="card-body">
                         <div class="filter-row">
                             <div class="filter-group">
@@ -867,7 +867,7 @@
                 <!-- 매칭 결과 -->
                 <div class="card">
                     <div class="card-header">
-                        <span>✨ 추천 인플루언서</span>
+                        <span>추천 인플루언서</span>
                         <span id="matchingResultCount" style="font-weight:normal;color:var(--text-light);margin-left:8px">0명</span>
                     </div>
                     <div class="card-body" style="padding:0">
@@ -879,7 +879,7 @@
             </div>
 
             <div id="sectionAnalytics" class="hidden">
-                <h1 class="page-title">📈 성과분석</h1>
+                <h1 class="page-title">성과분석</h1>
                 
                 <!-- 요약 카드 -->
                 <div class="stats-grid" style="margin-bottom:24px">
@@ -903,7 +903,7 @@
 
                 <!-- TOP 인플루언서 -->
                 <div class="card">
-                    <div class="card-header">🏆 TOP 인플루언서 (매출 순위)</div>
+                    <div class="card-header">TOP 인플루언서 (매출 순위)</div>
                     <table>
                         <thead><tr><th>순위</th><th>이름</th><th>채널</th><th>판매건수</th><th>총 매출</th><th>총 수익</th><th>최근 판매</th></tr></thead>
                         <tbody id="topInfluencersTable"></tbody>
@@ -912,7 +912,7 @@
 
                 <!-- 카테고리별 성과 -->
                 <div class="card">
-                    <div class="card-header">📂 카테고리별 성과</div>
+                    <div class="card-header">카테고리별 성과</div>
                     <table>
                         <thead><tr><th>카테고리</th><th>판매건수</th><th>총 매출</th><th>TOP 인플루언서</th><th>상품 수</th></tr></thead>
                         <tbody id="categoryAnalyticsTable"></tbody>
@@ -921,7 +921,7 @@
 
                 <!-- 채널별 성과 -->
                 <div class="card">
-                    <div class="card-header">📱 채널별 성과</div>
+                    <div class="card-header">채널별 성과</div>
                     <table>
                         <thead><tr><th>채널</th><th>인플루언서 수</th><th>총 판매건수</th><th>총 매출</th><th>평균 매출/인</th></tr></thead>
                         <tbody id="channelAnalyticsTable"></tbody>
@@ -931,7 +931,7 @@
                 <!-- 인플루언서 상세 DB -->
                 <div class="card">
                     <div class="card-header">
-                        📋 인플루언서 상세 DB
+                        인플루언서 상세 DB
                         <select id="analyticsFilter" onchange="updateAnalytics()" style="margin-left:12px;padding:4px 8px;font-size:12px">
                             <option value="all">전체</option>
                             <option value="active">활동중 (판매 있음)</option>
@@ -967,7 +967,7 @@
                 <div class="card" style="background:linear-gradient(135deg,#e8f5e9 0%,#c8e6c9 100%);border:none;margin-bottom:16px">
                     <div class="card-body" style="padding:16px 20px">
                         <div style="display:flex;align-items:center;gap:12px">
-                            <span style="font-size:24px">✅</span>
+                            <span style="font-size:18px;color:#2e7d32;font-weight:bold">●</span>
                             <div>
                                 <strong style="color:#2e7d32">실시간 연동됨</strong>
                                 <p style="font-size:12px;color:#558b2f;margin-top:2px">여기서 등록한 상품은 인플루언서 페이지에 자동으로 표시됩니다</p>
@@ -989,7 +989,7 @@
                                     <option value="beauty">💄 뷰티</option>
                                     <option value="fashion">👗 패션</option>
                                     <option value="living">🏠 생활용품</option>
-                                    <option value="electronics">📱 전자기기</option>
+                                    <option value="electronics">전자기기</option>
                                     <option value="kids">👶 육아/키즈</option>
                                     <option value="health">💪 건강/헬스</option>
                                     <option value="pet">🐶 반려동물</option>
@@ -1089,7 +1089,7 @@
             sales: [] 
         };
         
-        // 🏆 인플루언서 등급 시스템
+        // 인플루언서 등급 시스템
         const gradeSystem = [
             { id: 'seed', name: '씨앗', icon: '🌱', minSales: 0, commission: 8, color: '#8B4513', bgColor: '#FFF8DC', benefit: '일반 상품' },
             { id: 'sprout', name: '새싹', icon: '🌿', minSales: 5, commission: 9, color: '#228B22', bgColor: '#F0FFF0', benefit: '신상품 1일 선공개' },
@@ -1342,7 +1342,7 @@
                 ? '<tr><td colspan="5" class="empty">판매 내역이 없습니다</td></tr>'
                 : data.sales.slice(-7).reverse().map(s => {
                     const timeAgo = getTimeAgo(new Date(s.date));
-                    return `<tr><td>${timeAgo}</td><td>💰 판매</td><td><span class="badge badge-primary">${s.userName}</span></td><td>${s.productName}</td><td style="color:var(--success)">₩${(s.amount || 0).toLocaleString()}</td></tr>`;
+                    return `<tr><td>${timeAgo}</td><td>판매</td><td><span class="badge badge-primary">${s.userName}</span></td><td>${s.productName}</td><td style="color:var(--success)">₩${(s.amount || 0).toLocaleString()}</td></tr>`;
                 }).join('');
 
             // 가입 신청
@@ -1425,7 +1425,7 @@
                 await saveUserToFirebase(u);
                 saveDataLocal(); 
                 updateAll(); 
-                showToast('✅ ' + u.name + '님 승인! 코드: ' + u.code); 
+                showToast('' + u.name + '님 승인! 코드: ' + u.code); 
             } 
         }
         
@@ -1549,10 +1549,10 @@
             // 모두 완료
             if (html === '') {
                 html = `<div class="todo-item success">
-                    <div class="todo-icon">✅</div>
+                    <div class="todo-icon">●</div>
                     <div class="todo-content">
                         <div class="todo-title">모든 할 일 완료!</div>
-                        <div class="todo-desc">오늘도 수고하셨어요 💪</div>
+                        <div class="todo-desc">오늘도 수고하셨어요</div>
                     </div>
                 </div>`;
             }
@@ -1666,7 +1666,7 @@
                 document.getElementById('productImagePreview').style.display = 'block';
                 document.getElementById('productImagePreviewImg').src = base64;
                 
-                showToast('이미지가 업로드되었습니다 ✅');
+                showToast('이미지가 업로드되었습니다');
             };
             reader.readAsDataURL(file);
         }
@@ -1715,7 +1715,7 @@
                     await saveProductToFirebase(product);
                     saveDataLocal();
                     updateAll();
-                    showToast('✅ 상품 수정됨');
+                    showToast('상품 수정됨');
                     cancelEditProduct();
                 }
             } else {
@@ -1734,7 +1734,7 @@
                 await saveProductToFirebase(product);
                 saveDataLocal(); 
                 updateAll(); 
-                showToast('✅ 상품 등록됨');
+                showToast('상품 등록됨');
                 clearProductForm();
             }
         }
@@ -1823,7 +1823,7 @@
             await saveSaleToFirebase(sale);
             saveDataLocal(); 
             updateAll(); 
-            showToast('✅ 판매 등록됨');
+            showToast('판매 등록됨');
             document.getElementById('saleQty').value = '1';
             document.getElementById('saleAmount').value = '';
         }
@@ -2148,7 +2148,7 @@
                     }).filter(Boolean).slice(0, 2);
                     if (matchedNames.length > 0) {
                         matchedHtml = `<div class="influencer-card-matched">
-                            <div class="influencer-card-matched-title">🎯 매칭 상품</div>
+                            <div class="influencer-card-matched-title">매칭 상품</div>
                             <div class="influencer-card-matched-products">${matchedNames.join(', ')}${u.matchedProducts.length > 2 ? ' 외 ' + (u.matchedProducts.length - 2) + '개' : ''}</div>
                         </div>`;
                     }
@@ -2324,7 +2324,7 @@
         }
 
         // ========================================
-        // 🎯 인플루언서 매칭 기능
+        // 인플루언서 매칭 기능
         // ========================================
         
         function initMatchingSection() {
@@ -2490,8 +2490,8 @@
                 // 연락처 버튼 (전화번호가 있을 때만)
                 const contactBtns = u.contact 
                     ? `<div class="matching-contact-btns">
-                        <a href="tel:${u.contact}" class="contact-btn call">📞 전화</a>
-                        <a href="sms:${u.contact}?body=안녕하세요 ${u.name}님! 핫딜공구인플루언서입니다. ${productName ? '「' + productName + '」 상품 협업 제안드립니다.' : '협업 제안드립니다.'}" class="contact-btn sms">💬 문자</a>
+                        <a href="tel:${u.contact}" class="contact-btn call">전화</a>
+                        <a href="sms:${u.contact}?body=안녕하세요 ${u.name}님! 핫딜공구인플루언서입니다. ${productName ? '「' + productName + '」 상품 협업 제안드립니다.' : '협업 제안드립니다.'}" class="contact-btn sms">문자</a>
                        </div>`
                     : `<div class="matching-contact-btns"><span class="no-contact">연락처 없음</span></div>`;
                 
