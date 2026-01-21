@@ -139,6 +139,15 @@
         .influencer-card-matched{margin-top:10px;padding:8px;background:#e8f0fe;border-radius:4px}
         .influencer-card-matched-title{font-size:10px;color:var(--primary);font-weight:500;margin-bottom:4px}
         .influencer-card-matched-products{font-size:11px;color:var(--text)}
+        
+        /* 등급 관련 스타일 */
+        .influencer-card-grade-info{display:flex;gap:12px;margin-bottom:10px;align-items:center}
+        .grade-commission{font-size:12px;font-weight:600;color:var(--primary)}
+        .grade-benefit{font-size:11px;color:var(--success)}
+        .influencer-card-progress{margin-bottom:12px}
+        .influencer-card-progress .progress-bar{height:6px;background:var(--bg-secondary);border-radius:3px;overflow:hidden;margin-bottom:4px}
+        .influencer-card-progress .progress-fill{height:100%;background:linear-gradient(90deg,var(--primary),#4f46e5);border-radius:3px}
+        .influencer-card-progress .progress-text{font-size:10px;color:var(--text-light)}
 
         /* 인플루언서 상세 모달 */
         .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;visibility:hidden;transition:all .2s}
@@ -183,6 +192,28 @@
         .grade-selector label{display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer}
         .grade-selector input{width:16px;height:16px}
         .btn-secondary{background:var(--bg-secondary);color:var(--text);border:1px solid var(--border)}
+        
+        /* 모달 등급 카드 */
+        .modal-grade-card{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:12px;padding:20px;color:#fff}
+        .modal-grade-header{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+        .modal-grade-icon{font-size:40px}
+        .modal-grade-info{flex:1}
+        .modal-grade-name{font-size:24px;font-weight:700;display:block}
+        .modal-grade-commission{font-size:14px;opacity:0.9}
+        .modal-grade-benefit{font-size:13px;background:rgba(255,255,255,0.2);padding:8px 16px;border-radius:20px}
+        .modal-grade-progress{margin-top:12px}
+        .modal-grade-progress-bar{height:8px;background:rgba(255,255,255,0.3);border-radius:4px;overflow:hidden;margin-bottom:8px}
+        .modal-grade-progress-fill{height:100%;background:#fff;border-radius:4px}
+        .modal-grade-progress-text{font-size:12px;opacity:0.9}
+        
+        /* 등급 분포 */
+        .grade-distribution{display:flex;gap:12px;flex-wrap:wrap}
+        .grade-dist-item{flex:1;min-width:100px;padding:16px;border-radius:12px;text-align:center;cursor:pointer;transition:all .2s}
+        .grade-dist-item:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+        .grade-dist-icon{font-size:28px;margin-bottom:8px}
+        .grade-dist-name{font-size:12px;font-weight:600;margin-bottom:4px}
+        .grade-dist-count{font-size:20px;font-weight:700}
+        .grade-dist-percent{font-size:10px;opacity:0.7}
 
         @media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.stats-grid{grid-template-columns:1fr}.influencer-card-list{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}}
     </style>
@@ -235,6 +266,16 @@
                     <div class="card-header">🎯 오늘의 할 일</div>
                     <div class="card-body">
                         <div id="todoList" class="todo-list">
+                            <!-- 동적 생성 -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 등급별 인플루언서 현황 -->
+                <div class="card">
+                    <div class="card-header">🏆 등급별 인플루언서 현황</div>
+                    <div class="card-body">
+                        <div id="gradeDistribution" class="grade-distribution">
                             <!-- 동적 생성 -->
                         </div>
                     </div>
@@ -331,7 +372,19 @@
                                     <option value="all">전체</option>
                                     <option value="active">활동중 (판매있음)</option>
                                     <option value="inactive">미활동</option>
-                                    <option value="vip">VIP (10건 이상)</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>등급</label>
+                                <select id="dbGradeFilter" onchange="filterInfluencerDB()">
+                                    <option value="all">전체 등급</option>
+                                    <option value="seed">🌱 씨앗</option>
+                                    <option value="sprout">🌿 새싹</option>
+                                    <option value="bronze">🥉 브론즈</option>
+                                    <option value="silver">🥈 실버</option>
+                                    <option value="gold">🥇 골드</option>
+                                    <option value="diamond">💎 다이아</option>
+                                    <option value="master">👑 마스터</option>
                                 </select>
                             </div>
                         </div>
@@ -352,6 +405,25 @@
                         <button class="close-btn" onclick="closeInfluencerModal()">✕</button>
                     </div>
                     <div class="modal-body">
+                        <!-- 등급 정보 -->
+                        <div class="detail-section">
+                            <h3>🏆 등급 정보</h3>
+                            <div class="modal-grade-card" id="modalGradeCard">
+                                <div class="modal-grade-header">
+                                    <span class="modal-grade-icon" id="modalGradeIcon">🌱</span>
+                                    <div class="modal-grade-info">
+                                        <span class="modal-grade-name" id="modalGradeName">씨앗</span>
+                                        <span class="modal-grade-commission" id="modalGradeCommission">수수료 8%</span>
+                                    </div>
+                                    <div class="modal-grade-benefit" id="modalGradeBenefit">🎁 일반 상품</div>
+                                </div>
+                                <div class="modal-grade-progress">
+                                    <div class="modal-grade-progress-bar"><div class="modal-grade-progress-fill" id="modalGradeProgressFill"></div></div>
+                                    <span class="modal-grade-progress-text" id="modalGradeProgressText">다음 등급까지 5건 남음</span>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="detail-section">
                             <h3>📋 기본 정보</h3>
                             <div class="detail-grid">
@@ -602,6 +674,42 @@
             products: [{id:1, name:'두쫀쿠 오리지널', price:29900, emoji:'🍪', link:'https://smartstore.naver.com/gardenings/products/12913776103'}], 
             sales: [] 
         };
+        
+        // 🏆 인플루언서 등급 시스템
+        const gradeSystem = [
+            { id: 'seed', name: '씨앗', icon: '🌱', minSales: 0, commission: 8, color: '#8B4513', bgColor: '#FFF8DC', benefit: '일반 상품' },
+            { id: 'sprout', name: '새싹', icon: '🌿', minSales: 5, commission: 9, color: '#228B22', bgColor: '#F0FFF0', benefit: '신상품 1일 선공개' },
+            { id: 'bronze', name: '브론즈', icon: '🥉', minSales: 20, commission: 10, color: '#CD7F32', bgColor: '#FDF5E6', benefit: '신상품 3일 선공개' },
+            { id: 'silver', name: '실버', icon: '🥈', minSales: 50, commission: 11, color: '#C0C0C0', bgColor: '#F5F5F5', benefit: '전용 상품 접근' },
+            { id: 'gold', name: '골드', icon: '🥇', minSales: 100, commission: 12, color: '#FFD700', bgColor: '#FFFACD', benefit: '프리미엄 상품 접근' },
+            { id: 'diamond', name: '다이아', icon: '💎', minSales: 300, commission: 13, color: '#00CED1', bgColor: '#E0FFFF', benefit: '한정판 우선 접근' },
+            { id: 'master', name: '마스터', icon: '👑', minSales: 500, commission: 15, color: '#9400D3', bgColor: '#F8F0FF', benefit: 'VIP 전용 딜' }
+        ];
+        
+        // 등급 계산 함수
+        function getUserGrade(totalSales) {
+            let grade = gradeSystem[0];
+            for (let i = gradeSystem.length - 1; i >= 0; i--) {
+                if (totalSales >= gradeSystem[i].minSales) {
+                    grade = gradeSystem[i];
+                    break;
+                }
+            }
+            return grade;
+        }
+        
+        // 다음 등급까지 남은 판매 수
+        function getNextGradeInfo(totalSales) {
+            for (let i = 0; i < gradeSystem.length; i++) {
+                if (totalSales < gradeSystem[i].minSales) {
+                    return {
+                        nextGrade: gradeSystem[i],
+                        remaining: gradeSystem[i].minSales - totalSales
+                    };
+                }
+            }
+            return null;
+        }
 
         // Firebase에서 데이터 로드
         async function loadData() {
@@ -769,6 +877,9 @@
             // 오늘의 할 일
             updateTodoList(pending, approved);
             
+            // 등급별 현황
+            updateGradeDistribution(approved);
+            
             // 매칭 추천
             updateMatchRecommendations(approved);
             
@@ -890,6 +1001,44 @@
             if (hours < 24) return hours + '시간 전';
             if (days < 7) return days + '일 전';
             return date.toLocaleDateString('ko-KR');
+        }
+        
+        // 등급별 현황 업데이트
+        function updateGradeDistribution(approved) {
+            const container = document.getElementById('gradeDistribution');
+            if (!container) return;
+            
+            // 등급별 인플루언서 수 집계
+            const gradeCount = {};
+            gradeSystem.forEach(g => gradeCount[g.id] = 0);
+            
+            approved.forEach(u => {
+                const userSales = data.sales.filter(s => s.userCode === u.code);
+                const totalSales = userSales.reduce((sum, s) => sum + (s.quantity || 0), 0);
+                const grade = getUserGrade(totalSales);
+                gradeCount[grade.id]++;
+            });
+            
+            const total = approved.length || 1;
+            
+            container.innerHTML = gradeSystem.map(g => {
+                const count = gradeCount[g.id];
+                const percent = Math.round((count / total) * 100);
+                return `
+                    <div class="grade-dist-item" style="background:${g.bgColor};color:${g.color}" onclick="filterByGrade('${g.id}')">
+                        <div class="grade-dist-icon">${g.icon}</div>
+                        <div class="grade-dist-name">${g.name}</div>
+                        <div class="grade-dist-count">${count}명</div>
+                        <div class="grade-dist-percent">${percent}%</div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // 등급 필터로 이동
+        function filterByGrade(gradeId) {
+            document.getElementById('dbGradeFilter').value = gradeId;
+            showSection('influencerDB', document.querySelector('.sidebar-menu a:nth-child(4)'));
         }
         
         // 오늘의 할 일 업데이트
@@ -1402,6 +1551,7 @@
             const channelFilter = document.getElementById('dbChannelFilter').value;
             const categoryFilter = document.getElementById('dbCategoryFilter').value;
             const statusFilter = document.getElementById('dbStatusFilter').value;
+            const gradeFilter = document.getElementById('dbGradeFilter')?.value || 'all';
             
             const approved = data.users.filter(u => u.status === 'approved');
             
@@ -1438,7 +1588,12 @@
                 
                 if (statusFilter === 'active' && totalSales === 0) return false;
                 if (statusFilter === 'inactive' && totalSales > 0) return false;
-                if (statusFilter === 'vip' && totalSales < 10) return false;
+                
+                // 등급 필터
+                if (gradeFilter !== 'all') {
+                    const grade = getUserGrade(totalSales);
+                    if (grade.id !== gradeFilter) return false;
+                }
                 
                 return true;
             });
@@ -1457,9 +1612,9 @@
                 const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
                 const totalCommission = userSales.reduce((sum, s) => sum + (s.commission || 0), 0);
                 
-                const grade = u.grade || 'normal';
-                const gradeClass = grade !== 'normal' ? grade : '';
-                const gradeLabel = {normal:'일반',silver:'🥈 실버',gold:'🥇 골드',vip:'💎 VIP'}[grade];
+                // 새로운 등급 시스템 적용
+                const grade = getUserGrade(totalSales);
+                const nextInfo = getNextGradeInfo(totalSales);
                 
                 // 채널
                 let channels = [];
@@ -1494,12 +1649,20 @@
                 return `
                 <div class="influencer-card" onclick="openInfluencerModal('${u.googleEmail || u.id}')">
                     <div class="influencer-card-header">
-                        <div class="influencer-card-avatar ${gradeClass}">${u.name ? u.name.charAt(0) : 'U'}</div>
+                        <div class="influencer-card-avatar" style="background:${grade.bgColor};color:${grade.color}">${u.name ? u.name.charAt(0) : 'U'}</div>
                         <div class="influencer-card-info">
                             <h4>${u.name || '-'}</h4>
                             <p>${u.code || '-'} · ${u.contact || '-'}</p>
                         </div>
-                        <span class="influencer-card-grade ${gradeClass}">${gradeLabel}</span>
+                        <span class="influencer-card-grade" style="background:${grade.bgColor};color:${grade.color}">${grade.icon} ${grade.name}</span>
+                    </div>
+                    <div class="influencer-card-grade-info">
+                        <span class="grade-commission">수수료 ${grade.commission}%</span>
+                        <span class="grade-benefit">🎁 ${grade.benefit}</span>
+                    </div>
+                    <div class="influencer-card-progress">
+                        <div class="progress-bar"><div class="progress-fill" style="width:${nextInfo ? Math.min(100, (totalSales / nextInfo.nextGrade.minSales) * 100) : 100}%"></div></div>
+                        <span class="progress-text">${nextInfo ? `다음 등급까지 ${nextInfo.remaining}건` : '최고 등급!'}</span>
                     </div>
                     <div class="influencer-card-channels">${channels.join('') || '<span style="color:var(--text-light);font-size:11px">채널 미등록</span>'}</div>
                     <div class="influencer-card-categories">🏷️ ${cats.length > 0 ? cats.join(', ') : '카테고리 미선택'}</div>
@@ -1526,6 +1689,27 @@
             document.getElementById('modalContact').textContent = user.contact || '-';
             document.getElementById('modalEmail').textContent = user.googleEmail || '-';
             document.getElementById('modalJoinDate').textContent = user.createdAt ? new Date(user.createdAt).toLocaleDateString('ko-KR') : '-';
+            
+            // 등급 정보 계산
+            const userSales = data.sales.filter(s => s.userCode === user.code);
+            const totalSales = userSales.reduce((sum, s) => sum + (s.quantity || 0), 0);
+            const grade = getUserGrade(totalSales);
+            const nextInfo = getNextGradeInfo(totalSales);
+            
+            // 등급 표시
+            document.getElementById('modalGradeIcon').textContent = grade.icon;
+            document.getElementById('modalGradeName').textContent = grade.name;
+            document.getElementById('modalGradeCommission').textContent = `수수료 ${grade.commission}%`;
+            document.getElementById('modalGradeBenefit').textContent = `🎁 ${grade.benefit}`;
+            
+            if (nextInfo) {
+                const progress = ((totalSales - grade.minSales) / (nextInfo.nextGrade.minSales - grade.minSales)) * 100;
+                document.getElementById('modalGradeProgressFill').style.width = Math.min(100, progress) + '%';
+                document.getElementById('modalGradeProgressText').textContent = `다음 등급 ${nextInfo.nextGrade.icon} ${nextInfo.nextGrade.name}까지 ${nextInfo.remaining}건 남음`;
+            } else {
+                document.getElementById('modalGradeProgressFill').style.width = '100%';
+                document.getElementById('modalGradeProgressText').textContent = '🎉 최고 등급 달성!';
+            }
             
             // 채널
             const channelConfig = {youtube:{name:'YouTube',icon:'YT'},instagram:{name:'Instagram',icon:'IG'},blog:{name:'블로그',icon:'B'},tiktok:{name:'TikTok',icon:'TT'}};
@@ -1556,8 +1740,6 @@
             document.getElementById('modalCategories').innerHTML = catHtml || '<p style="color:var(--text-light);font-size:13px">선택된 카테고리가 없습니다</p>';
             
             // 판매 실적
-            const userSales = data.sales.filter(s => s.userCode === user.code);
-            const totalSales = userSales.reduce((sum, s) => sum + (s.quantity || 0), 0);
             const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
             const totalCommission = userSales.reduce((sum, s) => sum + (s.commission || 0), 0);
             
