@@ -215,7 +215,226 @@
         .grade-dist-count{font-size:20px;font-weight:700}
         .grade-dist-percent{font-size:10px;opacity:0.7}
 
-        @media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.stats-grid{grid-template-columns:1fr}.influencer-card-list{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}}
+        @media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.stats-grid{grid-template-columns:1fr 1fr}.influencer-card-list{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}}
+
+        /* ============================================
+           🔥 관리자 모바일 최적화 스타일
+           ============================================ */
+        
+        /* 모바일 헤더 */
+        .mobile-header{
+            display:none;
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            height:56px;
+            background:var(--secondary);
+            color:#fff;
+            padding:0 16px;
+            z-index:200;
+            align-items:center;
+            justify-content:space-between;
+        }
+        .mobile-header-logo{
+            font-size:14px;
+            font-weight:600;
+        }
+        .mobile-header-logo span{color:var(--primary)}
+        .mobile-menu-btn{
+            background:none;
+            border:none;
+            color:#fff;
+            font-size:24px;
+            padding:8px;
+            cursor:pointer;
+        }
+
+        /* 모바일 사이드 메뉴 (슬라이드) */
+        .mobile-sidebar-overlay{
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,0.5);
+            z-index:300;
+            opacity:0;
+            visibility:hidden;
+            transition:all .3s;
+        }
+        .mobile-sidebar-overlay.show{
+            opacity:1;
+            visibility:visible;
+        }
+        .mobile-sidebar{
+            position:fixed;
+            top:0;
+            left:-280px;
+            width:280px;
+            height:100vh;
+            background:var(--secondary);
+            z-index:301;
+            transition:left .3s ease;
+            overflow-y:auto;
+        }
+        .mobile-sidebar-overlay.show .mobile-sidebar{
+            left:0;
+        }
+        .mobile-sidebar-header{
+            padding:20px;
+            border-bottom:1px solid rgba(255,255,255,0.1);
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+        .mobile-sidebar-header h2{
+            font-size:16px;
+            color:#fff;
+            margin:0;
+        }
+        .mobile-sidebar-header h2 span{color:var(--primary)}
+        .mobile-sidebar-close{
+            background:none;
+            border:none;
+            color:rgba(255,255,255,0.7);
+            font-size:24px;
+            cursor:pointer;
+        }
+        .mobile-sidebar-menu{
+            padding:16px 0;
+        }
+        .mobile-sidebar-menu a{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            padding:14px 20px;
+            color:rgba(255,255,255,0.7);
+            text-decoration:none;
+            font-size:15px;
+            transition:all .2s;
+        }
+        .mobile-sidebar-menu a:hover,
+        .mobile-sidebar-menu a.active{
+            background:var(--primary);
+            color:#fff;
+        }
+        .mobile-sidebar-menu a .menu-icon{
+            font-size:18px;
+            width:24px;
+            text-align:center;
+        }
+
+        @media(max-width:768px){
+            .mobile-header{display:flex}
+            .main{margin-left:0;padding-top:72px;padding:72px 12px 24px}
+            .page-title{font-size:18px;margin-bottom:16px}
+            
+            /* 카드 그리드 */
+            .stats-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+            .stat-card{padding:14px 12px}
+            .stat-label{font-size:10px}
+            .stat-value{font-size:20px}
+            
+            .dashboard-grid{grid-template-columns:1fr;gap:12px}
+            
+            /* 카드 */
+            .card{border-radius:12px;margin-bottom:16px}
+            .card-header{padding:14px 16px;font-size:14px}
+            .card-body{padding:14px 16px}
+            
+            /* 테이블 모바일 */
+            table{font-size:12px}
+            th,td{padding:10px 8px}
+            
+            /* 투두 리스트 */
+            .todo-item{flex-wrap:wrap;padding:12px}
+            .todo-icon{font-size:18px}
+            .todo-title{font-size:13px}
+            .todo-desc{font-size:11px}
+            .todo-action{margin-top:8px;width:100%}
+            
+            /* 등급 분포 */
+            .grade-distribution{gap:8px}
+            .grade-dist-item{min-width:calc(50% - 4px);padding:12px}
+            .grade-dist-icon{font-size:22px;margin-bottom:6px}
+            .grade-dist-name{font-size:11px}
+            .grade-dist-count{font-size:16px}
+            
+            /* 인플루언서 카드 */
+            .influencer-card-list{grid-template-columns:1fr}
+            .influencer-card{padding:16px}
+            .influencer-card-header{margin-bottom:12px}
+            .influencer-card-avatar{width:40px;height:40px;font-size:16px}
+            .influencer-card-info h4{font-size:14px}
+            
+            /* 모달 */
+            .modal-overlay{align-items:flex-end;padding:0}
+            .influencer-detail-modal{
+                width:100%;
+                max-width:100%;
+                max-height:90vh;
+                border-radius:20px 20px 0 0;
+            }
+            .modal-header{padding:16px}
+            .modal-header h2{font-size:16px}
+            .modal-body{padding:16px}
+            .modal-footer{padding:12px 16px}
+            
+            /* 폼 요소 */
+            .form-row{flex-direction:column;gap:12px}
+            .input-group{margin-bottom:12px}
+            .input-group label{font-size:13px}
+            .input-group input,
+            .input-group select{
+                padding:12px;
+                font-size:15px;
+            }
+            
+            /* 버튼 */
+            .btn{
+                min-height:44px;
+                padding:12px 16px;
+            }
+            .btn-small{
+                min-height:36px;
+                padding:8px 12px;
+            }
+        }
+
+        /* 아주 작은 화면 */
+        @media(max-width:380px){
+            .main{padding:64px 8px 16px}
+            .page-title{font-size:16px}
+            .stats-grid{gap:8px}
+            .stat-card{padding:12px 10px}
+            .stat-value{font-size:18px}
+            .card-header{font-size:13px}
+            table{font-size:11px}
+            th,td{padding:8px 6px}
+        }
+
+        /* Safe area 대응 */
+        @supports(padding: max(0px)){
+            .mobile-header{
+                padding-top:max(0px, env(safe-area-inset-top));
+                height:calc(56px + env(safe-area-inset-top));
+            }
+            @media(max-width:768px){
+                .main{
+                    padding-top:calc(72px + env(safe-area-inset-top));
+                }
+            }
+        }
+
+        /* 터치 최적화 */
+        @media(max-width:768px){
+            *{-webkit-tap-highlight-color:transparent}
+            .sidebar-menu a,
+            .mobile-sidebar-menu a,
+            .influencer-card,
+            .todo-action,
+            .btn{
+                -webkit-tap-highlight-color:transparent;
+            }
+        }
     </style>
 </head>
 <body>
@@ -235,6 +454,33 @@
     </div>
 
     <div id="dashboard" class="layout hidden">
+        <!-- 모바일 헤더 -->
+        <header class="mobile-header">
+            <button class="mobile-menu-btn" onclick="openMobileSidebar()">☰</button>
+            <div class="mobile-header-logo">핫딜공구<span>인플루언서</span> 관리자</div>
+            <button class="mobile-menu-btn" onclick="logout()" title="로그아웃">🚪</button>
+        </header>
+
+        <!-- 모바일 사이드 메뉴 오버레이 -->
+        <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay" onclick="closeMobileSidebar()">
+            <nav class="mobile-sidebar" onclick="event.stopPropagation()">
+                <div class="mobile-sidebar-header">
+                    <h2>핫딜공구<span>인플루언서</span></h2>
+                    <button class="mobile-sidebar-close" onclick="closeMobileSidebar()">✕</button>
+                </div>
+                <div class="mobile-sidebar-menu">
+                    <a class="active" onclick="showSectionMobile('overview',this)"><span class="menu-icon">📊</span> 대시보드</a>
+                    <a onclick="showSectionMobile('applications',this)"><span class="menu-icon">📋</span> 가입 신청</a>
+                    <a onclick="showSectionMobile('influencers',this)"><span class="menu-icon">👥</span> 인플루언서</a>
+                    <a onclick="showSectionMobile('influencerDB',this)"><span class="menu-icon">🗂️</span> 인플루언서 DB</a>
+                    <a onclick="showSectionMobile('analytics',this)"><span class="menu-icon">📈</span> 성과분석</a>
+                    <a onclick="showSectionMobile('products',this)"><span class="menu-icon">📦</span> 상품 관리</a>
+                    <a onclick="showSectionMobile('sales',this)"><span class="menu-icon">💰</span> 판매 입력</a>
+                    <a onclick="logout()"><span class="menu-icon">🚪</span> 로그아웃</a>
+                </div>
+            </nav>
+        </div>
+
         <aside class="sidebar">
             <div class="sidebar-logo">핫딜공구<span>인플루언서</span></div>
             <nav class="sidebar-menu">
@@ -871,6 +1117,34 @@
                 updateAll();
             }
         }
+
+        // 모바일 사이드바 열기/닫기
+        function openMobileSidebar() {
+            document.getElementById('mobileSidebarOverlay').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileSidebar() {
+            document.getElementById('mobileSidebarOverlay').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        
+        // 모바일용 섹션 전환
+        function showSectionMobile(section, el) {
+            // 데스크탑 함수 실행
+            showSection(section, null);
+            
+            // 모바일 메뉴 활성화 상태 업데이트
+            document.querySelectorAll('.mobile-sidebar-menu a').forEach(a => a.classList.remove('active'));
+            if (el) el.classList.add('active');
+            
+            // 사이드바 닫기
+            closeMobileSidebar();
+            
+            // 스크롤 맨 위로
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
 
         function updateAll() {
             try {
