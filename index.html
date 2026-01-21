@@ -110,42 +110,45 @@
         .category-select-btn-top:hover{border-color:var(--primary);color:var(--primary)}
         .category-select-btn-top span{font-size:16px}
 
-        /* 🏆 나의 성적표 */
-        .my-scorecard{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:20px;padding:28px;margin-bottom:24px;color:#fff;position:relative;overflow:hidden}
-        .my-scorecard::before{content:'';position:absolute;top:-50%;right:-30%;width:60%;height:200%;background:rgba(255,255,255,0.05);transform:rotate(-15deg);pointer-events:none}
+        /* 🏆 나의 성적표 - 구글 스타일 */
+        .my-scorecard{background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:24px;color:var(--text)}
         
-        .scorecard-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px}
-        .scorecard-greeting h1{font-size:24px;font-weight:600;margin-bottom:6px}
-        .scorecard-greeting p{font-size:14px;opacity:0.9}
-        .scorecard-grade{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.15);padding:12px 20px;border-radius:16px;cursor:pointer;transition:all .2s}
-        .scorecard-grade:hover{background:rgba(255,255,255,0.25)}
-        .scorecard-grade-icon{font-size:36px}
+        .scorecard-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+        .scorecard-greeting h1{font-size:22px;font-weight:600;margin-bottom:4px;color:var(--text)}
+        .scorecard-greeting p{font-size:14px;color:var(--text-muted)}
+        .scorecard-grade{display:flex;align-items:center;gap:10px;background:var(--bg-secondary);padding:10px 16px;border-radius:12px;cursor:pointer;transition:all .2s;border:1px solid var(--border)}
+        .scorecard-grade:hover{background:#e8f0fe;border-color:var(--primary)}
+        .scorecard-grade-icon{font-size:32px}
         .scorecard-grade-info{text-align:right}
-        .scorecard-grade-name{font-size:18px;font-weight:700;display:block}
-        .scorecard-grade-commission{font-size:12px;opacity:0.9}
+        .scorecard-grade-name{font-size:16px;font-weight:600;display:block;color:var(--text)}
+        .scorecard-grade-commission{font-size:12px;color:var(--primary)}
         
-        .scorecard-stats{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
-        .scorecard-stat-item{flex:1;min-width:100px;background:rgba(255,255,255,0.1);border-radius:12px;padding:16px;text-align:center;transition:all .2s}
-        .scorecard-stat-item:hover{background:rgba(255,255,255,0.2);transform:translateY(-2px)}
-        .scorecard-stat-item.highlight{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3)}
-        .scorecard-stat-icon{font-size:24px;margin-bottom:8px}
-        .scorecard-stat-value{font-size:20px;font-weight:700;display:block;margin-bottom:4px}
-        .scorecard-stat-label{font-size:11px;opacity:0.8}
+        .scorecard-stats{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+        .scorecard-stat-item{flex:1;min-width:100px;background:var(--bg-secondary);border-radius:12px;padding:16px;text-align:center;transition:all .2s;border:1px solid transparent}
+        .scorecard-stat-item:hover{border-color:var(--border);transform:translateY(-2px)}
+        .scorecard-stat-item.highlight{background:#f0fdf4;border:1px solid #bbf7d0}
+        .scorecard-stat-icon{font-size:22px;margin-bottom:6px}
+        .scorecard-stat-value{font-size:20px;font-weight:700;display:block;margin-bottom:2px;color:var(--text)}
+        .scorecard-stat-label{font-size:11px;color:var(--text-muted)}
+        .scorecard-stat-change{font-size:11px;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:2px}
+        .scorecard-stat-change.up{color:#16a34a}
+        .scorecard-stat-change.down{color:#9ca3af}
+        .scorecard-stat-change.neutral{color:#9ca3af}
         
-        .scorecard-progress{margin-bottom:16px}
+        .scorecard-progress{margin-bottom:16px;padding:16px;background:var(--bg-secondary);border-radius:12px}
         .scorecard-progress-header{display:flex;justify-content:space-between;margin-bottom:10px}
-        .scorecard-progress-label{font-size:13px;opacity:0.9}
-        .scorecard-progress-count{font-size:14px;font-weight:600}
-        .scorecard-progress-bar{height:10px;background:rgba(255,255,255,0.2);border-radius:5px;overflow:hidden;margin-bottom:10px}
-        .scorecard-progress-fill{height:100%;background:#fff;border-radius:5px;transition:width .5s}
+        .scorecard-progress-label{font-size:13px;color:var(--text-light)}
+        .scorecard-progress-count{font-size:14px;font-weight:600;color:var(--primary)}
+        .scorecard-progress-bar{height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden;margin-bottom:10px}
+        .scorecard-progress-fill{height:100%;background:var(--primary);border-radius:4px;transition:width .5s}
         .scorecard-progress-markers{display:flex;justify-content:space-between;padding:0 4px}
-        .scorecard-progress-markers span{font-size:14px;opacity:0.5;transition:all .2s}
-        .scorecard-progress-markers span.active{opacity:1;transform:scale(1.1)}
-        .scorecard-progress-markers span.current{opacity:1;transform:scale(1.3);text-shadow:0 0 10px rgba(255,255,255,0.5)}
+        .scorecard-progress-markers span{font-size:14px;opacity:0.4;transition:all .2s}
+        .scorecard-progress-markers span.active{opacity:1}
+        .scorecard-progress-markers span.current{opacity:1;transform:scale(1.2)}
         
-        .scorecard-benefit{display:flex;gap:20px;justify-content:center;font-size:13px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.2)}
-        .benefit-current strong{color:#fef08a}
-        .benefit-next{opacity:0.8}
+        .scorecard-benefit{display:flex;gap:20px;justify-content:center;font-size:13px;padding-top:16px;border-top:1px solid var(--border);color:var(--text-light)}
+        .benefit-current strong{color:var(--primary)}
+        .benefit-next{color:var(--text-muted)}
 
         /* 등급 모달 */
         .grade-modal{background:#fff;border-radius:16px;width:90%;max-width:500px;max-height:90vh;overflow:hidden}
@@ -325,6 +328,79 @@
         .badge{display:inline-block;padding:4px 8px;border-radius:4px;font-size:11px;font-weight:500}
         .badge-pending{background:#fef3c7;color:#b45309}
         .badge-complete{background:#dcfce7;color:#16a34a}
+        
+        /* 커뮤니티 섹션 */
+        .community-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+        .community-filters{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+        .community-filter{padding:10px 16px;background:#fff;border:1px solid var(--border);border-radius:20px;font-size:13px;cursor:pointer;font-family:inherit;transition:all .2s}
+        .community-filter:hover{border-color:var(--primary);color:var(--primary)}
+        .community-filter.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+        .community-section-title{font-size:14px;font-weight:600;color:var(--text-light);margin-bottom:12px}
+        .community-hot{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:20px}
+        .hot-posts{display:flex;flex-direction:column;gap:8px}
+        .hot-post-item{display:flex;align-items:center;gap:12px;padding:10px;background:var(--bg-secondary);border-radius:8px;cursor:pointer;transition:all .2s}
+        .hot-post-item:hover{background:#e8f0fe}
+        .hot-post-rank{font-size:14px;font-weight:700;color:var(--primary);width:24px}
+        .hot-post-content{flex:1;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .hot-post-likes{font-size:12px;color:var(--text-muted)}
+        
+        .community-feed{display:flex;flex-direction:column;gap:16px}
+        .feed-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;transition:all .2s}
+        .feed-card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+        .feed-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+        .feed-avatar{width:40px;height:40px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px}
+        .feed-user-info{flex:1}
+        .feed-user-name{font-size:14px;font-weight:600;display:flex;align-items:center;gap:6px}
+        .feed-user-badge{font-size:10px;padding:2px 6px;background:var(--primary-light);color:var(--primary);border-radius:4px}
+        .feed-user-badge.gold{background:#fef3c7;color:#b45309}
+        .feed-user-badge.vip{background:#ede9fe;color:#7c3aed}
+        .feed-meta{font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:8px}
+        .feed-category{font-size:11px;padding:4px 8px;border-radius:4px;background:var(--bg-secondary)}
+        .feed-category.tip{background:#dcfce7;color:#16a34a}
+        .feed-category.review{background:#fef3c7;color:#b45309}
+        .feed-category.question{background:#e0f2fe;color:#0284c7}
+        .feed-category.free{background:#f3e8ff;color:#7c3aed}
+        .feed-content{font-size:14px;line-height:1.6;color:var(--text);margin-bottom:16px;white-space:pre-wrap}
+        .feed-actions{display:flex;gap:16px;padding-top:12px;border-top:1px solid var(--border)}
+        .feed-action{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted);cursor:pointer;padding:6px 12px;border-radius:6px;transition:all .2s;background:none;border:none;font-family:inherit}
+        .feed-action:hover{background:var(--bg-secondary);color:var(--text)}
+        .feed-action.liked{color:#ef4444}
+        .feed-action.liked:hover{background:#fef2f2}
+        
+        .feed-comments{margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+        .comment-list{display:flex;flex-direction:column;gap:12px;margin-bottom:12px}
+        .comment-item{display:flex;gap:10px}
+        .comment-avatar{width:28px;height:28px;border-radius:50%;background:var(--bg-secondary);color:var(--text-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0}
+        .comment-body{flex:1;background:var(--bg-secondary);padding:10px 12px;border-radius:8px}
+        .comment-user{font-size:12px;font-weight:600;margin-bottom:4px}
+        .comment-text{font-size:13px;line-height:1.5}
+        .comment-time{font-size:10px;color:var(--text-muted);margin-top:4px}
+        .comment-input-wrap{display:flex;gap:8px}
+        .comment-input{flex:1;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;resize:none}
+        .comment-input:focus{outline:none;border-color:var(--primary)}
+        .comment-submit{padding:10px 16px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit}
+        .comment-submit:hover{background:#1557b0}
+        
+        /* 글쓰기 모달 */
+        .write-modal{background:#fff;border-radius:16px;width:90%;max-width:500px;overflow:hidden}
+        .write-modal-header{padding:20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+        .write-modal-header h2{font-size:18px;font-weight:600}
+        .write-modal-body{padding:20px}
+        .write-category-select{margin-bottom:20px}
+        .write-category-select label{display:block;font-size:13px;font-weight:500;margin-bottom:10px;color:var(--text-light)}
+        .write-categories{display:flex;gap:8px;flex-wrap:wrap}
+        .write-category{padding:8px 14px;background:#fff;border:1px solid var(--border);border-radius:20px;font-size:12px;cursor:pointer;font-family:inherit;transition:all .2s}
+        .write-category:hover{border-color:var(--primary)}
+        .write-category.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+        .write-content{position:relative}
+        .write-content textarea{width:100%;height:200px;padding:16px;border:1px solid var(--border);border-radius:12px;font-size:14px;font-family:inherit;resize:none;line-height:1.6}
+        .write-content textarea:focus{outline:none;border-color:var(--primary)}
+        .write-char-count{position:absolute;bottom:12px;right:12px;font-size:11px;color:var(--text-muted)}
+        .write-modal-footer{padding:16px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+        
+        .empty-feed{text-align:center;padding:60px 20px;color:var(--text-muted)}
+        .empty-feed-icon{font-size:48px;margin-bottom:16px}
+        .empty-feed p{font-size:14px}
         
         /* 프로필 섹션 */
         .profile-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;max-width:600px}
@@ -778,6 +854,7 @@
                 <div class="logo">핫딜공구<span>인플루언서</span></div>
                 <nav class="dash-nav">
                     <a class="active" onclick="showDashSection('home', this)">홈</a>
+                    <a onclick="showDashSection('community', this)">커뮤니티</a>
                     <a onclick="showDashSection('report', this)">리포트</a>
                 </nav>
             </div>
@@ -831,16 +908,19 @@
                             <div class="scorecard-stat-icon">📈</div>
                             <div class="scorecard-stat-value" id="statMonthSales">0건</div>
                             <div class="scorecard-stat-label">이번 달 판매</div>
+                            <div class="scorecard-stat-change neutral" id="statMonthSalesChange">-</div>
                         </div>
                         <div class="scorecard-stat-item highlight">
                             <div class="scorecard-stat-icon">💵</div>
                             <div class="scorecard-stat-value" id="statMonthEarnings">₩0</div>
                             <div class="scorecard-stat-label">이번 달 수익</div>
+                            <div class="scorecard-stat-change neutral" id="statMonthEarningsChange">-</div>
                         </div>
                         <div class="scorecard-stat-item">
                             <div class="scorecard-stat-icon">🏆</div>
                             <div class="scorecard-stat-value" id="statWeekRank">-위</div>
                             <div class="scorecard-stat-label">이번 주 순위</div>
+                            <div class="scorecard-stat-change neutral" id="statWeekRankChange">-</div>
                         </div>
                     </div>
                     
@@ -927,6 +1007,65 @@
                                 <p class="ranking-note">판매 데이터 집계 중...</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 커뮤니티 섹션 -->
+            <div id="dashCommunity" class="hidden">
+                <div class="community-header">
+                    <h1 class="page-title">💬 커뮤니티</h1>
+                    <button class="btn btn-primary" onclick="openWriteModal()">✏️ 글쓰기</button>
+                </div>
+                
+                <!-- 카테고리 필터 -->
+                <div class="community-filters">
+                    <button class="community-filter active" data-filter="all" onclick="filterPosts('all', this)">전체</button>
+                    <button class="community-filter" data-filter="tip" onclick="filterPosts('tip', this)">💰 판매 꿀팁</button>
+                    <button class="community-filter" data-filter="review" onclick="filterPosts('review', this)">🎉 성공 후기</button>
+                    <button class="community-filter" data-filter="question" onclick="filterPosts('question', this)">❓ 질문</button>
+                    <button class="community-filter" data-filter="free" onclick="filterPosts('free', this)">💬 자유</button>
+                </div>
+
+                <!-- 인기글 -->
+                <div class="community-hot">
+                    <div class="community-section-title">🔥 인기글</div>
+                    <div class="hot-posts" id="hotPosts">
+                        <!-- 인기글 목록 -->
+                    </div>
+                </div>
+
+                <!-- 피드 -->
+                <div class="community-feed" id="communityFeed">
+                    <!-- 피드 글 목록 -->
+                </div>
+            </div>
+
+            <!-- 글쓰기 모달 -->
+            <div class="modal-overlay" id="writeModal">
+                <div class="write-modal">
+                    <div class="write-modal-header">
+                        <h2>새 글 작성</h2>
+                        <button class="close-btn" onclick="closeWriteModal()">&times;</button>
+                    </div>
+                    <div class="write-modal-body">
+                        <div class="write-category-select">
+                            <label>카테고리</label>
+                            <div class="write-categories">
+                                <button class="write-category active" data-category="tip" onclick="selectWriteCategory('tip', this)">💰 판매 꿀팁</button>
+                                <button class="write-category" data-category="review" onclick="selectWriteCategory('review', this)">🎉 성공 후기</button>
+                                <button class="write-category" data-category="question" onclick="selectWriteCategory('question', this)">❓ 질문</button>
+                                <button class="write-category" data-category="free" onclick="selectWriteCategory('free', this)">💬 자유</button>
+                            </div>
+                        </div>
+                        <div class="write-content">
+                            <textarea id="postContent" placeholder="내용을 입력하세요..." maxlength="1000"></textarea>
+                            <div class="write-char-count"><span id="charCount">0</span>/1000</div>
+                        </div>
+                    </div>
+                    <div class="write-modal-footer">
+                        <button class="btn btn-secondary" onclick="closeWriteModal()">취소</button>
+                        <button class="btn btn-primary" onclick="submitPost()">등록하기</button>
                     </div>
                 </div>
             </div>
@@ -1507,10 +1646,16 @@
                 const salesSnapshot = await db.collection('sales').get();
                 data.sales = salesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                 
-                // Products 로드
+                // Products 로드 - Firebase에서 가져온 상품으로 완전 교체
                 const productsSnapshot = await db.collection('products').get();
                 if (!productsSnapshot.empty) {
-                    data.products = productsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    data.products = productsSnapshot.docs.map(doc => ({ 
+                        id: doc.id, 
+                        ...doc.data() 
+                    }));
+                    console.log('✅ Firebase에서 상품 로드 완료:', data.products.length + '개');
+                } else {
+                    console.log('⚠️ Firebase에 상품이 없음, 기본 상품 사용');
                 }
             } catch (error) {
                 console.log('Firebase 로드 실패, 로컬 데이터 사용:', error);
@@ -2065,6 +2210,23 @@
             const myRank = sortedUsers.findIndex(([code]) => code === currentUser.code) + 1;
             document.getElementById('statWeekRank').textContent = myRank > 0 ? `${myRank}위` : '-';
             
+            // 상승/하락 표시 업데이트
+            updateStatChanges(mySales);
+            
+            // 지난주 순위와 비교 (간단히 현재 순위 기준으로 표시)
+            const twoWeekAgo = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000);
+            const lastWeekUserSales = {};
+            data.sales.filter(s => {
+                const d = new Date(s.date);
+                return d >= twoWeekAgo && d < weekAgo;
+            }).forEach(s => {
+                if (!lastWeekUserSales[s.userCode]) lastWeekUserSales[s.userCode] = 0;
+                lastWeekUserSales[s.userCode] += s.quantity || 1;
+            });
+            const lastWeekSorted = Object.entries(lastWeekUserSales).sort((a, b) => b[1] - a[1]);
+            const lastWeekRank = lastWeekSorted.findIndex(([code]) => code === currentUser.code) + 1;
+            updateRankChange(myRank, lastWeekRank);
+            
             // 진행률
             if (nextInfo) {
                 const currentGradeMin = grade.minSales;
@@ -2329,9 +2491,14 @@
 
         function showDashSection(section, el) {
             document.getElementById('dashHome').classList.add('hidden');
+            document.getElementById('dashCommunity').classList.add('hidden');
             document.getElementById('dashReport').classList.add('hidden');
             document.getElementById('dashProfile').classList.add('hidden');
             if (section === 'home') document.getElementById('dashHome').classList.remove('hidden');
+            if (section === 'community') {
+                document.getElementById('dashCommunity').classList.remove('hidden');
+                loadCommunityPosts();
+            }
             if (section === 'report') {
                 document.getElementById('dashReport').classList.remove('hidden');
                 updateReportSection();
@@ -2638,6 +2805,403 @@
                         <td><span class="badge badge-pending">지급 대기</span></td>
                     </tr>
                 `;
+            }
+        }
+
+        // ============ 커뮤니티 기능 ============
+        let communityPosts = [];
+        let currentFilter = 'all';
+        let selectedWriteCategory = 'tip';
+
+        // 커뮤니티 데이터 로드
+        async function loadCommunityPosts() {
+            try {
+                const snapshot = await db.collection('posts').orderBy('createdAt', 'desc').limit(50).get();
+                communityPosts = [];
+                snapshot.forEach(doc => {
+                    communityPosts.push({ id: doc.id, ...doc.data() });
+                });
+            } catch (error) {
+                console.log('Firebase posts 로드 실패, 샘플 데이터 사용');
+                // 샘플 데이터
+                communityPosts = [
+                    {
+                        id: '1',
+                        category: 'tip',
+                        content: '인스타 스토리에 올릴 때 꿀팁! 제품 사진만 올리지 말고 직접 사용하는 모습 찍으면 판매율 2배 올라요 💡',
+                        author: { name: '뷰티크리에이터', code: 'HD0012', grade: 'gold' },
+                        likes: 24,
+                        likedBy: [],
+                        comments: [
+                            { author: '패션왕', text: '오 진짜요? 저도 해봐야겠어요!', time: '1시간 전' }
+                        ],
+                        createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000)
+                    },
+                    {
+                        id: '2',
+                        category: 'review',
+                        content: '드디어 이번 달 100만원 달성했어요! 🎉🎉🎉\n두쫀쿠 덕분에 매출 터졌습니다 ㅠㅠ 감사해요!',
+                        author: { name: '먹방러버', code: 'HD0008', grade: 'vip' },
+                        likes: 47,
+                        likedBy: [],
+                        comments: [
+                            { author: '신입크리에이터', text: '대박!! 축하드려요!!', time: '30분 전' },
+                            { author: '뷰티크리에이터', text: '비결이 뭐예요?', time: '20분 전' }
+                        ],
+                        createdAt: new Date(Date.now() - 5 * 60 * 60 * 1000)
+                    },
+                    {
+                        id: '3',
+                        category: 'question',
+                        content: '추천인 코드는 어디에 넣어야 하나요? 처음이라 잘 모르겠어요 😅',
+                        author: { name: '새싹인플루언서', code: 'HD0099', grade: 'seed' },
+                        likes: 3,
+                        likedBy: [],
+                        comments: [
+                            { author: '운영자', text: '배송 메모에 추천코드를 입력하시면 됩니다!', time: '10분 전' }
+                        ],
+                        createdAt: new Date(Date.now() - 8 * 60 * 60 * 1000)
+                    },
+                    {
+                        id: '4',
+                        category: 'free',
+                        content: '다들 주말에 뭐하세요? 저는 콘텐츠 촬영 중입니다 📸',
+                        author: { name: '일상브이로거', code: 'HD0045', grade: 'silver' },
+                        likes: 12,
+                        likedBy: [],
+                        comments: [],
+                        createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000)
+                    }
+                ];
+            }
+            renderCommunityPosts();
+            renderHotPosts();
+        }
+
+        function renderCommunityPosts() {
+            const feed = document.getElementById('communityFeed');
+            let filtered = communityPosts;
+            
+            if (currentFilter !== 'all') {
+                filtered = communityPosts.filter(p => p.category === currentFilter);
+            }
+
+            if (filtered.length === 0) {
+                feed.innerHTML = `
+                    <div class="empty-feed">
+                        <div class="empty-feed-icon">📝</div>
+                        <p>아직 게시글이 없어요.<br>첫 번째 글을 작성해보세요!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            feed.innerHTML = filtered.map(post => {
+                const categoryLabels = { tip: '💰 판매 꿀팁', review: '🎉 성공 후기', question: '❓ 질문', free: '💬 자유' };
+                const gradeLabels = { seed: '씨앗', sprout: '새싹', silver: '실버', gold: '골드', vip: 'VIP' };
+                const timeAgo = getTimeAgo(post.createdAt);
+                const isLiked = post.likedBy && post.likedBy.includes(currentUser?.code);
+                
+                return `
+                    <div class="feed-card" data-id="${post.id}">
+                        <div class="feed-header">
+                            <div class="feed-avatar">${post.author.name.charAt(0)}</div>
+                            <div class="feed-user-info">
+                                <div class="feed-user-name">
+                                    ${post.author.name}
+                                    <span class="feed-user-badge ${post.author.grade}">${gradeLabels[post.author.grade] || '씨앗'}</span>
+                                </div>
+                                <div class="feed-meta">
+                                    <span class="feed-category ${post.category}">${categoryLabels[post.category]}</span>
+                                    <span>${timeAgo}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feed-content">${escapeHtml(post.content)}</div>
+                        <div class="feed-actions">
+                            <button class="feed-action ${isLiked ? 'liked' : ''}" onclick="toggleLike('${post.id}')">
+                                ${isLiked ? '❤️' : '🤍'} 좋아요 ${post.likes || 0}
+                            </button>
+                            <button class="feed-action" onclick="toggleComments('${post.id}')">
+                                💬 댓글 ${post.comments?.length || 0}
+                            </button>
+                        </div>
+                        <div class="feed-comments hidden" id="comments-${post.id}">
+                            <div class="comment-list">
+                                ${(post.comments || []).map(c => `
+                                    <div class="comment-item">
+                                        <div class="comment-avatar">${c.author.charAt(0)}</div>
+                                        <div class="comment-body">
+                                            <div class="comment-user">${c.author}</div>
+                                            <div class="comment-text">${escapeHtml(c.text)}</div>
+                                            <div class="comment-time">${c.time}</div>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="comment-input-wrap">
+                                <textarea class="comment-input" placeholder="댓글을 입력하세요..." rows="1" id="comment-input-${post.id}"></textarea>
+                                <button class="comment-submit" onclick="submitComment('${post.id}')">등록</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderHotPosts() {
+            const hot = document.getElementById('hotPosts');
+            const hotPosts = [...communityPosts].sort((a, b) => (b.likes || 0) - (a.likes || 0)).slice(0, 3);
+            
+            if (hotPosts.length === 0) {
+                hot.innerHTML = '<p style="font-size:13px;color:var(--text-muted);text-align:center;padding:12px;">아직 인기글이 없어요</p>';
+                return;
+            }
+
+            hot.innerHTML = hotPosts.map((post, idx) => `
+                <div class="hot-post-item" onclick="scrollToPost('${post.id}')">
+                    <span class="hot-post-rank">${idx + 1}</span>
+                    <span class="hot-post-content">${escapeHtml(post.content.substring(0, 50))}${post.content.length > 50 ? '...' : ''}</span>
+                    <span class="hot-post-likes">❤️ ${post.likes || 0}</span>
+                </div>
+            `).join('');
+        }
+
+        function filterPosts(filter, el) {
+            currentFilter = filter;
+            document.querySelectorAll('.community-filter').forEach(btn => btn.classList.remove('active'));
+            el.classList.add('active');
+            renderCommunityPosts();
+        }
+
+        function toggleLike(postId) {
+            const post = communityPosts.find(p => p.id === postId);
+            if (!post || !currentUser) return;
+
+            if (!post.likedBy) post.likedBy = [];
+            
+            const idx = post.likedBy.indexOf(currentUser.code);
+            if (idx > -1) {
+                post.likedBy.splice(idx, 1);
+                post.likes = Math.max(0, (post.likes || 1) - 1);
+            } else {
+                post.likedBy.push(currentUser.code);
+                post.likes = (post.likes || 0) + 1;
+            }
+
+            // Firebase 업데이트 시도
+            try {
+                db.collection('posts').doc(postId).update({
+                    likes: post.likes,
+                    likedBy: post.likedBy
+                });
+            } catch (e) {}
+
+            renderCommunityPosts();
+            renderHotPosts();
+        }
+
+        function toggleComments(postId) {
+            const el = document.getElementById('comments-' + postId);
+            el.classList.toggle('hidden');
+        }
+
+        function submitComment(postId) {
+            const input = document.getElementById('comment-input-' + postId);
+            const text = input.value.trim();
+            if (!text || !currentUser) return;
+
+            const post = communityPosts.find(p => p.id === postId);
+            if (!post) return;
+
+            if (!post.comments) post.comments = [];
+            post.comments.push({
+                author: currentUser.name,
+                text: text,
+                time: '방금 전'
+            });
+
+            input.value = '';
+
+            // Firebase 업데이트 시도
+            try {
+                db.collection('posts').doc(postId).update({
+                    comments: post.comments
+                });
+            } catch (e) {}
+
+            renderCommunityPosts();
+        }
+
+        function scrollToPost(postId) {
+            const card = document.querySelector(`.feed-card[data-id="${postId}"]`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                card.style.boxShadow = '0 0 0 2px var(--primary)';
+                setTimeout(() => card.style.boxShadow = '', 1500);
+            }
+        }
+
+        function openWriteModal() {
+            document.getElementById('writeModal').classList.add('show');
+            document.getElementById('postContent').value = '';
+            document.getElementById('charCount').textContent = '0';
+        }
+
+        function closeWriteModal() {
+            document.getElementById('writeModal').classList.remove('show');
+        }
+
+        function selectWriteCategory(category, el) {
+            selectedWriteCategory = category;
+            document.querySelectorAll('.write-category').forEach(btn => btn.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const textarea = document.getElementById('postContent');
+            if (textarea) {
+                textarea.addEventListener('input', function() {
+                    document.getElementById('charCount').textContent = this.value.length;
+                });
+            }
+        });
+
+        async function submitPost() {
+            const content = document.getElementById('postContent').value.trim();
+            if (!content) {
+                showToast('내용을 입력해주세요');
+                return;
+            }
+            if (!currentUser) {
+                showToast('로그인이 필요합니다');
+                return;
+            }
+
+            const grade = getUserGrade(data.sales.filter(s => s.userCode === currentUser.code).reduce((sum, s) => sum + (s.quantity || 1), 0));
+
+            const newPost = {
+                category: selectedWriteCategory,
+                content: content,
+                author: {
+                    name: currentUser.name,
+                    code: currentUser.code,
+                    grade: grade.id
+                },
+                likes: 0,
+                likedBy: [],
+                comments: [],
+                createdAt: new Date()
+            };
+
+            // Firebase에 저장 시도
+            try {
+                const docRef = await db.collection('posts').add(newPost);
+                newPost.id = docRef.id;
+            } catch (e) {
+                newPost.id = 'local-' + Date.now();
+            }
+
+            communityPosts.unshift(newPost);
+            closeWriteModal();
+            renderCommunityPosts();
+            renderHotPosts();
+            showToast('글이 등록되었습니다! ✨');
+        }
+
+        function getTimeAgo(date) {
+            if (!date) return '';
+            const now = new Date();
+            const past = date instanceof Date ? date : new Date(date);
+            const diffMs = now - past;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMs / 3600000);
+            const diffDays = Math.floor(diffMs / 86400000);
+
+            if (diffMins < 1) return '방금 전';
+            if (diffMins < 60) return `${diffMins}분 전`;
+            if (diffHours < 24) return `${diffHours}시간 전`;
+            if (diffDays < 7) return `${diffDays}일 전`;
+            return past.toLocaleDateString('ko-KR');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // ============ 상승/하락 표시 업데이트 ============
+        function updateStatChanges(mySales) {
+            const now = new Date();
+            
+            // 이번 달 vs 지난 달 비교
+            const thisMonthSales = mySales.filter(s => {
+                const d = new Date(s.date);
+                return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+            });
+            
+            const lastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+            const lastMonthSales = mySales.filter(s => {
+                const d = new Date(s.date);
+                return d.getMonth() === lastMonth.getMonth() && d.getFullYear() === lastMonth.getFullYear();
+            });
+
+            const thisMonthCount = thisMonthSales.reduce((sum, s) => sum + (s.quantity || 1), 0);
+            const lastMonthCount = lastMonthSales.reduce((sum, s) => sum + (s.quantity || 1), 0);
+            const thisMonthEarnings = thisMonthSales.reduce((sum, s) => sum + (s.commission || 0), 0);
+            const lastMonthEarnings = lastMonthSales.reduce((sum, s) => sum + (s.commission || 0), 0);
+
+            // 판매 건수 변화
+            updateChangeIndicator('statMonthSalesChange', thisMonthCount - lastMonthCount, '건', '지난달 대비');
+            
+            // 수익 변화 (퍼센트)
+            if (lastMonthEarnings > 0) {
+                const percentChange = Math.round(((thisMonthEarnings - lastMonthEarnings) / lastMonthEarnings) * 100);
+                updateChangeIndicator('statMonthEarningsChange', percentChange, '%', '지난달 대비');
+            } else if (thisMonthEarnings > 0) {
+                document.getElementById('statMonthEarningsChange').innerHTML = '<span style="color:#16a34a">▲ 신규</span>';
+                document.getElementById('statMonthEarningsChange').className = 'scorecard-stat-change up';
+            } else {
+                document.getElementById('statMonthEarningsChange').textContent = '-';
+                document.getElementById('statMonthEarningsChange').className = 'scorecard-stat-change neutral';
+            }
+        }
+
+        function updateChangeIndicator(elementId, diff, unit, label) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+
+            if (diff > 0) {
+                el.innerHTML = `▲ ${diff}${unit}`;
+                el.className = 'scorecard-stat-change up';
+            } else if (diff < 0) {
+                el.innerHTML = `▼ ${Math.abs(diff)}${unit}`;
+                el.className = 'scorecard-stat-change down';
+            } else {
+                el.textContent = '-';
+                el.className = 'scorecard-stat-change neutral';
+            }
+        }
+
+        function updateRankChange(currentRank, previousRank) {
+            const el = document.getElementById('statWeekRankChange');
+            if (!el) return;
+
+            if (previousRank === 0 || currentRank === 0) {
+                el.textContent = '-';
+                el.className = 'scorecard-stat-change neutral';
+            } else if (currentRank < previousRank) {
+                // 순위 상승 (숫자가 작아짐)
+                el.innerHTML = `▲ ${previousRank - currentRank}`;
+                el.className = 'scorecard-stat-change up';
+            } else if (currentRank > previousRank) {
+                // 순위 하락 (숫자가 커짐)
+                el.innerHTML = `▼ ${currentRank - previousRank}`;
+                el.className = 'scorecard-stat-change down';
+            } else {
+                el.textContent = '-';
+                el.className = 'scorecard-stat-change neutral';
             }
         }
     </script>

@@ -572,13 +572,27 @@
 
             <div id="sectionProducts" class="hidden">
                 <h1 class="page-title">상품 관리</h1>
+                
+                <!-- 연동 안내 -->
+                <div class="card" style="background:linear-gradient(135deg,#e8f5e9 0%,#c8e6c9 100%);border:none;margin-bottom:16px">
+                    <div class="card-body" style="padding:16px 20px">
+                        <div style="display:flex;align-items:center;gap:12px">
+                            <span style="font-size:24px">✅</span>
+                            <div>
+                                <strong style="color:#2e7d32">실시간 연동됨</strong>
+                                <p style="font-size:12px;color:#558b2f;margin-top:2px">여기서 등록한 상품은 인플루언서 페이지에 자동으로 표시됩니다</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="card">
                     <div class="card-header" id="productFormHeader">상품 등록</div>
                     <div class="card-body">
                         <div class="form-row">
-                            <div class="input-group"><label>상품명</label><input type="text" id="productName" placeholder="상품명"></div>
-                            <div class="input-group"><label>가격</label><input type="number" id="productPrice" placeholder="가격"></div>
-                            <div class="input-group"><label>카테고리</label>
+                            <div class="input-group"><label>상품명 <span style="color:#d93025">*</span></label><input type="text" id="productName" placeholder="상품명"></div>
+                            <div class="input-group"><label>가격 <span style="color:#d93025">*</span></label><input type="number" id="productPrice" placeholder="가격"></div>
+                            <div class="input-group"><label>카테고리 <span style="color:#d93025">*</span></label>
                                 <select id="productCategory">
                                     <option value="">선택</option>
                                     <option value="dessert">🍪 디저트/음식</option>
@@ -607,6 +621,7 @@
                             <div class="input-group" style="max-width:150px"><label>시작일</label><input type="date" id="productStartDate"></div>
                             <div class="input-group" style="max-width:150px"><label>종료일</label><input type="date" id="productEndDate"></div>
                         </div>
+                        <p style="font-size:11px;color:var(--text-light);margin-top:12px">💡 인플루언서 수익 = 가격의 10% (등급에 따라 8~15%)</p>
                         <div style="margin-top:16px;display:flex;gap:8px">
                             <button class="btn btn-primary" id="productSubmitBtn" onclick="addProduct()">등록</button>
                             <button class="btn btn-secondary hidden" id="productCancelBtn" onclick="cancelEditProduct()">취소</button>
@@ -615,7 +630,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header">등록된 상품</div>
+                    <div class="card-header">등록된 상품 <span id="productCount" style="color:var(--text-light);font-weight:400;font-size:13px"></span></div>
                     <table><thead><tr><th style="width:60px">썸네일</th><th>상품</th><th>카테고리</th><th>가격</th><th>수익</th><th>기간</th><th>관리</th></tr></thead><tbody id="productsTable"></tbody></table>
                 </div>
             </div>
@@ -933,6 +948,12 @@
                     return `<tr><td>${u.name}</td><td><span class="badge badge-primary">${u.code}</span></td><td>${ch || '-'}${urlLinks}</td><td>${s.reduce((a,x)=>a+(x.quantity||0),0)}건</td><td>₩${s.reduce((a,x)=>a+(x.amount||0),0).toLocaleString()}</td><td style="color:var(--success)">₩${s.reduce((a,x)=>a+(x.commission||0),0).toLocaleString()}</td></tr>`;
                 }).join('');
 
+            // 상품 개수 표시
+            const productCountEl = document.getElementById('productCount');
+            if (productCountEl) {
+                productCountEl.textContent = `(총 ${data.products.length}개)`;
+            }
+            
             // 상품
             document.getElementById('productsTable').innerHTML = data.products.length === 0 
                 ? '<tr><td colspan="7" class="empty">등록된 상품이 없습니다</td></tr>'
