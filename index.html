@@ -1495,40 +1495,15 @@
                 <!-- 맞춤 추천 상품 -->
                 <div class="recommend-layout">
                     <div class="recommend-main">
-                        <!-- 섹션 1: 나를 위한 맞춤 상품 -->
+                        <!-- 나를 위한 맞춤 상품 (AI 자동 배치) -->
                         <div class="product-section">
                             <div class="section-header">
                                 <div>
                                     <h2>나를 위한 맞춤 상품</h2>
                                     <p class="section-desc" id="recommendReason">회원님의 관심 카테고리와 판매 성향을 분석했어요</p>
                                 </div>
-                                <span class="section-badge">AI 추천</span>
                             </div>
                             <div class="product-grid" id="productGridRecommend"></div>
-                        </div>
-                        
-                        <!-- 섹션 2: 요즘 인기있는 신상품 -->
-                        <div class="product-section" id="sectionNew">
-                            <div class="section-header">
-                                <div>
-                                    <h2>요즘 인기있는 신상품</h2>
-                                    <p class="section-desc">새롭게 입점한 HOT한 상품들</p>
-                                </div>
-                                <span class="section-badge new-badge">NEW</span>
-                            </div>
-                            <div class="product-grid" id="productGridNew"></div>
-                        </div>
-                        
-                        <!-- 섹션 3: 베스트셀링 추천상품 -->
-                        <div class="product-section" id="sectionBest">
-                            <div class="section-header">
-                                <div>
-                                    <h2>베스트셀링 추천상품</h2>
-                                    <p class="section-desc">인플루언서들이 가장 많이 판매한 상품</p>
-                                </div>
-                                <span class="section-badge best-badge">BEST</span>
-                            </div>
-                            <div class="product-grid" id="productGridBest"></div>
                         </div>
                     </div>
                     <div class="recommend-sidebar">
@@ -2515,25 +2490,15 @@
             // 랭킹 업데이트
             updateRanking();
             
-            // 전체 상품 (종료 제외)
+            // 전체 상품 (종료 제외) - 섹션 구분 없이 전부 AI 추천
             const allProducts = data.products.filter(p => p.status !== 'ended');
-            
-            // 섹션별로 분류
-            // 1. 맞춤 상품: 관리자가 recommend로 설정한 상품 + 사용자 맞춤 정렬
-            const recommendProductsRaw = allProducts.filter(p => (p.section || 'recommend') === 'recommend');
-            const recommendProducts = getPersonalizedProducts(recommendProductsRaw);
-            
-            // 2. 신상품, 베스트: 관리자가 설정한 순서대로
-            const newProducts = allProducts.filter(p => p.section === 'new').sort((a,b) => (a.order||999) - (b.order||999));
-            const bestProducts = allProducts.filter(p => p.section === 'best').sort((a,b) => (a.order||999) - (b.order||999));
+            const recommendProducts = getPersonalizedProducts(allProducts);
             
             // 추천 이유 업데이트
             updateRecommendReason();
             
-            // 각 섹션 렌더링
+            // 단일 섹션 렌더링
             renderProductSection('productGridRecommend', recommendProducts);
-            renderProductSection('productGridNew', newProducts, 'sectionNew');
-            renderProductSection('productGridBest', bestProducts, 'sectionBest');
         }
         
         // 개인화 추천 알고리즘 (맞춤 상품용)

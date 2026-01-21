@@ -1034,14 +1034,8 @@
                                     <option value="ended">종료</option>
                                 </select>
                             </div>
-                            <div class="input-group" style="max-width:200px"><label>노출 섹션</label>
-                                <select id="productSection">
-                                    <option value="recommend">나를 위한 맞춤 상품</option>
-                                    <option value="new">요즘 인기있는 신상품</option>
-                                    <option value="best">베스트셀링 추천상품</option>
-                                </select>
-                            </div>
                         </div>
+                        <input type="hidden" id="productSection" value="recommend">
                         <div class="form-row" style="margin-top:12px;align-items:flex-end">
                             <div class="input-group" style="flex:1">
                                 <label>썸네일 이미지</label>
@@ -1073,22 +1067,14 @@
                 <div class="card">
                     <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
                         <span>등록된 상품 <span id="productCount" style="color:var(--text-light);font-weight:400;font-size:13px"></span></span>
-                        <div style="display:flex;gap:8px;flex-wrap:wrap">
-                            <div class="product-section-tabs">
-                                <button class="section-tab active" onclick="filterProductSection('all', this)">전체</button>
-                                <button class="section-tab" onclick="filterProductSection('recommend', this)">맞춤</button>
-                                <button class="section-tab" onclick="filterProductSection('new', this)">신상품</button>
-                                <button class="section-tab" onclick="filterProductSection('best', this)">베스트</button>
-                            </div>
-                            <div class="product-status-tabs">
-                                <button class="status-tab active" onclick="filterProducts('all', this)">전체</button>
-                                <button class="status-tab" onclick="filterProducts('pending', this)">대기중</button>
-                                <button class="status-tab" onclick="filterProducts('active', this)">진행중</button>
-                                <button class="status-tab" onclick="filterProducts('ended', this)">종료</button>
-                            </div>
+                        <div class="product-status-tabs">
+                            <button class="status-tab active" onclick="filterProducts('all', this)">전체</button>
+                            <button class="status-tab" onclick="filterProducts('pending', this)">대기중</button>
+                            <button class="status-tab" onclick="filterProducts('active', this)">진행중</button>
+                            <button class="status-tab" onclick="filterProducts('ended', this)">종료</button>
                         </div>
                     </div>
-                    <table><thead><tr><th style="width:40px"></th><th style="width:60px">썸네일</th><th>상품</th><th>섹션</th><th>카테고리</th><th>가격</th><th>상태</th><th>관리</th></tr></thead><tbody id="productsTable"></tbody></table>
+                    <table><thead><tr><th style="width:40px"></th><th style="width:60px">썸네일</th><th>상품</th><th>카테고리</th><th>가격</th><th>상태</th><th>관리</th></tr></thead><tbody id="productsTable"></tbody></table>
                 </div>
             </div>
 
@@ -1460,7 +1446,6 @@
         
         // 상품 필터 상태
         let currentProductFilter = 'all';
-        let currentSectionFilter = 'all';
         let draggedProductId = null;
         
         function filterProducts(status, el) {
@@ -1470,16 +1455,8 @@
             renderProductsTable();
         }
         
-        function filterProductSection(section, el) {
-            currentSectionFilter = section;
-            document.querySelectorAll('.section-tab').forEach(tab => tab.classList.remove('active'));
-            if (el) el.classList.add('active');
-            renderProductsTable();
-        }
-        
         function renderProductsTable() {
             const statusLabels = { pending: '대기중', active: '진행중', ended: '종료' };
-            const sectionLabels = { recommend: '맞춤', new: '신상품', best: '베스트' };
             let filtered = data.products;
             
             // 상태 필터
@@ -1487,29 +1464,21 @@
                 filtered = filtered.filter(p => (p.status || 'active') === currentProductFilter);
             }
             
-            // 섹션 필터
-            if (currentSectionFilter !== 'all') {
-                filtered = filtered.filter(p => (p.section || 'recommend') === currentSectionFilter);
-            }
-            
             // 순서대로 정렬
             filtered = [...filtered].sort((a, b) => (a.order || 999) - (b.order || 999));
             
             document.getElementById('productsTable').innerHTML = filtered.length === 0 
-                ? '<tr><td colspan="8" class="empty">등록된 상품이 없습니다</td></tr>'
+                ? '<tr><td colspan="7" class="empty">등록된 상품이 없습니다</td></tr>'
                 : filtered.map((p, idx) => {
                     const thumb = p.image ? `<img src="${p.image}" style="width:50px;height:50px;object-fit:cover;border-radius:4px">` : `<div style="width:50px;height:50px;background:var(--bg-secondary);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-light)">없음</div>`;
                     const status = p.status || 'active';
                     const statusBadge = `<span class="badge-status ${status}">${statusLabels[status] || status}</span>`;
-                    const section = p.section || 'recommend';
-                    const sectionBadge = `<span class="badge-section ${section}">${sectionLabels[section] || section}</span>`;
                     return `<tr class="draggable-row" draggable="true" data-id="${p.id}" ondragstart="onDragStart(event)" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)" ondragend="onDragEnd(event)">
                         <td>
                             <div class="drag-handle" title="드래그하여 순서 변경">☰</div>
                         </td>
                         <td>${thumb}</td>
                         <td><strong>${p.name}</strong><br><a href="${p.link}" target="_blank" style="font-size:11px;color:var(--primary)">링크 열기</a></td>
-                        <td>${sectionBadge}</td>
                         <td>${categoryNames[p.category] || p.category || '-'}</td>
                         <td>₩${(p.price || 0).toLocaleString()}</td>
                         <td>${statusBadge}</td>
@@ -1567,9 +1536,6 @@
             let filtered = [...data.products];
             if (currentProductFilter !== 'all') {
                 filtered = filtered.filter(p => (p.status || 'active') === currentProductFilter);
-            }
-            if (currentSectionFilter !== 'all') {
-                filtered = filtered.filter(p => (p.section || 'recommend') === currentSectionFilter);
             }
             filtered = filtered.sort((a, b) => (a.order || 999) - (b.order || 999));
             
