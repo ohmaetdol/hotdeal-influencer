@@ -1503,7 +1503,7 @@
                     const statusBadge = `<span class="badge-status ${status}">${statusLabels[status] || status}</span>`;
                     const section = p.section || 'recommend';
                     const sectionBadge = `<span class="badge-section ${section}">${sectionLabels[section] || section}</span>`;
-                    return `<tr class="draggable-row" draggable="true" data-id="${p.id}" ondragstart="onDragStart(event)" ondragover="onDragOver(event)" ondrop="onDrop(event)" ondragend="onDragEnd(event)">
+                    return `<tr class="draggable-row" draggable="true" data-id="${p.id}" ondragstart="onDragStart(event)" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)" ondragend="onDragEnd(event)">
                         <td>
                             <div class="drag-handle" title="드래그하여 순서 변경">☰</div>
                         </td>
@@ -1523,22 +1523,36 @@
         
         // 드래그 앤 드롭 이벤트
         function onDragStart(e) {
-            draggedProductId = e.target.dataset.id;
-            e.target.classList.add('dragging');
+            const row = e.target.closest('tr');
+            if (!row) return;
+            draggedProductId = row.dataset.id;
+            row.classList.add('dragging');
             e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', draggedProductId);
         }
         
         function onDragOver(e) {
             e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            
+            // 이전 drag-over 제거
+            document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+            
             const row = e.target.closest('tr');
-            if (row && row.classList.contains('draggable-row')) {
+            if (row && row.classList.contains('draggable-row') && row.dataset.id !== draggedProductId) {
                 row.classList.add('drag-over');
             }
         }
         
+        function onDragLeave(e) {
+            const row = e.target.closest('tr');
+            if (row) row.classList.remove('drag-over');
+        }
+        
         function onDragEnd(e) {
-            e.target.classList.remove('dragging');
+            document.querySelectorAll('.dragging').forEach(el => el.classList.remove('dragging'));
             document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+            draggedProductId = null;
         }
         
         async function onDrop(e) {
@@ -1550,14 +1564,14 @@
             if (draggedProductId === targetId) return;
             
             // 현재 필터된 상품 목록 가져오기
-            let filtered = data.products;
+            let filtered = [...data.products];
             if (currentProductFilter !== 'all') {
                 filtered = filtered.filter(p => (p.status || 'active') === currentProductFilter);
             }
             if (currentSectionFilter !== 'all') {
                 filtered = filtered.filter(p => (p.section || 'recommend') === currentSectionFilter);
             }
-            filtered = [...filtered].sort((a, b) => (a.order || 999) - (b.order || 999));
+            filtered = filtered.sort((a, b) => (a.order || 999) - (b.order || 999));
             
             // 인덱스 찾기
             const draggedIdx = filtered.findIndex(p => String(p.id) === String(draggedProductId));
