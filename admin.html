@@ -852,39 +852,40 @@
         }
 
         function updateAll() {
-            const pending = data.users.filter(u => u.status === 'pending');
-            const approved = data.users.filter(u => u.status === 'approved');
-            const now = new Date();
-            
-            // 이번 달 데이터
-            const monthSales = data.sales.filter(s => {
-                const d = new Date(s.date);
-                return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
-            });
-            
-            document.getElementById('pendingCount').textContent = pending.length;
-            document.getElementById('activeCount').textContent = approved.length;
-            document.getElementById('monthSales').textContent = '₩' + monthSales.reduce((s,x) => s + (x.amount || 0), 0).toLocaleString();
-            document.getElementById('monthCommission').textContent = '₩' + monthSales.reduce((s,x) => s + (x.commission || 0), 0).toLocaleString();
-            
-            // 승인 대기 뱃지
-            const pendingBadge = document.getElementById('pendingBadge');
-            if (pendingBadge) {
-                pendingBadge.textContent = pending.length;
-                pendingBadge.style.display = pending.length > 0 ? 'inline' : 'none';
-            }
+            try {
+                const pending = data.users.filter(u => u.status === 'pending');
+                const approved = data.users.filter(u => u.status === 'approved');
+                const now = new Date();
+                
+                // 이번 달 데이터
+                const monthSales = data.sales.filter(s => {
+                    const d = new Date(s.date);
+                    return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+                });
+                
+                document.getElementById('pendingCount').textContent = pending.length;
+                document.getElementById('activeCount').textContent = approved.length;
+                document.getElementById('monthSales').textContent = '₩' + monthSales.reduce((s,x) => s + (x.amount || 0), 0).toLocaleString();
+                document.getElementById('monthCommission').textContent = '₩' + monthSales.reduce((s,x) => s + (x.commission || 0), 0).toLocaleString();
+                
+                // 승인 대기 뱃지
+                const pendingBadge = document.getElementById('pendingBadge');
+                if (pendingBadge) {
+                    pendingBadge.textContent = pending.length;
+                    pendingBadge.style.display = pending.length > 0 ? 'inline' : 'none';
+                }
 
-            // 오늘의 할 일
-            updateTodoList(pending, approved);
-            
-            // 등급별 현황
-            updateGradeDistribution(approved);
-            
-            // 매칭 추천
-            updateMatchRecommendations(approved);
-            
-            // TOP 인플루언서
-            updateTopInfluencers(approved);
+                // 오늘의 할 일
+                updateTodoList(pending, approved);
+                
+                // 등급별 현황
+                updateGradeDistribution(approved);
+                
+                // 매칭 추천
+                updateMatchRecommendations(approved);
+                
+                // TOP 인플루언서
+                updateTopInfluencers(approved);
 
             // 최근 활동
             document.getElementById('recentSalesTable').innerHTML = data.sales.length === 0 
@@ -955,6 +956,9 @@
             document.getElementById('allSalesTable').innerHTML = data.sales.length === 0 
                 ? '<tr><td colspan="7" class="empty">판매 내역이 없습니다</td></tr>'
                 : data.sales.slice().reverse().map(s => `<tr><td>${new Date(s.date).toLocaleDateString('ko-KR')}</td><td>${s.productEmoji || '📦'} ${s.productName}</td><td>${s.userName}</td><td>${s.quantity || 0}개</td><td>₩${(s.amount || 0).toLocaleString()}</td><td style="color:var(--success)">₩${(s.commission || 0).toLocaleString()}</td><td><button class="btn btn-danger btn-small" onclick="deleteSale('${s.id}')">삭제</button></td></tr>`).join('');
+            } catch (error) {
+                console.error('updateAll error:', error);
+            }
         }
 
         async function approveUser(docId) { 
@@ -1037,7 +1041,10 @@
         
         // 등급 필터로 이동
         function filterByGrade(gradeId) {
-            document.getElementById('dbGradeFilter').value = gradeId;
+            const gradeFilterEl = document.getElementById('dbGradeFilter');
+            if (gradeFilterEl) {
+                gradeFilterEl.value = gradeId;
+            }
             showSection('influencerDB', document.querySelector('.sidebar-menu a:nth-child(4)'));
         }
         
