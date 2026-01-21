@@ -255,6 +255,14 @@
         .matching-stats{display:flex;gap:16px;margin-top:8px}
         .matching-stat{font-size:11px;color:var(--text-light)}
         .matching-stat strong{color:var(--text);font-weight:600}
+        
+        .matching-contact-btns{display:flex;gap:8px;margin-top:10px}
+        .contact-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:500;text-decoration:none;transition:all .2s}
+        .contact-btn.call{background:#dcfce7;color:#16a34a}
+        .contact-btn.call:hover{background:#bbf7d0}
+        .contact-btn.sms{background:#e0f2fe;color:#0284c7}
+        .contact-btn.sms:hover{background:#bae6fd}
+        .no-contact{font-size:11px;color:var(--text-light);padding:6px 0}
 
         @media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.stats-grid{grid-template-columns:1fr 1fr}.influencer-card-list{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}.filter-row{flex-direction:column}.filter-group{min-width:100%}}
 
@@ -2453,6 +2461,9 @@
                 vip: { icon: '👑', name: 'VIP' }
             };
             
+            // 상품명 (문자 메시지용)
+            const productName = selectedProduct ? selectedProduct.name : '';
+            
             container.innerHTML = influencers.map(u => {
                 // 채널 태그
                 const channelTags = Object.entries(u.channels || {})
@@ -2476,6 +2487,14 @@
                     .slice(0, 3)
                     .join(', ');
                 
+                // 연락처 버튼 (전화번호가 있을 때만)
+                const contactBtns = u.contact 
+                    ? `<div class="matching-contact-btns">
+                        <a href="tel:${u.contact}" class="contact-btn call">📞 전화</a>
+                        <a href="sms:${u.contact}?body=안녕하세요 ${u.name}님! 핫딜공구인플루언서입니다. ${productName ? '「' + productName + '」 상품 협업 제안드립니다.' : '협업 제안드립니다.'}" class="contact-btn sms">💬 문자</a>
+                       </div>`
+                    : `<div class="matching-contact-btns"><span class="no-contact">연락처 없음</span></div>`;
+                
                 return `
                 <div class="matching-card">
                     <div class="${avatarClass}">${avatarContent}</div>
@@ -2490,6 +2509,7 @@
                             <span class="matching-stat">판매 <strong>${u.totalSales}건</strong></span>
                             <span class="matching-stat">매출 <strong>₩${u.totalAmount.toLocaleString()}</strong></span>
                         </div>
+                        ${contactBtns}
                     </div>
                     <div class="matching-score">
                         <div class="matching-score-value">${u.matchScore}%</div>
