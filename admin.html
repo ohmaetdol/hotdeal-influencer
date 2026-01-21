@@ -1787,10 +1787,10 @@
             // 메모
             document.getElementById('modalMemo').value = user.memo || '';
             
-            // 등급
-            const grade = user.grade || 'normal';
+            // 등급 라디오 버튼 (기존 수동 등급 설정용)
+            const userGradeValue = user.grade || 'normal';
             document.querySelectorAll('input[name="influencerGrade"]').forEach(input => {
-                input.checked = input.value === grade;
+                input.checked = input.value === userGradeValue;
             });
             
             document.getElementById('influencerModal').classList.add('show');
