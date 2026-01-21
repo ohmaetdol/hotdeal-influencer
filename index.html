@@ -184,6 +184,11 @@
         .section-header a{font-size:13px;color:var(--primary);text-decoration:none}
         .section-desc{font-size:13px;color:var(--text-muted);margin-top:4px}
         .section-badge{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600}
+        .section-badge.new-badge{background:linear-gradient(135deg,#f472b6 0%,#db2777 100%)}
+        .section-badge.best-badge{background:linear-gradient(135deg,#fbbf24 0%,#f59e0b 100%)}
+        .product-section{margin-bottom:40px}
+        .product-section:last-child{margin-bottom:0}
+        .empty-section{padding:40px 20px;text-align:center;color:var(--text-muted);background:var(--bg-secondary);border-radius:12px;font-size:14px}
 
         .recommend-layout{display:grid;grid-template-columns:1fr 300px;gap:24px}
 
@@ -1504,26 +1509,52 @@
                 <!-- 맞춤 추천 상품 -->
                 <div class="recommend-layout">
                     <div class="recommend-main">
-                        <div class="section-header">
-                            <div>
-                                <h2 id="recommendTitle">🎯 나를 위한 맞춤 상품</h2>
-                                <p class="section-desc" id="recommendReason">회원님의 관심 카테고리와 판매 성향을 분석했어요</p>
+                        <!-- 섹션 1: 나를 위한 맞춤 상품 -->
+                        <div class="product-section">
+                            <div class="section-header">
+                                <div>
+                                    <h2>나를 위한 맞춤 상품</h2>
+                                    <p class="section-desc" id="recommendReason">회원님의 관심 카테고리와 판매 성향을 분석했어요</p>
+                                </div>
+                                <span class="section-badge">AI 추천</span>
                             </div>
-                            <span class="section-badge">AI 추천</span>
+                            <div class="product-grid" id="productGridRecommend"></div>
                         </div>
                         
-                        <div class="product-grid" id="productGrid"></div>
+                        <!-- 섹션 2: 요즘 인기있는 신상품 -->
+                        <div class="product-section">
+                            <div class="section-header">
+                                <div>
+                                    <h2>요즘 인기있는 신상품</h2>
+                                    <p class="section-desc">새롭게 입점한 HOT한 상품들</p>
+                                </div>
+                                <span class="section-badge new-badge">NEW</span>
+                            </div>
+                            <div class="product-grid" id="productGridNew"></div>
+                        </div>
+                        
+                        <!-- 섹션 3: 베스트셀링 추천상품 -->
+                        <div class="product-section">
+                            <div class="section-header">
+                                <div>
+                                    <h2>베스트셀링 추천상품</h2>
+                                    <p class="section-desc">인플루언서들이 가장 많이 판매한 상품</p>
+                                </div>
+                                <span class="section-badge best-badge">BEST</span>
+                            </div>
+                            <div class="product-grid" id="productGridBest"></div>
+                        </div>
                     </div>
                     <div class="recommend-sidebar">
                         <!-- 최근 복사한 상품 -->
                         <div class="sidebar-box">
-                            <div class="sidebar-box-header">📋 최근 복사한 상품 <span id="copiedCount">총 0개</span></div>
+                            <div class="sidebar-box-header">최근 복사한 상품 <span id="copiedCount">총 0개</span></div>
                             <div class="sidebar-box-content" id="recentCopied"><p class="empty-text">복사한 상품이 없습니다</p></div>
                         </div>
                         
                         <!-- 이번 주 목표 -->
                         <div class="sidebar-box goal-box">
-                            <div class="sidebar-box-header">🎯 이번 주 목표</div>
+                            <div class="sidebar-box-header">이번 주 목표</div>
                             <div class="sidebar-box-content">
                                 <div class="goal-progress">
                                     <div class="goal-text"><span id="weekSales">0</span> / 5건 판매</div>
@@ -1535,7 +1566,7 @@
                         
                         <!-- 실시간 랭킹 -->
                         <div class="sidebar-box">
-                            <div class="sidebar-box-header">🏆 이번 주 TOP 인플루언서</div>
+                            <div class="sidebar-box-header">이번 주 TOP 인플루언서</div>
                             <div class="sidebar-box-content" id="weeklyRanking">
                                 <p class="ranking-note">판매 데이터 집계 중...</p>
                             </div>
@@ -2501,17 +2532,30 @@
             updateRanking();
             
             // 추천 알고리즘 적용
-            const recommendedProducts = getRecommendedProducts();
-            console.log('🎯 추천 상품:', recommendedProducts.length + '개', recommendedProducts);
+            const allProducts = getRecommendedProducts();
+            console.log('🎯 전체 상품:', allProducts.length + '개', allProducts);
             
-            const grid = document.getElementById('productGrid');
+            // 섹션별로 분류
+            const recommendProducts = allProducts.filter(p => (p.section || 'recommend') === 'recommend').sort((a,b) => (a.order||999) - (b.order||999));
+            const newProducts = allProducts.filter(p => p.section === 'new').sort((a,b) => (a.order||999) - (b.order||999));
+            const bestProducts = allProducts.filter(p => p.section === 'best').sort((a,b) => (a.order||999) - (b.order||999));
             
-            if (recommendedProducts.length === 0) {
-                grid.innerHTML = '<div class="empty-products"><p>등록된 상품이 없습니다.</p><p style="font-size:13px;color:var(--text-muted);margin-top:8px;">관리자가 상품을 등록하면 여기에 표시됩니다.</p></div>';
+            // 각 섹션 렌더링
+            renderProductSection('productGridRecommend', recommendProducts);
+            renderProductSection('productGridNew', newProducts);
+            renderProductSection('productGridBest', bestProducts);
+        }
+        
+        function renderProductSection(gridId, products) {
+            const grid = document.getElementById(gridId);
+            if (!grid) return;
+            
+            if (products.length === 0) {
+                grid.innerHTML = '<div class="empty-section">등록된 상품이 없습니다</div>';
                 return;
             }
             
-            grid.innerHTML = recommendedProducts.map(p => {
+            grid.innerHTML = products.map(p => {
                 const start = p.startDate ? new Date(p.startDate) : new Date();
                 const end = p.endDate ? new Date(p.endDate) : new Date();
                 const today = new Date();
@@ -2524,7 +2568,7 @@
                 
                 // 매칭 점수 계산
                 const matchPercent = calculateMatchScore(p);
-                const matchTag = matchPercent > 0 ? `<div class="product-card-match">💫 ${matchPercent}% 매칭</div>` : '';
+                const matchTag = matchPercent > 0 ? `<div class="product-card-match">${matchPercent}% 매칭</div>` : '';
                 
                 // 대기중 상품 여부
                 const isPending = p.status === 'pending';
@@ -2547,7 +2591,7 @@
                         <div class="product-card-commission">수익 ₩${Math.floor(p.price * 0.1).toLocaleString()}</div>
                         <div class="product-card-meta">
                             ${matchTag}
-                            <div class="product-card-period">📅 ${startStr} ~ ${endStr} <span class="dday">(${ddayStr})</span></div>
+                            <div class="product-card-period">${startStr} ~ ${endStr} <span class="dday">(${ddayStr})</span></div>
                             ${buttonHtml}
                         </div>
                     </div>
