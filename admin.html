@@ -822,13 +822,19 @@
         }
 
         async function login() {
-            if (document.getElementById('adminId').value === ADMIN_ID && document.getElementById('adminPw').value === ADMIN_PW) {
+            try {
+                if (document.getElementById('adminId').value === ADMIN_ID && document.getElementById('adminPw').value === ADMIN_PW) {
+                    document.getElementById('loginPage').classList.add('hidden');
+                    document.getElementById('dashboard').classList.remove('hidden');
+                    await loadData();
+                    updateAll();
+                } else { 
+                    showToast('ID 또는 비밀번호가 틀립니다', 'error'); 
+                }
+            } catch (error) {
+                console.error('Login error:', error);
                 document.getElementById('loginPage').classList.add('hidden');
                 document.getElementById('dashboard').classList.remove('hidden');
-                await loadData();
-                updateAll();
-            } else { 
-                showToast('ID 또는 비밀번호가 틀립니다', 'error'); 
             }
         }
         
