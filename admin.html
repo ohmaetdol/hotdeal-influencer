@@ -859,8 +859,18 @@
                         <div class="form-row" style="margin-top:12px">
                             <div class="input-group"><label>링크</label><input type="text" id="productLink" placeholder="https://..."></div>
                         </div>
-                        <div class="form-row" style="margin-top:12px">
-                            <div class="input-group"><label>썸네일 이미지 URL</label><input type="text" id="productImage" placeholder="https://이미지주소.jpg"></div>
+                        <div class="form-row" style="margin-top:12px;align-items:flex-end">
+                            <div class="input-group" style="flex:1">
+                                <label>썸네일 이미지</label>
+                                <div style="display:flex;gap:8px;align-items:center">
+                                    <input type="text" id="productImage" placeholder="https://이미지주소.jpg" style="flex:1">
+                                    <label for="productImageFile" class="btn btn-secondary btn-small" style="cursor:pointer;white-space:nowrap">📷 파일 선택</label>
+                                    <input type="file" id="productImageFile" accept="image/*" style="display:none" onchange="handleProductImageUpload(event)">
+                                </div>
+                            </div>
+                            <div id="productImagePreview" style="width:60px;height:60px;border-radius:8px;background:var(--bg-secondary);display:none;overflow:hidden;flex-shrink:0">
+                                <img id="productImagePreviewImg" style="width:100%;height:100%;object-fit:cover">
+                            </div>
                         </div>
                         <div class="form-row" style="margin-top:12px">
                             <div class="input-group" style="max-width:150px"><label>시작일</label><input type="date" id="productStartDate"></div>
@@ -931,7 +941,7 @@
         const ADMIN_ID = 'admin', ADMIN_PW = 'hotdeal1234';
         let data = { 
             users: [], 
-            products: [{id:1, name:'두쫀쿠 피스타치오 오리지널 카다이프 수제 디저트', price:29900, link:'https://smartstore.naver.com/gardenings/products/12913776103', category:'dessert', image:'https://shop-phinf.pstatic.net/20250102_140/1735825498498YWTDG_JPEG/25418556025058867_1514498498.jpg', startDate:'2025-01-21', endDate:'2025-01-28'}], 
+            products: [{id:1, name:'두쫀쿠 피스타치오 오리지널 카다이프 수제 디저트', price:29900, link:'https://smartstore.naver.com/gardenings/products/12913776103', category:'dessert', image:'https://i.imgur.com/YqVqQJd.jpeg', startDate:'2025-01-21', endDate:'2025-01-28'}], 
             sales: [] 
         };
         
@@ -1490,6 +1500,47 @@
             `).join('');
         }
 
+        // 상품 이미지 업로드 처리 (Base64로 변환)
+        function handleProductImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            // 파일 크기 체크 (2MB 제한)
+            if (file.size > 2 * 1024 * 1024) {
+                showToast('이미지는 2MB 이하만 가능합니다', 'error');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64 = e.target.result;
+                document.getElementById('productImage').value = base64;
+                
+                // 미리보기 표시
+                document.getElementById('productImagePreview').style.display = 'block';
+                document.getElementById('productImagePreviewImg').src = base64;
+                
+                showToast('이미지가 업로드되었습니다 ✅');
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        // URL 입력시 미리보기 업데이트
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageInput = document.getElementById('productImage');
+            if (imageInput) {
+                imageInput.addEventListener('input', function() {
+                    const url = this.value.trim();
+                    if (url && (url.startsWith('http') || url.startsWith('data:'))) {
+                        document.getElementById('productImagePreview').style.display = 'block';
+                        document.getElementById('productImagePreviewImg').src = url;
+                    } else {
+                        document.getElementById('productImagePreview').style.display = 'none';
+                    }
+                });
+            }
+        });
+
         async function addProduct() {
             const editId = document.getElementById('editProductId').value;
             const name = document.getElementById('productName').value.trim();
@@ -1556,6 +1607,14 @@
             document.getElementById('productStartDate').value = product.startDate || '';
             document.getElementById('productEndDate').value = product.endDate || '';
             
+            // 이미지 미리보기
+            if (product.image) {
+                document.getElementById('productImagePreview').style.display = 'block';
+                document.getElementById('productImagePreviewImg').src = product.image;
+            } else {
+                document.getElementById('productImagePreview').style.display = 'none';
+            }
+            
             // UI 변경
             document.getElementById('productFormHeader').textContent = '상품 수정';
             document.getElementById('productSubmitBtn').textContent = '수정';
@@ -1581,6 +1640,8 @@
             document.getElementById('productImage').value = '';
             document.getElementById('productStartDate').value = '';
             document.getElementById('productEndDate').value = '';
+            document.getElementById('productImagePreview').style.display = 'none';
+            document.getElementById('productImageFile').value = '';
         }
         
         async function deleteProduct(id) { 
