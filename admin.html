@@ -215,7 +215,48 @@
         .grade-dist-count{font-size:20px;font-weight:700}
         .grade-dist-percent{font-size:10px;opacity:0.7}
 
-        @media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.stats-grid{grid-template-columns:1fr 1fr}.influencer-card-list{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}}
+        /* 인플루언서 매칭 스타일 */
+        .matching-product-select select{width:100%;padding:12px 16px;font-size:14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;cursor:pointer}
+        .matching-product-select select:focus{outline:none;border-color:var(--primary)}
+        .selected-product-info{display:flex;gap:16px;margin-top:16px;padding:16px;background:var(--bg-secondary);border-radius:12px}
+        .selected-product-image{width:80px;height:80px;border-radius:8px;overflow:hidden;flex-shrink:0}
+        .selected-product-image img{width:100%;height:100%;object-fit:cover}
+        .selected-product-details h3{font-size:15px;font-weight:600;margin-bottom:6px}
+        .selected-product-details p{font-size:13px;color:var(--text-light);margin-bottom:2px}
+        
+        .filter-row{display:flex;gap:16px;flex-wrap:wrap}
+        .filter-group{flex:1;min-width:150px}
+        .filter-group label{display:block;font-size:12px;color:var(--text-light);margin-bottom:6px;font-weight:500}
+        .filter-group select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit}
+        .filter-group select:focus{outline:none;border-color:var(--primary)}
+
+        .matching-results{max-height:600px;overflow-y:auto}
+        .empty-matching{padding:60px 20px;text-align:center;color:var(--text-light)}
+        
+        .matching-card{display:flex;align-items:center;gap:16px;padding:16px 20px;border-bottom:1px solid var(--border);transition:all .2s}
+        .matching-card:last-child{border-bottom:none}
+        .matching-card:hover{background:var(--bg-secondary)}
+        .matching-avatar{width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;flex-shrink:0}
+        .matching-avatar.has-image{padding:0;overflow:hidden}
+        .matching-avatar img{width:100%;height:100%;object-fit:cover}
+        .matching-info{flex:1;min-width:0}
+        .matching-name{font-size:14px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+        .matching-grade{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--bg-secondary)}
+        .matching-meta{font-size:12px;color:var(--text-light);margin-bottom:6px}
+        .matching-channels{display:flex;gap:6px;flex-wrap:wrap}
+        .matching-channel{font-size:11px;padding:3px 8px;border-radius:4px;font-weight:500}
+        .matching-channel.instagram{background:#fce7f3;color:#db2777}
+        .matching-channel.youtube{background:#fee2e2;color:#dc2626}
+        .matching-channel.blog{background:#dcfce7;color:#16a34a}
+        .matching-channel.tiktok{background:#f3e8ff;color:#7c3aed}
+        .matching-score{text-align:right;flex-shrink:0}
+        .matching-score-value{font-size:24px;font-weight:700;color:var(--primary)}
+        .matching-score-label{font-size:11px;color:var(--text-light)}
+        .matching-stats{display:flex;gap:16px;margin-top:8px}
+        .matching-stat{font-size:11px;color:var(--text-light)}
+        .matching-stat strong{color:var(--text);font-weight:600}
+
+        @media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.stats-grid{grid-template-columns:1fr 1fr}.influencer-card-list{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}.filter-row{flex-direction:column}.filter-group{min-width:100%}}
 
         /* ============================================
            🔥 관리자 모바일 최적화 스타일
@@ -473,6 +514,7 @@
                     <a onclick="showSectionMobile('applications',this)"><span class="menu-icon">📋</span> 가입 신청</a>
                     <a onclick="showSectionMobile('influencers',this)"><span class="menu-icon">👥</span> 인플루언서</a>
                     <a onclick="showSectionMobile('influencerDB',this)"><span class="menu-icon">🗂️</span> 인플루언서 DB</a>
+                    <a onclick="showSectionMobile('matching',this)"><span class="menu-icon">🎯</span> 인플루언서 매칭</a>
                     <a onclick="showSectionMobile('analytics',this)"><span class="menu-icon">📈</span> 성과분석</a>
                     <a onclick="showSectionMobile('products',this)"><span class="menu-icon">📦</span> 상품 관리</a>
                     <a onclick="showSectionMobile('sales',this)"><span class="menu-icon">💰</span> 판매 입력</a>
@@ -488,6 +530,7 @@
                 <a onclick="showSection('applications',this)">📋 가입 신청</a>
                 <a onclick="showSection('influencers',this)">👥 인플루언서</a>
                 <a onclick="showSection('influencerDB',this)">🗂️ 인플루언서 DB</a>
+                <a onclick="showSection('matching',this)">🎯 인플루언서 매칭</a>
                 <a onclick="showSection('analytics',this)">📈 성과분석</a>
                 <a onclick="showSection('products',this)">📦 상품 관리</a>
                 <a onclick="showSection('sales',this)">💰 판매 입력</a>
@@ -731,6 +774,99 @@
                         <button class="btn btn-secondary" onclick="closeInfluencerModal()">닫기</button>
                     </div>
                     <input type="hidden" id="modalInfluencerId" value="">
+                </div>
+            </div>
+
+            <!-- 인플루언서 매칭 섹션 -->
+            <div id="sectionMatching" class="hidden">
+                <h1 class="page-title">🎯 인플루언서 매칭</h1>
+                
+                <!-- 상품 선택 -->
+                <div class="card">
+                    <div class="card-header">📦 상품 선택</div>
+                    <div class="card-body">
+                        <div class="matching-product-select">
+                            <select id="matchingProductSelect" onchange="updateMatching()">
+                                <option value="">상품을 선택하세요</option>
+                            </select>
+                        </div>
+                        <div id="selectedProductInfo" class="selected-product-info hidden">
+                            <div class="selected-product-image">
+                                <img id="selectedProductImg" src="" alt="">
+                            </div>
+                            <div class="selected-product-details">
+                                <h3 id="selectedProductName"></h3>
+                                <p id="selectedProductCategory"></p>
+                                <p id="selectedProductPrice"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 인플루언서 필터 -->
+                <div class="card">
+                    <div class="card-header">🔍 인플루언서 필터</div>
+                    <div class="card-body">
+                        <div class="filter-row">
+                            <div class="filter-group">
+                                <label>채널</label>
+                                <select id="matchingChannelFilter" onchange="updateMatching()">
+                                    <option value="all">전체 채널</option>
+                                    <option value="instagram">Instagram</option>
+                                    <option value="youtube">YouTube</option>
+                                    <option value="blog">블로그</option>
+                                    <option value="tiktok">TikTok</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label>카테고리</label>
+                                <select id="matchingCategoryFilter" onchange="updateMatching()">
+                                    <option value="all">전체 카테고리</option>
+                                    <option value="dessert">디저트/음식</option>
+                                    <option value="beauty">뷰티</option>
+                                    <option value="fashion">패션</option>
+                                    <option value="living">생활용품</option>
+                                    <option value="electronics">전자기기</option>
+                                    <option value="kids">육아/키즈</option>
+                                    <option value="health">건강/헬스</option>
+                                    <option value="pet">반려동물</option>
+                                    <option value="travel">여행</option>
+                                    <option value="interior">인테리어</option>
+                                    <option value="book">도서/교육</option>
+                                    <option value="hobby">취미/게임</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label>정렬</label>
+                                <select id="matchingSortFilter" onchange="updateMatching()">
+                                    <option value="match">매칭률 높은순</option>
+                                    <option value="sales">판매 많은순</option>
+                                    <option value="recent">최근 가입순</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label>활동 상태</label>
+                                <select id="matchingStatusFilter" onchange="updateMatching()">
+                                    <option value="all">전체</option>
+                                    <option value="active">활동중 (판매 있음)</option>
+                                    <option value="inactive">미활동</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 매칭 결과 -->
+                <div class="card">
+                    <div class="card-header">
+                        <span>✨ 추천 인플루언서</span>
+                        <span id="matchingResultCount" style="font-weight:normal;color:var(--text-light);margin-left:8px">0명</span>
+                    </div>
+                    <div class="card-body" style="padding:0">
+                        <div id="matchingResults" class="matching-results">
+                            <div class="empty-matching">상품을 선택하면 매칭되는 인플루언서를 추천해드려요</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1114,7 +1250,7 @@
         }
 
         function showSection(section, el) {
-            ['sectionOverview','sectionApplications','sectionInfluencers','sectionInfluencerDB','sectionAnalytics','sectionProducts','sectionSales'].forEach(s => document.getElementById(s).classList.add('hidden'));
+            ['sectionOverview','sectionApplications','sectionInfluencers','sectionInfluencerDB','sectionMatching','sectionAnalytics','sectionProducts','sectionSales'].forEach(s => document.getElementById(s).classList.add('hidden'));
             document.getElementById('section' + section.charAt(0).toUpperCase() + section.slice(1)).classList.remove('hidden');
             document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
             if (el) el.classList.add('active');
@@ -1122,6 +1258,8 @@
                 updateAnalytics();
             } else if (section === 'influencerDB') {
                 renderInfluencerDB();
+            } else if (section === 'matching') {
+                initMatchingSection();
             } else {
                 updateAll();
             }
@@ -2175,6 +2313,208 @@
             closeInfluencerModal();
             renderInfluencerDB();
             showToast('저장되었습니다');
+        }
+
+        // ========================================
+        // 🎯 인플루언서 매칭 기능
+        // ========================================
+        
+        function initMatchingSection() {
+            // 상품 목록 로드
+            const productSelect = document.getElementById('matchingProductSelect');
+            productSelect.innerHTML = '<option value="">상품을 선택하세요</option>' + 
+                data.products.map(p => `<option value="${p.id}">${p.name} (${categoryNames[p.category] || p.category})</option>`).join('');
+            
+            updateMatching();
+        }
+        
+        function updateMatching() {
+            const productId = document.getElementById('matchingProductSelect').value;
+            const channelFilter = document.getElementById('matchingChannelFilter').value;
+            const categoryFilter = document.getElementById('matchingCategoryFilter').value;
+            const sortFilter = document.getElementById('matchingSortFilter').value;
+            const statusFilter = document.getElementById('matchingStatusFilter').value;
+            
+            // 선택된 상품 정보 표시
+            const productInfoEl = document.getElementById('selectedProductInfo');
+            const selectedProduct = data.products.find(p => String(p.id) === String(productId));
+            
+            if (selectedProduct) {
+                productInfoEl.classList.remove('hidden');
+                document.getElementById('selectedProductImg').src = selectedProduct.image || 'https://via.placeholder.com/80';
+                document.getElementById('selectedProductName').textContent = selectedProduct.name;
+                document.getElementById('selectedProductCategory').textContent = categoryNames[selectedProduct.category] || selectedProduct.category;
+                document.getElementById('selectedProductPrice').textContent = '₩' + (selectedProduct.price || 0).toLocaleString();
+            } else {
+                productInfoEl.classList.add('hidden');
+            }
+            
+            // 인플루언서 필터링
+            let influencers = data.users.filter(u => u.status === 'approved');
+            
+            // 채널 필터
+            if (channelFilter !== 'all') {
+                influencers = influencers.filter(u => u.channels && u.channels[channelFilter]);
+            }
+            
+            // 카테고리 필터
+            if (categoryFilter !== 'all') {
+                influencers = influencers.filter(u => u.categories && u.categories[categoryFilter]);
+            }
+            
+            // 활동 상태 필터
+            if (statusFilter !== 'all') {
+                influencers = influencers.filter(u => {
+                    const userSales = data.sales.filter(s => s.userCode === u.code);
+                    if (statusFilter === 'active') return userSales.length > 0;
+                    return userSales.length === 0;
+                });
+            }
+            
+            // 매칭 점수 계산
+            influencers = influencers.map(u => {
+                const matchScore = calculateMatchScore(u, selectedProduct);
+                const userSales = data.sales.filter(s => s.userCode === u.code);
+                const totalSales = userSales.reduce((sum, s) => sum + (s.quantity || 1), 0);
+                const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
+                
+                return {
+                    ...u,
+                    matchScore,
+                    totalSales,
+                    totalAmount
+                };
+            });
+            
+            // 정렬
+            if (sortFilter === 'match') {
+                influencers.sort((a, b) => b.matchScore - a.matchScore);
+            } else if (sortFilter === 'sales') {
+                influencers.sort((a, b) => b.totalSales - a.totalSales);
+            } else if (sortFilter === 'recent') {
+                influencers.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+            }
+            
+            // 결과 렌더링
+            renderMatchingResults(influencers, selectedProduct);
+        }
+        
+        function calculateMatchScore(user, product) {
+            if (!product) return 0;
+            
+            let score = 0;
+            
+            // 1. 카테고리 매칭 (40점)
+            if (user.categories && user.categories[product.category]) {
+                score += 40;
+            }
+            
+            // 2. 채널 보유 (20점)
+            const channelCount = Object.values(user.channels || {}).filter(v => v).length;
+            score += Math.min(20, channelCount * 5);
+            
+            // 3. 판매 실적 (20점)
+            const userSales = data.sales.filter(s => s.userCode === user.code);
+            const totalSales = userSales.reduce((sum, s) => sum + (s.quantity || 1), 0);
+            if (totalSales >= 100) score += 20;
+            else if (totalSales >= 50) score += 15;
+            else if (totalSales >= 20) score += 10;
+            else if (totalSales >= 5) score += 5;
+            
+            // 4. 같은 카테고리 판매 경험 (20점)
+            const categorySales = userSales.filter(s => {
+                const p = data.products.find(prod => String(prod.id) === String(s.productId));
+                return p && p.category === product.category;
+            });
+            if (categorySales.length > 0) {
+                score += Math.min(20, categorySales.length * 4);
+            }
+            
+            return Math.min(100, score);
+        }
+        
+        function renderMatchingResults(influencers, selectedProduct) {
+            const container = document.getElementById('matchingResults');
+            document.getElementById('matchingResultCount').textContent = influencers.length + '명';
+            
+            if (influencers.length === 0) {
+                container.innerHTML = '<div class="empty-matching">조건에 맞는 인플루언서가 없습니다</div>';
+                return;
+            }
+            
+            const channelLabels = { youtube: 'YouTube', instagram: 'Instagram', blog: '블로그', tiktok: 'TikTok' };
+            const gradeInfo = {
+                seed: { icon: '🌱', name: '씨앗' },
+                sprout: { icon: '🌿', name: '새싹' },
+                bronze: { icon: '🥉', name: '브론즈' },
+                silver: { icon: '🥈', name: '실버' },
+                gold: { icon: '🥇', name: '골드' },
+                diamond: { icon: '💎', name: '다이아' },
+                vip: { icon: '👑', name: 'VIP' }
+            };
+            
+            container.innerHTML = influencers.map(u => {
+                // 채널 태그
+                const channelTags = Object.entries(u.channels || {})
+                    .filter(([k, v]) => v)
+                    .map(([k]) => `<span class="matching-channel ${k}">${channelLabels[k] || k}</span>`)
+                    .join('');
+                
+                // 등급 계산
+                const userGrade = getUserGradeByTotalSales(u.totalSales);
+                
+                // 아바타
+                const avatarContent = u.profileImage 
+                    ? `<img src="${u.profileImage}" alt="${u.name}">`
+                    : u.name.charAt(0);
+                const avatarClass = u.profileImage ? 'matching-avatar has-image' : 'matching-avatar';
+                
+                // 관심 카테고리
+                const userCategories = Object.entries(u.categories || {})
+                    .filter(([k, v]) => v)
+                    .map(([k]) => categoryNames[k] || k)
+                    .slice(0, 3)
+                    .join(', ');
+                
+                return `
+                <div class="matching-card">
+                    <div class="${avatarClass}">${avatarContent}</div>
+                    <div class="matching-info">
+                        <div class="matching-name">
+                            ${u.name}
+                            <span class="matching-grade">${userGrade.icon} ${userGrade.name}</span>
+                        </div>
+                        <div class="matching-meta">${userCategories || '카테고리 미설정'}</div>
+                        <div class="matching-channels">${channelTags || '<span style="color:var(--text-light);font-size:11px">채널 미등록</span>'}</div>
+                        <div class="matching-stats">
+                            <span class="matching-stat">판매 <strong>${u.totalSales}건</strong></span>
+                            <span class="matching-stat">매출 <strong>₩${u.totalAmount.toLocaleString()}</strong></span>
+                        </div>
+                    </div>
+                    <div class="matching-score">
+                        <div class="matching-score-value">${u.matchScore}%</div>
+                        <div class="matching-score-label">매칭률</div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+        
+        function getUserGradeByTotalSales(totalSales) {
+            const grades = [
+                { id: 'vip', name: 'VIP', icon: '👑', minSales: 500 },
+                { id: 'diamond', name: '다이아', icon: '💎', minSales: 300 },
+                { id: 'gold', name: '골드', icon: '🥇', minSales: 100 },
+                { id: 'silver', name: '실버', icon: '🥈', minSales: 50 },
+                { id: 'bronze', name: '브론즈', icon: '🥉', minSales: 20 },
+                { id: 'sprout', name: '새싹', icon: '🌿', minSales: 5 },
+                { id: 'seed', name: '씨앗', icon: '🌱', minSales: 0 }
+            ];
+            
+            for (const grade of grades) {
+                if (totalSales >= grade.minSales) return grade;
+            }
+            return grades[grades.length - 1];
         }
     </script>
 </body>
