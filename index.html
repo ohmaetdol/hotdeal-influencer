@@ -99,16 +99,50 @@
         .page-title{font-size:20px;font-weight:600;margin-bottom:24px}
 
         /* 환영 섹션 */
-        /* 환영 섹션 - 구글 스타일 */
-        .welcome-section{margin-bottom:24px}
-        .welcome-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:32px;display:flex;justify-content:space-between;align-items:center}
-        .welcome-title{font-size:28px;font-weight:400;color:#202124;margin-bottom:8px}
-        .welcome-title span{color:#202124;font-weight:400}
-        .welcome-subtitle{font-size:14px;color:#5f6368}
-        .welcome-stats{display:flex;gap:40px}
-        .welcome-stat{text-align:center;padding:16px 24px;background:#f8f9fa;border-radius:12px}
-        .welcome-stat-value{font-size:24px;font-weight:500;color:#1a73e8;display:block;margin-bottom:4px}
-        .welcome-stat-label{font-size:12px;color:#5f6368}
+        /* 상단 카테고리 선택 바 (쿠팡 스타일) */
+        .top-category-bar{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:#fff;border:1px solid var(--border);border-radius:12px;margin-bottom:24px}
+        .selected-category-chips{display:flex;gap:8px;flex-wrap:wrap;flex:1}
+        .selected-category-chips:empty::before{content:'전체 카테고리';color:var(--text-muted);font-size:14px}
+        .category-chip-selected{display:flex;align-items:center;gap:6px;padding:8px 14px;background:#e8f0fe;color:var(--primary);border-radius:20px;font-size:13px;font-weight:500}
+        .category-chip-selected .remove-chip{cursor:pointer;opacity:0.7;font-size:14px}
+        .category-chip-selected .remove-chip:hover{opacity:1}
+        .category-select-btn-top{padding:10px 20px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;color:var(--text);transition:all .2s}
+        .category-select-btn-top:hover{border-color:var(--primary);color:var(--primary)}
+        .category-select-btn-top span{font-size:16px}
+
+        /* 🏆 등급 카드 */
+        .grade-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:24px;display:flex;align-items:center;gap:24px}
+        .grade-info{display:flex;align-items:center;gap:20px;flex:1}
+        .grade-badge{font-size:48px;width:72px;height:72px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--bg-secondary)}
+        .grade-details{flex:1}
+        .grade-name-row{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+        .grade-name{font-size:20px;font-weight:700}
+        .grade-commission{font-size:14px;color:var(--primary);font-weight:600;background:var(--primary-light);padding:4px 12px;border-radius:20px}
+        .grade-progress-info{font-size:13px;color:var(--text-muted);margin-bottom:8px}
+        .grade-progress-bar{height:8px;background:var(--bg-secondary);border-radius:4px;overflow:hidden}
+        .grade-progress-fill{height:100%;background:linear-gradient(90deg,var(--primary),#4f46e5);border-radius:4px;transition:width .5s}
+        .grade-stats{display:flex;gap:24px}
+        .grade-stat{text-align:center;padding:12px 20px;background:var(--bg-secondary);border-radius:12px}
+        .grade-stat-value{font-size:20px;font-weight:700;color:var(--primary);display:block}
+        .grade-stat-label{font-size:11px;color:var(--text-muted)}
+        .grade-detail-btn{padding:10px 20px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit;color:var(--text-light);transition:all .2s}
+        .grade-detail-btn:hover{border-color:var(--primary);color:var(--primary)}
+
+        /* 등급 모달 */
+        .grade-modal{background:#fff;border-radius:16px;width:90%;max-width:500px;max-height:90vh;overflow:hidden}
+        .grade-modal-header{padding:24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+        .grade-modal-header h2{font-size:18px;font-weight:600;margin:0}
+        .grade-modal-body{padding:24px;overflow-y:auto;max-height:60vh}
+        .grade-modal-desc{font-size:14px;color:var(--text-muted);margin-bottom:20px;text-align:center}
+        .grade-list{display:flex;flex-direction:column;gap:12px}
+        .grade-list-item{display:flex;align-items:center;gap:16px;padding:16px;border-radius:12px;border:1px solid var(--border)}
+        .grade-list-item.current{border:2px solid var(--primary);background:var(--primary-light)}
+        .grade-list-icon{font-size:32px;width:50px;text-align:center}
+        .grade-list-info{flex:1}
+        .grade-list-name{font-size:16px;font-weight:600;margin-bottom:4px}
+        .grade-list-condition{font-size:12px;color:var(--text-muted)}
+        .grade-list-benefit{font-size:11px;color:var(--success);margin-top:4px}
+        .grade-list-commission{font-size:14px;font-weight:700;color:var(--primary)}
 
         /* 인사이트 카드 섹션 */
         .insight-section{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
@@ -213,6 +247,44 @@
         .category-modal-footer{padding:20px 24px;border-top:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:12px}
         .category-modal-hint{font-size:13px;color:var(--text-muted)}
         .category-modal-footer .btn{min-width:200px;padding:14px 32px;font-size:15px}
+
+        /* 🏆 성장 현황 카드 */
+        .growth-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px;overflow:hidden}
+        .growth-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+        .growth-grade{display:flex;align-items:center;gap:16px}
+        .growth-grade-icon{font-size:48px}
+        .growth-grade-info{display:flex;flex-direction:column;gap:4px}
+        .growth-grade-name{font-size:24px;font-weight:700}
+        .growth-grade-commission{font-size:14px;color:var(--primary);font-weight:600;background:var(--primary-light);padding:4px 12px;border-radius:20px;display:inline-block}
+        .growth-benefit{text-align:right}
+        .growth-benefit-label{font-size:12px;color:var(--text-muted);display:block;margin-bottom:4px}
+        .growth-benefit-value{font-size:16px;font-weight:600;color:var(--success)}
+        
+        .growth-progress-section{margin-bottom:24px}
+        .growth-progress-header{display:flex;justify-content:space-between;margin-bottom:8px}
+        .growth-progress-header span{font-size:13px;color:var(--text-muted)}
+        .growth-progress-header span:last-child{font-weight:600;color:var(--primary)}
+        .growth-progress-bar{height:12px;background:var(--bg-secondary);border-radius:6px;overflow:hidden;position:relative}
+        .growth-progress-fill{height:100%;background:linear-gradient(90deg,#1a73e8,#4f46e5,#7c3aed);border-radius:6px;transition:width .5s}
+        .growth-progress-grades{display:flex;justify-content:space-between;margin-top:8px;padding:0 4px}
+        .growth-progress-grades span{font-size:16px;opacity:0.5;transition:all .2s}
+        .growth-progress-grades span.active{opacity:1;transform:scale(1.2)}
+        .growth-progress-grades span.current{opacity:1;transform:scale(1.3)}
+        
+        .growth-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+        .growth-stat-item{text-align:center;padding:16px;background:var(--bg-secondary);border-radius:12px}
+        .growth-stat-value{font-size:28px;font-weight:700;color:var(--primary);display:block}
+        .growth-stat-label{font-size:12px;color:var(--text-muted)}
+        
+        .growth-next-grade{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:12px;padding:20px;color:#fff;display:flex;align-items:center;gap:16px}
+        .growth-next-grade-icon{font-size:40px;background:rgba(255,255,255,0.2);padding:12px;border-radius:50%}
+        .growth-next-grade-info{flex:1}
+        .growth-next-grade-title{font-size:14px;opacity:0.9;margin-bottom:4px}
+        .growth-next-grade-name{font-size:18px;font-weight:700}
+        .growth-next-grade-benefit{font-size:13px;opacity:0.8;margin-top:4px}
+        .growth-next-grade-remaining{text-align:right}
+        .growth-next-grade-remaining .num{font-size:32px;font-weight:700}
+        .growth-next-grade-remaining .label{font-size:12px;opacity:0.8}
 
         .report-section{margin-bottom:32px}
         .report-title{font-size:16px;font-weight:600;margin-bottom:16px}
@@ -358,14 +430,11 @@
             .section-header{margin-bottom:12px}
             .section-header h2{font-size:14px}
             
-            /* 환영 카드 모바일 */
-            .welcome-card{flex-direction:column;gap:20px;padding:24px;text-align:center}
-            .welcome-title{font-size:22px}
-            .welcome-subtitle{font-size:13px}
-            .welcome-stats{justify-content:center;gap:16px;width:100%}
-            .welcome-stat{flex:1;padding:12px 16px}
-            .welcome-stat-value{font-size:20px}
-            .welcome-stat-label{font-size:10px}
+            /* 상단 카테고리 바 모바일 */
+            .top-category-bar{flex-direction:column;gap:12px;padding:12px 16px}
+            .selected-category-chips{width:100%;justify-content:flex-start}
+            .category-chip-selected{padding:6px 12px;font-size:12px}
+            .category-select-btn-top{width:100%;justify-content:center}
             
             /* 인사이트 카드 모바일 */
             .insight-section{grid-template-columns:1fr;gap:12px}
@@ -388,6 +457,24 @@
             .product-card-btn{padding:10px;font-size:12px;margin-top:8px}
             .section-desc{font-size:11px}
             .section-badge{font-size:10px;padding:3px 8px}
+            
+            /* 등급 카드 모바일 */
+            .grade-card{flex-direction:column;gap:16px;padding:20px}
+            .grade-info{width:100%}
+            .grade-badge{font-size:36px;width:56px;height:56px}
+            .grade-name{font-size:18px}
+            .grade-commission{font-size:12px;padding:3px 10px}
+            .grade-progress-info{font-size:12px}
+            .grade-stats{width:100%;justify-content:center}
+            .grade-stat{flex:1;padding:10px 16px}
+            .grade-stat-value{font-size:16px}
+            .grade-detail-btn{width:100%}
+            .grade-modal{width:95%}
+            .grade-modal-header{padding:16px}
+            .grade-modal-body{padding:16px}
+            .grade-list-item{padding:12px}
+            .grade-list-icon{font-size:24px;width:40px}
+            .grade-list-name{font-size:14px}
             
             /* 카테고리 필터 모바일 */
             .category-filter-bar{flex-direction:column;gap:12px;padding:12px}
@@ -442,6 +529,19 @@
             .payout-label{font-size:12px}
             .payout-value{font-size:16px}
             .payout-note{padding:0 12px 12px;font-size:11px}
+            
+            /* 성장 현황 카드 모바일 */
+            .growth-card{padding:16px}
+            .growth-header{flex-direction:column;gap:16px;text-align:center}
+            .growth-grade{justify-content:center}
+            .growth-grade-icon{font-size:36px}
+            .growth-grade-name{font-size:20px}
+            .growth-benefit{text-align:center}
+            .growth-stats{grid-template-columns:repeat(2,1fr);gap:10px}
+            .growth-stat-item{padding:12px}
+            .growth-stat-value{font-size:22px}
+            .growth-next-grade{flex-direction:column;text-align:center;gap:12px}
+            .growth-next-grade-remaining{margin-top:8px}
             
             /* 푸터 모바일 */
             .footer{padding:16px 12px}
@@ -673,24 +773,44 @@
         <main class="dash-main">
             <!-- 홈 섹션 -->
             <div id="dashHome">
-                <!-- 환영 & 요약 카드 -->
-                <div class="welcome-section">
-                    <div class="welcome-card">
-                        <div class="welcome-left">
-                            <h1 class="welcome-title">안녕하세요, <span id="welcomeName">사용자</span>님! 👋</h1>
-                            <p class="welcome-subtitle" id="welcomeMessage">오늘도 좋은 하루 되세요!</p>
-                        </div>
-                        <div class="welcome-stats">
-                            <div class="welcome-stat">
-                                <span class="welcome-stat-value" id="monthlyEarnings">₩0</span>
-                                <span class="welcome-stat-label">이번 달 수익</span>
+                <!-- 상단 카테고리 선택 바 (쿠팡 스타일) -->
+                <div class="top-category-bar">
+                    <div class="selected-category-chips" id="selectedCategoryChips">
+                        <!-- 선택된 카테고리 칩들 -->
+                    </div>
+                    <button class="category-select-btn-top" onclick="openCategoryModal()">
+                        카테고리 선택 <span>☰</span>
+                    </button>
+                </div>
+
+                <!-- 🏆 내 등급 카드 -->
+                <div class="grade-card" id="gradeCard">
+                    <div class="grade-info">
+                        <div class="grade-badge" id="gradeBadge">🌱</div>
+                        <div class="grade-details">
+                            <div class="grade-name-row">
+                                <span class="grade-name" id="gradeName">씨앗</span>
+                                <span class="grade-commission" id="gradeCommission">수수료 8%</span>
                             </div>
-                            <div class="welcome-stat">
-                                <span class="welcome-stat-value" id="monthlySales">0</span>
-                                <span class="welcome-stat-label">이번 달 판매</span>
+                            <div class="grade-progress-info">
+                                <span id="gradeProgressText">다음 등급까지 5건 남음</span>
+                            </div>
+                            <div class="grade-progress-bar">
+                                <div class="grade-progress-fill" id="gradeProgressFill"></div>
                             </div>
                         </div>
                     </div>
+                    <div class="grade-stats">
+                        <div class="grade-stat">
+                            <span class="grade-stat-value" id="totalSalesCount">0</span>
+                            <span class="grade-stat-label">누적 판매</span>
+                        </div>
+                        <div class="grade-stat">
+                            <span class="grade-stat-value" id="totalEarnings">₩0</span>
+                            <span class="grade-stat-label">누적 수익</span>
+                        </div>
+                    </div>
+                    <button class="grade-detail-btn" onclick="openGradeModal()">등급 안내 →</button>
                 </div>
 
                 <!-- 내 성향 분석 카드 -->
@@ -729,26 +849,13 @@
                             <span class="section-badge">AI 추천</span>
                         </div>
                         
-                        <!-- 카테고리 필터 바 -->
-                        <div class="category-filter-bar">
-                            <div class="selected-categories" id="selectedCategoriesDisplay">
-                                <span class="category-chip all active" onclick="clearCategoryFilter()">전체</span>
-                            </div>
-                            <button class="category-select-btn" onclick="openCategoryModal()">
-                                카테고리 선택 <span>☰</span>
-                            </button>
-                        </div>
-                        
                         <div class="product-grid" id="productGrid"></div>
                     </div>
                     <div class="recommend-sidebar">
-                        <!-- 내 추천 코드 -->
-                        <div class="sidebar-box my-code-box">
-                            <div class="sidebar-box-header">🔗 내 추천 코드</div>
-                            <div class="sidebar-box-content">
-                                <div class="my-code" id="myCodeDisplay">-</div>
-                                <button class="copy-code-btn" onclick="copyMyCode()">코드 복사</button>
-                            </div>
+                        <!-- 최근 복사한 상품 -->
+                        <div class="sidebar-box">
+                            <div class="sidebar-box-header">📋 최근 복사한 상품 <span id="copiedCount">총 0개</span></div>
+                            <div class="sidebar-box-content" id="recentCopied"><p class="empty-text">복사한 상품이 없습니다</p></div>
                         </div>
                         
                         <!-- 이번 주 목표 -->
@@ -761,12 +868,6 @@
                                 </div>
                                 <p class="goal-reward" id="goalReward">5건 달성 시 VIP 등급 승급!</p>
                             </div>
-                        </div>
-
-                        <!-- 최근 복사한 상품 -->
-                        <div class="sidebar-box">
-                            <div class="sidebar-box-header">📋 최근 복사한 상품 <span id="copiedCount">0개</span></div>
-                            <div class="sidebar-box-content" id="recentCopied"><p class="empty-text">복사한 상품이 없습니다</p></div>
                         </div>
                         
                         <!-- 실시간 랭킹 -->
@@ -784,9 +885,65 @@
             <div id="dashReport" class="hidden">
                 <h1 class="page-title">📊 리포트</h1>
                 
+                <!-- 🏆 나의 성장 현황 -->
+                <div class="report-section">
+                    <h2 class="report-title">🏆 나의 성장 현황</h2>
+                    <div class="growth-card">
+                        <div class="growth-header">
+                            <div class="growth-grade">
+                                <span class="growth-grade-icon" id="reportGradeIcon">🌱</span>
+                                <div class="growth-grade-info">
+                                    <span class="growth-grade-name" id="reportGradeName">씨앗</span>
+                                    <span class="growth-grade-commission" id="reportGradeCommission">수수료 8%</span>
+                                </div>
+                            </div>
+                            <div class="growth-benefit">
+                                <span class="growth-benefit-label">현재 혜택</span>
+                                <span class="growth-benefit-value" id="reportGradeBenefit">일반 상품</span>
+                            </div>
+                        </div>
+                        
+                        <div class="growth-progress-section">
+                            <div class="growth-progress-header">
+                                <span id="reportProgressLabel">다음 등급까지</span>
+                                <span id="reportProgressCount">5건 남음</span>
+                            </div>
+                            <div class="growth-progress-bar">
+                                <div class="growth-progress-fill" id="reportProgressFill"></div>
+                            </div>
+                            <div class="growth-progress-grades" id="reportGradeMarkers">
+                                <!-- 등급 마커들 -->
+                            </div>
+                        </div>
+                        
+                        <div class="growth-stats">
+                            <div class="growth-stat-item">
+                                <span class="growth-stat-value" id="reportTotalSalesNum">0</span>
+                                <span class="growth-stat-label">누적 판매</span>
+                            </div>
+                            <div class="growth-stat-item">
+                                <span class="growth-stat-value" id="reportMonthSalesNum">0</span>
+                                <span class="growth-stat-label">이번 달 판매</span>
+                            </div>
+                            <div class="growth-stat-item">
+                                <span class="growth-stat-value" id="reportWeekSalesNum">0</span>
+                                <span class="growth-stat-label">이번 주 판매</span>
+                            </div>
+                            <div class="growth-stat-item">
+                                <span class="growth-stat-value" id="reportRankNum">-</span>
+                                <span class="growth-stat-label">이번 주 순위</span>
+                            </div>
+                        </div>
+                        
+                        <div class="growth-next-grade" id="reportNextGradeInfo">
+                            <!-- 다음 등급 정보 -->
+                        </div>
+                    </div>
+                </div>
+
                 <!-- 수익 요약 -->
                 <div class="report-section">
-                    <h2 class="report-title">수익 요약</h2>
+                    <h2 class="report-title">💰 수익 요약</h2>
                     <div class="stats-grid">
                         <div class="stat-card">
                             <div class="stat-label">총 누적 수익</div>
@@ -801,15 +958,15 @@
                             <div class="stat-value" id="reportTotalSales">0건</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-label">수익률</div>
-                            <div class="stat-value success">10%</div>
+                            <div class="stat-label">현재 수익률</div>
+                            <div class="stat-value success" id="reportCommissionRate">8%</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- 기간별 리포트 -->
                 <div class="report-section">
-                    <h2 class="report-title">기간별 리포트</h2>
+                    <h2 class="report-title">📅 기간별 리포트</h2>
                     <div class="report-card">
                         <div class="report-filter">
                             <select id="reportPeriod" onchange="updatePeriodReport()">
@@ -828,7 +985,7 @@
 
                 <!-- 지급 리포트 -->
                 <div class="report-section">
-                    <h2 class="report-title">지급 리포트</h2>
+                    <h2 class="report-title">💳 지급 리포트</h2>
                     <div class="report-card">
                         <div class="payout-summary">
                             <div class="payout-item">
@@ -967,6 +1124,22 @@
             <div class="category-modal-footer">
                 <p class="category-modal-hint">1개부터 최대 5개까지 선택 가능</p>
                 <button class="btn btn-primary" onclick="applyCategoryFilter()">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 등급 안내 모달 -->
+    <div class="modal-overlay" id="gradeModal">
+        <div class="modal grade-modal">
+            <div class="grade-modal-header">
+                <h2>🏆 인플루언서 등급 안내</h2>
+                <button class="close-btn" onclick="closeGradeModal()">✕</button>
+            </div>
+            <div class="grade-modal-body">
+                <p class="grade-modal-desc">판매 실적에 따라 등급이 올라가고, 더 높은 수수료를 받을 수 있어요!</p>
+                <div class="grade-list" id="gradeList">
+                    <!-- 동적 생성 -->
+                </div>
             </div>
         </div>
     </div>
@@ -1149,6 +1322,42 @@
             kids: { name: '출산/유아', image: '👶' },
             fashion: { name: '패션의류', image: '👗' }
         };
+        
+        // 🏆 인플루언서 등급 시스템 (유튜브 스타일)
+        const gradeSystem = [
+            { id: 'seed', name: '씨앗', icon: '🌱', minSales: 0, commission: 8, color: '#8B4513', bgColor: '#FFF8DC', benefit: '일반 상품', benefitDetail: '기본 상품에 접근할 수 있어요' },
+            { id: 'sprout', name: '새싹', icon: '🌿', minSales: 5, commission: 9, color: '#228B22', bgColor: '#F0FFF0', benefit: '신상품 1일 선공개', benefitDetail: '신상품을 하루 먼저 볼 수 있어요' },
+            { id: 'bronze', name: '브론즈', icon: '🥉', minSales: 20, commission: 10, color: '#CD7F32', bgColor: '#FDF5E6', benefit: '신상품 3일 선공개', benefitDetail: '신상품을 3일 먼저 볼 수 있어요' },
+            { id: 'silver', name: '실버', icon: '🥈', minSales: 50, commission: 11, color: '#C0C0C0', bgColor: '#F5F5F5', benefit: '전용 상품 접근', benefitDetail: '실버 전용 상품에 접근할 수 있어요' },
+            { id: 'gold', name: '골드', icon: '🥇', minSales: 100, commission: 12, color: '#FFD700', bgColor: '#FFFACD', benefit: '프리미엄 상품', benefitDetail: '고수익 프리미엄 상품에 접근할 수 있어요' },
+            { id: 'diamond', name: '다이아', icon: '💎', minSales: 300, commission: 13, color: '#00CED1', bgColor: '#E0FFFF', benefit: '한정판 우선권', benefitDetail: '한정판 상품을 먼저 선택할 수 있어요' },
+            { id: 'master', name: '마스터', icon: '👑', minSales: 500, commission: 15, color: '#9400D3', bgColor: '#F8F0FF', benefit: 'VIP 전용 딜', benefitDetail: '최고 수익의 VIP 전용 딜에 참여할 수 있어요' }
+        ];
+        
+        // 등급 계산 함수
+        function getUserGrade(totalSales) {
+            let grade = gradeSystem[0];
+            for (let i = gradeSystem.length - 1; i >= 0; i--) {
+                if (totalSales >= gradeSystem[i].minSales) {
+                    grade = gradeSystem[i];
+                    break;
+                }
+            }
+            return grade;
+        }
+        
+        // 다음 등급까지 남은 판매 수
+        function getNextGradeInfo(totalSales) {
+            for (let i = 0; i < gradeSystem.length; i++) {
+                if (totalSales < gradeSystem[i].minSales) {
+                    return {
+                        nextGrade: gradeSystem[i],
+                        remaining: gradeSystem[i].minSales - totalSales
+                    };
+                }
+            }
+            return null; // 최고 등급
+        }
         
         // 판매 실적 기반 추천 알고리즘
         function getRecommendedProducts() {
@@ -1464,7 +1673,6 @@
                 headerAvatar.textContent = currentUser.name.charAt(0);
             }
             
-            document.getElementById('welcomeName').textContent = currentUser.name;
             updateDashboard();
         }
 
@@ -1479,20 +1687,8 @@
                 return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
             });
             
-            // 이번 달 수익/판매
-            document.getElementById('monthlyEarnings').textContent = '₩' + thisMonth.reduce((s,x) => s + x.commission, 0).toLocaleString();
-            document.getElementById('monthlySales').textContent = thisMonth.reduce((s,x) => s + x.quantity, 0);
-            
-            // 내 추천 코드
-            document.getElementById('myCodeDisplay').textContent = currentUser.code || '-';
-            
-            // 환영 메시지 (시간대별)
-            const hour = now.getHours();
-            let greeting = '좋은 하루 되세요!';
-            if (hour < 12) greeting = '좋은 아침이에요! ☀️';
-            else if (hour < 18) greeting = '오후도 화이팅! 💪';
-            else greeting = '오늘 하루도 수고하셨어요! 🌙';
-            document.getElementById('welcomeMessage').textContent = greeting;
+            // 🏆 등급 업데이트
+            updateGradeCard(mySales);
             
             // 강점 카테고리 분석
             updateStrengthAnalysis(mySales);
@@ -1714,15 +1910,17 @@
             updateDashboard();
         }
         
-        // 필터 표시 업데이트
+        // 필터 표시 업데이트 (상단 바)
         function updateCategoryFilterDisplay() {
-            const container = document.getElementById('selectedCategoriesDisplay');
+            const container = document.getElementById('selectedCategoryChips');
+            if (!container) return;
+            
             if (selectedCategoryFilters.length === 0) {
-                container.innerHTML = '<span class="category-chip all active" onclick="clearCategoryFilter()">전체</span>';
+                container.innerHTML = '';
             } else {
                 container.innerHTML = selectedCategoryFilters.map(key => {
                     const cat = categoryData[key];
-                    return `<span class="category-chip active">${cat.image} ${cat.name} <span class="remove" onclick="event.stopPropagation();removeCategoryFilter('${key}')">✕</span></span>`;
+                    return `<span class="category-chip-selected">${cat.image} ${cat.name} <span class="remove-chip" onclick="event.stopPropagation();removeCategoryFilter('${key}')">✕</span></span>`;
                 }).join('');
             }
         }
@@ -1773,6 +1971,157 @@
             }
             
             container.innerHTML = html;
+        }
+        
+        // 🏆 등급 카드 업데이트
+        function updateGradeCard(mySales) {
+            const totalSales = mySales.reduce((sum, s) => sum + (s.quantity || 1), 0);
+            const totalEarnings = mySales.reduce((sum, s) => sum + (s.commission || 0), 0);
+            
+            const grade = getUserGrade(totalSales);
+            const nextInfo = getNextGradeInfo(totalSales);
+            
+            // 등급 뱃지 업데이트
+            document.getElementById('gradeBadge').textContent = grade.icon;
+            document.getElementById('gradeBadge').style.background = grade.bgColor;
+            document.getElementById('gradeName').textContent = grade.name;
+            document.getElementById('gradeName').style.color = grade.color;
+            document.getElementById('gradeCommission').textContent = `수수료 ${grade.commission}%`;
+            
+            // 누적 통계
+            document.getElementById('totalSalesCount').textContent = totalSales + '건';
+            document.getElementById('totalEarnings').textContent = '₩' + totalEarnings.toLocaleString();
+            
+            // 진행률
+            if (nextInfo) {
+                const currentGradeMin = grade.minSales;
+                const nextGradeMin = nextInfo.nextGrade.minSales;
+                const progress = ((totalSales - currentGradeMin) / (nextGradeMin - currentGradeMin)) * 100;
+                
+                document.getElementById('gradeProgressText').textContent = 
+                    `다음 등급 ${nextInfo.nextGrade.icon} ${nextInfo.nextGrade.name}까지 ${nextInfo.remaining}건 남음`;
+                document.getElementById('gradeProgressFill').style.width = Math.min(100, progress) + '%';
+            } else {
+                document.getElementById('gradeProgressText').textContent = '🎉 최고 등급 달성!';
+                document.getElementById('gradeProgressFill').style.width = '100%';
+            }
+        }
+        
+        // 등급 모달 열기
+        function openGradeModal() {
+            const mySales = data.sales.filter(s => s.userCode === currentUser.code);
+            const totalSales = mySales.reduce((sum, s) => sum + (s.quantity || 1), 0);
+            const currentGrade = getUserGrade(totalSales);
+            
+            const container = document.getElementById('gradeList');
+            container.innerHTML = gradeSystem.map(g => `
+                <div class="grade-list-item ${g.id === currentGrade.id ? 'current' : ''}">
+                    <div class="grade-list-icon">${g.icon}</div>
+                    <div class="grade-list-info">
+                        <div class="grade-list-name" style="color:${g.color}">${g.name}</div>
+                        <div class="grade-list-condition">${g.minSales === 0 ? '신규 가입' : `누적 ${g.minSales}건 이상`}</div>
+                        <div class="grade-list-benefit">${g.benefit}</div>
+                    </div>
+                    <div class="grade-list-commission">${g.commission}%</div>
+                </div>
+            `).join('');
+            
+            document.getElementById('gradeModal').classList.add('show');
+        }
+        
+        // 등급 모달 닫기
+        function closeGradeModal() {
+            document.getElementById('gradeModal').classList.remove('show');
+        }
+        
+        // 리포트 성장 현황 업데이트
+        function updateReportGrowth() {
+            const mySales = data.sales.filter(s => s.userCode === currentUser.code);
+            const totalSales = mySales.reduce((sum, s) => sum + (s.quantity || 1), 0);
+            const totalEarnings = mySales.reduce((sum, s) => sum + (s.commission || 0), 0);
+            
+            const now = new Date();
+            const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+            
+            const monthSales = mySales.filter(s => {
+                const d = new Date(s.date);
+                return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+            });
+            const weekSales = mySales.filter(s => new Date(s.date) >= weekAgo);
+            
+            const monthSalesCount = monthSales.reduce((sum, s) => sum + (s.quantity || 1), 0);
+            const weekSalesCount = weekSales.reduce((sum, s) => sum + (s.quantity || 1), 0);
+            
+            const grade = getUserGrade(totalSales);
+            const nextInfo = getNextGradeInfo(totalSales);
+            
+            // 등급 정보 업데이트
+            document.getElementById('reportGradeIcon').textContent = grade.icon;
+            document.getElementById('reportGradeName').textContent = grade.name;
+            document.getElementById('reportGradeName').style.color = grade.color;
+            document.getElementById('reportGradeCommission').textContent = `수수료 ${grade.commission}%`;
+            document.getElementById('reportGradeBenefit').textContent = grade.benefit;
+            document.getElementById('reportCommissionRate').textContent = grade.commission + '%';
+            
+            // 통계 업데이트
+            document.getElementById('reportTotalSalesNum').textContent = totalSales;
+            document.getElementById('reportMonthSalesNum').textContent = monthSalesCount;
+            document.getElementById('reportWeekSalesNum').textContent = weekSalesCount;
+            
+            // 순위 계산
+            const allUserSales = {};
+            data.sales.filter(s => new Date(s.date) >= weekAgo).forEach(s => {
+                if (!allUserSales[s.userCode]) allUserSales[s.userCode] = 0;
+                allUserSales[s.userCode] += s.quantity || 1;
+            });
+            const sortedUsers = Object.entries(allUserSales).sort((a, b) => b[1] - a[1]);
+            const myRank = sortedUsers.findIndex(([code]) => code === currentUser.code) + 1;
+            document.getElementById('reportRankNum').textContent = myRank > 0 ? `${myRank}위` : '-';
+            
+            // 진행률 바
+            if (nextInfo) {
+                const currentGradeMin = grade.minSales;
+                const nextGradeMin = nextInfo.nextGrade.minSales;
+                const maxGradeMin = gradeSystem[gradeSystem.length - 1].minSales;
+                const overallProgress = (totalSales / maxGradeMin) * 100;
+                
+                document.getElementById('reportProgressLabel').textContent = `다음 등급 ${nextInfo.nextGrade.icon} ${nextInfo.nextGrade.name}까지`;
+                document.getElementById('reportProgressCount').textContent = `${nextInfo.remaining}건 남음`;
+                document.getElementById('reportProgressFill').style.width = Math.min(100, overallProgress) + '%';
+                
+                // 다음 등급 정보
+                document.getElementById('reportNextGradeInfo').innerHTML = `
+                    <div class="growth-next-grade-icon">${nextInfo.nextGrade.icon}</div>
+                    <div class="growth-next-grade-info">
+                        <div class="growth-next-grade-title">다음 등급</div>
+                        <div class="growth-next-grade-name">${nextInfo.nextGrade.name}</div>
+                        <div class="growth-next-grade-benefit">🎁 ${nextInfo.nextGrade.benefit} · 수수료 ${nextInfo.nextGrade.commission}%</div>
+                    </div>
+                    <div class="growth-next-grade-remaining">
+                        <div class="num">${nextInfo.remaining}</div>
+                        <div class="label">건 남음</div>
+                    </div>
+                `;
+            } else {
+                document.getElementById('reportProgressLabel').textContent = '🎉 최고 등급 달성!';
+                document.getElementById('reportProgressCount').textContent = '';
+                document.getElementById('reportProgressFill').style.width = '100%';
+                document.getElementById('reportNextGradeInfo').innerHTML = `
+                    <div class="growth-next-grade-icon">👑</div>
+                    <div class="growth-next-grade-info">
+                        <div class="growth-next-grade-title">축하합니다!</div>
+                        <div class="growth-next-grade-name">최고 등급 마스터</div>
+                        <div class="growth-next-grade-benefit">🎁 모든 혜택을 누리고 계세요!</div>
+                    </div>
+                `;
+            }
+            
+            // 등급 마커
+            document.getElementById('reportGradeMarkers').innerHTML = gradeSystem.map(g => {
+                const isActive = totalSales >= g.minSales;
+                const isCurrent = g.id === grade.id;
+                return `<span class="${isActive ? 'active' : ''} ${isCurrent ? 'current' : ''}">${g.icon}</span>`;
+            }).join('');
         }
 
         function copyProductCode(productId) {
@@ -1899,6 +2248,7 @@
             if (section === 'report') {
                 document.getElementById('dashReport').classList.remove('hidden');
                 updateReportSection();
+                updateReportGrowth();
             }
             if (section === 'profile') {
                 document.getElementById('dashProfile').classList.remove('hidden');
