@@ -387,33 +387,50 @@
         .comment-submit{padding:10px 20px;background:#222;color:#fff;border:none;border-radius:20px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
         .comment-submit:hover{background:#444}
         
-        /* 사용자 프로필 모달 */
+        /* 사용자 프로필 모달 - 심플 회색 */
         .user-profile-modal{background:#fff;border-radius:16px;width:90%;max-width:400px;overflow:hidden}
-        .user-profile-header{padding:24px;text-align:center;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff}
-        .user-profile-avatar{width:80px;height:80px;border-radius:50%;background:#fff;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;color:#667eea;overflow:hidden;border:3px solid rgba(255,255,255,0.3)}
+        .user-profile-header{padding:24px 24px 20px;text-align:center;background:#f8f9fa;border-bottom:1px solid var(--border)}
+        .user-profile-avatar{width:72px;height:72px;border-radius:50%;background:#e5e5e5;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#666;overflow:hidden;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
         .user-profile-avatar img{width:100%;height:100%;object-fit:cover}
-        .user-profile-name{font-size:20px;font-weight:700;margin-bottom:4px}
-        .user-profile-grade{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.2);padding:4px 12px;border-radius:20px;font-size:13px}
-        .user-profile-body{padding:20px}
+        .user-profile-name{font-size:18px;font-weight:700;margin-bottom:6px;color:var(--text)}
+        .user-profile-grade{display:inline-flex;align-items:center;gap:4px;background:#fff;border:1px solid var(--border);padding:4px 10px;border-radius:16px;font-size:12px;color:var(--text-muted)}
+        .user-profile-categories{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+        .user-profile-category-tag{font-size:11px;padding:4px 10px;background:#fff;border:1px solid var(--border);border-radius:12px;color:var(--text-muted)}
+        .user-profile-body{padding:16px 20px 20px}
         .user-profile-stats{display:flex;justify-content:space-around;padding:16px 0;border-bottom:1px solid var(--border);margin-bottom:16px}
-        .user-profile-stat{text-align:center}
+        .user-profile-stat{text-align:center;flex:1}
         .user-profile-stat-value{font-size:20px;font-weight:700;color:var(--text);display:block}
-        .user-profile-stat-label{font-size:12px;color:var(--text-muted)}
-        .user-profile-channels{display:flex;flex-direction:column;gap:10px}
-        .user-profile-channel{display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg-secondary);border-radius:10px;text-decoration:none;color:var(--text);transition:all .2s}
-        .user-profile-channel:hover{background:var(--primary-light);transform:translateX(4px)}
-        .user-profile-channel-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
-        .user-profile-channel-icon.youtube{background:#fee2e2;color:#dc2626}
-        .user-profile-channel-icon.instagram{background:#fce7f3;color:#db2777}
-        .user-profile-channel-icon.blog{background:#dcfce7;color:#16a34a}
-        .user-profile-channel-icon.tiktok{background:#f3e8ff;color:#7c3aed}
+        .user-profile-stat-label{font-size:11px;color:var(--text-muted)}
+        .user-profile-section-title{font-size:12px;font-weight:600;color:var(--text-muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px}
+        .user-profile-channels{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+        .user-profile-channel{display:flex;align-items:center;gap:12px;padding:10px 12px;background:#f8f9fa;border-radius:8px;text-decoration:none;color:var(--text);transition:all .2s;border:1px solid transparent}
+        .user-profile-channel:hover{background:#f0f0f0;border-color:var(--border)}
+        .user-profile-channel-icon{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;background:#e5e5e5;color:#666}
+        .user-profile-channel-icon.youtube{background:#f5f5f5;color:#666}
+        .user-profile-channel-icon.instagram{background:#f5f5f5;color:#666}
+        .user-profile-channel-icon.blog{background:#f5f5f5;color:#666}
+        .user-profile-channel-icon.tiktok{background:#f5f5f5;color:#666}
         .user-profile-channel-info{flex:1;min-width:0}
-        .user-profile-channel-name{font-size:14px;font-weight:500}
-        .user-profile-channel-url{font-size:12px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-        .user-profile-channel-arrow{color:var(--text-muted);font-size:18px}
-        .user-profile-no-channel{text-align:center;color:var(--text-muted);font-size:14px;padding:20px}
-        .user-profile-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.2);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center}
-        .user-profile-close:hover{background:rgba(255,255,255,0.3)}
+        .user-profile-channel-name{font-size:13px;font-weight:500}
+        .user-profile-channel-url{font-size:11px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .user-profile-channel-arrow{color:var(--text-muted);font-size:16px}
+        .user-profile-no-channel{text-align:center;color:var(--text-muted);font-size:13px;padding:16px;background:#f8f9fa;border-radius:8px}
+        .user-profile-info{display:flex;flex-direction:column;gap:8px}
+        .user-profile-info-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f0f0}
+        .user-profile-info-item:last-child{border-bottom:none}
+        .user-profile-info-label{font-size:13px;color:var(--text-muted)}
+        .user-profile-info-value{font-size:13px;font-weight:500;color:var(--text)}
+        .user-profile-shop{margin-bottom:16px}
+        .user-profile-shop-link{display:flex;align-items:center;gap:12px;padding:14px;background:#f8f9fa;border-radius:10px;text-decoration:none;color:var(--text);transition:all .2s;border:1px solid var(--border)}
+        .user-profile-shop-link:hover{background:#f0f0f0;border-color:#ccc}
+        .user-profile-shop-icon{font-size:20px}
+        .user-profile-shop-info{flex:1}
+        .user-profile-shop-title{font-size:14px;font-weight:600}
+        .user-profile-shop-desc{font-size:12px;color:var(--text-muted)}
+        .user-profile-shop-arrow{color:var(--text-muted)}
+        .user-profile-no-shop{text-align:center;color:var(--text-muted);font-size:13px;padding:16px;background:#f8f9fa;border-radius:8px}
+        .user-profile-close{position:absolute;top:12px;right:12px;background:#fff;border:1px solid var(--border);color:var(--text-muted);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center}
+        .user-profile-close:hover{background:#f5f5f5;color:var(--text)}
         
         /* 글 메뉴 (수정/삭제) */
         .feed-menu{position:relative;margin-left:auto}
@@ -1759,6 +1776,32 @@
                     </div>
                     
                     <div class="profile-section">
+                        <h3>🛒 내 공구방 링크 <button class="btn btn-small" style="margin-left:8px;padding:4px 10px;font-size:11px" onclick="toggleEditShopLink()">설정</button></h3>
+                        <div id="profileShopDisplay">
+                            <!-- 공구방 링크 표시 -->
+                        </div>
+                        <div class="profile-edit-channels hidden" id="profileEditShopLink">
+                            <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px">다른 사람들이 내 프로필에서 공구방으로 바로 방문할 수 있어요</p>
+                            <div class="profile-edit-item">
+                                <label>공구방 이름</label>
+                                <input type="text" id="editShopTitle" placeholder="예: 사찍남의 맛집 공구방">
+                            </div>
+                            <div class="profile-edit-item">
+                                <label>공구방 링크</label>
+                                <input type="text" id="editShopLink" placeholder="https://open.kakao.com/...">
+                            </div>
+                            <div class="profile-edit-item">
+                                <label>한줄 소개</label>
+                                <input type="text" id="editShopDesc" placeholder="예: 매주 맛있는 공구 진행해요!">
+                            </div>
+                            <div style="margin-top:12px;display:flex;gap:8px">
+                                <button class="btn btn-primary btn-small" onclick="saveShopLink()">저장</button>
+                                <button class="btn btn-secondary btn-small" onclick="toggleEditShopLink()">취소</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
                         <h3>📊 활동 요약</h3>
                         <div class="profile-stats">
                             <div class="profile-stat">
@@ -1939,6 +1982,9 @@
                     <span id="userProfileGradeIcon">🌱</span>
                     <span id="userProfileGradeName">씨앗</span>
                 </div>
+                <div class="user-profile-categories" id="userProfileCategories">
+                    <!-- 관심 카테고리 태그들 -->
+                </div>
             </div>
             <div class="user-profile-body">
                 <div class="user-profile-stats">
@@ -1950,9 +1996,24 @@
                         <span class="user-profile-stat-value" id="userProfilePosts">0</span>
                         <span class="user-profile-stat-label">게시글</span>
                     </div>
+                    <div class="user-profile-stat">
+                        <span class="user-profile-stat-value" id="userProfileLikes">0</span>
+                        <span class="user-profile-stat-label">받은 좋아요</span>
+                    </div>
                 </div>
+                
+                <div class="user-profile-shop" id="userProfileShop">
+                    <!-- 공구방 링크가 여기에 렌더링됨 -->
+                </div>
+                
+                <div class="user-profile-section-title">SNS 채널</div>
                 <div class="user-profile-channels" id="userProfileChannels">
                     <!-- 채널 목록이 여기에 렌더링됨 -->
+                </div>
+                
+                <div class="user-profile-section-title">활동 정보</div>
+                <div class="user-profile-info" id="userProfileInfo">
+                    <!-- 활동 정보가 여기에 렌더링됨 -->
                 </div>
             </div>
         </div>
@@ -3152,6 +3213,25 @@
             
             channelsContainer.innerHTML = hasChannel ? channelHtml : '<p class="no-channel">등록된 채널이 없습니다</p>';
             
+            // 공구방 링크 표시
+            const shopDisplay = document.getElementById('profileShopDisplay');
+            if (currentUser.shopLink && currentUser.shopLink.trim()) {
+                const shopTitle = currentUser.shopTitle || `${currentUser.name}의 공구방`;
+                const shopDesc = currentUser.shopDesc || '';
+                shopDisplay.innerHTML = `
+                    <a href="${currentUser.shopLink}" target="_blank" style="display:flex;align-items:center;gap:12px;padding:12px;background:#f8f9fa;border-radius:8px;text-decoration:none;color:var(--text);margin-top:10px">
+                        <span style="font-size:20px">🛒</span>
+                        <div style="flex:1">
+                            <div style="font-size:14px;font-weight:600">${shopTitle}</div>
+                            ${shopDesc ? `<div style="font-size:12px;color:var(--text-muted)">${shopDesc}</div>` : ''}
+                        </div>
+                        <span style="color:var(--text-muted)">→</span>
+                    </a>
+                `;
+            } else {
+                shopDisplay.innerHTML = '<p class="no-channel" style="margin-top:10px">등록된 공구방 링크가 없습니다</p>';
+            }
+            
             // 관심 카테고리
             const categoriesContainer = document.getElementById('profileCategories');
             const catNames = {dessert:'🍪 디저트/음식',beauty:'💄 뷰티',fashion:'👗 패션',living:'🏠 생활용품',electronics:'📱 전자기기',kids:'👶 육아/키즈',health:'💪 건강/헬스',pet:'🐶 반려동물',travel:'✈️ 여행',interior:'🛋️ 인테리어',book:'📚 도서/교육',hobby:'🎮 취미/게임'};
@@ -3308,6 +3388,42 @@
                 toggleEditChannels();
                 updateProfileSection();
                 showToast('채널 정보가 저장되었습니다 ✅');
+            } catch (error) {
+                console.error('저장 실패:', error);
+                showToast('저장에 실패했습니다. 다시 시도해주세요.');
+            }
+        }
+        
+        // 공구방 링크 설정
+        function toggleEditShopLink() {
+            const editArea = document.getElementById('profileEditShopLink');
+            editArea.classList.toggle('hidden');
+            
+            if (!editArea.classList.contains('hidden')) {
+                // 기존 값 불러오기
+                document.getElementById('editShopTitle').value = currentUser.shopTitle || '';
+                document.getElementById('editShopLink').value = currentUser.shopLink || '';
+                document.getElementById('editShopDesc').value = currentUser.shopDesc || '';
+            }
+        }
+        
+        async function saveShopLink() {
+            currentUser.shopTitle = document.getElementById('editShopTitle').value.trim();
+            currentUser.shopLink = document.getElementById('editShopLink').value.trim();
+            currentUser.shopDesc = document.getElementById('editShopDesc').value.trim();
+            
+            try {
+                await saveUser(currentUser);
+                
+                const userIndex = data.users.findIndex(u => u.googleEmail === currentUser.googleEmail);
+                if (userIndex >= 0) {
+                    data.users[userIndex] = {...currentUser};
+                }
+                saveData();
+                
+                toggleEditShopLink();
+                updateProfileSection();
+                showToast('공구방 링크가 저장되었습니다 ✅');
             } catch (error) {
                 console.error('저장 실패:', error);
                 showToast('저장에 실패했습니다. 다시 시도해주세요.');
@@ -3628,10 +3744,27 @@
             document.getElementById('userProfileGradeIcon').textContent = grade.icon;
             document.getElementById('userProfileGradeName').textContent = grade.name;
             
+            // 관심 카테고리
+            const categoriesContainer = document.getElementById('userProfileCategories');
+            const categoryEmojis = {dessert:'🍪',beauty:'💄',fashion:'👗',living:'🏠',electronics:'📱',kids:'👶',health:'💪',pet:'🐶',travel:'✈️',interior:'🛋️',book:'📚',hobby:'🎮'};
+            let categoriesHtml = '';
+            if (user.categories) {
+                Object.keys(user.categories).forEach(key => {
+                    if (user.categories[key]) {
+                        categoriesHtml += `<span class="user-profile-category-tag">${categoryEmojis[key] || ''} ${categoryNames[key] || key}</span>`;
+                    }
+                });
+            }
+            categoriesContainer.innerHTML = categoriesHtml;
+            
             // 통계
             document.getElementById('userProfileSales').textContent = totalSales;
-            const userPosts = communityPosts.filter(p => p.author.code === user.code).length;
-            document.getElementById('userProfilePosts').textContent = userPosts;
+            const userPostsList = communityPosts.filter(p => p.author.code === user.code);
+            document.getElementById('userProfilePosts').textContent = userPostsList.length;
+            
+            // 받은 좋아요 합계
+            const totalLikes = userPostsList.reduce((sum, p) => sum + (p.likes || 0), 0);
+            document.getElementById('userProfileLikes').textContent = totalLikes;
             
             // 채널 목록
             const channelsContainer = document.getElementById('userProfileChannels');
@@ -3668,6 +3801,52 @@
             }
             
             channelsContainer.innerHTML = channelsHtml;
+            
+            // 공구방 링크
+            const shopContainer = document.getElementById('userProfileShop');
+            if (user.shopLink && user.shopLink.trim()) {
+                const shopTitle = user.shopTitle || `${user.name}의 공구방`;
+                const shopDesc = user.shopDesc || '놀러오세요!';
+                shopContainer.innerHTML = `
+                    <a href="${user.shopLink}" target="_blank" class="user-profile-shop-link">
+                        <span class="user-profile-shop-icon">🛒</span>
+                        <div class="user-profile-shop-info">
+                            <div class="user-profile-shop-title">${shopTitle}</div>
+                            <div class="user-profile-shop-desc">${shopDesc}</div>
+                        </div>
+                        <span class="user-profile-shop-arrow">→</span>
+                    </a>
+                `;
+            } else {
+                shopContainer.innerHTML = '';
+            }
+            
+            // 활동 정보
+            const infoContainer = document.getElementById('userProfileInfo');
+            const totalEarnings = userSales.reduce((sum, s) => sum + (s.commission || 0), 0);
+            
+            // 이번 주 순위 계산
+            const now = new Date();
+            const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+            const weekSalesAll = {};
+            data.sales.filter(s => new Date(s.date) >= weekAgo).forEach(s => {
+                if (!weekSalesAll[s.userCode]) weekSalesAll[s.userCode] = 0;
+                weekSalesAll[s.userCode] += s.quantity || 1;
+            });
+            const rankedUsers = Object.entries(weekSalesAll).sort((a,b) => b[1] - a[1]);
+            const userRankIndex = rankedUsers.findIndex(([code]) => code === user.code);
+            const userRank = userRankIndex >= 0 ? userRankIndex + 1 : '-';
+            
+            infoContainer.innerHTML = `
+                <div class="user-profile-info-item">
+                    <span class="user-profile-info-label">누적 수익</span>
+                    <span class="user-profile-info-value">₩${totalEarnings.toLocaleString()}</span>
+                </div>
+                <div class="user-profile-info-item">
+                    <span class="user-profile-info-label">이번 주 순위</span>
+                    <span class="user-profile-info-value">${userRank === '-' ? '-' : userRank + '위'}</span>
+                </div>
+            `;
             
             // 모달 열기
             document.getElementById('userProfileModal').classList.add('show');
