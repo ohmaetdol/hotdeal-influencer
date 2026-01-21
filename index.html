@@ -110,7 +110,7 @@
         .category-select-btn-top:hover{border-color:var(--primary);color:var(--primary)}
         .category-select-btn-top span{font-size:16px}
 
-        /* 🏆 나의 성적표 - 구글 스타일 */
+        /* 🏆 나의 성적표 - 유튜브 스튜디오 스타일 */
         .my-scorecard{background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:24px;color:var(--text)}
         
         .scorecard-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
@@ -123,14 +123,15 @@
         .scorecard-grade-name{font-size:16px;font-weight:600;display:block;color:var(--text)}
         .scorecard-grade-commission{font-size:12px;color:var(--primary)}
         
-        .scorecard-stats{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
-        .scorecard-stat-item{flex:1;min-width:100px;background:var(--bg-secondary);border-radius:12px;padding:16px;text-align:center;transition:all .2s;border:1px solid transparent}
-        .scorecard-stat-item:hover{border-color:var(--border);transform:translateY(-2px)}
-        .scorecard-stat-item.highlight{background:#f0fdf4;border:1px solid #bbf7d0}
-        .scorecard-stat-icon{font-size:22px;margin-bottom:6px}
-        .scorecard-stat-value{font-size:20px;font-weight:700;display:block;margin-bottom:2px;color:var(--text)}
-        .scorecard-stat-label{font-size:11px;color:var(--text-muted)}
-        .scorecard-stat-change{font-size:11px;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:2px}
+        .scorecard-stats{display:flex;gap:0;margin-bottom:20px;flex-wrap:wrap;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+        .scorecard-stat-item{flex:1;min-width:120px;background:#fff;padding:20px 16px;text-align:left;transition:all .2s;border-right:1px solid var(--border);position:relative}
+        .scorecard-stat-item:last-child{border-right:none}
+        .scorecard-stat-item:hover{background:var(--bg-secondary)}
+        .scorecard-stat-item.highlight{background:linear-gradient(to bottom, #f0fdf4 0%, #fff 100%)}
+        .scorecard-stat-item.highlight::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:#16a34a}
+        .scorecard-stat-label{font-size:12px;color:var(--text-muted);margin-bottom:8px;font-weight:500}
+        .scorecard-stat-value{font-size:24px;font-weight:700;display:block;color:var(--text);line-height:1.2}
+        .scorecard-stat-change{font-size:12px;margin-top:6px;display:inline-flex;align-items:center;gap:2px;font-weight:500}
         .scorecard-stat-change.up{color:#16a34a}
         .scorecard-stat-change.down{color:#9ca3af}
         .scorecard-stat-change.neutral{color:#9ca3af}
@@ -329,76 +330,120 @@
         .badge-pending{background:#fef3c7;color:#b45309}
         .badge-complete{background:#dcfce7;color:#16a34a}
         
-        /* 커뮤니티 섹션 */
+        /* 커뮤니티 섹션 - 쓰레드 스타일 */
         .community-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-        .community-filters{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
-        .community-filter{padding:10px 16px;background:#fff;border:1px solid var(--border);border-radius:20px;font-size:13px;cursor:pointer;font-family:inherit;transition:all .2s}
-        .community-filter:hover{border-color:var(--primary);color:var(--primary)}
-        .community-filter.active{background:var(--primary);color:#fff;border-color:var(--primary)}
-        .community-section-title{font-size:14px;font-weight:600;color:var(--text-light);margin-bottom:12px}
-        .community-hot{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:20px}
-        .hot-posts{display:flex;flex-direction:column;gap:8px}
-        .hot-post-item{display:flex;align-items:center;gap:12px;padding:10px;background:var(--bg-secondary);border-radius:8px;cursor:pointer;transition:all .2s}
-        .hot-post-item:hover{background:#e8f0fe}
-        .hot-post-rank{font-size:14px;font-weight:700;color:var(--primary);width:24px}
-        .hot-post-content{flex:1;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-        .hot-post-likes{font-size:12px;color:var(--text-muted)}
+        .community-header h1{margin:0}
+        .community-tabs{display:flex;gap:0;margin-bottom:20px;border-bottom:1px solid var(--border);background:#fff;border-radius:12px 12px 0 0;overflow:hidden}
+        .community-tab{flex:1;padding:14px 20px;background:none;border:none;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;color:var(--text-muted);transition:all .2s;border-bottom:2px solid transparent}
+        .community-tab:hover{color:var(--text);background:var(--bg-secondary)}
+        .community-tab.active{color:var(--text);border-bottom-color:var(--text);font-weight:600}
         
-        .community-feed{display:flex;flex-direction:column;gap:16px}
-        .feed-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;transition:all .2s}
-        .feed-card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
-        .feed-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-        .feed-avatar{width:40px;height:40px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px}
-        .feed-user-info{flex:1}
-        .feed-user-name{font-size:14px;font-weight:600;display:flex;align-items:center;gap:6px}
-        .feed-user-badge{font-size:10px;padding:2px 6px;background:var(--primary-light);color:var(--primary);border-radius:4px}
+        .community-feed{display:flex;flex-direction:column;gap:0;background:#fff;border:1px solid var(--border);border-radius:0 0 12px 12px}
+        .feed-card{padding:16px 20px;border-bottom:1px solid var(--border);transition:background .2s}
+        .feed-card:last-child{border-bottom:none;border-radius:0 0 12px 12px}
+        .feed-card:hover{background:var(--bg-secondary)}
+        .feed-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:0}
+        .feed-avatar{width:40px;height:40px;border-radius:50%;background:#222;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;flex-shrink:0;cursor:pointer;transition:all .2s;overflow:hidden}
+        .feed-avatar:hover{transform:scale(1.05);box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+        .feed-avatar img{width:100%;height:100%;object-fit:cover}
+        .feed-body{flex:1;min-width:0}
+        .feed-user-row{display:flex;align-items:center;gap:6px;margin-bottom:2px}
+        .feed-user-name{font-size:15px;font-weight:600;color:var(--text);cursor:pointer}
+        .feed-user-name:hover{text-decoration:underline}
+        .feed-user-handle{font-size:14px;color:var(--text-muted)}
+        .feed-user-badge{font-size:10px;padding:2px 6px;background:var(--bg-secondary);color:var(--text-muted);border-radius:4px}
         .feed-user-badge.gold{background:#fef3c7;color:#b45309}
         .feed-user-badge.vip{background:#ede9fe;color:#7c3aed}
-        .feed-meta{font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:8px}
-        .feed-category{font-size:11px;padding:4px 8px;border-radius:4px;background:var(--bg-secondary)}
-        .feed-category.tip{background:#dcfce7;color:#16a34a}
-        .feed-category.review{background:#fef3c7;color:#b45309}
-        .feed-category.question{background:#e0f2fe;color:#0284c7}
-        .feed-category.free{background:#f3e8ff;color:#7c3aed}
-        .feed-content{font-size:14px;line-height:1.6;color:var(--text);margin-bottom:16px;white-space:pre-wrap}
-        .feed-actions{display:flex;gap:16px;padding-top:12px;border-top:1px solid var(--border)}
-        .feed-action{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted);cursor:pointer;padding:6px 12px;border-radius:6px;transition:all .2s;background:none;border:none;font-family:inherit}
-        .feed-action:hover{background:var(--bg-secondary);color:var(--text)}
-        .feed-action.liked{color:#ef4444}
-        .feed-action.liked:hover{background:#fef2f2}
+        .feed-user-badge.diamond{background:#e0f2fe;color:#0284c7}
+        .feed-time{font-size:14px;color:var(--text-muted)}
+        .feed-content{font-size:15px;line-height:1.5;color:var(--text);margin:8px 0 12px;white-space:pre-wrap;word-break:break-word}
+        .feed-actions{display:flex;gap:4px;margin-left:-8px}
+        .feed-action{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted);cursor:pointer;padding:8px 12px;border-radius:50px;transition:all .15s;background:none;border:none;font-family:inherit}
+        .feed-action:hover{background:rgba(29,155,240,0.1);color:#1d9bf0}
+        .feed-action.comment:hover{background:rgba(29,155,240,0.1);color:#1d9bf0}
+        .feed-action.repost:hover{background:rgba(0,186,124,0.1);color:#00ba7c}
+        .feed-action.reposted{color:#00ba7c}
+        .feed-action.like:hover{background:rgba(249,24,128,0.1);color:#f91880}
+        .feed-action.liked{color:#f91880}
+        .feed-action.share:hover{background:rgba(29,155,240,0.1);color:#1d9bf0}
+        .feed-action svg{width:18px;height:18px}
         
-        .feed-comments{margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+        .feed-thread-line{position:absolute;left:19px;top:56px;bottom:0;width:2px;background:var(--border)}
+        
+        .feed-comments{margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
         .comment-list{display:flex;flex-direction:column;gap:12px;margin-bottom:12px}
         .comment-item{display:flex;gap:10px}
-        .comment-avatar{width:28px;height:28px;border-radius:50%;background:var(--bg-secondary);color:var(--text-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0}
-        .comment-body{flex:1;background:var(--bg-secondary);padding:10px 12px;border-radius:8px}
-        .comment-user{font-size:12px;font-weight:600;margin-bottom:4px}
-        .comment-text{font-size:13px;line-height:1.5}
-        .comment-time{font-size:10px;color:var(--text-muted);margin-top:4px}
-        .comment-input-wrap{display:flex;gap:8px}
-        .comment-input{flex:1;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;resize:none}
+        .comment-avatar{width:28px;height:28px;border-radius:50%;background:#222;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;overflow:hidden}
+        .comment-avatar img{width:100%;height:100%;object-fit:cover}
+        .comment-body{flex:1}
+        .comment-header{display:flex;align-items:center;gap:6px;margin-bottom:2px}
+        .comment-user{font-size:13px;font-weight:600}
+        .comment-handle{font-size:13px;color:var(--text-muted)}
+        .comment-text{font-size:14px;line-height:1.4}
+        .comment-time{font-size:12px;color:var(--text-muted);margin-top:2px}
+        .comment-input-wrap{display:flex;gap:10px;align-items:flex-start}
+        .comment-input{flex:1;padding:12px;border:1px solid var(--border);border-radius:20px;font-size:14px;font-family:inherit;resize:none;min-height:20px;max-height:120px}
         .comment-input:focus{outline:none;border-color:var(--primary)}
-        .comment-submit{padding:10px 16px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit}
-        .comment-submit:hover{background:#1557b0}
+        .comment-submit{padding:10px 20px;background:#222;color:#fff;border:none;border-radius:20px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+        .comment-submit:hover{background:#444}
         
-        /* 글쓰기 모달 */
-        .write-modal{background:#fff;border-radius:16px;width:90%;max-width:500px;overflow:hidden}
-        .write-modal-header{padding:20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-        .write-modal-header h2{font-size:18px;font-weight:600}
-        .write-modal-body{padding:20px}
-        .write-category-select{margin-bottom:20px}
-        .write-category-select label{display:block;font-size:13px;font-weight:500;margin-bottom:10px;color:var(--text-light)}
-        .write-categories{display:flex;gap:8px;flex-wrap:wrap}
-        .write-category{padding:8px 14px;background:#fff;border:1px solid var(--border);border-radius:20px;font-size:12px;cursor:pointer;font-family:inherit;transition:all .2s}
-        .write-category:hover{border-color:var(--primary)}
-        .write-category.active{background:var(--primary);color:#fff;border-color:var(--primary)}
-        .write-content{position:relative}
-        .write-content textarea{width:100%;height:200px;padding:16px;border:1px solid var(--border);border-radius:12px;font-size:14px;font-family:inherit;resize:none;line-height:1.6}
-        .write-content textarea:focus{outline:none;border-color:var(--primary)}
-        .write-char-count{position:absolute;bottom:12px;right:12px;font-size:11px;color:var(--text-muted)}
-        .write-modal-footer{padding:16px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+        /* 사용자 프로필 모달 */
+        .user-profile-modal{background:#fff;border-radius:16px;width:90%;max-width:400px;overflow:hidden}
+        .user-profile-header{padding:24px;text-align:center;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff}
+        .user-profile-avatar{width:80px;height:80px;border-radius:50%;background:#fff;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;color:#667eea;overflow:hidden;border:3px solid rgba(255,255,255,0.3)}
+        .user-profile-avatar img{width:100%;height:100%;object-fit:cover}
+        .user-profile-name{font-size:20px;font-weight:700;margin-bottom:4px}
+        .user-profile-grade{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.2);padding:4px 12px;border-radius:20px;font-size:13px}
+        .user-profile-body{padding:20px}
+        .user-profile-stats{display:flex;justify-content:space-around;padding:16px 0;border-bottom:1px solid var(--border);margin-bottom:16px}
+        .user-profile-stat{text-align:center}
+        .user-profile-stat-value{font-size:20px;font-weight:700;color:var(--text);display:block}
+        .user-profile-stat-label{font-size:12px;color:var(--text-muted)}
+        .user-profile-channels{display:flex;flex-direction:column;gap:10px}
+        .user-profile-channel{display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg-secondary);border-radius:10px;text-decoration:none;color:var(--text);transition:all .2s}
+        .user-profile-channel:hover{background:var(--primary-light);transform:translateX(4px)}
+        .user-profile-channel-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+        .user-profile-channel-icon.youtube{background:#fee2e2;color:#dc2626}
+        .user-profile-channel-icon.instagram{background:#fce7f3;color:#db2777}
+        .user-profile-channel-icon.blog{background:#dcfce7;color:#16a34a}
+        .user-profile-channel-icon.tiktok{background:#f3e8ff;color:#7c3aed}
+        .user-profile-channel-info{flex:1;min-width:0}
+        .user-profile-channel-name{font-size:14px;font-weight:500}
+        .user-profile-channel-url{font-size:12px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .user-profile-channel-arrow{color:var(--text-muted);font-size:18px}
+        .user-profile-no-channel{text-align:center;color:var(--text-muted);font-size:14px;padding:20px}
+        .user-profile-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.2);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center}
+        .user-profile-close:hover{background:rgba(255,255,255,0.3)}
         
-        .empty-feed{text-align:center;padding:60px 20px;color:var(--text-muted)}
+        /* 글 메뉴 (수정/삭제) */
+        .feed-menu{position:relative;margin-left:auto}
+        .feed-menu-btn{background:none;border:none;font-size:18px;cursor:pointer;padding:8px;border-radius:50%;color:var(--text-muted)}
+        .feed-menu-btn:hover{background:rgba(29,155,240,0.1);color:#1d9bf0}
+        .feed-menu-dropdown{position:absolute;top:100%;right:0;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);overflow:hidden;z-index:10;min-width:120px}
+        .feed-menu-dropdown button{display:block;width:100%;padding:12px 16px;border:none;background:none;text-align:left;font-size:14px;cursor:pointer;font-family:inherit;font-weight:500}
+        .feed-menu-dropdown button:hover{background:var(--bg-secondary)}
+        
+        /* 글쓰기 모달 - 쓰레드 스타일 */
+        .write-modal{background:#fff;border-radius:16px;width:90%;max-width:600px;overflow:hidden}
+        .write-modal-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+        .write-modal-header h2{font-size:16px;font-weight:600}
+        .write-modal-body{padding:16px 20px}
+        .write-user-row{display:flex;gap:12px;margin-bottom:12px}
+        .write-avatar{width:40px;height:40px;border-radius:50%;background:#222;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600}
+        .write-content{flex:1}
+        .write-content textarea{width:100%;min-height:100px;padding:0;border:none;font-size:16px;font-family:inherit;resize:none;line-height:1.5}
+        .write-content textarea:focus{outline:none}
+        .write-content textarea::placeholder{color:var(--text-muted)}
+        .write-char-count{font-size:13px;color:var(--text-muted);text-align:right;margin-top:8px}
+        .write-modal-footer{padding:12px 20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+        .write-options{display:flex;gap:4px}
+        .write-option{padding:8px;border-radius:50%;background:none;border:none;cursor:pointer;color:var(--primary)}
+        .write-option:hover{background:rgba(29,155,240,0.1)}
+        .post-btn{padding:10px 20px;background:#222;color:#fff;border:none;border-radius:20px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+        .post-btn:hover{background:#444}
+        .post-btn:disabled{background:#ccc;cursor:not-allowed}
+        
+        .empty-feed{text-align:center;padding:60px 20px;color:var(--text-muted);background:#fff;border-radius:12px}
         .empty-feed-icon{font-size:48px;margin-bottom:16px}
         .empty-feed p{font-size:14px}
         
@@ -547,18 +592,21 @@
             .section-desc{font-size:11px}
             .section-badge{font-size:10px;padding:3px 8px}
             
-            /* 성적표 모바일 */
-            .my-scorecard{padding:20px;border-radius:16px}
+            /* 성적표 모바일 - 유튜브 스타일 */
+            .my-scorecard{padding:16px;border-radius:16px}
             .scorecard-header{flex-direction:column;gap:16px;text-align:center}
             .scorecard-greeting h1{font-size:20px}
             .scorecard-greeting p{font-size:13px}
             .scorecard-grade{justify-content:center}
             .scorecard-grade-info{text-align:center}
-            .scorecard-stats{gap:8px}
-            .scorecard-stat-item{min-width:calc(50% - 4px);padding:12px}
-            .scorecard-stat-icon{font-size:20px;margin-bottom:6px}
-            .scorecard-stat-value{font-size:16px}
-            .scorecard-stat-label{font-size:10px}
+            .scorecard-stats{flex-direction:column;gap:0;border-radius:12px}
+            .scorecard-stat-item{min-width:100%;padding:14px 16px;border-right:none;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+            .scorecard-stat-item:last-child{border-bottom:none}
+            .scorecard-stat-item.highlight::before{display:none}
+            .scorecard-stat-item.highlight{background:#f0fdf4;border-left:3px solid #16a34a}
+            .scorecard-stat-label{font-size:13px;margin-bottom:0;order:1}
+            .scorecard-stat-value{font-size:18px;order:2;text-align:right}
+            .scorecard-stat-change{margin-top:0;margin-left:8px;order:3}
             .scorecard-progress-markers span{font-size:12px}
             .scorecard-benefit{flex-direction:column;gap:8px;text-align:center;font-size:12px}
             
@@ -669,6 +717,473 @@
             .stat-card{padding:10px}
             .stat-label{font-size:9px}
             .stat-value{font-size:16px}
+        }
+
+        /* ============================================
+           🔥 모바일 최적화 스타일 (Enhanced)
+           ============================================ */
+        
+        /* 모바일 하단 네비게이션 바 */
+        .mobile-bottom-nav{
+            display:none;
+            position:fixed;
+            bottom:0;
+            left:0;
+            right:0;
+            background:#fff;
+            border-top:1px solid var(--border);
+            padding:8px 0;
+            padding-bottom:max(8px, env(safe-area-inset-bottom));
+            z-index:1000;
+            box-shadow:0 -2px 10px rgba(0,0,0,0.05);
+        }
+        .mobile-bottom-nav-inner{
+            display:flex;
+            justify-content:space-around;
+            align-items:center;
+            max-width:500px;
+            margin:0 auto;
+        }
+        .mobile-nav-item{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:4px;
+            padding:8px 16px;
+            background:none;
+            border:none;
+            font-family:inherit;
+            cursor:pointer;
+            color:var(--text-muted);
+            transition:all .2s;
+            border-radius:12px;
+            min-width:64px;
+        }
+        .mobile-nav-item:active{
+            transform:scale(0.95);
+            background:var(--bg-secondary);
+        }
+        .mobile-nav-item.active{
+            color:var(--primary);
+        }
+        .mobile-nav-item .nav-icon{
+            font-size:22px;
+            line-height:1;
+        }
+        .mobile-nav-item .nav-label{
+            font-size:10px;
+            font-weight:500;
+        }
+        .mobile-nav-item.active .nav-label{
+            font-weight:600;
+        }
+
+        /* 모바일에서 하단 네비게이션 표시 및 상단 네비게이션 숨김 */
+        @media(max-width:768px){
+            .mobile-bottom-nav{display:block}
+            .dash-nav{display:none}
+            .dash-main{padding-bottom:80px}
+            .dash-header{height:52px}
+            .dash-header-left{gap:8px}
+            .user-info .btn-small{display:none}
+        }
+
+        /* 모바일 풀스크린 모달 */
+        @media(max-width:600px){
+            .modal-overlay{align-items:flex-end}
+            .category-modal{
+                width:100%;
+                max-width:100%;
+                max-height:90vh;
+                border-radius:20px 20px 0 0;
+                animation:slideUp .3s ease;
+            }
+            .grade-modal{
+                width:100%;
+                max-width:100%;
+                max-height:90vh;
+                border-radius:20px 20px 0 0;
+                animation:slideUp .3s ease;
+            }
+            .write-modal{
+                width:100%;
+                max-width:100%;
+                max-height:100vh;
+                height:100vh;
+                border-radius:0;
+            }
+            .privacy-modal{
+                width:100%;
+                max-width:100%;
+                max-height:95vh;
+                border-radius:20px 20px 0 0;
+            }
+            @keyframes slideUp{
+                from{transform:translateY(100%)}
+                to{transform:translateY(0)}
+            }
+        }
+
+        /* 터치 친화적 버튼 */
+        @media(max-width:768px){
+            .btn{
+                min-height:44px;
+                padding:12px 20px;
+            }
+            .btn-small{
+                min-height:36px;
+                padding:8px 14px;
+            }
+            .product-card-btn{
+                min-height:44px;
+                font-size:14px;
+            }
+            .category-item{
+                min-height:44px;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+            }
+            .channel-item{
+                min-height:56px;
+            }
+        }
+
+        /* 스와이프 가능한 카테고리 칩 */
+        @media(max-width:600px){
+            .selected-category-chips{
+                overflow-x:auto;
+                flex-wrap:nowrap;
+                -webkit-overflow-scrolling:touch;
+                scrollbar-width:none;
+                -ms-overflow-style:none;
+                padding-bottom:4px;
+            }
+            .selected-category-chips::-webkit-scrollbar{display:none}
+            .category-chip-selected{
+                flex-shrink:0;
+            }
+        }
+
+        /* 모바일 상품 그리드 개선 */
+        @media(max-width:480px){
+            .product-grid{
+                grid-template-columns:repeat(2,1fr);
+                gap:8px;
+            }
+            .product-card{
+                border-radius:12px;
+            }
+            .product-card-info{
+                padding:12px;
+            }
+            .product-card-name{
+                font-size:13px;
+                min-height:36px;
+                -webkit-line-clamp:2;
+            }
+            .product-card-price{
+                font-size:15px;
+            }
+            .product-card-commission{
+                font-size:12px;
+            }
+            .product-card-btn{
+                padding:10px;
+                font-size:13px;
+                border-radius:8px;
+            }
+        }
+
+        /* 모바일 성적표 카드 개선 - 유튜브 스타일 */
+        @media(max-width:480px){
+            .my-scorecard{
+                padding:12px;
+                border-radius:16px;
+                margin:0 -4px 16px;
+            }
+            .scorecard-header{
+                flex-direction:column;
+                gap:12px;
+                text-align:center;
+            }
+            .scorecard-greeting h1{
+                font-size:18px;
+            }
+            .scorecard-grade{
+                width:100%;
+                justify-content:center;
+                padding:12px 16px;
+            }
+            .scorecard-stats{
+                flex-direction:column;
+                border-radius:12px;
+            }
+            .scorecard-stat-item{
+                padding:12px 14px;
+                flex-direction:row;
+                justify-content:space-between;
+                align-items:center;
+            }
+            .scorecard-stat-label{font-size:13px;font-weight:500}
+            .scorecard-stat-value{font-size:16px}
+            .scorecard-stat-change{font-size:11px;padding:2px 6px}
+        }
+
+        /* 인사이트 카드 가로 스크롤 */
+        @media(max-width:600px){
+            .insight-section{
+                display:flex;
+                overflow-x:auto;
+                gap:12px;
+                padding-bottom:8px;
+                margin:0 -12px 16px;
+                padding:0 12px 8px;
+                -webkit-overflow-scrolling:touch;
+                scrollbar-width:none;
+            }
+            .insight-section::-webkit-scrollbar{display:none}
+            .insight-card{
+                min-width:260px;
+                flex-shrink:0;
+            }
+        }
+
+        /* 커뮤니티 피드 모바일 */
+        @media(max-width:600px){
+            .community-tabs{
+                border-radius:0;
+                margin:0 -12px 16px;
+                position:sticky;
+                top:52px;
+                z-index:50;
+            }
+            .community-feed{
+                border-radius:12px;
+                margin:0 -4px;
+            }
+            .feed-card{
+                padding:14px 16px;
+            }
+            .feed-avatar{
+                width:36px;
+                height:36px;
+                font-size:13px;
+            }
+            .feed-user-name{font-size:14px}
+            .feed-content{font-size:14px;margin:6px 0 10px}
+            .feed-action{
+                padding:8px 10px;
+                font-size:12px;
+            }
+            .feed-action svg{width:16px;height:16px}
+        }
+
+        /* 프로필 카드 모바일 */
+        @media(max-width:480px){
+            .profile-card{
+                padding:16px;
+                border-radius:16px;
+                margin:0 -4px;
+            }
+            .profile-header{
+                flex-direction:column;
+                text-align:center;
+                gap:16px;
+            }
+            .profile-avatar{
+                width:72px;
+                height:72px;
+                font-size:28px;
+            }
+            .profile-info h2{font-size:20px}
+            .profile-section{padding:16px 0}
+            .profile-channel-item{
+                flex-direction:column;
+                align-items:flex-start;
+                gap:8px;
+            }
+            .profile-stats{
+                grid-template-columns:repeat(3,1fr);
+                gap:8px;
+            }
+            .profile-stat{padding:12px 8px}
+            .profile-stat-value{font-size:18px}
+            .profile-stat-label{font-size:10px}
+        }
+
+        /* 랜딩 페이지 모바일 */
+        @media(max-width:480px){
+            .landing-hero{
+                padding:40px 20px;
+            }
+            .landing-content h1{
+                font-size:26px;
+                line-height:1.4;
+            }
+            .landing-content p{
+                font-size:14px;
+                margin-bottom:24px;
+            }
+            .landing-buttons{
+                flex-direction:column;
+                gap:10px;
+            }
+            .landing-buttons .btn{
+                width:100%;
+                padding:14px 24px;
+            }
+            .features-grid{
+                padding:0 20px;
+            }
+            .feature-item{
+                padding:20px 0;
+            }
+            .feature-icon{font-size:28px}
+            .feature-item h3{font-size:15px}
+            .feature-item p{font-size:13px}
+        }
+
+        /* 가입 폼 모바일 */
+        @media(max-width:480px){
+            .auth-container{
+                padding:20px 16px;
+            }
+            .auth-box{
+                padding:24px 20px;
+                border-radius:16px;
+            }
+            .auth-box h1{font-size:20px}
+            .steps{margin-bottom:20px}
+            .step{width:28px;height:28px;font-size:13px}
+            .input-group{margin-bottom:16px}
+            .input-group label{font-size:13px}
+            .input-group input{
+                padding:14px 12px;
+                font-size:15px;
+            }
+            .channel-item{
+                padding:14px;
+            }
+            .channel-icon{
+                width:36px;
+                height:36px;
+            }
+            .category-list{
+                gap:8px;
+            }
+            .category-item{
+                padding:10px 14px;
+                font-size:13px;
+            }
+        }
+
+        /* 리포트 페이지 모바일 */
+        @media(max-width:480px){
+            .report-section{margin-bottom:16px}
+            .report-title{font-size:15px;margin-bottom:10px}
+            .stats-grid{
+                grid-template-columns:repeat(2,1fr);
+                gap:8px;
+            }
+            .stat-card{
+                padding:14px 12px;
+                border-radius:12px;
+            }
+            .stat-label{font-size:11px}
+            .stat-value{font-size:20px}
+            .payout-summary{
+                flex-direction:column;
+                gap:12px;
+                padding:16px;
+            }
+            .payout-item{
+                min-width:100%;
+                text-align:center;
+            }
+        }
+
+        /* Safe area 대응 (노치 디자인) */
+        @supports(padding: max(0px)){
+            .header{
+                padding-top:max(12px, env(safe-area-inset-top));
+            }
+            .dash-header{
+                padding-top:max(0px, env(safe-area-inset-top));
+            }
+            .mobile-bottom-nav{
+                padding-bottom:max(8px, env(safe-area-inset-bottom));
+            }
+        }
+
+        /* 다크모드 지원 (선택적) */
+        @media(prefers-color-scheme:dark){
+            /* 기본은 라이트 모드 유지 - 필요시 활성화 */
+        }
+
+        /* 터치 하이라이트 제거 */
+        @media(max-width:768px){
+            *{
+                -webkit-tap-highlight-color:transparent;
+            }
+            button,a,.product-card,.channel-item,.category-item,.feed-card{
+                -webkit-tap-highlight-color:transparent;
+            }
+        }
+
+        /* 가로모드 대응 */
+        @media(max-width:900px) and (orientation:landscape){
+            .landing-hero{
+                padding:30px 24px;
+            }
+            .landing-content h1{
+                font-size:28px;
+            }
+            .auth-container{
+                padding:20px;
+            }
+            .auth-box{
+                max-width:500px;
+            }
+            .mobile-bottom-nav{
+                padding:6px 0;
+            }
+            .mobile-nav-item{
+                padding:6px 20px;
+            }
+            .mobile-nav-item .nav-icon{
+                font-size:20px;
+            }
+        }
+
+        /* 스크롤 스냅 (상품 그리드) */
+        @media(max-width:480px){
+            .product-grid{
+                scroll-snap-type:x proximity;
+            }
+            .product-card{
+                scroll-snap-align:start;
+            }
+        }
+
+        /* 로딩 스켈레톤 애니메이션 */
+        .skeleton{
+            background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);
+            background-size:200% 100%;
+            animation:skeleton-loading 1.5s infinite;
+        }
+        @keyframes skeleton-loading{
+            0%{background-position:200% 0}
+            100%{background-position:-200% 0}
+        }
+
+        /* Pull to refresh 힌트 영역 */
+        .pull-hint{
+            text-align:center;
+            padding:12px;
+            color:var(--text-muted);
+            font-size:12px;
+            display:none;
         }
     </style>
 </head>
@@ -854,8 +1369,8 @@
                 <div class="logo">핫딜공구<span>인플루언서</span></div>
                 <nav class="dash-nav">
                     <a class="active" onclick="showDashSection('home', this)">홈</a>
-                    <a onclick="showDashSection('community', this)">커뮤니티</a>
                     <a onclick="showDashSection('report', this)">리포트</a>
+                    <a onclick="showDashSection('community', this)">커뮤니티</a>
                 </nav>
             </div>
             <div class="user-info">
@@ -895,31 +1410,26 @@
                     
                     <div class="scorecard-stats">
                         <div class="scorecard-stat-item">
-                            <div class="scorecard-stat-icon">📦</div>
-                            <div class="scorecard-stat-value" id="statTotalSales">0건</div>
                             <div class="scorecard-stat-label">누적 판매</div>
+                            <div class="scorecard-stat-value" id="statTotalSales">0건</div>
                         </div>
                         <div class="scorecard-stat-item">
-                            <div class="scorecard-stat-icon">💰</div>
-                            <div class="scorecard-stat-value" id="statTotalEarnings">₩0</div>
                             <div class="scorecard-stat-label">누적 수익</div>
+                            <div class="scorecard-stat-value" id="statTotalEarnings">₩0</div>
                         </div>
                         <div class="scorecard-stat-item highlight">
-                            <div class="scorecard-stat-icon">📈</div>
-                            <div class="scorecard-stat-value" id="statMonthSales">0건</div>
                             <div class="scorecard-stat-label">이번 달 판매</div>
+                            <div class="scorecard-stat-value" id="statMonthSales">0건</div>
                             <div class="scorecard-stat-change neutral" id="statMonthSalesChange">-</div>
                         </div>
                         <div class="scorecard-stat-item highlight">
-                            <div class="scorecard-stat-icon">💵</div>
-                            <div class="scorecard-stat-value" id="statMonthEarnings">₩0</div>
                             <div class="scorecard-stat-label">이번 달 수익</div>
+                            <div class="scorecard-stat-value" id="statMonthEarnings">₩0</div>
                             <div class="scorecard-stat-change neutral" id="statMonthEarningsChange">-</div>
                         </div>
                         <div class="scorecard-stat-item">
-                            <div class="scorecard-stat-icon">🏆</div>
-                            <div class="scorecard-stat-value" id="statWeekRank">-위</div>
                             <div class="scorecard-stat-label">이번 주 순위</div>
+                            <div class="scorecard-stat-value" id="statWeekRank">-위</div>
                             <div class="scorecard-stat-change neutral" id="statWeekRankChange">-</div>
                         </div>
                     </div>
@@ -1011,28 +1521,17 @@
                 </div>
             </div>
 
-            <!-- 커뮤니티 섹션 -->
+            <!-- 커뮤니티 섹션 - 쓰레드 스타일 -->
             <div id="dashCommunity" class="hidden">
                 <div class="community-header">
-                    <h1 class="page-title">💬 커뮤니티</h1>
-                    <button class="btn btn-primary" onclick="openWriteModal()">✏️ 글쓰기</button>
+                    <h1 class="page-title">커뮤니티</h1>
+                    <button class="post-btn" onclick="openWriteModal()">글쓰기</button>
                 </div>
                 
-                <!-- 카테고리 필터 -->
-                <div class="community-filters">
-                    <button class="community-filter active" data-filter="all" onclick="filterPosts('all', this)">전체</button>
-                    <button class="community-filter" data-filter="tip" onclick="filterPosts('tip', this)">💰 판매 꿀팁</button>
-                    <button class="community-filter" data-filter="review" onclick="filterPosts('review', this)">🎉 성공 후기</button>
-                    <button class="community-filter" data-filter="question" onclick="filterPosts('question', this)">❓ 질문</button>
-                    <button class="community-filter" data-filter="free" onclick="filterPosts('free', this)">💬 자유</button>
-                </div>
-
-                <!-- 인기글 -->
-                <div class="community-hot">
-                    <div class="community-section-title">🔥 인기글</div>
-                    <div class="hot-posts" id="hotPosts">
-                        <!-- 인기글 목록 -->
-                    </div>
+                <!-- 탭 (추천/최신) -->
+                <div class="community-tabs">
+                    <button class="community-tab active" onclick="switchFeedTab('hot', this)">🔥 추천</button>
+                    <button class="community-tab" onclick="switchFeedTab('latest', this)">🕐 최신</button>
                 </div>
 
                 <!-- 피드 -->
@@ -1041,31 +1540,25 @@
                 </div>
             </div>
 
-            <!-- 글쓰기 모달 -->
+            <!-- 글쓰기 모달 - 쓰레드 스타일 -->
             <div class="modal-overlay" id="writeModal">
                 <div class="write-modal">
                     <div class="write-modal-header">
-                        <h2>새 글 작성</h2>
-                        <button class="close-btn" onclick="closeWriteModal()">&times;</button>
+                        <button class="close-btn" onclick="closeWriteModal()" style="font-size:24px;background:none;border:none;cursor:pointer">&times;</button>
+                        <h2 id="writeModalTitle">새 스레드</h2>
+                        <div style="width:24px"></div>
                     </div>
                     <div class="write-modal-body">
-                        <div class="write-category-select">
-                            <label>카테고리</label>
-                            <div class="write-categories">
-                                <button class="write-category active" data-category="tip" onclick="selectWriteCategory('tip', this)">💰 판매 꿀팁</button>
-                                <button class="write-category" data-category="review" onclick="selectWriteCategory('review', this)">🎉 성공 후기</button>
-                                <button class="write-category" data-category="question" onclick="selectWriteCategory('question', this)">❓ 질문</button>
-                                <button class="write-category" data-category="free" onclick="selectWriteCategory('free', this)">💬 자유</button>
+                        <div class="write-user-row">
+                            <div class="write-avatar" id="writeAvatar">U</div>
+                            <div class="write-content">
+                                <textarea id="postContent" placeholder="무슨 일이 일어나고 있나요?" maxlength="500"></textarea>
                             </div>
-                        </div>
-                        <div class="write-content">
-                            <textarea id="postContent" placeholder="내용을 입력하세요..." maxlength="1000"></textarea>
-                            <div class="write-char-count"><span id="charCount">0</span>/1000</div>
                         </div>
                     </div>
                     <div class="write-modal-footer">
-                        <button class="btn btn-secondary" onclick="closeWriteModal()">취소</button>
-                        <button class="btn btn-primary" onclick="submitPost()">등록하기</button>
+                        <div class="write-char-count"><span id="charCount">0</span>/500</div>
+                        <button class="post-btn" onclick="submitPost()" id="submitPostBtn">게시</button>
                     </div>
                 </div>
             </div>
@@ -1296,6 +1789,24 @@
                 <div>© 핫딜공구인플루언서</div>
             </div>
         </footer>
+
+        <!-- 모바일 하단 네비게이션 바 -->
+        <nav class="mobile-bottom-nav" id="mobileBottomNav">
+            <div class="mobile-bottom-nav-inner">
+                <button class="mobile-nav-item active" onclick="showDashSectionMobile('home', this)" data-section="home">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-label">홈</span>
+                </button>
+                <button class="mobile-nav-item" onclick="showDashSectionMobile('report', this)" data-section="report">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-label">리포트</span>
+                </button>
+                <button class="mobile-nav-item" onclick="showDashSectionMobile('community', this)" data-section="community">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-label">커뮤니티</span>
+                </button>
+            </div>
+        </nav>
     </div>
 
     <!-- 카테고리 선택 모달 -->
@@ -1413,6 +1924,36 @@
 
                 <h3>8. 개인정보 처리방침 변경</h3>
                 <p>이 개인정보 처리방침은 2025년 1월 21일부터 적용됩니다. 변경 사항이 있는 경우 시행 7일 전부터 공지사항을 통하여 고지할 것입니다.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 사용자 프로필 모달 -->
+    <div class="modal-overlay" id="userProfileModal">
+        <div class="modal user-profile-modal" style="position:relative">
+            <button class="user-profile-close" onclick="closeUserProfileModal()">✕</button>
+            <div class="user-profile-header">
+                <div class="user-profile-avatar" id="userProfileAvatar">U</div>
+                <div class="user-profile-name" id="userProfileName">사용자</div>
+                <div class="user-profile-grade" id="userProfileGrade">
+                    <span id="userProfileGradeIcon">🌱</span>
+                    <span id="userProfileGradeName">씨앗</span>
+                </div>
+            </div>
+            <div class="user-profile-body">
+                <div class="user-profile-stats">
+                    <div class="user-profile-stat">
+                        <span class="user-profile-stat-value" id="userProfileSales">0</span>
+                        <span class="user-profile-stat-label">판매</span>
+                    </div>
+                    <div class="user-profile-stat">
+                        <span class="user-profile-stat-value" id="userProfilePosts">0</span>
+                        <span class="user-profile-stat-label">게시글</span>
+                    </div>
+                </div>
+                <div class="user-profile-channels" id="userProfileChannels">
+                    <!-- 채널 목록이 여기에 렌더링됨 -->
+                </div>
             </div>
         </div>
     </div>
@@ -2510,6 +3051,59 @@
             }
             document.querySelectorAll('.dash-nav a').forEach(a => a.classList.remove('active'));
             if (el) el.classList.add('active');
+            
+            // 모바일 하단 네비게이션 동기화
+            document.querySelectorAll('.mobile-nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.dataset.section === section) {
+                    item.classList.add('active');
+                }
+            });
+        }
+        
+        // 모바일 하단 네비게이션 전용 함수
+        function showDashSectionMobile(section, el) {
+            // 기존 showDashSection 로직 실행
+            document.getElementById('dashHome').classList.add('hidden');
+            document.getElementById('dashCommunity').classList.add('hidden');
+            document.getElementById('dashReport').classList.add('hidden');
+            document.getElementById('dashProfile').classList.add('hidden');
+            
+            if (section === 'home') document.getElementById('dashHome').classList.remove('hidden');
+            if (section === 'community') {
+                document.getElementById('dashCommunity').classList.remove('hidden');
+                loadCommunityPosts();
+            }
+            if (section === 'report') {
+                document.getElementById('dashReport').classList.remove('hidden');
+                updateReportSection();
+                updateReportGrowth();
+            }
+            if (section === 'profile') {
+                document.getElementById('dashProfile').classList.remove('hidden');
+                updateProfileSection();
+            }
+            
+            // 모바일 하단 네비게이션 활성화 상태 업데이트
+            document.querySelectorAll('.mobile-nav-item').forEach(item => item.classList.remove('active'));
+            if (el) el.classList.add('active');
+            
+            // 데스크탑 네비게이션도 동기화
+            document.querySelectorAll('.dash-nav a').forEach(a => {
+                a.classList.remove('active');
+                // section 이름이 포함된 메뉴 활성화 (profile 제외)
+                if (section !== 'profile' && a.textContent.toLowerCase().includes(section.substring(0,3))) {
+                    a.classList.add('active');
+                }
+            });
+            
+            // 스크롤 맨 위로
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // 햅틱 피드백 (지원하는 기기에서)
+            if (navigator.vibrate) {
+                navigator.vibrate(10);
+            }
         }
         
         function updateProfileSection() {
@@ -2827,151 +3421,307 @@
                 communityPosts = [
                     {
                         id: '1',
-                        category: 'tip',
                         content: '인스타 스토리에 올릴 때 꿀팁! 제품 사진만 올리지 말고 직접 사용하는 모습 찍으면 판매율 2배 올라요 💡',
                         author: { name: '뷰티크리에이터', code: 'HD0012', grade: 'gold' },
                         likes: 24,
+                        reposts: 5,
                         likedBy: [],
+                        repostedBy: [],
                         comments: [
-                            { author: '패션왕', text: '오 진짜요? 저도 해봐야겠어요!', time: '1시간 전' }
+                            { author: '패션왕', authorCode: 'HD0033', text: '오 진짜요? 저도 해봐야겠어요!', time: '1시간 전' }
                         ],
                         createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000)
                     },
                     {
                         id: '2',
-                        category: 'review',
                         content: '드디어 이번 달 100만원 달성했어요! 🎉🎉🎉\n두쫀쿠 덕분에 매출 터졌습니다 ㅠㅠ 감사해요!',
                         author: { name: '먹방러버', code: 'HD0008', grade: 'vip' },
                         likes: 47,
+                        reposts: 12,
                         likedBy: [],
+                        repostedBy: [],
                         comments: [
-                            { author: '신입크리에이터', text: '대박!! 축하드려요!!', time: '30분 전' },
-                            { author: '뷰티크리에이터', text: '비결이 뭐예요?', time: '20분 전' }
+                            { author: '신입크리에이터', authorCode: 'HD0055', text: '대박!! 축하드려요!!', time: '30분 전' },
+                            { author: '뷰티크리에이터', authorCode: 'HD0012', text: '비결이 뭐예요?', time: '20분 전' }
                         ],
                         createdAt: new Date(Date.now() - 5 * 60 * 60 * 1000)
                     },
                     {
                         id: '3',
-                        category: 'question',
                         content: '추천인 코드는 어디에 넣어야 하나요? 처음이라 잘 모르겠어요 😅',
                         author: { name: '새싹인플루언서', code: 'HD0099', grade: 'seed' },
                         likes: 3,
+                        reposts: 0,
                         likedBy: [],
+                        repostedBy: [],
                         comments: [
-                            { author: '운영자', text: '배송 메모에 추천코드를 입력하시면 됩니다!', time: '10분 전' }
+                            { author: '운영자', authorCode: 'HD0001', text: '배송 메모에 추천코드를 입력하시면 됩니다!', time: '10분 전' }
                         ],
                         createdAt: new Date(Date.now() - 8 * 60 * 60 * 1000)
                     },
                     {
                         id: '4',
-                        category: 'free',
                         content: '다들 주말에 뭐하세요? 저는 콘텐츠 촬영 중입니다 📸',
                         author: { name: '일상브이로거', code: 'HD0045', grade: 'silver' },
                         likes: 12,
+                        reposts: 2,
                         likedBy: [],
+                        repostedBy: [],
                         comments: [],
                         createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000)
                     }
                 ];
             }
             renderCommunityPosts();
-            renderHotPosts();
+        }
+
+        // 피드 탭 (추천/최신)
+        let currentFeedTab = 'hot';
+        
+        function switchFeedTab(tab, el) {
+            currentFeedTab = tab;
+            document.querySelectorAll('.community-tab').forEach(btn => btn.classList.remove('active'));
+            el.classList.add('active');
+            renderCommunityPosts();
+        }
+
+        // 인기도 점수 계산 (좋아요 + 댓글*2 + 리포스트*3)
+        function getEngagementScore(post) {
+            return (post.likes || 0) + ((post.comments?.length || 0) * 2) + ((post.reposts || 0) * 3);
         }
 
         function renderCommunityPosts() {
             const feed = document.getElementById('communityFeed');
-            let filtered = communityPosts;
+            let posts = [...communityPosts];
             
-            if (currentFilter !== 'all') {
-                filtered = communityPosts.filter(p => p.category === currentFilter);
+            // 정렬: 추천(인기순) vs 최신순
+            if (currentFeedTab === 'hot') {
+                posts.sort((a, b) => getEngagementScore(b) - getEngagementScore(a));
+            } else {
+                posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
             }
 
-            if (filtered.length === 0) {
+            if (posts.length === 0) {
                 feed.innerHTML = `
                     <div class="empty-feed">
-                        <div class="empty-feed-icon">📝</div>
-                        <p>아직 게시글이 없어요.<br>첫 번째 글을 작성해보세요!</p>
+                        <div class="empty-feed-icon">💬</div>
+                        <p>아직 스레드가 없어요.<br>첫 번째 글을 작성해보세요!</p>
                     </div>
                 `;
                 return;
             }
 
-            feed.innerHTML = filtered.map(post => {
-                const categoryLabels = { tip: '💰 판매 꿀팁', review: '🎉 성공 후기', question: '❓ 질문', free: '💬 자유' };
-                const gradeLabels = { seed: '씨앗', sprout: '새싹', silver: '실버', gold: '골드', vip: 'VIP' };
+            feed.innerHTML = posts.map(post => {
+                const gradeLabels = { seed: '씨앗', sprout: '새싹', bronze: '브론즈', silver: '실버', gold: '골드', diamond: '다이아', vip: 'VIP', master: '마스터' };
                 const timeAgo = getTimeAgo(post.createdAt);
                 const isLiked = post.likedBy && post.likedBy.includes(currentUser?.code);
+                const isReposted = post.repostedBy && post.repostedBy.includes(currentUser?.code);
+                const isMyPost = currentUser && post.author.code === currentUser.code;
+                
+                // 작성자 정보 가져오기
+                const authorUser = data.users.find(u => u.code === post.author.code);
+                const authorProfileImage = authorUser?.profileImage || post.author.profileImage;
+                const avatarHtml = authorProfileImage 
+                    ? `<img src="${authorProfileImage}" alt="${post.author.name}">`
+                    : post.author.name.charAt(0);
+                
+                // 댓글 작성자 프로필 이미지
+                const currentUserProfileImage = currentUser?.profileImage;
+                const currentUserAvatarHtml = currentUserProfileImage
+                    ? `<img src="${currentUserProfileImage}" alt="${currentUser?.name}">`
+                    : (currentUser?.name?.charAt(0) || 'U');
                 
                 return `
                     <div class="feed-card" data-id="${post.id}">
                         <div class="feed-header">
-                            <div class="feed-avatar">${post.author.name.charAt(0)}</div>
-                            <div class="feed-user-info">
-                                <div class="feed-user-name">
-                                    ${post.author.name}
+                            <div class="feed-avatar" onclick="openUserProfile('${post.author.code}')">${avatarHtml}</div>
+                            <div class="feed-body">
+                                <div class="feed-user-row">
+                                    <span class="feed-user-name" onclick="openUserProfile('${post.author.code}')">${post.author.name}</span>
                                     <span class="feed-user-badge ${post.author.grade}">${gradeLabels[post.author.grade] || '씨앗'}</span>
+                                    <span class="feed-time">· ${timeAgo}</span>
                                 </div>
-                                <div class="feed-meta">
-                                    <span class="feed-category ${post.category}">${categoryLabels[post.category]}</span>
-                                    <span>${timeAgo}</span>
+                                <div class="feed-content">${escapeHtml(post.content)}</div>
+                                <div class="feed-actions">
+                                    <button class="feed-action comment" onclick="toggleComments('${post.id}')">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"/></svg>
+                                        ${post.comments?.length || 0}
+                                    </button>
+                                    <button class="feed-action repost ${isReposted ? 'reposted' : ''}" onclick="toggleRepost('${post.id}')">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"/></svg>
+                                        ${post.reposts || 0}
+                                    </button>
+                                    <button class="feed-action like ${isLiked ? 'liked' : ''}" onclick="toggleLike('${post.id}')">
+                                        <svg viewBox="0 0 24 24" fill="${isLiked ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                        ${post.likes || 0}
+                                    </button>
+                                    <button class="feed-action share" onclick="sharePost('${post.id}')">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.59l5.7 5.7-1.41 1.42L13 6.41V16h-2V6.41l-3.3 3.3-1.41-1.42L12 2.59zM21 15l-.02 3.51c0 1.38-1.12 2.49-2.5 2.49H5.5C4.11 21 3 19.88 3 18.5V15h2v3.5c0 .28.22.5.5.5h12.98c.28 0 .5-.22.5-.5L19 15h2z"/></svg>
+                                    </button>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="feed-content">${escapeHtml(post.content)}</div>
-                        <div class="feed-actions">
-                            <button class="feed-action ${isLiked ? 'liked' : ''}" onclick="toggleLike('${post.id}')">
-                                ${isLiked ? '❤️' : '🤍'} 좋아요 ${post.likes || 0}
-                            </button>
-                            <button class="feed-action" onclick="toggleComments('${post.id}')">
-                                💬 댓글 ${post.comments?.length || 0}
-                            </button>
-                        </div>
-                        <div class="feed-comments hidden" id="comments-${post.id}">
-                            <div class="comment-list">
-                                ${(post.comments || []).map(c => `
-                                    <div class="comment-item">
-                                        <div class="comment-avatar">${c.author.charAt(0)}</div>
-                                        <div class="comment-body">
-                                            <div class="comment-user">${c.author}</div>
-                                            <div class="comment-text">${escapeHtml(c.text)}</div>
-                                            <div class="comment-time">${c.time}</div>
-                                        </div>
+                                <div class="feed-comments hidden" id="comments-${post.id}">
+                                    <div class="comment-list">
+                                        ${(post.comments || []).map(c => {
+                                            const commentUser = data.users.find(u => u.code === c.authorCode);
+                                            const commentProfileImage = commentUser?.profileImage || c.profileImage;
+                                            const commentAvatarHtml = commentProfileImage
+                                                ? `<img src="${commentProfileImage}" alt="${c.author}">`
+                                                : c.author.charAt(0);
+                                            return `
+                                            <div class="comment-item">
+                                                <div class="comment-avatar">${commentAvatarHtml}</div>
+                                                <div class="comment-body">
+                                                    <div class="comment-header">
+                                                        <span class="comment-user">${c.author}</span>
+                                                        <span class="comment-handle">· ${c.time}</span>
+                                                    </div>
+                                                    <div class="comment-text">${escapeHtml(c.text)}</div>
+                                                </div>
+                                            </div>
+                                        `}).join('')}
                                     </div>
-                                `).join('')}
+                                    <div class="comment-input-wrap">
+                                        <div class="comment-avatar">${currentUserAvatarHtml}</div>
+                                        <textarea class="comment-input" placeholder="답글 게시하기..." rows="1" id="comment-input-${post.id}"></textarea>
+                                        <button class="comment-submit" onclick="submitComment('${post.id}')">답글</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="comment-input-wrap">
-                                <textarea class="comment-input" placeholder="댓글을 입력하세요..." rows="1" id="comment-input-${post.id}"></textarea>
-                                <button class="comment-submit" onclick="submitComment('${post.id}')">등록</button>
-                            </div>
+                            ${isMyPost ? `
+                                <div class="feed-menu">
+                                    <button class="feed-menu-btn" onclick="togglePostMenu('${post.id}')">···</button>
+                                    <div class="feed-menu-dropdown hidden" id="menu-${post.id}">
+                                        <button onclick="openEditModal('${post.id}')">수정</button>
+                                        <button onclick="deletePost('${post.id}')" style="color:#f4212e">삭제</button>
+                                    </div>
+                                </div>
+                            ` : ''}
                         </div>
                     </div>
                 `;
             }).join('');
         }
 
-        function renderHotPosts() {
-            const hot = document.getElementById('hotPosts');
-            const hotPosts = [...communityPosts].sort((a, b) => (b.likes || 0) - (a.likes || 0)).slice(0, 3);
-            
-            if (hotPosts.length === 0) {
-                hot.innerHTML = '<p style="font-size:13px;color:var(--text-muted);text-align:center;padding:12px;">아직 인기글이 없어요</p>';
+        // 사용자 프로필 모달 열기
+        function openUserProfile(userCode) {
+            const user = data.users.find(u => u.code === userCode);
+            if (!user) {
+                showToast('사용자 정보를 찾을 수 없습니다');
                 return;
             }
-
-            hot.innerHTML = hotPosts.map((post, idx) => `
-                <div class="hot-post-item" onclick="scrollToPost('${post.id}')">
-                    <span class="hot-post-rank">${idx + 1}</span>
-                    <span class="hot-post-content">${escapeHtml(post.content.substring(0, 50))}${post.content.length > 50 ? '...' : ''}</span>
-                    <span class="hot-post-likes">❤️ ${post.likes || 0}</span>
-                </div>
-            `).join('');
+            
+            // 프로필 이미지
+            const avatarEl = document.getElementById('userProfileAvatar');
+            if (user.profileImage) {
+                avatarEl.innerHTML = `<img src="${user.profileImage}" alt="${user.name}">`;
+            } else {
+                avatarEl.innerHTML = user.name.charAt(0);
+            }
+            
+            // 이름
+            document.getElementById('userProfileName').textContent = user.name;
+            
+            // 등급
+            const userSales = data.sales.filter(s => s.userCode === user.code);
+            const totalSales = userSales.reduce((sum, s) => sum + (s.quantity || 1), 0);
+            const grade = getUserGrade(totalSales);
+            document.getElementById('userProfileGradeIcon').textContent = grade.icon;
+            document.getElementById('userProfileGradeName').textContent = grade.name;
+            
+            // 통계
+            document.getElementById('userProfileSales').textContent = totalSales;
+            const userPosts = communityPosts.filter(p => p.author.code === user.code).length;
+            document.getElementById('userProfilePosts').textContent = userPosts;
+            
+            // 채널 목록
+            const channelsContainer = document.getElementById('userProfileChannels');
+            const channelUrls = user.channelUrls || {};
+            const channelConfig = {
+                youtube: { name: 'YouTube', icon: 'YT', class: 'youtube' },
+                instagram: { name: 'Instagram', icon: 'IG', class: 'instagram' },
+                blog: { name: '블로그', icon: 'B', class: 'blog' },
+                tiktok: { name: 'TikTok', icon: 'TT', class: 'tiktok' }
+            };
+            
+            let channelsHtml = '';
+            let hasChannels = false;
+            
+            Object.keys(channelConfig).forEach(key => {
+                if (user.channels && user.channels[key] && channelUrls[key]) {
+                    hasChannels = true;
+                    const config = channelConfig[key];
+                    channelsHtml += `
+                        <a href="${channelUrls[key]}" target="_blank" class="user-profile-channel">
+                            <div class="user-profile-channel-icon ${config.class}">${config.icon}</div>
+                            <div class="user-profile-channel-info">
+                                <div class="user-profile-channel-name">${config.name}</div>
+                                <div class="user-profile-channel-url">${channelUrls[key]}</div>
+                            </div>
+                            <span class="user-profile-channel-arrow">→</span>
+                        </a>
+                    `;
+                }
+            });
+            
+            if (!hasChannels) {
+                channelsHtml = '<div class="user-profile-no-channel">등록된 SNS 채널이 없습니다</div>';
+            }
+            
+            channelsContainer.innerHTML = channelsHtml;
+            
+            // 모달 열기
+            document.getElementById('userProfileModal').classList.add('show');
+        }
+        
+        function closeUserProfileModal() {
+            document.getElementById('userProfileModal').classList.remove('show');
         }
 
-        function filterPosts(filter, el) {
-            currentFilter = filter;
-            document.querySelectorAll('.community-filter').forEach(btn => btn.classList.remove('active'));
-            el.classList.add('active');
+        // 리포스트 토글
+        function toggleRepost(postId) {
+            const post = communityPosts.find(p => p.id === postId);
+            if (!post || !currentUser) return;
+
+            if (!post.repostedBy) post.repostedBy = [];
+            
+            const idx = post.repostedBy.indexOf(currentUser.code);
+            if (idx > -1) {
+                post.repostedBy.splice(idx, 1);
+                post.reposts = Math.max(0, (post.reposts || 1) - 1);
+                showToast('리포스트 취소');
+            } else {
+                post.repostedBy.push(currentUser.code);
+                post.reposts = (post.reposts || 0) + 1;
+                showToast('리포스트 완료!');
+            }
+
+            try {
+                db.collection('posts').doc(postId).update({
+                    reposts: post.reposts,
+                    repostedBy: post.repostedBy
+                });
+            } catch (e) {}
+
             renderCommunityPosts();
+        }
+
+        // 공유
+        function sharePost(postId) {
+            const post = communityPosts.find(p => p.id === postId);
+            if (!post) return;
+            
+            const shareText = post.content.substring(0, 100) + (post.content.length > 100 ? '...' : '');
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: '핫딜공구인플루언서',
+                    text: shareText,
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(shareText);
+                showToast('클립보드에 복사되었습니다!');
+            }
         }
 
         function toggleLike(postId) {
@@ -3042,20 +3792,86 @@
             }
         }
 
+        // 글 메뉴 토글
+        function togglePostMenu(postId) {
+            // 다른 메뉴 닫기
+            document.querySelectorAll('.feed-menu-dropdown').forEach(el => {
+                if (el.id !== 'menu-' + postId) {
+                    el.classList.add('hidden');
+                }
+            });
+            const menu = document.getElementById('menu-' + postId);
+            menu.classList.toggle('hidden');
+        }
+
+        // 메뉴 외부 클릭 시 닫기
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.feed-menu')) {
+                document.querySelectorAll('.feed-menu-dropdown').forEach(el => el.classList.add('hidden'));
+            }
+        });
+
+        // 글 수정 모달 열기
+        let editingPostId = null;
+        
+        function openEditModal(postId) {
+            const post = communityPosts.find(p => p.id === postId);
+            if (!post) return;
+            
+            editingPostId = postId;
+            document.getElementById('writeModal').classList.add('show');
+            document.getElementById('postContent').value = post.content;
+            document.getElementById('charCount').textContent = post.content.length;
+            
+            // 모달 제목 변경
+            document.getElementById('writeModalTitle').textContent = '스레드 수정';
+            
+            // 메뉴 닫기
+            document.querySelectorAll('.feed-menu-dropdown').forEach(el => el.classList.add('hidden'));
+        }
+
+        // 글 삭제
+        async function deletePost(postId) {
+            if (!confirm('정말 삭제하시겠습니까?')) return;
+            
+            const post = communityPosts.find(p => p.id === postId);
+            if (!post || post.author.code !== currentUser?.code) {
+                showToast('삭제 권한이 없습니다');
+                return;
+            }
+            
+            // Firebase에서 삭제 시도
+            try {
+                await db.collection('posts').doc(postId).delete();
+            } catch (e) {
+                console.log('Firebase 삭제 실패:', e);
+            }
+            
+            // 로컬에서 삭제
+            communityPosts = communityPosts.filter(p => p.id !== postId);
+            renderCommunityPosts();
+            showToast('삭제되었습니다');
+            
+            // 메뉴 닫기
+            document.querySelectorAll('.feed-menu-dropdown').forEach(el => el.classList.add('hidden'));
+        }
+
         function openWriteModal() {
+            editingPostId = null;
+            document.getElementById('writeModalTitle').textContent = '새 스레드';
             document.getElementById('writeModal').classList.add('show');
             document.getElementById('postContent').value = '';
             document.getElementById('charCount').textContent = '0';
+            
+            // 아바타 설정
+            const avatarEl = document.getElementById('writeAvatar');
+            if (avatarEl && currentUser) {
+                avatarEl.textContent = currentUser.name.charAt(0);
+            }
         }
 
         function closeWriteModal() {
             document.getElementById('writeModal').classList.remove('show');
-        }
-
-        function selectWriteCategory(category, el) {
-            selectedWriteCategory = category;
-            document.querySelectorAll('.write-category').forEach(btn => btn.classList.remove('active'));
-            el.classList.add('active');
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -3078,10 +3894,34 @@
                 return;
             }
 
+            // 수정 모드인 경우
+            if (editingPostId) {
+                const post = communityPosts.find(p => p.id === editingPostId);
+                if (post && post.author.code === currentUser.code) {
+                    post.content = content;
+                    post.updatedAt = new Date();
+                    
+                    try {
+                        await db.collection('posts').doc(editingPostId).update({
+                            content: content,
+                            updatedAt: new Date()
+                        });
+                    } catch (e) {
+                        console.log('Firebase 업데이트 실패:', e);
+                    }
+                    
+                    closeWriteModal();
+                    renderCommunityPosts();
+                    showToast('수정되었습니다');
+                    editingPostId = null;
+                    return;
+                }
+            }
+
+            // 새 글 작성 모드
             const grade = getUserGrade(data.sales.filter(s => s.userCode === currentUser.code).reduce((sum, s) => sum + (s.quantity || 1), 0));
 
             const newPost = {
-                category: selectedWriteCategory,
                 content: content,
                 author: {
                     name: currentUser.name,
@@ -3089,12 +3929,13 @@
                     grade: grade.id
                 },
                 likes: 0,
+                reposts: 0,
                 likedBy: [],
+                repostedBy: [],
                 comments: [],
                 createdAt: new Date()
             };
 
-            // Firebase에 저장 시도
             try {
                 const docRef = await db.collection('posts').add(newPost);
                 newPost.id = docRef.id;
@@ -3105,8 +3946,7 @@
             communityPosts.unshift(newPost);
             closeWriteModal();
             renderCommunityPosts();
-            renderHotPosts();
-            showToast('글이 등록되었습니다! ✨');
+            showToast('게시되었습니다!');
         }
 
         function getTimeAgo(date) {
