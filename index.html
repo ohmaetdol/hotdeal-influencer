@@ -2042,7 +2042,14 @@
                 firebase.initializeApp(firebaseConfig);
                 db = firebase.firestore();
                 console.log('Firebase 초기화 완료');
-                loadData().then(() => console.log('데이터 로드 완료'));
+                loadData().then(() => {
+                    console.log('데이터 로드 완료');
+                    console.log('📦 현재 상품 수:', data.products.length);
+                    // 이미 로그인 상태라면 대시보드 업데이트
+                    if (currentUser) {
+                        updateDashboard();
+                    }
+                });
             } else {
                 setTimeout(initFirebase, 100);
             }
@@ -2247,7 +2254,7 @@
                     console.log('⚠️ Firebase에 상품이 없음, 기본 상품 사용');
                 }
             } catch (error) {
-                console.log('Firebase 로드 실패, 로컬 데이터 사용:', error);
+                console.error('❌ Firebase 로드 실패:', error.message, error);
                 const saved = localStorage.getItem('hotdealInfluencerData');
                 if (saved) {
                     const p = JSON.parse(saved);
@@ -2828,7 +2835,8 @@
             });
             const sortedUsers = Object.entries(allUserSales).sort((a, b) => b[1] - a[1]);
             const myRank = sortedUsers.findIndex(([code]) => code === currentUser.code) + 1;
-            document.getElementById('statWeekRank').textContent = myRank > 0 ? `${myRank}위` : '-';
+            const statWeekRankEl = document.getElementById('statWeekRank');
+            if (statWeekRankEl) statWeekRankEl.textContent = myRank > 0 ? `${myRank}위` : '-';
             
             // 상승/하락 표시 업데이트
             updateStatChanges(mySales);
@@ -3076,6 +3084,8 @@
 
         async function handleGoogleLogin(response) {
             await loadData(); // 데이터 다시 로드
+            console.log('🔑 로그인 시 상품 수:', data.products.length);
+            
             const payload = JSON.parse(atob(response.credential.split('.')[1]));
             const email = payload.email;
             const name = payload.name;
