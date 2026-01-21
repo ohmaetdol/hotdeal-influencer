@@ -1495,7 +1495,7 @@
                 <!-- 맞춤 추천 상품 -->
                 <div class="recommend-layout">
                     <div class="recommend-main">
-                        <!-- 나를 위한 맞춤 상품 (AI 자동 배치) -->
+                        <!-- 나를 위한 맞춤 상품 (AI 자동) -->
                         <div class="product-section">
                             <div class="section-header">
                                 <div>
@@ -1504,6 +1504,28 @@
                                 </div>
                             </div>
                             <div class="product-grid" id="productGridRecommend"></div>
+                        </div>
+                        
+                        <!-- 요즘 인기있는 신상품 (관리자 수동) -->
+                        <div class="product-section" id="sectionNew">
+                            <div class="section-header">
+                                <div>
+                                    <h2>요즘 인기있는 신상품</h2>
+                                    <p class="section-desc">새롭게 입점한 HOT한 상품들</p>
+                                </div>
+                            </div>
+                            <div class="product-grid" id="productGridNew"></div>
+                        </div>
+                        
+                        <!-- 베스트셀링 추천상품 (관리자 수동) -->
+                        <div class="product-section" id="sectionBest">
+                            <div class="section-header">
+                                <div>
+                                    <h2>베스트셀링 추천상품</h2>
+                                    <p class="section-desc">인플루언서들이 가장 많이 판매한 상품</p>
+                                </div>
+                            </div>
+                            <div class="product-grid" id="productGridBest"></div>
                         </div>
                     </div>
                     <div class="recommend-sidebar">
@@ -2490,15 +2512,25 @@
             // 랭킹 업데이트
             updateRanking();
             
-            // 전체 상품 (종료 제외) - 섹션 구분 없이 전부 AI 추천
+            // 전체 상품 (종료 제외)
             const allProducts = data.products.filter(p => p.status !== 'ended');
+            
+            // 1. 맞춤 상품: 모든 상품을 AI가 인플루언서별로 자동 정렬
             const recommendProducts = getPersonalizedProducts(allProducts);
+            
+            // 2. 신상품: 관리자가 'new'로 설정한 상품만
+            const newProducts = allProducts.filter(p => p.section === 'new').sort((a,b) => (a.order||999) - (b.order||999));
+            
+            // 3. 베스트: 관리자가 'best'로 설정한 상품만
+            const bestProducts = allProducts.filter(p => p.section === 'best').sort((a,b) => (a.order||999) - (b.order||999));
             
             // 추천 이유 업데이트
             updateRecommendReason();
             
-            // 단일 섹션 렌더링
+            // 각 섹션 렌더링
             renderProductSection('productGridRecommend', recommendProducts);
+            renderProductSection('productGridNew', newProducts, 'sectionNew');
+            renderProductSection('productGridBest', bestProducts, 'sectionBest');
         }
         
         // 개인화 추천 알고리즘 (맞춤 상품용)
