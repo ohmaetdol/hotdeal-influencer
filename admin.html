@@ -858,7 +858,6 @@
                         </div>
                         <div class="form-row" style="margin-top:12px">
                             <div class="input-group"><label>링크</label><input type="text" id="productLink" placeholder="https://..."></div>
-                            <div class="input-group" style="max-width:100px"><label>이모지</label><input type="text" id="productEmoji" placeholder="🍪"></div>
                         </div>
                         <div class="form-row" style="margin-top:12px">
                             <div class="input-group"><label>썸네일 이미지 URL</label><input type="text" id="productImage" placeholder="https://이미지주소.jpg"></div>
@@ -932,7 +931,7 @@
         const ADMIN_ID = 'admin', ADMIN_PW = 'hotdeal1234';
         let data = { 
             users: [], 
-            products: [{id:1, name:'두쫀쿠 오리지널', price:29900, emoji:'🍪', link:'https://smartstore.naver.com/gardenings/products/12913776103'}], 
+            products: [{id:1, name:'두쫀쿠 피스타치오 오리지널 카다이프 수제 디저트', price:29900, link:'https://smartstore.naver.com/gardenings/products/12913776103', category:'dessert', image:'https://shop-phinf.pstatic.net/20250102_140/1735825498498YWTDG_JPEG/25418556025058867_1514498498.jpg', startDate:'2025-01-21', endDate:'2025-01-28'}], 
             sales: [] 
         };
         
@@ -1187,7 +1186,7 @@
                 ? '<tr><td colspan="5" class="empty">판매 내역이 없습니다</td></tr>'
                 : data.sales.slice(-7).reverse().map(s => {
                     const timeAgo = getTimeAgo(new Date(s.date));
-                    return `<tr><td>${timeAgo}</td><td>💰 판매</td><td><span class="badge badge-primary">${s.userName}</span></td><td>${s.productEmoji || '📦'} ${s.productName}</td><td style="color:var(--success)">₩${(s.amount || 0).toLocaleString()}</td></tr>`;
+                    return `<tr><td>${timeAgo}</td><td>💰 판매</td><td><span class="badge badge-primary">${s.userName}</span></td><td>${s.productName}</td><td style="color:var(--success)">₩${(s.amount || 0).toLocaleString()}</td></tr>`;
                 }).join('');
 
             // 가입 신청
@@ -1232,12 +1231,12 @@
             document.getElementById('productsTable').innerHTML = data.products.length === 0 
                 ? '<tr><td colspan="7" class="empty">등록된 상품이 없습니다</td></tr>'
                 : data.products.map(p => {
-                    const thumb = p.image ? `<img src="${p.image}" style="width:50px;height:50px;object-fit:cover;border-radius:4px">` : `<div style="width:50px;height:50px;background:var(--bg-secondary);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:24px">${p.emoji || '📦'}</div>`;
+                    const thumb = p.image ? `<img src="${p.image}" style="width:50px;height:50px;object-fit:cover;border-radius:4px">` : `<div style="width:50px;height:50px;background:var(--bg-secondary);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-light)">없음</div>`;
                     const startDate = p.startDate ? new Date(p.startDate).toLocaleDateString('ko-KR', {month:'short', day:'numeric'}) : '-';
                     const endDate = p.endDate ? new Date(p.endDate).toLocaleDateString('ko-KR', {month:'short', day:'numeric'}) : '-';
                     return `<tr>
                         <td>${thumb}</td>
-                        <td><strong>${p.emoji || ''} ${p.name}</strong><br><a href="${p.link}" target="_blank" style="font-size:11px;color:var(--primary)">링크 열기</a></td>
+                        <td><strong>${p.name}</strong><br><a href="${p.link}" target="_blank" style="font-size:11px;color:var(--primary)">링크 열기</a></td>
                         <td>${categoryNames[p.category] || p.category || '-'}</td>
                         <td>₩${(p.price || 0).toLocaleString()}</td>
                         <td style="color:var(--success)">₩${Math.floor((p.price || 0)*0.1).toLocaleString()}</td>
@@ -1250,13 +1249,13 @@
                 }).join('');
 
             // 드롭다운
-            document.getElementById('saleProduct').innerHTML = '<option value="">선택</option>' + data.products.map(p => `<option value="${p.id}">${p.emoji || '📦'} ${p.name}</option>`).join('');
+            document.getElementById('saleProduct').innerHTML = '<option value="">선택</option>' + data.products.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
             document.getElementById('saleInfluencer').innerHTML = '<option value="">선택</option>' + approved.map(u => `<option value="${u.code}">${u.name} (${u.code})</option>`).join('');
 
             // 판매 내역
             document.getElementById('allSalesTable').innerHTML = data.sales.length === 0 
                 ? '<tr><td colspan="7" class="empty">판매 내역이 없습니다</td></tr>'
-                : data.sales.slice().reverse().map(s => `<tr><td>${new Date(s.date).toLocaleDateString('ko-KR')}</td><td>${s.productEmoji || '📦'} ${s.productName}</td><td>${s.userName}</td><td>${s.quantity || 0}개</td><td>₩${(s.amount || 0).toLocaleString()}</td><td style="color:var(--success)">₩${(s.commission || 0).toLocaleString()}</td><td><button class="btn btn-danger btn-small" onclick="deleteSale('${s.id}')">삭제</button></td></tr>`).join('');
+                : data.sales.slice().reverse().map(s => `<tr><td>${new Date(s.date).toLocaleDateString('ko-KR')}</td><td>${s.productName}</td><td>${s.userName}</td><td>${s.quantity || 0}개</td><td>₩${(s.amount || 0).toLocaleString()}</td><td style="color:var(--success)">₩${(s.commission || 0).toLocaleString()}</td><td><button class="btn btn-danger btn-small" onclick="deleteSale('${s.id}')">삭제</button></td></tr>`).join('');
             } catch (error) {
                 console.error('updateAll error:', error);
             }
@@ -1451,7 +1450,7 @@
                         <div class="match-name">${r.user.name}</div>
                         <div class="match-reason">${r.reason}</div>
                     </div>
-                    <div class="match-product">${r.product.emoji || '📦'} ${r.product.name.slice(0,8)}${r.product.name.length > 8 ? '...' : ''}</div>
+                    <div class="match-product">${r.product.name.slice(0,8)}${r.product.name.length > 8 ? '...' : ''}</div>
                 </div>
             `).join('');
         }
@@ -1496,7 +1495,6 @@
             const name = document.getElementById('productName').value.trim();
             const price = parseInt(document.getElementById('productPrice').value) || 0;
             const link = document.getElementById('productLink').value.trim();
-            const emoji = document.getElementById('productEmoji').value.trim() || '📦';
             const category = document.getElementById('productCategory').value;
             const image = document.getElementById('productImage').value.trim();
             const startDate = document.getElementById('productStartDate').value;
@@ -1512,7 +1510,6 @@
                     product.name = name;
                     product.price = price;
                     product.link = link;
-                    product.emoji = emoji;
                     product.category = category;
                     product.image = image;
                     product.startDate = startDate || product.startDate;
@@ -1531,7 +1528,6 @@
                     name, 
                     price, 
                     link, 
-                    emoji, 
                     category,
                     image,
                     startDate: startDate || new Date().toISOString().split('T')[0],
@@ -1555,7 +1551,6 @@
             document.getElementById('productName').value = product.name || '';
             document.getElementById('productPrice').value = product.price || '';
             document.getElementById('productLink').value = product.link || '';
-            document.getElementById('productEmoji').value = product.emoji || '';
             document.getElementById('productCategory').value = product.category || '';
             document.getElementById('productImage').value = product.image || '';
             document.getElementById('productStartDate').value = product.startDate || '';
@@ -1582,7 +1577,6 @@
             document.getElementById('productName').value = '';
             document.getElementById('productPrice').value = '';
             document.getElementById('productLink').value = '';
-            document.getElementById('productEmoji').value = '';
             document.getElementById('productCategory').value = '';
             document.getElementById('productImage').value = '';
             document.getElementById('productStartDate').value = '';
@@ -1611,7 +1605,6 @@
                 id: Date.now(), 
                 productId: product.id, 
                 productName: product.name, 
-                productEmoji: product.emoji, 
                 userCode: user.code, 
                 userName: user.name, 
                 quantity: qty, 
@@ -1944,7 +1937,7 @@
                 if (u.matchedProducts && u.matchedProducts.length > 0) {
                     const matchedNames = u.matchedProducts.map(pid => {
                         const p = data.products.find(x => String(x.id) === String(pid));
-                        return p ? (p.emoji || '📦') + ' ' + p.name : '';
+                        return p ? p.name : '';
                     }).filter(Boolean).slice(0, 2);
                     if (matchedNames.length > 0) {
                         matchedHtml = `<div class="influencer-card-matched">
@@ -2061,7 +2054,7 @@
                 ? '<p style="color:var(--text-light);font-size:12px;padding:12px 0">판매 이력이 없습니다</p>'
                 : recentSales.map(s => `<div class="modal-sales-item">
                     <span>${new Date(s.date).toLocaleDateString('ko-KR')}</span>
-                    <span>${s.productEmoji || '📦'} ${s.productName}</span>
+                    <span>${s.productName}</span>
                     <span>${s.quantity || 0}개</span>
                     <span style="color:var(--success)">₩${(s.commission || 0).toLocaleString()}</span>
                 </div>`).join('');
@@ -2073,7 +2066,7 @@
                 return `<div class="product-match-item">
                     <input type="checkbox" id="match_${p.id}" value="${p.id}" ${checked}>
                     <div class="product-match-info">
-                        <div class="product-match-name">${p.emoji || '📦'} ${p.name}</div>
+                        <div class="product-match-name">${p.name}</div>
                         <div class="product-match-category">${categoryNames[p.category] || p.category || '-'} · ₩${(p.price || 0).toLocaleString()}</div>
                     </div>
                 </div>`;
