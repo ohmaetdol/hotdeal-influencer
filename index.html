@@ -610,23 +610,32 @@
             .section-desc{font-size:11px}
             .section-badge{font-size:10px;padding:3px 8px}
             
-            /* 성적표 모바일 - 유튜브 스타일 */
-            .my-scorecard{padding:16px;border-radius:16px}
-            .scorecard-header{flex-direction:column;gap:16px;text-align:center}
-            .scorecard-greeting h1{font-size:20px}
-            .scorecard-greeting p{font-size:13px}
-            .scorecard-grade{justify-content:center}
-            .scorecard-grade-info{text-align:center}
-            .scorecard-stats{flex-direction:column;gap:0;border-radius:12px}
-            .scorecard-stat-item{min-width:100%;padding:14px 16px;border-right:none;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+            /* 🎯 모바일 홈 - 유튜브 스튜디오 스타일 */
+            .my-scorecard{padding:20px 16px;border-radius:0;border:none;background:#fff;margin:-12px -12px 16px -12px}
+            .scorecard-header{flex-direction:row;gap:16px;text-align:left;align-items:center;padding-bottom:20px;border-bottom:1px solid var(--border);margin-bottom:0}
+            .scorecard-greeting{display:none}
+            .scorecard-grade{flex-direction:row;gap:12px;background:none;padding:0;border:none;cursor:default}
+            .scorecard-grade-icon{font-size:48px}
+            .scorecard-grade-info{text-align:left}
+            .scorecard-grade-name{font-size:22px;font-weight:700;color:var(--text)}
+            .scorecard-grade-commission{font-size:14px;color:var(--primary)}
+            
+            /* 모바일 통계 - 2x2 그리드 카드 */
+            .scorecard-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;background:none;border:none;padding:20px 0}
+            .scorecard-stat-item{background:#f8f9fa;border-radius:16px;padding:20px 16px;border:none;display:flex;flex-direction:column;align-items:flex-start;min-width:auto}
             .scorecard-stat-item:last-child{border-bottom:none}
+            .scorecard-stat-item.highlight{background:#f8f9fa;border-left:none}
             .scorecard-stat-item.highlight::before{display:none}
-            .scorecard-stat-item.highlight{background:#f0fdf4;border-left:3px solid #16a34a}
-            .scorecard-stat-label{font-size:13px;margin-bottom:0;order:1}
-            .scorecard-stat-value{font-size:18px;order:2;text-align:right}
-            .scorecard-stat-change{margin-top:0;margin-left:8px;order:3}
-            .scorecard-progress-markers span{font-size:12px}
-            .scorecard-benefit{flex-direction:column;gap:8px;text-align:center;font-size:12px}
+            .scorecard-stat-label{font-size:13px;color:var(--text-muted);margin-bottom:8px;order:1}
+            .scorecard-stat-value{font-size:28px;font-weight:700;order:2;text-align:left;color:var(--text)}
+            .scorecard-stat-change{margin-top:6px;margin-left:0;order:3;font-size:13px}
+            
+            /* 등급 프로그레스 숨김 */
+            .scorecard-progress{display:none}
+            .scorecard-benefit{display:none}
+            
+            /* 인사이트 카드 숨김 (모바일에서) */
+            .insight-section{display:none}
             
             .grade-modal{width:95%}
             .grade-modal-header{padding:16px}
@@ -749,51 +758,47 @@
             left:0;
             right:0;
             background:#fff;
-            border-top:1px solid var(--border);
-            padding:8px 0;
-            padding-bottom:max(8px, env(safe-area-inset-bottom));
+            border-top:1px solid #e5e5e5;
+            padding:10px 0;
+            padding-bottom:max(10px, env(safe-area-inset-bottom));
             z-index:1000;
-            box-shadow:0 -2px 10px rgba(0,0,0,0.05);
         }
         .mobile-bottom-nav-inner{
             display:flex;
             justify-content:space-around;
             align-items:center;
-            max-width:500px;
+            max-width:400px;
             margin:0 auto;
         }
         .mobile-nav-item{
             display:flex;
-            flex-direction:column;
             align-items:center;
-            gap:4px;
-            padding:8px 16px;
+            justify-content:center;
+            padding:12px 20px;
             background:none;
             border:none;
-            font-family:inherit;
             cursor:pointer;
-            color:var(--text-muted);
+            color:#999;
             transition:all .2s;
-            border-radius:12px;
-            min-width:64px;
+            border-radius:8px;
         }
         .mobile-nav-item:active{
-            transform:scale(0.95);
-            background:var(--bg-secondary);
+            transform:scale(0.9);
         }
         .mobile-nav-item.active{
-            color:var(--primary);
+            color:#222;
         }
         .mobile-nav-item .nav-icon{
-            font-size:22px;
-            line-height:1;
+            width:26px;
+            height:26px;
+        }
+        .mobile-nav-item .nav-icon svg{
+            width:100%;
+            height:100%;
+            fill:currentColor;
         }
         .mobile-nav-item .nav-label{
-            font-size:10px;
-            font-weight:500;
-        }
-        .mobile-nav-item.active .nav-label{
-            font-weight:600;
+            display:none;
         }
 
         /* 모바일에서 하단 네비게이션 표시 및 상단 네비게이션 숨김 */
@@ -1428,27 +1433,22 @@
                     
                     <div class="scorecard-stats">
                         <div class="scorecard-stat-item">
+                            <div class="scorecard-stat-label">이번 달 판매</div>
+                            <div class="scorecard-stat-value" id="statMonthSales">0건</div>
+                            <div class="scorecard-stat-change neutral" id="statMonthSalesChange"></div>
+                        </div>
+                        <div class="scorecard-stat-item">
+                            <div class="scorecard-stat-label">이번 달 수익</div>
+                            <div class="scorecard-stat-value" id="statMonthEarnings">₩0</div>
+                            <div class="scorecard-stat-change neutral" id="statMonthEarningsChange"></div>
+                        </div>
+                        <div class="scorecard-stat-item">
                             <div class="scorecard-stat-label">누적 판매</div>
                             <div class="scorecard-stat-value" id="statTotalSales">0건</div>
                         </div>
                         <div class="scorecard-stat-item">
                             <div class="scorecard-stat-label">누적 수익</div>
                             <div class="scorecard-stat-value" id="statTotalEarnings">₩0</div>
-                        </div>
-                        <div class="scorecard-stat-item highlight">
-                            <div class="scorecard-stat-label">이번 달 판매</div>
-                            <div class="scorecard-stat-value" id="statMonthSales">0건</div>
-                            <div class="scorecard-stat-change neutral" id="statMonthSalesChange">-</div>
-                        </div>
-                        <div class="scorecard-stat-item highlight">
-                            <div class="scorecard-stat-label">이번 달 수익</div>
-                            <div class="scorecard-stat-value" id="statMonthEarnings">₩0</div>
-                            <div class="scorecard-stat-change neutral" id="statMonthEarningsChange">-</div>
-                        </div>
-                        <div class="scorecard-stat-item">
-                            <div class="scorecard-stat-label">이번 주 순위</div>
-                            <div class="scorecard-stat-value" id="statWeekRank">-위</div>
-                            <div class="scorecard-stat-change neutral" id="statWeekRankChange">-</div>
                         </div>
                     </div>
                     
@@ -1838,17 +1838,16 @@
         <nav class="mobile-bottom-nav" id="mobileBottomNav">
             <div class="mobile-bottom-nav-inner">
                 <button class="mobile-nav-item active" onclick="showDashSectionMobile('home', this)" data-section="home">
-                    <span class="nav-icon">🏠</span>
-                    <span class="nav-label">홈</span>
+                    <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></span>
                 </button>
                 <button class="mobile-nav-item" onclick="showDashSectionMobile('report', this)" data-section="report">
-                    <span class="nav-icon">📊</span>
-                    <span class="nav-label">리포트</span>
+                    <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg></span>
                 </button>
                 <button class="mobile-nav-item" onclick="showDashSectionMobile('community', this)" data-section="community">
-                    <span class="nav-icon">💬</span>
-                    <span class="nav-label">커뮤니티</span>
+                    <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/></svg></span>
                 </button>
+            </div>
+        </nav>
             </div>
         </nav>
     </div>
@@ -2072,7 +2071,7 @@
                 startDate: '2025-01-21', 
                 endDate: '2025-01-28',
                 category: 'dessert',
-                image: 'https://shop-phinf.pstatic.net/20250102_140/1735825498498YWTDG_JPEG/25418556025058867_1514498498.jpg'
+                image: 'https://i.imgur.com/YqVqQJd.jpeg'
             }],
             sales: []
         };
@@ -2613,15 +2612,37 @@
             }
         }
         
-        // 상품별 매칭 점수 계산
+        // 상품별 매칭 점수 계산 (데이터 기반)
         function calculateMatchScore(product) {
-            if (!currentUser.categories || !product.category) return 0;
+            if (!currentUser || !product.category) return 0;
             
-            // 관심 카테고리와 일치하면 높은 점수
-            if (currentUser.categories[product.category]) {
-                return Math.floor(70 + Math.random() * 25); // 70~95%
+            let score = 0;
+            
+            // 1. 관심 카테고리 일치 (+40점)
+            if (currentUser.categories && currentUser.categories[product.category]) {
+                score += 40;
             }
-            return 0;
+            
+            // 2. 해당 카테고리 판매 실적 (+최대 40점)
+            const mySales = data.sales.filter(s => s.userCode === currentUser.code);
+            const categorySales = mySales.filter(s => {
+                const p = data.products.find(prod => String(prod.id) === String(s.productId));
+                return p && p.category === product.category;
+            });
+            if (categorySales.length > 0) {
+                // 판매 건수에 따라 점수 (최대 40점)
+                score += Math.min(categorySales.length * 10, 40);
+            }
+            
+            // 3. 채널 보유 여부 (+20점)
+            if (currentUser.channels) {
+                const hasAnyChannel = Object.values(currentUser.channels).some(v => v);
+                if (hasAnyChannel) {
+                    score += 20;
+                }
+            }
+            
+            return Math.min(score, 100); // 최대 100%
         }
         
         // 내 코드 복사
