@@ -263,8 +263,18 @@
         .contact-btn.sms{background:#e0f2fe;color:#0284c7}
         .contact-btn.sms:hover{background:#bae6fd}
         .no-contact{font-size:11px;color:var(--text-light);padding:6px 0}
+        
+        /* 상품 상태 탭 */
+        .product-status-tabs{display:flex;gap:4px}
+        .status-tab{padding:6px 12px;border:1px solid var(--border);border-radius:4px;background:#fff;font-size:12px;cursor:pointer;font-family:inherit;color:var(--text-light);transition:all .2s}
+        .status-tab:hover{border-color:var(--primary);color:var(--primary)}
+        .status-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+        .badge-status{padding:4px 8px;border-radius:4px;font-size:11px;font-weight:500}
+        .badge-status.pending{background:#fef3c7;color:#b45309}
+        .badge-status.active{background:#dcfce7;color:#16a34a}
+        .badge-status.ended{background:#f3f4f6;color:#6b7280}
 
-        @media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.stats-grid{grid-template-columns:1fr 1fr}.influencer-card-list{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}.filter-row{flex-direction:column}.filter-group{min-width:100%}}
+        @media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.stats-grid{grid-template-columns:1fr 1fr}.influencer-card-list{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}.filter-row{flex-direction:column}.filter-group{min-width:100%}.product-status-tabs{flex-wrap:wrap}}
 
         /* ============================================
            🔥 관리자 모바일 최적화 스타일
@@ -985,30 +995,37 @@
                             <div class="input-group"><label>카테고리 <span style="color:#d93025">*</span></label>
                                 <select id="productCategory">
                                     <option value="">선택</option>
-                                    <option value="dessert">🍪 디저트/음식</option>
-                                    <option value="beauty">💄 뷰티</option>
-                                    <option value="fashion">👗 패션</option>
-                                    <option value="living">🏠 생활용품</option>
+                                    <option value="dessert">디저트/음식</option>
+                                    <option value="beauty">뷰티</option>
+                                    <option value="fashion">패션</option>
+                                    <option value="living">생활용품</option>
                                     <option value="electronics">전자기기</option>
-                                    <option value="kids">👶 육아/키즈</option>
-                                    <option value="health">💪 건강/헬스</option>
-                                    <option value="pet">🐶 반려동물</option>
-                                    <option value="travel">✈️ 여행</option>
-                                    <option value="interior">🛋️ 인테리어</option>
-                                    <option value="book">📚 도서/교육</option>
-                                    <option value="hobby">🎮 취미/게임</option>
+                                    <option value="kids">육아/키즈</option>
+                                    <option value="health">건강/헬스</option>
+                                    <option value="pet">반려동물</option>
+                                    <option value="travel">여행</option>
+                                    <option value="interior">인테리어</option>
+                                    <option value="book">도서/교육</option>
+                                    <option value="hobby">취미/게임</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-row" style="margin-top:12px">
                             <div class="input-group"><label>링크</label><input type="text" id="productLink" placeholder="https://..."></div>
+                            <div class="input-group" style="max-width:150px"><label>상태 <span style="color:#d93025">*</span></label>
+                                <select id="productStatus">
+                                    <option value="pending">대기중</option>
+                                    <option value="active">진행중</option>
+                                    <option value="ended">종료</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-row" style="margin-top:12px;align-items:flex-end">
                             <div class="input-group" style="flex:1">
                                 <label>썸네일 이미지</label>
                                 <div style="display:flex;gap:8px;align-items:center">
                                     <input type="text" id="productImage" placeholder="https://이미지주소.jpg" style="flex:1">
-                                    <label for="productImageFile" class="btn btn-secondary btn-small" style="cursor:pointer;white-space:nowrap">📷 파일 선택</label>
+                                    <label for="productImageFile" class="btn btn-secondary btn-small" style="cursor:pointer;white-space:nowrap">파일 선택</label>
                                     <input type="file" id="productImageFile" accept="image/*" style="display:none" onchange="handleProductImageUpload(event)">
                                 </div>
                             </div>
@@ -1020,7 +1037,7 @@
                             <div class="input-group" style="max-width:150px"><label>시작일</label><input type="date" id="productStartDate"></div>
                             <div class="input-group" style="max-width:150px"><label>종료일</label><input type="date" id="productEndDate"></div>
                         </div>
-                        <p style="font-size:11px;color:var(--text-light);margin-top:12px">💡 인플루언서 수익 = 가격의 10% (등급에 따라 8~15%)</p>
+                        <p style="font-size:11px;color:var(--text-light);margin-top:12px">인플루언서 수익 = 가격의 10% (등급에 따라 8~15%)</p>
                         <div style="margin-top:16px;display:flex;gap:8px">
                             <button class="btn btn-primary" id="productSubmitBtn" onclick="addProduct()">등록</button>
                             <button class="btn btn-secondary hidden" id="productCancelBtn" onclick="cancelEditProduct()">취소</button>
@@ -1028,9 +1045,19 @@
                         <input type="hidden" id="editProductId" value="">
                     </div>
                 </div>
+                
+                <!-- 상품 목록 탭 -->
                 <div class="card">
-                    <div class="card-header">등록된 상품 <span id="productCount" style="color:var(--text-light);font-weight:400;font-size:13px"></span></div>
-                    <table><thead><tr><th style="width:60px">썸네일</th><th>상품</th><th>카테고리</th><th>가격</th><th>수익</th><th>기간</th><th>관리</th></tr></thead><tbody id="productsTable"></tbody></table>
+                    <div class="card-header" style="display:flex;justify-content:space-between;align-items:center">
+                        <span>등록된 상품 <span id="productCount" style="color:var(--text-light);font-weight:400;font-size:13px"></span></span>
+                        <div class="product-status-tabs">
+                            <button class="status-tab active" onclick="filterProducts('all', this)">전체</button>
+                            <button class="status-tab" onclick="filterProducts('pending', this)">대기중</button>
+                            <button class="status-tab" onclick="filterProducts('active', this)">진행중</button>
+                            <button class="status-tab" onclick="filterProducts('ended', this)">종료</button>
+                        </div>
+                    </div>
+                    <table><thead><tr><th style="width:60px">썸네일</th><th>상품</th><th>카테고리</th><th>가격</th><th>수익</th><th>기간</th><th>상태</th><th>관리</th></tr></thead><tbody id="productsTable"></tbody></table>
                 </div>
             </div>
 
@@ -1383,29 +1410,12 @@
                 productCountEl.textContent = `(총 ${data.products.length}개)`;
             }
             
-            // 상품
-            document.getElementById('productsTable').innerHTML = data.products.length === 0 
-                ? '<tr><td colspan="7" class="empty">등록된 상품이 없습니다</td></tr>'
-                : data.products.map(p => {
-                    const thumb = p.image ? `<img src="${p.image}" style="width:50px;height:50px;object-fit:cover;border-radius:4px">` : `<div style="width:50px;height:50px;background:var(--bg-secondary);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-light)">없음</div>`;
-                    const startDate = p.startDate ? new Date(p.startDate).toLocaleDateString('ko-KR', {month:'short', day:'numeric'}) : '-';
-                    const endDate = p.endDate ? new Date(p.endDate).toLocaleDateString('ko-KR', {month:'short', day:'numeric'}) : '-';
-                    return `<tr>
-                        <td>${thumb}</td>
-                        <td><strong>${p.name}</strong><br><a href="${p.link}" target="_blank" style="font-size:11px;color:var(--primary)">링크 열기</a></td>
-                        <td>${categoryNames[p.category] || p.category || '-'}</td>
-                        <td>₩${(p.price || 0).toLocaleString()}</td>
-                        <td style="color:var(--success)">₩${Math.floor((p.price || 0)*0.1).toLocaleString()}</td>
-                        <td style="font-size:12px">${startDate} ~ ${endDate}</td>
-                        <td>
-                            <button class="btn btn-small" style="background:var(--primary-light);color:var(--primary);margin-right:4px" onclick="editProduct('${p.id}')">수정</button>
-                            <button class="btn btn-danger btn-small" onclick="deleteProduct('${p.id}')">삭제</button>
-                        </td>
-                    </tr>`;
-                }).join('');
+            // 상품 (현재 필터 적용)
+            renderProductsTable();
 
-            // 드롭다운
-            document.getElementById('saleProduct').innerHTML = '<option value="">선택</option>' + data.products.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
+            // 드롭다운 (진행중 상품만)
+            const activeProducts = data.products.filter(p => p.status === 'active' || !p.status);
+            document.getElementById('saleProduct').innerHTML = '<option value="">선택</option>' + activeProducts.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
             document.getElementById('saleInfluencer').innerHTML = '<option value="">선택</option>' + approved.map(u => `<option value="${u.code}">${u.name} (${u.code})</option>`).join('');
 
             // 판매 내역
@@ -1415,6 +1425,48 @@
             } catch (error) {
                 console.error('updateAll error:', error);
             }
+        }
+        
+        // 상품 필터 상태
+        let currentProductFilter = 'all';
+        
+        function filterProducts(status, el) {
+            currentProductFilter = status;
+            document.querySelectorAll('.status-tab').forEach(tab => tab.classList.remove('active'));
+            if (el) el.classList.add('active');
+            renderProductsTable();
+        }
+        
+        function renderProductsTable() {
+            const statusLabels = { pending: '대기중', active: '진행중', ended: '종료' };
+            let filtered = data.products;
+            
+            if (currentProductFilter !== 'all') {
+                filtered = data.products.filter(p => (p.status || 'active') === currentProductFilter);
+            }
+            
+            document.getElementById('productsTable').innerHTML = filtered.length === 0 
+                ? '<tr><td colspan="8" class="empty">등록된 상품이 없습니다</td></tr>'
+                : filtered.map(p => {
+                    const thumb = p.image ? `<img src="${p.image}" style="width:50px;height:50px;object-fit:cover;border-radius:4px">` : `<div style="width:50px;height:50px;background:var(--bg-secondary);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-light)">없음</div>`;
+                    const startDate = p.startDate ? new Date(p.startDate).toLocaleDateString('ko-KR', {month:'short', day:'numeric'}) : '-';
+                    const endDate = p.endDate ? new Date(p.endDate).toLocaleDateString('ko-KR', {month:'short', day:'numeric'}) : '-';
+                    const status = p.status || 'active';
+                    const statusBadge = `<span class="badge-status ${status}">${statusLabels[status] || status}</span>`;
+                    return `<tr>
+                        <td>${thumb}</td>
+                        <td><strong>${p.name}</strong><br><a href="${p.link}" target="_blank" style="font-size:11px;color:var(--primary)">링크 열기</a></td>
+                        <td>${categoryNames[p.category] || p.category || '-'}</td>
+                        <td>₩${(p.price || 0).toLocaleString()}</td>
+                        <td style="color:var(--success)">₩${Math.floor((p.price || 0)*0.1).toLocaleString()}</td>
+                        <td style="font-size:12px">${startDate} ~ ${endDate}</td>
+                        <td>${statusBadge}</td>
+                        <td>
+                            <button class="btn btn-small" style="background:var(--primary-light);color:var(--primary);margin-right:4px" onclick="editProduct('${p.id}')">수정</button>
+                            <button class="btn btn-danger btn-small" onclick="deleteProduct('${p.id}')">삭제</button>
+                        </td>
+                    </tr>`;
+                }).join('');
         }
 
         async function approveUser(docId) { 
@@ -1696,6 +1748,7 @@
             const image = document.getElementById('productImage').value.trim();
             const startDate = document.getElementById('productStartDate').value;
             const endDate = document.getElementById('productEndDate').value;
+            const status = document.getElementById('productStatus').value;
             
             if (!name || !price) { showToast('상품명과 가격을 입력하세요', 'error'); return; }
             if (!category) { showToast('카테고리를 선택하세요', 'error'); return; }
@@ -1711,6 +1764,7 @@
                     product.image = image;
                     product.startDate = startDate || product.startDate;
                     product.endDate = endDate || product.endDate;
+                    product.status = status;
                     
                     await saveProductToFirebase(product);
                     saveDataLocal();
@@ -1727,6 +1781,7 @@
                     link, 
                     category,
                     image,
+                    status: status || 'pending',
                     startDate: startDate || new Date().toISOString().split('T')[0],
                     endDate: endDate || new Date(Date.now() + 30*24*60*60*1000).toISOString().split('T')[0]
                 };
@@ -1752,6 +1807,7 @@
             document.getElementById('productImage').value = product.image || '';
             document.getElementById('productStartDate').value = product.startDate || '';
             document.getElementById('productEndDate').value = product.endDate || '';
+            document.getElementById('productStatus').value = product.status || 'pending';
             
             // 이미지 미리보기
             if (product.image) {
@@ -1786,6 +1842,7 @@
             document.getElementById('productImage').value = '';
             document.getElementById('productStartDate').value = '';
             document.getElementById('productEndDate').value = '';
+            document.getElementById('productStatus').value = 'pending';
             document.getElementById('productImagePreview').style.display = 'none';
             document.getElementById('productImageFile').value = '';
         }

@@ -205,6 +205,8 @@
         .product-card-btn:hover{background:#1557b0;transform:scale(1.02)}
         .product-card-btn.disabled{background:#e0e0e0;color:#9e9e9e;cursor:not-allowed}
         .product-card-btn.disabled:hover{background:#e0e0e0;transform:none}
+        .product-card.pending{position:relative;opacity:0.9}
+        .product-card-pending{position:absolute;top:12px;left:12px;background:#f59e0b;color:#fff;padding:4px 10px;border-radius:12px;font-size:11px;font-weight:600;z-index:1}
 
         /* 사이드바 개선 */
         .sidebar-box{background:#fff;border:1px solid var(--border);border-radius:12px;margin-bottom:16px;overflow:hidden}
@@ -2175,13 +2177,15 @@
                 console.log('💡 관심 카테고리 기반 추천:', preferredCategories);
             }
             
-            // 4. 카테고리 필터 적용
-            let filteredProducts = data.products;
+            // 4. 진행중(active) + 대기중(pending) 상품 필터링 (종료만 제외)
+            let filteredProducts = data.products.filter(p => p.status !== 'ended');
+            
+            // 5. 카테고리 필터 적용
             if (selectedCategoryFilters.length > 0) {
-                filteredProducts = data.products.filter(p => selectedCategoryFilters.includes(p.category));
+                filteredProducts = filteredProducts.filter(p => selectedCategoryFilters.includes(p.category));
             }
             
-            // 5. 상품 정렬: 선호 카테고리 상품 먼저
+            // 6. 상품 정렬: 선호 카테고리 상품 먼저
             const sortedProducts = [...filteredProducts].sort((a, b) => {
                 const aIndex = preferredCategories.indexOf(a.category);
                 const bIndex = preferredCategories.indexOf(b.category);
@@ -2522,14 +2526,19 @@
                 const matchPercent = calculateMatchScore(p);
                 const matchTag = matchPercent > 0 ? `<div class="product-card-match">💫 ${matchPercent}% 매칭</div>` : '';
                 
-                // 샘플 상품 여부 (id가 2, 3이면 샘플)
+                // 대기중 상품 여부
+                const isPending = p.status === 'pending';
+                const pendingBadge = isPending ? `<div class="product-card-pending">오픈 예정</div>` : '';
+                
+                // 샘플 상품 여부 (id가 2, 3이면 샘플) 또는 대기중
                 const isSample = p.id === 2 || p.id === 3;
-                const buttonHtml = isSample 
-                    ? `<button class="product-card-btn disabled" disabled>준비중</button>`
+                const buttonHtml = (isSample || isPending)
+                    ? `<button class="product-card-btn disabled" disabled>${isPending ? '오픈 예정' : '준비중'}</button>`
                     : `<button class="product-card-btn" onclick="copyProductCode('${p.id}')">추천인코드 복사</button>`;
                 
                 return `
-                <div class="product-card">
+                <div class="product-card ${isPending ? 'pending' : ''}">
+                    ${pendingBadge}
                     <div class="product-card-image"><img src="${productImg}" alt="${p.name}"></div>
                     <div class="product-card-info">
                         ${categoryTag}
