@@ -1569,13 +1569,27 @@
         }
 
         function copyProductCode(productId) {
-            const product = data.products.find(p => p.id === productId);
-            if (!product) return;
+            const product = data.products.find(p => String(p.id) === String(productId));
+            if (!product) {
+                showToast('상품을 찾을 수 없습니다');
+                return;
+            }
             const productCode = currentUser.code + '_' + productId;
             
-            navigator.clipboard.writeText(productCode);
+            navigator.clipboard.writeText(productCode).then(() => {
+                showToast('추천인코드가 복사되었습니다! 📋');
+            }).catch(() => {
+                // 클립보드 API 실패 시 대체 방법
+                const textArea = document.createElement('textarea');
+                textArea.value = productCode;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast('추천인코드가 복사되었습니다! 📋');
+            });
             
-            if (!copiedProducts.find(p => p.id === productId)) {
+            if (!copiedProducts.find(p => String(p.id) === String(productId))) {
                 copiedProducts.unshift({...product, productCode});
                 if (copiedProducts.length > 2) copiedProducts.pop();
             }
