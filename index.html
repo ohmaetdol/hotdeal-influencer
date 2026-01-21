@@ -51,7 +51,7 @@
         .feature-item p{font-size:14px;color:var(--text-light)}
         .feature-icon{font-size:32px}
 
-        .auth-container{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 24px}
+        .auth-container{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 24px;min-height:calc(100vh - 60px)}
         .auth-box{width:100%;max-width:400px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:40px}
         .auth-box h1{font-size:22px;text-align:center;margin-bottom:8px}
         .auth-box p{text-align:center;color:var(--text-light);font-size:14px;margin-bottom:24px}
@@ -1247,7 +1247,7 @@
         </div>
     </div>
 
-    <div id="loginPage" class="hidden">
+    <div id="loginPage" class="hidden" style="display:flex;flex-direction:column;min-height:100vh">
         <header class="header">
             <div class="header-inner">
                 <div class="logo" onclick="showPage('landing')">핫딜공구<span>인플루언서</span></div>
@@ -4130,8 +4130,24 @@
 
         function getTimeAgo(date) {
             if (!date) return '';
+            
+            let past;
+            if (date instanceof Date) {
+                past = date;
+            } else if (date.toDate && typeof date.toDate === 'function') {
+                // Firebase Timestamp 처리
+                past = date.toDate();
+            } else if (date.seconds) {
+                // Firebase Timestamp 객체 처리
+                past = new Date(date.seconds * 1000);
+            } else {
+                past = new Date(date);
+            }
+            
+            // Invalid Date 체크
+            if (isNaN(past.getTime())) return '';
+            
             const now = new Date();
-            const past = date instanceof Date ? date : new Date(date);
             const diffMs = now - past;
             const diffMins = Math.floor(diffMs / 60000);
             const diffHours = Math.floor(diffMs / 3600000);
