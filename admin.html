@@ -281,6 +281,13 @@
         .order-input{width:50px;padding:4px 8px;border:1px solid var(--border);border-radius:4px;font-size:12px;text-align:center}
         .order-btn{padding:4px 8px;border:none;background:var(--bg-secondary);border-radius:4px;cursor:pointer;font-size:11px}
         .order-btn:hover{background:var(--primary-light)}
+        
+        /* 드래그 앤 드롭 */
+        .drag-handle{cursor:grab;font-size:16px;color:var(--text-light);padding:8px;user-select:none}
+        .drag-handle:hover{color:var(--primary)}
+        .draggable-row{transition:background .2s}
+        .draggable-row.dragging{opacity:0.5;background:var(--primary-light)}
+        .draggable-row.drag-over{background:#e3f2fd;border-top:2px solid var(--primary)}
 
         @media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.stats-grid{grid-template-columns:1fr 1fr}.influencer-card-list{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}.filter-row{flex-direction:column}.filter-group{min-width:100%}.product-status-tabs{flex-wrap:wrap}}
 
@@ -1081,7 +1088,7 @@
                             </div>
                         </div>
                     </div>
-                    <table><thead><tr><th style="width:50px">순서</th><th style="width:60px">썸네일</th><th>상품</th><th>섹션</th><th>카테고리</th><th>가격</th><th>상태</th><th>관리</th></tr></thead><tbody id="productsTable"></tbody></table>
+                    <table><thead><tr><th style="width:40px"></th><th style="width:60px">썸네일</th><th>상품</th><th>섹션</th><th>카테고리</th><th>가격</th><th>상태</th><th>관리</th></tr></thead><tbody id="productsTable"></tbody></table>
                 </div>
             </div>
 
@@ -1454,6 +1461,7 @@
         // 상품 필터 상태
         let currentProductFilter = 'all';
         let currentSectionFilter = 'all';
+        let draggedProductId = null;
         
         function filterProducts(status, el) {
             currentProductFilter = status;
@@ -1489,20 +1497,15 @@
             
             document.getElementById('productsTable').innerHTML = filtered.length === 0 
                 ? '<tr><td colspan="8" class="empty">등록된 상품이 없습니다</td></tr>'
-                : filtered.map(p => {
+                : filtered.map((p, idx) => {
                     const thumb = p.image ? `<img src="${p.image}" style="width:50px;height:50px;object-fit:cover;border-radius:4px">` : `<div style="width:50px;height:50px;background:var(--bg-secondary);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-light)">없음</div>`;
                     const status = p.status || 'active';
                     const statusBadge = `<span class="badge-status ${status}">${statusLabels[status] || status}</span>`;
                     const section = p.section || 'recommend';
                     const sectionBadge = `<span class="badge-section ${section}">${sectionLabels[section] || section}</span>`;
-                    const order = p.order || 1;
-                    return `<tr>
+                    return `<tr class="draggable-row" draggable="true" data-id="${p.id}" ondragstart="onDragStart(event)" ondragover="onDragOver(event)" ondrop="onDrop(event)" ondragend="onDragEnd(event)">
                         <td>
-                            <div style="display:flex;align-items:center;gap:4px">
-                                <button class="order-btn" onclick="changeOrder('${p.id}', -1)">▲</button>
-                                <span style="font-weight:600">${order}</span>
-                                <button class="order-btn" onclick="changeOrder('${p.id}', 1)">▼</button>
-                            </div>
+                            <div class="drag-handle" title="드래그하여 순서 변경">☰</div>
                         </td>
                         <td>${thumb}</td>
                         <td><strong>${p.name}</strong><br><a href="${p.link}" target="_blank" style="font-size:11px;color:var(--primary)">링크 열기</a></td>
@@ -1518,16 +1521,67 @@
                 }).join('');
         }
         
-        async function changeOrder(id, direction) {
-            const product = data.products.find(p => String(p.id) === String(id));
-            if (!product) return;
+        // 드래그 앤 드롭 이벤트
+        function onDragStart(e) {
+            draggedProductId = e.target.dataset.id;
+            e.target.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        }
+        
+        function onDragOver(e) {
+            e.preventDefault();
+            const row = e.target.closest('tr');
+            if (row && row.classList.contains('draggable-row')) {
+                row.classList.add('drag-over');
+            }
+        }
+        
+        function onDragEnd(e) {
+            e.target.classList.remove('dragging');
+            document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+        }
+        
+        async function onDrop(e) {
+            e.preventDefault();
+            const targetRow = e.target.closest('tr');
+            if (!targetRow || !draggedProductId) return;
             
-            const currentOrder = product.order || 1;
-            const newOrder = Math.max(1, currentOrder + direction);
-            product.order = newOrder;
+            const targetId = targetRow.dataset.id;
+            if (draggedProductId === targetId) return;
             
-            await saveProductToFirebase(product);
+            // 현재 필터된 상품 목록 가져오기
+            let filtered = data.products;
+            if (currentProductFilter !== 'all') {
+                filtered = filtered.filter(p => (p.status || 'active') === currentProductFilter);
+            }
+            if (currentSectionFilter !== 'all') {
+                filtered = filtered.filter(p => (p.section || 'recommend') === currentSectionFilter);
+            }
+            filtered = [...filtered].sort((a, b) => (a.order || 999) - (b.order || 999));
+            
+            // 인덱스 찾기
+            const draggedIdx = filtered.findIndex(p => String(p.id) === String(draggedProductId));
+            const targetIdx = filtered.findIndex(p => String(p.id) === String(targetId));
+            
+            if (draggedIdx === -1 || targetIdx === -1) return;
+            
+            // 순서 재배열
+            const [moved] = filtered.splice(draggedIdx, 1);
+            filtered.splice(targetIdx, 0, moved);
+            
+            // 순서 업데이트
+            for (let i = 0; i < filtered.length; i++) {
+                const product = data.products.find(p => String(p.id) === String(filtered[i].id));
+                if (product) {
+                    product.order = i + 1;
+                    await saveProductToFirebase(product);
+                }
+            }
+            
             saveDataLocal();
+            renderProductsTable();
+            draggedProductId = null;
+        }
             renderProductsTable();
         }
 

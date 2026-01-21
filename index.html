@@ -136,6 +136,13 @@
         .scorecard-stat-change.down{color:#9ca3af}
         .scorecard-stat-change.neutral{color:#9ca3af}
         
+        /* 컴팩트 스코어카드 */
+        .my-scorecard.compact{padding:16px 20px}
+        .my-scorecard.compact .scorecard-header{margin-bottom:12px}
+        .my-scorecard.compact .scorecard-stats{margin-bottom:0}
+        .my-scorecard.compact .scorecard-stat-item{padding:14px 12px}
+        .my-scorecard.compact .scorecard-stat-value{font-size:20px}
+        
         .scorecard-progress{margin-bottom:16px;padding:16px;background:var(--bg-secondary);border-radius:12px}
         .scorecard-progress-header{display:flex;justify-content:space-between;margin-bottom:10px}
         .scorecard-progress-label{font-size:13px;color:var(--text-light)}
@@ -533,6 +540,7 @@
         .pending-info p{margin:8px 0;font-size:14px}
 
         .footer{background:#fff;border-top:1px solid var(--border);padding:32px 24px;margin-top:auto}
+        .dashboard .footer{padding-bottom:100px} /* 모바일 하단바 공간 확보 */
         .footer-inner{max-width:1200px;margin:0 auto;text-align:center;font-size:12px;color:var(--text-muted)}
         .footer-info{margin-bottom:16px;line-height:1.8}
         .footer-info p{margin:4px 0}
@@ -1253,7 +1261,7 @@
                 <div class="footer-inner">
                     <div class="footer-info">
                         <p><strong>네오브릿지</strong> | 대표: 오맷돌 | 사업자등록번호: 412-36-01481</p>
-                        <p>주소: 서울특별시 강남구 논현로157길 15, 3층 301-77호(신사동, 수니콘비즈센터)</p>
+                        <p>주소: 서울특별시 강남구 논현로157길 15 (신사동, 수니콘비즈센터)</p>
                         <p>통신판매업신고: 준비중</p>
                     </div>
                     <div class="footer-links"><a href="#">이용약관</a><a href="#" onclick="openPrivacyModal();return false;">개인정보처리방침</a><a href="#">문의하기</a></div>
@@ -1425,13 +1433,9 @@
                     </button>
                 </div>
 
-                <!-- 🏆 나의 성적표 -->
-                <div class="my-scorecard">
+                <!-- 🏆 나의 성적표 (간소화) -->
+                <div class="my-scorecard compact">
                     <div class="scorecard-header">
-                        <div class="scorecard-greeting">
-                            <h1>안녕하세요, <span id="scorecardName">사용자</span>님! 👋</h1>
-                            <p id="scorecardMessage">오늘도 화이팅!</p>
-                        </div>
                         <div class="scorecard-grade" onclick="openGradeModal()">
                             <span class="scorecard-grade-icon" id="scorecardGradeIcon">🌱</span>
                             <div class="scorecard-grade-info">
@@ -1460,24 +1464,6 @@
                             <div class="scorecard-stat-label">누적 수익</div>
                             <div class="scorecard-stat-value" id="statTotalEarnings">₩0</div>
                         </div>
-                    </div>
-                    
-                    <div class="scorecard-progress">
-                        <div class="scorecard-progress-header">
-                            <span class="scorecard-progress-label">다음 등급 <span id="nextGradeIcon">🌿</span> <span id="nextGradeName">새싹</span>까지</span>
-                            <span class="scorecard-progress-count" id="nextGradeRemaining">5건 남음</span>
-                        </div>
-                        <div class="scorecard-progress-bar">
-                            <div class="scorecard-progress-fill" id="scorecardProgressFill"></div>
-                        </div>
-                        <div class="scorecard-progress-markers" id="scorecardGradeMarkers">
-                            <!-- 등급 마커들 -->
-                        </div>
-                    </div>
-                    
-                    <div class="scorecard-benefit">
-                        <span class="benefit-current">🎁 현재 혜택: <strong id="currentBenefit">일반 상품</strong></span>
-                        <span class="benefit-next">→ 다음 혜택: <span id="nextBenefit">신상품 1일 선공개</span></span>
                     </div>
                 </div>
 
@@ -1522,7 +1508,7 @@
                         </div>
                         
                         <!-- 섹션 2: 요즘 인기있는 신상품 -->
-                        <div class="product-section">
+                        <div class="product-section" id="sectionNew">
                             <div class="section-header">
                                 <div>
                                     <h2>요즘 인기있는 신상품</h2>
@@ -1534,7 +1520,7 @@
                         </div>
                         
                         <!-- 섹션 3: 베스트셀링 추천상품 -->
-                        <div class="product-section">
+                        <div class="product-section" id="sectionBest">
                             <div class="section-header">
                                 <div>
                                     <h2>베스트셀링 추천상품</h2>
@@ -1862,7 +1848,7 @@
             <div class="footer-inner">
                 <div class="footer-info">
                     <p><strong>네오브릿지</strong> | 대표: 오맷돌 | 사업자등록번호: 412-36-01481</p>
-                    <p>주소: 서울특별시 강남구 논현로157길 15, 3층 301-77호(신사동, 수니콘비즈센터)</p>
+                    <p>주소: 서울특별시 강남구 논현로157길 15 (신사동, 수니콘비즈센터)</p>
                     <p>통신판매업신고: 준비중</p>
                 </div>
                 <div class="footer-links"><a href="#">이용약관</a><a href="#" onclick="openPrivacyModal();return false;">개인정보처리방침</a><a href="#">문의하기</a></div>
@@ -1882,8 +1868,6 @@
                 <button class="mobile-nav-item" onclick="showDashSectionMobile('community', this)" data-section="community">
                     <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/></svg></span>
                 </button>
-            </div>
-        </nav>
             </div>
         </nav>
     </div>
@@ -2531,29 +2515,149 @@
             // 랭킹 업데이트
             updateRanking();
             
-            // 추천 알고리즘 적용
-            const allProducts = getRecommendedProducts();
-            console.log('🎯 전체 상품:', allProducts.length + '개', allProducts);
+            // 전체 상품 (종료 제외)
+            const allProducts = data.products.filter(p => p.status !== 'ended');
             
             // 섹션별로 분류
-            const recommendProducts = allProducts.filter(p => (p.section || 'recommend') === 'recommend').sort((a,b) => (a.order||999) - (b.order||999));
+            // 1. 맞춤 상품: 관리자가 recommend로 설정한 상품 + 사용자 맞춤 정렬
+            const recommendProductsRaw = allProducts.filter(p => (p.section || 'recommend') === 'recommend');
+            const recommendProducts = getPersonalizedProducts(recommendProductsRaw);
+            
+            // 2. 신상품, 베스트: 관리자가 설정한 순서대로
             const newProducts = allProducts.filter(p => p.section === 'new').sort((a,b) => (a.order||999) - (b.order||999));
             const bestProducts = allProducts.filter(p => p.section === 'best').sort((a,b) => (a.order||999) - (b.order||999));
             
+            // 추천 이유 업데이트
+            updateRecommendReason();
+            
             // 각 섹션 렌더링
             renderProductSection('productGridRecommend', recommendProducts);
-            renderProductSection('productGridNew', newProducts);
-            renderProductSection('productGridBest', bestProducts);
+            renderProductSection('productGridNew', newProducts, 'sectionNew');
+            renderProductSection('productGridBest', bestProducts, 'sectionBest');
         }
         
-        function renderProductSection(gridId, products) {
+        // 개인화 추천 알고리즘 (맞춤 상품용)
+        function getPersonalizedProducts(products) {
+            if (!currentUser || products.length === 0) return products.sort((a,b) => (a.order||999) - (b.order||999));
+            
+            // 1. 본인의 판매 기록 가져오기
+            const mySales = data.sales.filter(s => s.userCode === currentUser.code);
+            
+            // 2. 카테고리별 판매 실적 집계
+            const categorySales = {};
+            mySales.forEach(sale => {
+                const product = data.products.find(p => p.id === sale.productId || String(p.id) === String(sale.productId));
+                if (product && product.category) {
+                    if (!categorySales[product.category]) categorySales[product.category] = 0;
+                    categorySales[product.category] += sale.quantity || 1;
+                }
+            });
+            
+            // 3. 선호 카테고리 결정
+            let preferredCategories = [];
+            
+            if (Object.keys(categorySales).length > 0) {
+                // 판매 실적 기반: 많이 판 순서대로
+                preferredCategories = Object.entries(categorySales)
+                    .sort((a, b) => b[1] - a[1])
+                    .map(([cat]) => cat);
+            } else if (currentUser.categories) {
+                // 관심 카테고리 기반
+                preferredCategories = Object.keys(currentUser.categories).filter(k => currentUser.categories[k]);
+            }
+            
+            // 4. 상품별 매칭 점수 계산 후 정렬
+            const scoredProducts = products.map(p => {
+                let score = 0;
+                
+                // 관심/실적 카테고리 매칭 (최대 100점)
+                const catIndex = preferredCategories.indexOf(p.category);
+                if (catIndex === 0) score += 100;
+                else if (catIndex === 1) score += 80;
+                else if (catIndex === 2) score += 60;
+                else if (catIndex >= 0) score += 40;
+                
+                // 신규 상품 가산점 (최근 7일 내 등록)
+                if (p.startDate) {
+                    const daysSinceStart = (new Date() - new Date(p.startDate)) / (1000*60*60*24);
+                    if (daysSinceStart <= 7) score += 20;
+                }
+                
+                // 관리자 순서 가산점 (순서 낮을수록 높은 점수)
+                score += Math.max(0, 10 - (p.order || 10));
+                
+                return { ...p, matchScore: score };
+            });
+            
+            // 점수 높은 순 + 같은 점수면 관리자 순서
+            return scoredProducts.sort((a, b) => {
+                if (b.matchScore !== a.matchScore) return b.matchScore - a.matchScore;
+                return (a.order || 999) - (b.order || 999);
+            });
+        }
+        
+        // 추천 이유 업데이트
+        function updateRecommendReason() {
+            const reasonEl = document.getElementById('recommendReason');
+            if (!reasonEl || !currentUser) return;
+            
+            const mySales = data.sales.filter(s => s.userCode === currentUser.code);
+            
+            if (mySales.length > 0) {
+                // 가장 많이 판 카테고리 찾기
+                const categorySales = {};
+                mySales.forEach(sale => {
+                    const product = data.products.find(p => p.id === sale.productId || String(p.id) === String(sale.productId));
+                    if (product && product.category) {
+                        if (!categorySales[product.category]) categorySales[product.category] = 0;
+                        categorySales[product.category] += sale.quantity || 1;
+                    }
+                });
+                
+                if (Object.keys(categorySales).length > 0) {
+                    const topCategory = Object.entries(categorySales).sort((a, b) => b[1] - a[1])[0][0];
+                    reasonEl.textContent = `${currentUser.name}님의 ${categoryNames[topCategory] || topCategory} 판매 실적을 분석했어요`;
+                    return;
+                }
+            }
+            
+            // 관심 카테고리 기반
+            if (currentUser.categories) {
+                const interests = Object.keys(currentUser.categories).filter(k => currentUser.categories[k]);
+                if (interests.length > 0) {
+                    const topInterest = interests[0];
+                    reasonEl.textContent = `${currentUser.name}님이 관심있는 ${categoryNames[topInterest] || topInterest} 상품을 추천해요`;
+                    return;
+                }
+            }
+            
+            reasonEl.textContent = '회원님께 딱 맞는 상품을 추천해드려요';
+        }
+        
+        function renderProductSection(gridId, products, sectionId) {
             const grid = document.getElementById(gridId);
             if (!grid) return;
             
+            // 섹션 요소 (있으면)
+            const section = sectionId ? document.getElementById(sectionId) : null;
+            
             if (products.length === 0) {
-                grid.innerHTML = '<div class="empty-section">등록된 상품이 없습니다</div>';
+                // 상품 없으면 섹션 숨기기
+                if (section) {
+                    section.style.display = 'none';
+                } else {
+                    grid.innerHTML = '<div class="empty-section">등록된 상품이 없습니다</div>';
+                }
                 return;
             }
+            
+            // 상품 있으면 섹션 보이기
+            if (section) {
+                section.style.display = 'block';
+            }
+            
+            // 맞춤 섹션인지 확인
+            const isRecommendSection = gridId === 'productGridRecommend';
             
             grid.innerHTML = products.map(p => {
                 const start = p.startDate ? new Date(p.startDate) : new Date();
@@ -2566,9 +2670,12 @@
                 const categoryTag = p.category ? `<div class="product-card-category">${categoryNames[p.category] || p.category}</div>` : '';
                 const productImg = p.image || DUJJEONKU_IMG;
                 
-                // 매칭 점수 계산
-                const matchPercent = calculateMatchScore(p);
-                const matchTag = matchPercent > 0 ? `<div class="product-card-match">${matchPercent}% 매칭</div>` : '';
+                // 매칭 태그 (맞춤 섹션만 표시)
+                let matchTag = '';
+                if (isRecommendSection && p.matchScore && p.matchScore >= 60) {
+                    const matchText = p.matchScore >= 100 ? '완벽 매칭' : p.matchScore >= 80 ? '추천' : '관심';
+                    matchTag = `<div class="product-card-match">${matchText}</div>`;
+                }
                 
                 // 대기중 상품 여부
                 const isPending = p.status === 'pending';
@@ -2860,15 +2967,6 @@
             const grade = getUserGrade(totalSales);
             const nextInfo = getNextGradeInfo(totalSales);
             
-            // 인사말
-            document.getElementById('scorecardName').textContent = currentUser.name;
-            const hour = now.getHours();
-            let greeting = '오늘도 화이팅!';
-            if (hour < 12) greeting = '좋은 아침이에요! ☀️';
-            else if (hour < 18) greeting = '오후도 화이팅! 💪';
-            else greeting = '오늘 하루도 수고하셨어요! 🌙';
-            document.getElementById('scorecardMessage').textContent = greeting;
-            
             // 등급 정보
             document.getElementById('scorecardGradeIcon').textContent = grade.icon;
             document.getElementById('scorecardGradeName').textContent = grade.name;
@@ -2907,34 +3005,6 @@
             const lastWeekSorted = Object.entries(lastWeekUserSales).sort((a, b) => b[1] - a[1]);
             const lastWeekRank = lastWeekSorted.findIndex(([code]) => code === currentUser.code) + 1;
             updateRankChange(myRank, lastWeekRank);
-            
-            // 진행률
-            if (nextInfo) {
-                const currentGradeMin = grade.minSales;
-                const nextGradeMin = nextInfo.nextGrade.minSales;
-                const progress = ((totalSales - currentGradeMin) / (nextGradeMin - currentGradeMin)) * 100;
-                
-                document.getElementById('nextGradeIcon').textContent = nextInfo.nextGrade.icon;
-                document.getElementById('nextGradeName').textContent = nextInfo.nextGrade.name;
-                document.getElementById('nextGradeRemaining').textContent = `${nextInfo.remaining}건 남음`;
-                document.getElementById('scorecardProgressFill').style.width = Math.min(100, progress) + '%';
-                document.getElementById('currentBenefit').textContent = grade.benefit;
-                document.getElementById('nextBenefit').textContent = nextInfo.nextGrade.benefit;
-            } else {
-                document.getElementById('nextGradeIcon').textContent = '🎉';
-                document.getElementById('nextGradeName').textContent = '';
-                document.getElementById('nextGradeRemaining').textContent = '최고 등급!';
-                document.getElementById('scorecardProgressFill').style.width = '100%';
-                document.getElementById('currentBenefit').textContent = grade.benefit;
-                document.getElementById('nextBenefit').textContent = '모든 혜택 달성!';
-            }
-            
-            // 등급 마커
-            document.getElementById('scorecardGradeMarkers').innerHTML = gradeSystem.map(g => {
-                const isActive = totalSales >= g.minSales;
-                const isCurrent = g.id === grade.id;
-                return `<span class="${isActive ? 'active' : ''} ${isCurrent ? 'current' : ''}">${g.icon}</span>`;
-            }).join('');
         }
         
         // 등급 모달 열기
