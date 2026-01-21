@@ -92,48 +92,87 @@
         .dash-main{max-width:1200px;margin:0 auto;padding:24px}
         .page-title{font-size:20px;font-weight:600;margin-bottom:24px}
 
-        .recommend-layout{display:grid;grid-template-columns:1fr 280px;gap:24px}
-        .section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-        .section-header h2{font-size:16px;font-weight:600}
-        .section-header a{font-size:13px;color:var(--primary);text-decoration:none}
+        /* 환영 섹션 */
+        .welcome-section{margin-bottom:24px}
+        .welcome-card{background:linear-gradient(135deg,var(--primary) 0%,#4f46e5 100%);border-radius:16px;padding:28px 32px;color:#fff;display:flex;justify-content:space-between;align-items:center}
+        .welcome-title{font-size:24px;font-weight:600;margin-bottom:8px}
+        .welcome-title span{color:#fef08a}
+        .welcome-subtitle{font-size:14px;opacity:0.9}
+        .welcome-stats{display:flex;gap:32px}
+        .welcome-stat{text-align:center}
+        .welcome-stat-value{font-size:28px;font-weight:700;display:block}
+        .welcome-stat-label{font-size:12px;opacity:0.8}
 
-        .product-grid{display:flex;gap:16px;overflow-x:auto;padding-bottom:8px}
-        .product-grid::-webkit-scrollbar{height:4px}
-        .product-grid::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px}
-        .product-card{background:#fff;border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:box-shadow .2s;min-width:180px;max-width:180px;flex-shrink:0}
-        .product-card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+        /* 인사이트 카드 섹션 */
+        .insight-section{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+        .insight-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;gap:16px;align-items:flex-start;transition:all .2s}
+        .insight-card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08);transform:translateY(-2px)}
+        .insight-icon{font-size:28px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--bg-secondary);border-radius:12px}
+        .insight-content h3{font-size:13px;font-weight:600;color:var(--text-light);margin-bottom:6px}
+        .insight-content p{font-size:14px;color:var(--text);line-height:1.5}
+        .strength-card .insight-icon{background:#dcfce7}
+        .match-card .insight-icon{background:#e0f2fe}
+        .tip-card .insight-icon{background:#fef3c7}
+
+        /* 섹션 헤더 개선 */
+        .section-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+        .section-header h2{font-size:18px;font-weight:600}
+        .section-header a{font-size:13px;color:var(--primary);text-decoration:none}
+        .section-desc{font-size:13px;color:var(--text-muted);margin-top:4px}
+        .section-badge{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600}
+
+        .recommend-layout{display:grid;grid-template-columns:1fr 300px;gap:24px}
+
+        .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px}
+        .product-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .2s}
+        .product-card:hover{box-shadow:0 8px 24px rgba(0,0,0,0.12);transform:translateY(-4px)}
         .product-card-image{width:100%;aspect-ratio:1;background:var(--bg-secondary);overflow:hidden}
         .product-card-image img{width:100%;height:100%;object-fit:cover}
-        .product-card-info{padding:12px}
-        .product-card-name{font-size:13px;color:var(--text);line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-        .product-card-price{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px}
-        .product-card-commission{font-size:12px;color:var(--success)}
-        .product-card-category{font-size:10px;color:var(--primary);background:var(--primary-light);padding:2px 6px;border-radius:4px;display:inline-block;margin-bottom:6px}
-        .product-card-period{font-size:11px;color:var(--text-muted);margin-top:6px;display:flex;align-items:center;gap:4px}
+        .product-card-info{padding:14px}
+        .product-card-name{font-size:14px;color:var(--text);line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-weight:500}
+        .product-card-price{font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px}
+        .product-card-commission{font-size:13px;color:var(--success);font-weight:600}
+        .product-card-category{font-size:10px;color:var(--primary);background:var(--primary-light);padding:3px 8px;border-radius:6px;display:inline-block;margin-bottom:8px}
+        .product-card-period{font-size:11px;color:var(--text-muted);margin-top:8px;display:flex;align-items:center;gap:4px}
         .product-card-period .dday{color:var(--primary);font-weight:600}
-        .product-card-btn{width:100%;padding:10px;background:#fff;border:1px solid var(--primary);border-radius:4px;font-size:13px;font-weight:500;color:var(--primary);cursor:pointer;margin-top:12px;font-family:inherit}
-        .product-card-btn:hover{background:var(--primary);color:#fff}
+        .product-card-match{font-size:11px;color:#7c3aed;background:#f3e8ff;padding:4px 8px;border-radius:6px;margin-top:8px;display:inline-block}
+        .product-card-btn{width:100%;padding:12px;background:var(--primary);border:none;border-radius:8px;font-size:13px;font-weight:600;color:#fff;cursor:pointer;margin-top:12px;font-family:inherit;transition:all .2s}
+        .product-card-btn:hover{background:#1557b0;transform:scale(1.02)}
 
-        .sidebar-box{background:#fff;border:1px solid var(--border);border-radius:8px;margin-bottom:16px;overflow:hidden}
-        .sidebar-box-header{padding:14px 16px;font-size:14px;font-weight:600;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+        /* 사이드바 개선 */
+        .sidebar-box{background:#fff;border:1px solid var(--border);border-radius:12px;margin-bottom:16px;overflow:hidden}
+        .sidebar-box-header{padding:16px;font-size:14px;font-weight:600;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
         .sidebar-box-header span{font-size:13px;color:var(--text-muted);font-weight:400}
         .sidebar-box-content{padding:16px}
+        
+        /* 내 추천 코드 박스 */
+        .my-code-box .sidebar-box-content{text-align:center}
+        .my-code{font-size:28px;font-weight:700;color:var(--primary);letter-spacing:3px;margin-bottom:12px}
+        .copy-code-btn{width:100%;padding:10px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;transition:all .2s}
+        .copy-code-btn:hover{background:#1557b0}
+        
+        /* 목표 박스 */
+        .goal-progress{margin-bottom:12px}
+        .goal-text{font-size:14px;font-weight:600;margin-bottom:8px}
+        .goal-text span{color:var(--primary);font-size:18px}
+        .goal-bar{height:8px;background:var(--bg-secondary);border-radius:4px;overflow:hidden}
+        .goal-fill{height:100%;background:linear-gradient(90deg,var(--primary),#4f46e5);border-radius:4px;transition:width .5s}
+        .goal-reward{font-size:12px;color:var(--success);text-align:center}
+
         .sidebar-product{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
         .sidebar-product:last-child{border-bottom:none}
-        .sidebar-product-img{width:60px;height:60px;border-radius:4px;background:var(--bg-secondary);overflow:hidden;flex-shrink:0}
+        .sidebar-product-img{width:60px;height:60px;border-radius:8px;background:var(--bg-secondary);overflow:hidden;flex-shrink:0}
         .sidebar-product-img img{width:100%;height:100%;object-fit:cover}
         .sidebar-product-info{flex:1;min-width:0}
         .sidebar-product-name{font-size:12px;color:var(--text);margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
         .sidebar-product-btn{padding:6px 12px;background:#fff;border:1px solid var(--border);border-radius:4px;font-size:12px;cursor:pointer;font-family:inherit}
         .sidebar-product-btn:hover{border-color:var(--primary);color:var(--primary)}
-        .my-code-box{display:flex;align-items:center;gap:8px}
-        .my-code{font-size:20px;font-weight:700;color:var(--primary);letter-spacing:2px;flex:1}
         .stat-big{font-size:24px;font-weight:700;color:var(--primary)}
         .stat-sub{font-size:13px;color:var(--text-muted);margin-top:4px}
-        .ranking-item{display:flex;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}
+        .ranking-item{display:flex;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}
         .ranking-item:last-of-type{border-bottom:none}
-        .rank-num{width:24px;font-size:14px}
-        .rank-name{flex:1;font-size:13px}
+        .rank-num{width:28px;font-size:16px}
+        .rank-name{flex:1;font-size:13px;font-weight:500}
         .rank-sales{font-size:12px;color:var(--primary);font-weight:600}
         .ranking-note{font-size:11px;color:var(--text-muted);text-align:center;margin-top:8px}
         .empty-text{font-size:13px;color:var(--text-muted);text-align:center;padding:20px 0}
@@ -282,28 +321,51 @@
             .section-header{margin-bottom:12px}
             .section-header h2{font-size:14px}
             
+            /* 환영 카드 모바일 */
+            .welcome-card{flex-direction:column;gap:16px;padding:20px;text-align:center}
+            .welcome-title{font-size:18px}
+            .welcome-subtitle{font-size:13px}
+            .welcome-stats{justify-content:center;gap:24px}
+            .welcome-stat-value{font-size:22px}
+            .welcome-stat-label{font-size:11px}
+            
+            /* 인사이트 카드 모바일 */
+            .insight-section{grid-template-columns:1fr;gap:12px}
+            .insight-card{padding:16px}
+            .insight-icon{font-size:24px;width:40px;height:40px}
+            .insight-content h3{font-size:12px}
+            .insight-content p{font-size:13px}
+            
             /* 상품 그리드 모바일 최적화 */
-            .product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;overflow-x:visible;padding-bottom:0}
-            .product-card{min-width:unset;max-width:unset;width:100%}
+            .recommend-layout{grid-template-columns:1fr}
+            .product-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+            .product-card{border-radius:10px}
             .product-card-image{aspect-ratio:1}
             .product-card-info{padding:10px}
             .product-card-name{font-size:12px;-webkit-line-clamp:2;margin-bottom:6px}
             .product-card-price{font-size:14px;margin-bottom:2px}
             .product-card-commission{font-size:11px}
+            .product-card-match{font-size:10px;padding:3px 6px}
             .product-card-period{font-size:10px;margin-top:4px;flex-wrap:wrap}
-            .product-card-btn{padding:8px;font-size:12px;margin-top:8px}
+            .product-card-btn{padding:10px;font-size:12px;margin-top:8px}
+            .section-desc{font-size:11px}
+            .section-badge{font-size:10px;padding:3px 8px}
             
             /* 사이드바 박스 모바일 */
             .recommend-sidebar{margin-top:16px}
-            .sidebar-box{margin-bottom:12px}
-            .sidebar-box-header{padding:12px;font-size:13px}
-            .sidebar-box-content{padding:12px}
+            .sidebar-box{margin-bottom:12px;border-radius:10px}
+            .sidebar-box-header{padding:14px;font-size:13px}
+            .sidebar-box-content{padding:14px}
             .sidebar-product{padding:10px 0;gap:10px}
             .sidebar-product-img{width:50px;height:50px}
             .sidebar-product-name{font-size:11px}
             .sidebar-product-btn{padding:5px 10px;font-size:11px}
-            .my-code{font-size:18px}
-            .ranking-item{padding:6px 0}
+            .my-code{font-size:24px}
+            .copy-code-btn{padding:10px;font-size:12px}
+            .goal-text{font-size:13px}
+            .goal-text span{font-size:16px}
+            .goal-reward{font-size:11px}
+            .ranking-item{padding:8px 0}
             .rank-name{font-size:12px}
             .rank-sales{font-size:11px}
             .stat-big{font-size:20px}
@@ -557,33 +619,96 @@
         <main class="dash-main">
             <!-- 홈 섹션 -->
             <div id="dashHome">
-                <h1 class="page-title"><span id="welcomeName">사용자</span>님을 위한 추천 상품</h1>
+                <!-- 환영 & 요약 카드 -->
+                <div class="welcome-section">
+                    <div class="welcome-card">
+                        <div class="welcome-left">
+                            <h1 class="welcome-title">안녕하세요, <span id="welcomeName">사용자</span>님! 👋</h1>
+                            <p class="welcome-subtitle" id="welcomeMessage">오늘도 좋은 하루 되세요!</p>
+                        </div>
+                        <div class="welcome-stats">
+                            <div class="welcome-stat">
+                                <span class="welcome-stat-value" id="monthlyEarnings">₩0</span>
+                                <span class="welcome-stat-label">이번 달 수익</span>
+                            </div>
+                            <div class="welcome-stat">
+                                <span class="welcome-stat-value" id="monthlySales">0</span>
+                                <span class="welcome-stat-label">이번 달 판매</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 내 성향 분석 카드 -->
+                <div class="insight-section">
+                    <div class="insight-card strength-card">
+                        <div class="insight-icon">💪</div>
+                        <div class="insight-content">
+                            <h3>나의 강점 카테고리</h3>
+                            <p id="strengthCategory">아직 판매 데이터가 없어요. 첫 판매를 시작해보세요!</p>
+                        </div>
+                    </div>
+                    <div class="insight-card match-card">
+                        <div class="insight-icon">🎯</div>
+                        <div class="insight-content">
+                            <h3>상품 매칭률</h3>
+                            <p id="matchScore">추천 상품과의 궁합을 분석 중...</p>
+                        </div>
+                    </div>
+                    <div class="insight-card tip-card">
+                        <div class="insight-icon">💡</div>
+                        <div class="insight-content">
+                            <h3>오늘의 팁</h3>
+                            <p id="dailyTip">프로필을 완성하면 더 정확한 상품 추천을 받을 수 있어요!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 맞춤 추천 상품 -->
                 <div class="recommend-layout">
                     <div class="recommend-main">
-                        <div class="section-header"><h2>🔥 인기 상품</h2><a href="#">전체보기</a></div>
+                        <div class="section-header">
+                            <div>
+                                <h2 id="recommendTitle">🎯 나를 위한 맞춤 상품</h2>
+                                <p class="section-desc" id="recommendReason">회원님의 관심 카테고리와 판매 성향을 분석했어요</p>
+                            </div>
+                            <span class="section-badge">AI 추천</span>
+                        </div>
                         <div class="product-grid" id="productGrid"></div>
                     </div>
                     <div class="recommend-sidebar">
-                        <div class="sidebar-box">
-                            <div class="sidebar-box-header">최근 복사한 상품 <span id="copiedCount">총 0개</span></div>
-                            <div class="sidebar-box-content" id="recentCopied"><p class="empty-text">복사한 상품이 없습니다</p></div>
-                        </div>
-                        <div class="sidebar-box">
-                            <div class="sidebar-box-header">🏆 이번 주 인기 상품</div>
-                            <div class="sidebar-box-content" id="weeklyRanking">
-                                <div class="ranking-item">
-                                    <span class="rank-num">🥇</span>
-                                    <span class="rank-name">두쫀쿠 오리지널</span>
-                                    <span class="rank-sales">128건</span>
-                                </div>
-                                <p class="ranking-note">판매 건수 기준</p>
+                        <!-- 내 추천 코드 -->
+                        <div class="sidebar-box my-code-box">
+                            <div class="sidebar-box-header">🔗 내 추천 코드</div>
+                            <div class="sidebar-box-content">
+                                <div class="my-code" id="myCodeDisplay">-</div>
+                                <button class="copy-code-btn" onclick="copyMyCode()">코드 복사</button>
                             </div>
                         </div>
-                        <div class="sidebar-box">
-                            <div class="sidebar-box-header">이번 달 수익</div>
+                        
+                        <!-- 이번 주 목표 -->
+                        <div class="sidebar-box goal-box">
+                            <div class="sidebar-box-header">🎯 이번 주 목표</div>
                             <div class="sidebar-box-content">
-                                <div class="stat-big" id="monthlyEarnings">₩0</div>
-                                <div class="stat-sub"><span id="monthlySales">0</span>건 판매</div>
+                                <div class="goal-progress">
+                                    <div class="goal-text"><span id="weekSales">0</span> / 5건 판매</div>
+                                    <div class="goal-bar"><div class="goal-fill" id="goalFill"></div></div>
+                                </div>
+                                <p class="goal-reward" id="goalReward">5건 달성 시 VIP 등급 승급!</p>
+                            </div>
+                        </div>
+
+                        <!-- 최근 복사한 상품 -->
+                        <div class="sidebar-box">
+                            <div class="sidebar-box-header">📋 최근 복사한 상품 <span id="copiedCount">0개</span></div>
+                            <div class="sidebar-box-content" id="recentCopied"><p class="empty-text">복사한 상품이 없습니다</p></div>
+                        </div>
+                        
+                        <!-- 실시간 랭킹 -->
+                        <div class="sidebar-box">
+                            <div class="sidebar-box-header">🏆 이번 주 TOP 인플루언서</div>
+                            <div class="sidebar-box-content" id="weeklyRanking">
+                                <p class="ranking-note">판매 데이터 집계 중...</p>
                             </div>
                         </div>
                     </div>
@@ -1225,17 +1350,39 @@
                 const d = new Date(s.date);
                 return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
             });
+            
+            // 이번 달 수익/판매
             document.getElementById('monthlyEarnings').textContent = '₩' + thisMonth.reduce((s,x) => s + x.commission, 0).toLocaleString();
             document.getElementById('monthlySales').textContent = thisMonth.reduce((s,x) => s + x.quantity, 0);
             
+            // 내 추천 코드
+            document.getElementById('myCodeDisplay').textContent = currentUser.code || '-';
+            
+            // 환영 메시지 (시간대별)
+            const hour = now.getHours();
+            let greeting = '좋은 하루 되세요!';
+            if (hour < 12) greeting = '좋은 아침이에요! ☀️';
+            else if (hour < 18) greeting = '오후도 화이팅! 💪';
+            else greeting = '오늘 하루도 수고하셨어요! 🌙';
+            document.getElementById('welcomeMessage').textContent = greeting;
+            
+            // 강점 카테고리 분석
+            updateStrengthAnalysis(mySales);
+            
+            // 매칭 점수
+            updateMatchScore();
+            
+            // 오늘의 팁
+            updateDailyTip();
+            
+            // 이번 주 목표
+            updateWeeklyGoal(mySales);
+            
+            // 랭킹 업데이트
             updateRanking();
             
             // 추천 알고리즘 적용
             const recommendedProducts = getRecommendedProducts();
-            const recommendReason = getRecommendReason();
-            
-            // 추천 이유 표시
-            document.querySelector('.section-header h2').innerHTML = recommendReason;
             
             const grid = document.getElementById('productGrid');
             grid.innerHTML = recommendedProducts.map(p => {
@@ -1247,8 +1394,12 @@
                 const endStr = (end.getMonth()+1) + '/' + end.getDate();
                 const ddayStr = dday > 0 ? 'D-' + dday : (dday === 0 ? 'D-Day' : '종료');
                 const categoryTag = p.category ? `<div class="product-card-category">${categoryNames[p.category] || p.category}</div>` : '';
-                // 상품 이미지: 등록된 이미지 > 기본 이미지
                 const productImg = p.image || DUJJEONKU_IMG;
+                
+                // 매칭 점수 계산
+                const matchPercent = calculateMatchScore(p);
+                const matchTag = matchPercent > 0 ? `<div class="product-card-match">💫 ${matchPercent}% 매칭</div>` : '';
+                
                 return `
                 <div class="product-card">
                     <div class="product-card-image"><img src="${productImg}" alt="${p.name}"></div>
@@ -1257,53 +1408,163 @@
                         <div class="product-card-name">${p.name}</div>
                         <div class="product-card-price">₩${p.price.toLocaleString()}</div>
                         <div class="product-card-commission">수익 ₩${Math.floor(p.price * 0.1).toLocaleString()}</div>
+                        ${matchTag}
                         <div class="product-card-period">📅 ${startStr} ~ ${endStr} <span class="dday">(${ddayStr})</span></div>
-                        <button class="product-card-btn" onclick="copyProductCode('${p.id}')">추천인코드</button>
+                        <button class="product-card-btn" onclick="copyProductCode('${p.id}')">추천인코드 복사</button>
                     </div>
                 </div>
             `}).join('');
         }
+        
+        // 강점 카테고리 분석
+        function updateStrengthAnalysis(mySales) {
+            if (mySales.length === 0) {
+                document.getElementById('strengthCategory').textContent = '아직 판매 데이터가 없어요. 첫 판매를 시작해보세요!';
+                return;
+            }
+            
+            // 카테고리별 판매 집계
+            const catSales = {};
+            mySales.forEach(s => {
+                const product = data.products.find(p => String(p.id) === String(s.productId));
+                if (product && product.category) {
+                    if (!catSales[product.category]) catSales[product.category] = 0;
+                    catSales[product.category] += s.quantity || 1;
+                }
+            });
+            
+            // 최다 판매 카테고리
+            const topCat = Object.entries(catSales).sort((a,b) => b[1] - a[1])[0];
+            if (topCat) {
+                const catEmoji = {dessert:'🍪',beauty:'💄',fashion:'👗',living:'🏠',electronics:'📱',kids:'👶',health:'💪',pet:'🐶',travel:'✈️',interior:'🛋️',book:'📚',hobby:'🎮'};
+                document.getElementById('strengthCategory').innerHTML = 
+                    `<strong>${catEmoji[topCat[0]] || '📦'} ${categoryNames[topCat[0]]}</strong> 카테고리에서 강해요! (${topCat[1]}건 판매)`;
+            }
+        }
+        
+        // 매칭 점수 업데이트
+        function updateMatchScore() {
+            const userCats = currentUser.categories || {};
+            const selectedCats = Object.keys(userCats).filter(k => userCats[k]);
+            
+            if (selectedCats.length === 0) {
+                document.getElementById('matchScore').textContent = '관심 카테고리를 설정하면 매칭률이 올라가요!';
+                return;
+            }
+            
+            // 매칭 가능한 상품 수 계산
+            const matchedProducts = data.products.filter(p => selectedCats.includes(p.category));
+            const matchRate = data.products.length > 0 ? Math.round((matchedProducts.length / data.products.length) * 100) : 0;
+            
+            document.getElementById('matchScore').innerHTML = 
+                `현재 <strong>${matchedProducts.length}개</strong> 상품이 회원님과 매칭돼요! (${matchRate}%)`;
+        }
+        
+        // 오늘의 팁
+        function updateDailyTip() {
+            const tips = [
+                '프로필 사진을 설정하면 신뢰도가 올라가요! 📸',
+                '채널 URL을 등록하면 관리자가 맞춤 상품을 추천해줘요! 🔗',
+                '관심 카테고리를 다양하게 설정해보세요! 🏷️',
+                '꾸준한 판매가 VIP 등급의 비결이에요! ⭐',
+                '새로운 상품이 매일 업데이트돼요! 자주 확인해보세요! 🆕',
+                '추천인 코드를 SNS에 공유해보세요! 📱'
+            ];
+            
+            // 프로필 완성도에 따른 팁
+            if (!currentUser.profileImage) {
+                document.getElementById('dailyTip').textContent = '프로필 사진을 설정하면 신뢰도가 올라가요! 📸';
+            } else if (!currentUser.channelUrls?.youtube && !currentUser.channelUrls?.instagram) {
+                document.getElementById('dailyTip').textContent = '채널 URL을 등록하면 맞춤 상품을 추천받을 수 있어요! 🔗';
+            } else {
+                // 랜덤 팁
+                const randomTip = tips[Math.floor(Math.random() * tips.length)];
+                document.getElementById('dailyTip').textContent = randomTip;
+            }
+        }
+        
+        // 이번 주 목표 업데이트
+        function updateWeeklyGoal(mySales) {
+            const now = new Date();
+            const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+            const weekSales = mySales.filter(s => new Date(s.date) >= weekAgo);
+            const weekCount = weekSales.reduce((sum, s) => sum + (s.quantity || 1), 0);
+            
+            document.getElementById('weekSales').textContent = weekCount;
+            
+            const goalPercent = Math.min(100, (weekCount / 5) * 100);
+            document.getElementById('goalFill').style.width = goalPercent + '%';
+            
+            if (weekCount >= 5) {
+                document.getElementById('goalReward').innerHTML = '🎉 목표 달성! 축하해요!';
+                document.getElementById('goalReward').style.color = 'var(--primary)';
+            }
+        }
+        
+        // 상품별 매칭 점수 계산
+        function calculateMatchScore(product) {
+            if (!currentUser.categories || !product.category) return 0;
+            
+            // 관심 카테고리와 일치하면 높은 점수
+            if (currentUser.categories[product.category]) {
+                return Math.floor(70 + Math.random() * 25); // 70~95%
+            }
+            return 0;
+        }
+        
+        // 내 코드 복사
+        function copyMyCode() {
+            const code = currentUser.code || '';
+            navigator.clipboard.writeText(code).then(() => {
+                showToast('추천 코드가 복사되었습니다! 📋');
+            });
+        }
 
         function updateRanking() {
-            // 이번 주 상품별 판매 집계
+            // 이번 주 인플루언서별 판매 집계
             const now = new Date();
             const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
             
-            const productSales = {};
+            const influencerSales = {};
             data.sales.filter(s => new Date(s.date) >= weekAgo).forEach(s => {
-                if (!productSales[s.productId]) productSales[s.productId] = { name: s.productName, emoji: s.productEmoji || '🍪', sales: 0 };
-                productSales[s.productId].sales += s.quantity;
+                if (!influencerSales[s.userCode]) {
+                    influencerSales[s.userCode] = { 
+                        name: s.userName, 
+                        code: s.userCode,
+                        sales: 0,
+                        amount: 0
+                    };
+                }
+                influencerSales[s.userCode].sales += s.quantity || 1;
+                influencerSales[s.userCode].amount += s.amount || 0;
             });
             
             // 정렬
-            const ranked = Object.entries(productSales)
-                .map(([id, data]) => ({ id, ...data }))
+            const ranked = Object.entries(influencerSales)
+                .map(([code, d]) => ({ code, ...d }))
                 .sort((a, b) => b.sales - a.sales);
             
-            // 상위 3개 표시
-            const medals = ['🥇', '🥈', '🥉'];
+            // 상위 5개 표시
+            const medals = ['🥇', '🥈', '🥉', '4', '5'];
             const container = document.getElementById('weeklyRanking');
             let html = '';
             
             if (ranked.length === 0) {
-                // 판매 데이터 없을 때 기본 상품 표시
-                html = `<div class="ranking-item">
-                    <span class="rank-num">🥇</span>
-                    <span class="rank-name">🍪 두쫀쿠 오리지널</span>
-                    <span class="rank-sales">HOT</span>
-                </div>`;
+                html = `<p class="ranking-note">아직 이번 주 판매 데이터가 없어요</p>`;
             } else {
-                for (let i = 0; i < Math.min(3, ranked.length); i++) {
+                for (let i = 0; i < Math.min(5, ranked.length); i++) {
                     const r = ranked[i];
-                    html += `<div class="ranking-item">
+                    const isMe = r.code === currentUser.code;
+                    const nameDisplay = r.name.length > 6 ? r.name.slice(0,6) + '...' : r.name;
+                    html += `<div class="ranking-item" style="${isMe ? 'background:var(--primary-light);margin:0 -16px;padding:10px 16px;border-radius:8px' : ''}">
                         <span class="rank-num">${medals[i]}</span>
-                        <span class="rank-name">${r.emoji} ${r.name.length > 10 ? r.name.slice(0,10) + '...' : r.name}</span>
+                        <span class="rank-name">${nameDisplay} ${isMe ? '<span style="font-size:10px;color:var(--primary)">(나)</span>' : ''}</span>
                         <span class="rank-sales">${r.sales}건</span>
                     </div>`;
                 }
+                html += `<p class="ranking-note">이번 주 판매 건수 기준</p>`;
             }
             
-            html += `<p class="ranking-note">판매 건수 기준</p>`;
             container.innerHTML = html;
         }
 

@@ -40,8 +40,45 @@
 
         .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
         .stat-card{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:20px}
+        .stat-card.highlight{border-left:4px solid var(--warning)}
         .stat-label{font-size:12px;color:var(--text-light);margin-bottom:4px}
         .stat-value{font-size:24px;font-weight:500}
+        .stat-value.primary{color:var(--primary)}
+        .stat-value.success{color:var(--success)}
+        .stat-value.warning{color:var(--warning)}
+
+        .dashboard-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px}
+
+        .todo-card{margin-bottom:24px}
+        .todo-list{display:flex;flex-direction:column;gap:12px}
+        .todo-item{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--bg-secondary);border-radius:8px;border-left:4px solid var(--primary)}
+        .todo-item.urgent{border-left-color:var(--error)}
+        .todo-item.success{border-left-color:var(--success);opacity:0.7}
+        .todo-icon{font-size:20px}
+        .todo-content{flex:1}
+        .todo-title{font-size:14px;font-weight:500;margin-bottom:2px}
+        .todo-desc{font-size:12px;color:var(--text-light)}
+        .todo-action{padding:6px 12px;background:var(--primary);color:#fff;border:none;border-radius:4px;font-size:12px;cursor:pointer;font-family:inherit}
+        .todo-action:hover{background:#1557b0}
+
+        .match-list{display:flex;flex-direction:column;gap:12px}
+        .match-item{display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg-secondary);border-radius:8px}
+        .match-avatar{width:40px;height:40px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600}
+        .match-info{flex:1}
+        .match-name{font-size:13px;font-weight:500}
+        .match-reason{font-size:11px;color:var(--text-light)}
+        .match-product{font-size:12px;color:var(--primary);background:var(--primary-light);padding:4px 10px;border-radius:12px}
+
+        .top-list{display:flex;flex-direction:column;gap:8px}
+        .top-item{display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg-secondary);border-radius:8px}
+        .top-rank{font-size:18px;width:30px;text-align:center}
+        .top-avatar{width:36px;height:36px;border-radius:50%;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px}
+        .top-info{flex:1}
+        .top-name{font-size:13px;font-weight:500}
+        .top-stats{font-size:11px;color:var(--text-light)}
+        .top-amount{font-size:14px;font-weight:600;color:var(--success)}
+
+        .header-badge{background:var(--error);color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-left:8px}
 
         .card{background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:24px;overflow:hidden}
         .card-header{padding:16px 20px;border-bottom:1px solid var(--border);font-weight:500}
@@ -183,29 +220,66 @@
 
         <main class="main">
             <div id="sectionOverview">
-                <h1 class="page-title">대시보드</h1>
+                <h1 class="page-title">📊 대시보드</h1>
+                
+                <!-- 핵심 지표 카드 -->
                 <div class="stats-grid">
-                    <div class="stat-card"><div class="stat-label">승인 대기</div><div class="stat-value" id="pendingCount">0</div></div>
-                    <div class="stat-card"><div class="stat-label">활성 인플루언서</div><div class="stat-value" id="activeCount">0</div></div>
-                    <div class="stat-card"><div class="stat-label">총 매출</div><div class="stat-value" id="totalSales">₩0</div></div>
-                    <div class="stat-card"><div class="stat-label">총 수익 지급</div><div class="stat-value" id="totalCommission">₩0</div></div>
+                    <div class="stat-card highlight"><div class="stat-label">🔔 승인 대기</div><div class="stat-value warning" id="pendingCount">0</div></div>
+                    <div class="stat-card"><div class="stat-label">👥 활성 인플루언서</div><div class="stat-value" id="activeCount">0</div></div>
+                    <div class="stat-card"><div class="stat-label">💰 이번 달 매출</div><div class="stat-value primary" id="monthSales">₩0</div></div>
+                    <div class="stat-card"><div class="stat-label">📈 이번 달 수익 지급</div><div class="stat-value success" id="monthCommission">₩0</div></div>
                 </div>
+
+                <!-- 오늘의 할 일 -->
+                <div class="card todo-card">
+                    <div class="card-header">🎯 오늘의 할 일</div>
+                    <div class="card-body">
+                        <div id="todoList" class="todo-list">
+                            <!-- 동적 생성 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2열 레이아웃 -->
+                <div class="dashboard-grid">
+                    <!-- 매칭 추천 -->
+                    <div class="card">
+                        <div class="card-header">🎯 오늘의 매칭 추천</div>
+                        <div class="card-body">
+                            <div id="matchRecommendations" class="match-list">
+                                <!-- 동적 생성 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TOP 인플루언서 -->
+                    <div class="card">
+                        <div class="card-header">🏆 이번 주 TOP 인플루언서</div>
+                        <div class="card-body">
+                            <div id="topInfluencers" class="top-list">
+                                <!-- 동적 생성 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 최근 활동 -->
                 <div class="card">
-                    <div class="card-header">최근 판매</div>
-                    <table><thead><tr><th>날짜</th><th>상품</th><th>인플루언서</th><th>금액</th><th>수익</th></tr></thead><tbody id="recentSalesTable"></tbody></table>
+                    <div class="card-header">📋 최근 활동</div>
+                    <table><thead><tr><th>시간</th><th>활동</th><th>인플루언서</th><th>상품</th><th>금액</th></tr></thead><tbody id="recentSalesTable"></tbody></table>
                 </div>
             </div>
 
             <div id="sectionApplications" class="hidden">
-                <h1 class="page-title">가입 신청</h1>
+                <h1 class="page-title">📋 가입 신청</h1>
                 <div class="card">
-                    <div class="card-header">승인 대기 목록</div>
+                    <div class="card-header">승인 대기 목록 <span class="header-badge" id="pendingBadge">0</span></div>
                     <table><thead><tr><th>신청일</th><th>이메일</th><th>이름</th><th>연락처</th><th>채널</th><th>관리</th></tr></thead><tbody id="applicationsTable"></tbody></table>
                 </div>
             </div>
 
             <div id="sectionInfluencers" class="hidden">
-                <h1 class="page-title">인플루언서 관리</h1>
+                <h1 class="page-title">👥 인플루언서 관리</h1>
                 <div class="card">
                     <div class="card-header">승인된 인플루언서</div>
                     <table><thead><tr><th>이름</th><th>추천코드</th><th>채널</th><th>판매</th><th>매출</th><th>수익</th></tr></thead><tbody id="influencersTable"></tbody></table>
@@ -672,16 +746,42 @@
         function updateAll() {
             const pending = data.users.filter(u => u.status === 'pending');
             const approved = data.users.filter(u => u.status === 'approved');
+            const now = new Date();
+            
+            // 이번 달 데이터
+            const monthSales = data.sales.filter(s => {
+                const d = new Date(s.date);
+                return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+            });
             
             document.getElementById('pendingCount').textContent = pending.length;
             document.getElementById('activeCount').textContent = approved.length;
-            document.getElementById('totalSales').textContent = '₩' + data.sales.reduce((s,x) => s + (x.amount || 0), 0).toLocaleString();
-            document.getElementById('totalCommission').textContent = '₩' + data.sales.reduce((s,x) => s + (x.commission || 0), 0).toLocaleString();
+            document.getElementById('monthSales').textContent = '₩' + monthSales.reduce((s,x) => s + (x.amount || 0), 0).toLocaleString();
+            document.getElementById('monthCommission').textContent = '₩' + monthSales.reduce((s,x) => s + (x.commission || 0), 0).toLocaleString();
+            
+            // 승인 대기 뱃지
+            const pendingBadge = document.getElementById('pendingBadge');
+            if (pendingBadge) {
+                pendingBadge.textContent = pending.length;
+                pendingBadge.style.display = pending.length > 0 ? 'inline' : 'none';
+            }
 
-            // 최근 판매
+            // 오늘의 할 일
+            updateTodoList(pending, approved);
+            
+            // 매칭 추천
+            updateMatchRecommendations(approved);
+            
+            // TOP 인플루언서
+            updateTopInfluencers(approved);
+
+            // 최근 활동
             document.getElementById('recentSalesTable').innerHTML = data.sales.length === 0 
                 ? '<tr><td colspan="5" class="empty">판매 내역이 없습니다</td></tr>'
-                : data.sales.slice(-5).reverse().map(s => `<tr><td>${new Date(s.date).toLocaleDateString('ko-KR')}</td><td>${s.productEmoji || '📦'} ${s.productName}</td><td><span class="badge badge-primary">${s.userName}</span></td><td>₩${(s.amount || 0).toLocaleString()}</td><td style="color:var(--success)">₩${(s.commission || 0).toLocaleString()}</td></tr>`).join('');
+                : data.sales.slice(-7).reverse().map(s => {
+                    const timeAgo = getTimeAgo(new Date(s.date));
+                    return `<tr><td>${timeAgo}</td><td>💰 판매</td><td><span class="badge badge-primary">${s.userName}</span></td><td>${s.productEmoji || '📦'} ${s.productName}</td><td style="color:var(--success)">₩${(s.amount || 0).toLocaleString()}</td></tr>`;
+                }).join('');
 
             // 가입 신청
             document.getElementById('applicationsTable').innerHTML = pending.length === 0 
@@ -776,6 +876,163 @@
             electronics: '전자기기', kids: '육아/키즈', health: '건강/헬스', pet: '반려동물',
             travel: '여행', interior: '인테리어', book: '도서/교육', hobby: '취미/게임'
         };
+        
+        // 시간 표시 함수
+        function getTimeAgo(date) {
+            const now = new Date();
+            const diff = now - date;
+            const minutes = Math.floor(diff / 60000);
+            const hours = Math.floor(diff / 3600000);
+            const days = Math.floor(diff / 86400000);
+            
+            if (minutes < 1) return '방금 전';
+            if (minutes < 60) return minutes + '분 전';
+            if (hours < 24) return hours + '시간 전';
+            if (days < 7) return days + '일 전';
+            return date.toLocaleDateString('ko-KR');
+        }
+        
+        // 오늘의 할 일 업데이트
+        function updateTodoList(pending, approved) {
+            const container = document.getElementById('todoList');
+            let html = '';
+            
+            // 승인 대기
+            if (pending.length > 0) {
+                html += `<div class="todo-item urgent">
+                    <div class="todo-icon">🔔</div>
+                    <div class="todo-content">
+                        <div class="todo-title">${pending.length}명의 가입 승인 대기 중</div>
+                        <div class="todo-desc">새로운 인플루언서가 승인을 기다리고 있어요</div>
+                    </div>
+                    <button class="todo-action" onclick="showSection('applications', document.querySelectorAll('.sidebar-menu a')[1])">승인하기</button>
+                </div>`;
+            }
+            
+            // 매칭 안 된 인플루언서
+            const unmatchedCount = approved.filter(u => !u.matchedProducts || u.matchedProducts.length === 0).length;
+            if (unmatchedCount > 0) {
+                html += `<div class="todo-item">
+                    <div class="todo-icon">🎯</div>
+                    <div class="todo-content">
+                        <div class="todo-title">${unmatchedCount}명에게 상품 매칭 필요</div>
+                        <div class="todo-desc">아직 추천 상품이 설정되지 않은 인플루언서가 있어요</div>
+                    </div>
+                    <button class="todo-action" onclick="showSection('influencerDB', document.querySelectorAll('.sidebar-menu a')[3])">매칭하기</button>
+                </div>`;
+            }
+            
+            // 상품 등록 유도
+            if (data.products.length === 0) {
+                html += `<div class="todo-item">
+                    <div class="todo-icon">📦</div>
+                    <div class="todo-content">
+                        <div class="todo-title">첫 상품을 등록해보세요</div>
+                        <div class="todo-desc">인플루언서에게 추천할 상품을 등록하세요</div>
+                    </div>
+                    <button class="todo-action" onclick="showSection('products', document.querySelectorAll('.sidebar-menu a')[5])">등록하기</button>
+                </div>`;
+            }
+            
+            // 모두 완료
+            if (html === '') {
+                html = `<div class="todo-item success">
+                    <div class="todo-icon">✅</div>
+                    <div class="todo-content">
+                        <div class="todo-title">모든 할 일 완료!</div>
+                        <div class="todo-desc">오늘도 수고하셨어요 💪</div>
+                    </div>
+                </div>`;
+            }
+            
+            container.innerHTML = html;
+        }
+        
+        // 매칭 추천 업데이트
+        function updateMatchRecommendations(approved) {
+            const container = document.getElementById('matchRecommendations');
+            
+            if (approved.length === 0 || data.products.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-light);text-align:center;padding:20px">인플루언서나 상품을 먼저 등록하세요</p>';
+                return;
+            }
+            
+            // 매칭 추천 생성
+            let recommendations = [];
+            
+            approved.forEach(u => {
+                if (!u.categories) return;
+                
+                const userCats = Object.keys(u.categories).filter(k => u.categories[k]);
+                
+                data.products.forEach(p => {
+                    if (userCats.includes(p.category)) {
+                        // 이미 매칭되어 있는지 확인
+                        if (u.matchedProducts && u.matchedProducts.includes(String(p.id))) return;
+                        
+                        recommendations.push({
+                            user: u,
+                            product: p,
+                            reason: `${categoryNames[p.category]} 관심 카테고리`
+                        });
+                    }
+                });
+            });
+            
+            // 상위 5개만 표시
+            recommendations = recommendations.slice(0, 5);
+            
+            if (recommendations.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-light);text-align:center;padding:20px">새로운 매칭 추천이 없어요</p>';
+                return;
+            }
+            
+            container.innerHTML = recommendations.map(r => `
+                <div class="match-item">
+                    <div class="match-avatar">${r.user.name.charAt(0)}</div>
+                    <div class="match-info">
+                        <div class="match-name">${r.user.name}</div>
+                        <div class="match-reason">${r.reason}</div>
+                    </div>
+                    <div class="match-product">${r.product.emoji || '📦'} ${r.product.name.slice(0,8)}${r.product.name.length > 8 ? '...' : ''}</div>
+                </div>
+            `).join('');
+        }
+        
+        // TOP 인플루언서 업데이트
+        function updateTopInfluencers(approved) {
+            const container = document.getElementById('topInfluencers');
+            const now = new Date();
+            const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+            
+            // 이번 주 판매 집계
+            const influencerStats = approved.map(u => {
+                const weekSales = data.sales.filter(s => s.userCode === u.code && new Date(s.date) >= weekAgo);
+                return {
+                    ...u,
+                    weekSalesCount: weekSales.reduce((sum, s) => sum + (s.quantity || 1), 0),
+                    weekAmount: weekSales.reduce((sum, s) => sum + (s.amount || 0), 0)
+                };
+            }).filter(u => u.weekSalesCount > 0).sort((a, b) => b.weekAmount - a.weekAmount);
+            
+            if (influencerStats.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-light);text-align:center;padding:20px">이번 주 판매 데이터가 없어요</p>';
+                return;
+            }
+            
+            const medals = ['🥇', '🥈', '🥉', '4', '5'];
+            container.innerHTML = influencerStats.slice(0, 5).map((u, i) => `
+                <div class="top-item">
+                    <div class="top-rank">${medals[i]}</div>
+                    <div class="top-avatar">${u.name.charAt(0)}</div>
+                    <div class="top-info">
+                        <div class="top-name">${u.name}</div>
+                        <div class="top-stats">${u.weekSalesCount}건 판매</div>
+                    </div>
+                    <div class="top-amount">₩${u.weekAmount.toLocaleString()}</div>
+                </div>
+            `).join('');
+        }
 
         async function addProduct() {
             const editId = document.getElementById('editProductId').value;
