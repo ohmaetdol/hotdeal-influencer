@@ -1308,50 +1308,64 @@
             display:none;
         }
 
-        /* 친구 기능 CSS */
-        .friends-section{margin-top:24px}
-        .friends-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-        .friends-header h3{font-size:16px;font-weight:600}
-        .friends-tabs{display:flex;gap:8px;margin-bottom:16px}
-        .friends-tab{padding:8px 16px;border:1px solid var(--border);border-radius:20px;background:#fff;font-size:13px;cursor:pointer;transition:all .2s}
-        .friends-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
-        .friends-tab .count{margin-left:4px;opacity:0.8}
-        .friend-search{display:flex;gap:8px;margin-bottom:16px}
-        .friend-search input{flex:1;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px}
-        .friend-search input:focus{outline:none;border-color:var(--primary)}
-        .friend-list{display:flex;flex-direction:column;gap:8px}
-        .friend-item{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#fff;border:1px solid var(--border);border-radius:12px;transition:all .2s}
-        .friend-item:hover{border-color:#ccc;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
-        .friend-avatar{width:48px;height:48px;border-radius:50%;background:var(--bg-secondary);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;color:var(--text-light);overflow:hidden}
-        .friend-avatar img{width:100%;height:100%;object-fit:cover}
-        .friend-info{flex:1;min-width:0}
-        .friend-name{font-size:14px;font-weight:600;margin-bottom:2px}
-        .friend-code{font-size:12px;color:var(--text-muted)}
-        .friend-grade{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:2px 8px;border-radius:10px;background:var(--bg-secondary)}
-        .friend-actions{display:flex;gap:6px}
-        .friend-btn{padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;border:1px solid var(--border);background:#fff;transition:all .2s}
-        .friend-btn:hover{background:var(--bg-secondary)}
-        .friend-btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
-        .friend-btn.primary:hover{background:#1557b0}
-        .friend-btn.danger{color:var(--error);border-color:var(--error)}
-        .friend-btn.danger:hover{background:#fef2f2}
-        .friend-empty{text-align:center;padding:40px 20px;color:var(--text-muted)}
-        .friend-empty-icon{font-size:48px;margin-bottom:12px;opacity:0.5}
-        .friend-empty p{font-size:14px}
-        .friend-request-badge{background:var(--error);color:#fff;font-size:11px;padding:2px 6px;border-radius:10px;margin-left:4px}
+        /* 팔로워/팔로잉 CSS (스레드 스타일) */
+        .follow-stats{display:flex;gap:24px;margin-bottom:20px;padding:16px;background:#fff;border-radius:12px;border:1px solid var(--border)}
+        .follow-stat{text-align:center;cursor:pointer;padding:8px 16px;border-radius:8px;transition:background .2s}
+        .follow-stat:hover{background:var(--bg-secondary)}
+        .follow-stat-count{font-size:20px;font-weight:700;color:var(--text)}
+        .follow-stat-label{font-size:12px;color:var(--text-muted);margin-top:2px}
         
-        /* 친구 검색 결과 */
-        .friend-search-results{margin-top:16px}
-        .friend-search-result{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg-secondary);border-radius:12px;margin-bottom:8px}
+        .follow-tabs{display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid var(--border)}
+        .follow-tab{flex:1;padding:12px 16px;text-align:center;font-size:14px;font-weight:500;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;background:none;border-top:none;border-left:none;border-right:none}
+        .follow-tab:hover{background:var(--bg-secondary)}
+        .follow-tab.active{border-bottom-color:var(--text);font-weight:600}
+        .follow-tab .count{margin-left:4px;color:var(--text-muted)}
+        
+        .follow-list{display:flex;flex-direction:column;gap:0}
+        .follow-item{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--border)}
+        .follow-item:last-child{border-bottom:none}
+        .follow-avatar{width:44px;height:44px;border-radius:50%;background:var(--bg-secondary);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;color:var(--text-light);overflow:hidden;cursor:pointer}
+        .follow-avatar img{width:100%;height:100%;object-fit:cover}
+        .follow-info{flex:1;min-width:0;cursor:pointer}
+        .follow-name{font-size:14px;font-weight:600;margin-bottom:1px}
+        .follow-username{font-size:13px;color:var(--text-muted)}
+        .follow-bio{font-size:13px;color:var(--text-light);margin-top:4px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+        
+        .follow-btn{padding:8px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--text);background:#fff;color:var(--text);transition:all .2s}
+        .follow-btn:hover{background:var(--bg-secondary)}
+        .follow-btn.following{background:var(--bg-secondary);border-color:var(--border);color:var(--text-light)}
+        .follow-btn.following:hover{border-color:var(--error);color:var(--error);background:#fff}
+        
+        .follow-empty{text-align:center;padding:60px 20px;color:var(--text-muted)}
+        .follow-empty-icon{margin-bottom:16px}
+        .follow-empty p{font-size:14px}
+        .follow-empty-sub{font-size:12px;margin-top:8px;color:var(--text-muted)}
+        
+        /* 유저 프로필 모달 (스레드 스타일) */
+        .user-profile-modal{background:#fff;border-radius:16px;width:90%;max-width:400px;overflow:hidden}
+        .user-profile-header{padding:20px;text-align:center;border-bottom:1px solid var(--border)}
+        .user-profile-avatar{width:80px;height:80px;border-radius:50%;background:var(--bg-secondary);display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:600;color:var(--text-light);margin:0 auto 12px;overflow:hidden}
+        .user-profile-avatar img{width:100%;height:100%;object-fit:cover}
+        .user-profile-name{font-size:18px;font-weight:700;margin-bottom:4px}
+        .user-profile-username{font-size:14px;color:var(--text-muted);margin-bottom:12px}
+        .user-profile-grade{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:4px 12px;border-radius:12px;background:var(--bg-secondary)}
+        .user-profile-stats{display:flex;justify-content:center;gap:32px;margin-top:16px}
+        .user-profile-stat{text-align:center}
+        .user-profile-stat-count{font-size:16px;font-weight:700}
+        .user-profile-stat-label{font-size:11px;color:var(--text-muted)}
+        .user-profile-actions{padding:16px 20px;display:flex;gap:8px}
+        .user-profile-actions .follow-btn{flex:1}
+        .user-profile-actions .msg-btn{padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;border:1px solid var(--border);background:#fff}
         
         /* 반응형 */
         @media(max-width:480px){
-            .friends-tabs{flex-wrap:wrap}
-            .friends-tab{padding:6px 12px;font-size:12px}
-            .friend-item{padding:10px 12px}
-            .friend-avatar{width:40px;height:40px;font-size:16px}
-            .friend-name{font-size:13px}
-            .friend-btn{padding:5px 10px;font-size:11px}
+            .follow-stats{gap:16px;padding:12px}
+            .follow-stat-count{font-size:18px}
+            .follow-tab{padding:10px 12px;font-size:13px}
+            .follow-item{padding:12px 0}
+            .follow-avatar{width:40px;height:40px;font-size:14px}
+            .follow-name{font-size:13px}
+            .follow-btn{padding:6px 16px;font-size:12px}
         }
     </style>
 </head>
@@ -1542,7 +1556,7 @@
                 <nav class="dash-nav">
                     <a class="active" onclick="showDashSection('home', this)">홈</a>
                     <a onclick="showDashSection('report', this)">리포트</a>
-                    <a onclick="showDashSection('friends', this)">친구</a>
+                    <a onclick="showDashSection('follow', this)">팔로우</a>
                     <a onclick="showDashSection('community', this)">커뮤니티</a>
                 </nav>
             </div>
@@ -1721,51 +1735,52 @@
                 </div>
             </div>
 
-            <!-- 친구 섹션 -->
-            <div id="dashFriends" class="hidden">
-                <h1 class="page-title">친구</h1>
+            <!-- 팔로우 섹션 (스레드 스타일) -->
+            <div id="dashFollow" class="hidden">
+                <h1 class="page-title">팔로우</h1>
                 
-                <!-- 친구 검색 -->
-                <div class="friend-search">
-                    <input type="text" id="friendSearchInput" placeholder="이름 또는 추천코드로 검색" onkeyup="handleFriendSearch(event)">
-                    <button class="btn btn-primary btn-small" onclick="searchFriends()">검색</button>
-                </div>
-                
-                <!-- 검색 결과 -->
-                <div class="friend-search-results hidden" id="friendSearchResults">
-                    <h4 style="font-size:14px;margin-bottom:12px;color:var(--text-light)">검색 결과</h4>
-                    <div id="friendSearchList"></div>
-                </div>
-                
-                <!-- 친구 탭 -->
-                <div class="friends-tabs">
-                    <button class="friends-tab active" onclick="switchFriendsTab('list', this)">내 친구 <span class="count" id="friendCount">0</span></button>
-                    <button class="friends-tab" onclick="switchFriendsTab('requests', this)">받은 요청 <span class="count" id="requestCount">0</span></button>
-                    <button class="friends-tab" onclick="switchFriendsTab('sent', this)">보낸 요청 <span class="count" id="sentCount">0</span></button>
-                </div>
-                
-                <!-- 내 친구 목록 -->
-                <div id="friendsListTab" class="friend-list">
-                    <div class="friend-empty">
-                        <div class="friend-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
-                        <p>아직 친구가 없습니다</p>
-                        <p style="font-size:12px;margin-top:8px">위에서 검색해서 친구를 추가해보세요!</p>
+                <!-- 팔로워/팔로잉 통계 -->
+                <div class="follow-stats">
+                    <div class="follow-stat" onclick="switchFollowTab('followers', this)">
+                        <div class="follow-stat-count" id="followersCount">0</div>
+                        <div class="follow-stat-label">팔로워</div>
+                    </div>
+                    <div class="follow-stat" onclick="switchFollowTab('following', this)">
+                        <div class="follow-stat-count" id="followingCount">0</div>
+                        <div class="follow-stat-label">팔로잉</div>
                     </div>
                 </div>
                 
-                <!-- 받은 요청 -->
-                <div id="friendsRequestsTab" class="friend-list hidden">
-                    <div class="friend-empty">
-                        <div class="friend-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
-                        <p>받은 친구 요청이 없습니다</p>
+                <!-- 탭 -->
+                <div class="follow-tabs">
+                    <button class="follow-tab active" onclick="switchFollowTab('followers', this)">팔로워</button>
+                    <button class="follow-tab" onclick="switchFollowTab('following', this)">팔로잉</button>
+                    <button class="follow-tab" onclick="switchFollowTab('discover', this)">추천</button>
+                </div>
+                
+                <!-- 팔로워 목록 -->
+                <div id="followersTab" class="follow-list">
+                    <div class="follow-empty">
+                        <div class="follow-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+                        <p>아직 팔로워가 없습니다</p>
+                        <p class="follow-empty-sub">커뮤니티에서 활동하면 팔로워가 늘어나요!</p>
                     </div>
                 </div>
                 
-                <!-- 보낸 요청 -->
-                <div id="friendsSentTab" class="friend-list hidden">
-                    <div class="friend-empty">
-                        <div class="friend-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z"/></svg></div>
-                        <p>보낸 친구 요청이 없습니다</p>
+                <!-- 팔로잉 목록 -->
+                <div id="followingTab" class="follow-list hidden">
+                    <div class="follow-empty">
+                        <div class="follow-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+                        <p>아직 팔로잉이 없습니다</p>
+                        <p class="follow-empty-sub">커뮤니티에서 다른 인플루언서를 팔로우해보세요!</p>
+                    </div>
+                </div>
+                
+                <!-- 추천 목록 -->
+                <div id="discoverTab" class="follow-list hidden">
+                    <div class="follow-empty">
+                        <div class="follow-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
+                        <p>추천할 인플루언서가 없습니다</p>
                     </div>
                 </div>
             </div>
@@ -2077,8 +2092,8 @@
                 <button class="mobile-nav-item" onclick="showDashSectionMobile('report', this)" data-section="report">
                     <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg></span>
                 </button>
-                <button class="mobile-nav-item" onclick="showDashSectionMobile('friends', this)" data-section="friends">
-                    <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></span>
+                <button class="mobile-nav-item" onclick="showDashSectionMobile('follow', this)" data-section="follow">
+                    <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></span>
                 </button>
                 <button class="mobile-nav-item" onclick="showDashSectionMobile('community', this)" data-section="community">
                     <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/></svg></span>
@@ -2154,6 +2169,33 @@
             <div class="message-modal-footer">
                 <button class="btn btn-secondary" onclick="closeMessageModal('messageComposeModal')">취소</button>
                 <button class="btn btn-primary" onclick="sendMessage()">보내기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 유저 프로필 모달 (스레드 스타일) -->
+    <div class="modal-overlay" id="userProfileModal">
+        <div class="user-profile-modal">
+            <div class="user-profile-header">
+                <div class="user-profile-avatar" id="profileModalAvatar">U</div>
+                <div class="user-profile-name" id="profileModalName">사용자</div>
+                <div class="user-profile-username" id="profileModalUsername">@username</div>
+                <div class="user-profile-grade" id="profileModalGrade">🌱 씨앗</div>
+                <div class="user-profile-stats">
+                    <div class="user-profile-stat">
+                        <div class="user-profile-stat-count" id="profileModalFollowers">0</div>
+                        <div class="user-profile-stat-label">팔로워</div>
+                    </div>
+                    <div class="user-profile-stat">
+                        <div class="user-profile-stat-count" id="profileModalFollowing">0</div>
+                        <div class="user-profile-stat-label">팔로잉</div>
+                    </div>
+                </div>
+            </div>
+            <div class="user-profile-actions">
+                <button class="follow-btn" id="profileModalFollowBtn" onclick="toggleFollowFromModal()">팔로우</button>
+                <button class="msg-btn" onclick="sendMessageFromModal()">쪽지</button>
+                <button class="msg-btn" onclick="closeUserProfileModal()">닫기</button>
             </div>
         </div>
     </div>
@@ -4028,7 +4070,7 @@
             document.getElementById('dashCommunity').classList.add('hidden');
             document.getElementById('dashReport').classList.add('hidden');
             document.getElementById('dashProfile').classList.add('hidden');
-            document.getElementById('dashFriends').classList.add('hidden');
+            document.getElementById('dashFollow').classList.add('hidden');
             document.getElementById('dashMessages').classList.add('hidden');
             if (section === 'home') document.getElementById('dashHome').classList.remove('hidden');
             if (section === 'community') {
@@ -4044,9 +4086,9 @@
                 document.getElementById('dashProfile').classList.remove('hidden');
                 updateProfileSection();
             }
-            if (section === 'friends') {
-                document.getElementById('dashFriends').classList.remove('hidden');
-                loadFriendsData();
+            if (section === 'follow') {
+                document.getElementById('dashFollow').classList.remove('hidden');
+                loadFollowData();
             }
             if (section === 'messages') {
                 document.getElementById('dashMessages').classList.remove('hidden');
@@ -4071,7 +4113,7 @@
             document.getElementById('dashCommunity').classList.add('hidden');
             document.getElementById('dashReport').classList.add('hidden');
             document.getElementById('dashProfile').classList.add('hidden');
-            document.getElementById('dashFriends').classList.add('hidden');
+            document.getElementById('dashFollow').classList.add('hidden');
             document.getElementById('dashMessages').classList.add('hidden');
             
             if (section === 'home') document.getElementById('dashHome').classList.remove('hidden');
@@ -4088,9 +4130,9 @@
                 document.getElementById('dashProfile').classList.remove('hidden');
                 updateProfileSection();
             }
-            if (section === 'friends') {
-                document.getElementById('dashFriends').classList.remove('hidden');
-                loadFriendsData();
+            if (section === 'follow') {
+                document.getElementById('dashFollow').classList.remove('hidden');
+                loadFollowData();
             }
             if (section === 'messages') {
                 document.getElementById('dashMessages').classList.remove('hidden');
@@ -5193,394 +5235,305 @@
         }
 
         // ============================================
-        // 친구 기능
+        // 팔로우 기능 (스레드 스타일)
         // ============================================
         
-        let friendsData = {
-            friends: [],
-            requests: [],
-            sent: []
+        let followData = {
+            followers: [],
+            following: []
         };
         
-        // 친구 데이터 로드
-        async function loadFriendsData() {
+        let currentFollowTab = 'followers';
+        let selectedUserForProfile = null;
+        
+        // 팔로우 데이터 로드
+        async function loadFollowData() {
             if (!currentUser || !db) return;
             
             try {
-                // 내 친구 목록 (user 문서에서)
                 const userDoc = await db.collection('users').doc(currentUser.googleEmail).get();
                 const userData = userDoc.data();
-                friendsData.friends = userData?.friends || [];
+                followData.followers = userData?.followers || [];
+                followData.following = userData?.following || [];
                 
-                // 받은 요청
-                const requestsSnapshot = await db.collection('friendRequests')
-                    .where('to', '==', currentUser.code)
-                    .where('status', '==', 'pending')
-                    .get();
-                friendsData.requests = requestsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                
-                // 보낸 요청
-                const sentSnapshot = await db.collection('friendRequests')
-                    .where('from', '==', currentUser.code)
-                    .where('status', '==', 'pending')
-                    .get();
-                friendsData.sent = sentSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                
-                updateFriendsUI();
+                updateFollowUI();
+                loadDiscoverList();
             } catch (error) {
-                console.error('친구 데이터 로드 실패:', error);
+                console.error('팔로우 데이터 로드 실패:', error);
             }
         }
         
         // UI 업데이트
-        function updateFriendsUI() {
-            // 카운트 업데이트
-            document.getElementById('friendCount').textContent = friendsData.friends.length;
-            document.getElementById('requestCount').textContent = friendsData.requests.length;
-            document.getElementById('sentCount').textContent = friendsData.sent.length;
+        function updateFollowUI() {
+            document.getElementById('followersCount').textContent = followData.followers.length;
+            document.getElementById('followingCount').textContent = followData.following.length;
             
-            // 현재 탭 렌더링
-            renderFriendsList();
-            renderRequestsList();
-            renderSentList();
+            renderFollowersList();
+            renderFollowingList();
         }
         
-        // 친구 목록 렌더링
-        function renderFriendsList() {
-            const container = document.getElementById('friendsListTab');
+        // 팔로워 목록 렌더링
+        function renderFollowersList() {
+            const container = document.getElementById('followersTab');
             
-            if (friendsData.friends.length === 0) {
+            if (followData.followers.length === 0) {
                 container.innerHTML = `
-                    <div class="friend-empty">
-                        <div class="friend-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
-                        <p>아직 친구가 없습니다</p>
-                        <p style="font-size:12px;margin-top:8px">위에서 검색해서 친구를 추가해보세요!</p>
+                    <div class="follow-empty">
+                        <div class="follow-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+                        <p>아직 팔로워가 없습니다</p>
+                        <p class="follow-empty-sub">커뮤니티에서 활동하면 팔로워가 늘어나요!</p>
                     </div>
                 `;
                 return;
             }
             
-            // 친구 코드로 사용자 정보 가져오기
-            const friendUsers = friendsData.friends.map(code => {
-                const user = data.users.find(u => u.code === code);
-                return user;
-            }).filter(Boolean);
+            const followerUsers = followData.followers.map(code => data.users.find(u => u.code === code)).filter(Boolean);
             
-            container.innerHTML = friendUsers.map(friend => {
-                const userSales = data.sales.filter(s => s.userCode === friend.code);
+            container.innerHTML = followerUsers.map(user => {
+                const isFollowing = followData.following.includes(user.code);
+                const userSales = data.sales.filter(s => s.userCode === user.code);
                 const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
                 const grade = getUserGrade(totalAmount);
                 
                 return `
-                    <div class="friend-item">
-                        <div class="friend-avatar" style="background:${grade.bgColor};color:${grade.color}">
-                            ${friend.profileImage ? `<img src="${friend.profileImage}" alt="">` : friend.name?.charAt(0) || 'U'}
+                    <div class="follow-item">
+                        <div class="follow-avatar" onclick="openUserProfile('${user.code}')" style="background:${grade.bgColor};color:${grade.color}">
+                            ${user.profileImage ? `<img src="${user.profileImage}" alt="">` : user.name?.charAt(0) || 'U'}
                         </div>
-                        <div class="friend-info">
-                            <div class="friend-name">${friend.name || '-'}</div>
-                            <div class="friend-code">${friend.code || '-'}</div>
-                            <span class="friend-grade" style="background:${grade.bgColor};color:${grade.color}">${grade.icon} ${grade.name}</span>
+                        <div class="follow-info" onclick="openUserProfile('${user.code}')">
+                            <div class="follow-name">${user.name || '-'}</div>
+                            <div class="follow-username">@${user.code}</div>
                         </div>
-                        <div class="friend-actions">
-                            <button class="friend-btn" onclick="sendMessageToFriend('${friend.code}', '${friend.name}')">쪽지</button>
-                            <button class="friend-btn danger" onclick="removeFriend('${friend.code}')">삭제</button>
-                        </div>
+                        <button class="follow-btn ${isFollowing ? 'following' : ''}" onclick="toggleFollow('${user.code}')">
+                            ${isFollowing ? '팔로잉' : '팔로우'}
+                        </button>
                     </div>
                 `;
             }).join('');
         }
         
-        // 받은 요청 목록 렌더링
-        function renderRequestsList() {
-            const container = document.getElementById('friendsRequestsTab');
+        // 팔로잉 목록 렌더링
+        function renderFollowingList() {
+            const container = document.getElementById('followingTab');
             
-            if (friendsData.requests.length === 0) {
+            if (followData.following.length === 0) {
                 container.innerHTML = `
-                    <div class="friend-empty">
-                        <div class="friend-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
-                        <p>받은 친구 요청이 없습니다</p>
+                    <div class="follow-empty">
+                        <div class="follow-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+                        <p>아직 팔로잉이 없습니다</p>
+                        <p class="follow-empty-sub">커뮤니티에서 다른 인플루언서를 팔로우해보세요!</p>
                     </div>
                 `;
                 return;
             }
             
-            container.innerHTML = friendsData.requests.map(req => {
-                const fromUser = data.users.find(u => u.code === req.from);
-                if (!fromUser) return '';
-                
-                const userSales = data.sales.filter(s => s.userCode === fromUser.code);
+            const followingUsers = followData.following.map(code => data.users.find(u => u.code === code)).filter(Boolean);
+            
+            container.innerHTML = followingUsers.map(user => {
+                const userSales = data.sales.filter(s => s.userCode === user.code);
                 const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
                 const grade = getUserGrade(totalAmount);
                 
                 return `
-                    <div class="friend-item">
-                        <div class="friend-avatar" style="background:${grade.bgColor};color:${grade.color}">
-                            ${fromUser.profileImage ? `<img src="${fromUser.profileImage}" alt="">` : fromUser.name?.charAt(0) || 'U'}
+                    <div class="follow-item">
+                        <div class="follow-avatar" onclick="openUserProfile('${user.code}')" style="background:${grade.bgColor};color:${grade.color}">
+                            ${user.profileImage ? `<img src="${user.profileImage}" alt="">` : user.name?.charAt(0) || 'U'}
                         </div>
-                        <div class="friend-info">
-                            <div class="friend-name">${fromUser.name || '-'}</div>
-                            <div class="friend-code">${fromUser.code || '-'}</div>
-                            <span class="friend-grade" style="background:${grade.bgColor};color:${grade.color}">${grade.icon} ${grade.name}</span>
+                        <div class="follow-info" onclick="openUserProfile('${user.code}')">
+                            <div class="follow-name">${user.name || '-'}</div>
+                            <div class="follow-username">@${user.code}</div>
                         </div>
-                        <div class="friend-actions">
-                            <button class="friend-btn primary" onclick="acceptFriendRequest('${req.id}', '${req.from}')">수락</button>
-                            <button class="friend-btn danger" onclick="rejectFriendRequest('${req.id}')">거절</button>
-                        </div>
+                        <button class="follow-btn following" onclick="toggleFollow('${user.code}')">팔로잉</button>
                     </div>
                 `;
             }).join('');
         }
         
-        // 보낸 요청 목록 렌더링
-        function renderSentList() {
-            const container = document.getElementById('friendsSentTab');
+        // 추천 목록 로드
+        function loadDiscoverList() {
+            const container = document.getElementById('discoverTab');
             
-            if (friendsData.sent.length === 0) {
+            // 승인된 사용자 중 본인과 이미 팔로잉한 사람 제외
+            const suggestions = data.users.filter(u => 
+                u.status === 'approved' && 
+                u.code !== currentUser.code &&
+                !followData.following.includes(u.code)
+            ).slice(0, 20);
+            
+            if (suggestions.length === 0) {
                 container.innerHTML = `
-                    <div class="friend-empty">
-                        <div class="friend-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z"/></svg></div>
-                        <p>보낸 친구 요청이 없습니다</p>
+                    <div class="follow-empty">
+                        <div class="follow-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
+                        <p>추천할 인플루언서가 없습니다</p>
                     </div>
                 `;
                 return;
             }
             
-            container.innerHTML = friendsData.sent.map(req => {
-                const toUser = data.users.find(u => u.code === req.to);
-                if (!toUser) return '';
-                
-                const userSales = data.sales.filter(s => s.userCode === toUser.code);
+            container.innerHTML = suggestions.map(user => {
+                const userSales = data.sales.filter(s => s.userCode === user.code);
                 const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
                 const grade = getUserGrade(totalAmount);
                 
                 return `
-                    <div class="friend-item">
-                        <div class="friend-avatar" style="background:${grade.bgColor};color:${grade.color}">
-                            ${toUser.profileImage ? `<img src="${toUser.profileImage}" alt="">` : toUser.name?.charAt(0) || 'U'}
+                    <div class="follow-item">
+                        <div class="follow-avatar" onclick="openUserProfile('${user.code}')" style="background:${grade.bgColor};color:${grade.color}">
+                            ${user.profileImage ? `<img src="${user.profileImage}" alt="">` : user.name?.charAt(0) || 'U'}
                         </div>
-                        <div class="friend-info">
-                            <div class="friend-name">${toUser.name || '-'}</div>
-                            <div class="friend-code">${toUser.code || '-'}</div>
-                            <span class="friend-grade" style="background:${grade.bgColor};color:${grade.color}">${grade.icon} ${grade.name}</span>
+                        <div class="follow-info" onclick="openUserProfile('${user.code}')">
+                            <div class="follow-name">${user.name || '-'}</div>
+                            <div class="follow-username">@${user.code}</div>
                         </div>
-                        <div class="friend-actions">
-                            <button class="friend-btn danger" onclick="cancelFriendRequest('${req.id}')">취소</button>
-                        </div>
+                        <button class="follow-btn" onclick="toggleFollow('${user.code}')">팔로우</button>
                     </div>
                 `;
             }).join('');
         }
         
         // 탭 전환
-        function switchFriendsTab(tab, el) {
-            document.querySelectorAll('.friends-tab').forEach(t => t.classList.remove('active'));
-            el.classList.add('active');
+        function switchFollowTab(tab, el) {
+            currentFollowTab = tab;
+            document.querySelectorAll('.follow-tab').forEach(t => t.classList.remove('active'));
+            if (el) el.classList.add('active');
             
-            document.getElementById('friendsListTab').classList.add('hidden');
-            document.getElementById('friendsRequestsTab').classList.add('hidden');
-            document.getElementById('friendsSentTab').classList.add('hidden');
+            document.getElementById('followersTab').classList.add('hidden');
+            document.getElementById('followingTab').classList.add('hidden');
+            document.getElementById('discoverTab').classList.add('hidden');
             
-            if (tab === 'list') document.getElementById('friendsListTab').classList.remove('hidden');
-            if (tab === 'requests') document.getElementById('friendsRequestsTab').classList.remove('hidden');
-            if (tab === 'sent') document.getElementById('friendsSentTab').classList.remove('hidden');
+            document.getElementById(tab + 'Tab').classList.remove('hidden');
         }
         
-        // 친구 검색
-        function handleFriendSearch(e) {
-            if (e.key === 'Enter') searchFriends();
+        // 팔로우/언팔로우 토글
+        async function toggleFollow(targetCode) {
+            if (!currentUser || !db) return;
+            
+            const isFollowing = followData.following.includes(targetCode);
+            
+            try {
+                const myRef = db.collection('users').doc(currentUser.googleEmail);
+                const targetUser = data.users.find(u => u.code === targetCode);
+                
+                if (isFollowing) {
+                    // 언팔로우
+                    followData.following = followData.following.filter(c => c !== targetCode);
+                    await myRef.update({ following: followData.following });
+                    
+                    // 상대방 팔로워에서 제거
+                    if (targetUser?.googleEmail) {
+                        const targetRef = db.collection('users').doc(targetUser.googleEmail);
+                        const targetDoc = await targetRef.get();
+                        let targetFollowers = targetDoc.data()?.followers || [];
+                        targetFollowers = targetFollowers.filter(c => c !== currentUser.code);
+                        await targetRef.update({ followers: targetFollowers });
+                    }
+                    
+                    showToast('팔로우를 취소했습니다');
+                } else {
+                    // 팔로우
+                    followData.following.push(targetCode);
+                    await myRef.update({ following: followData.following });
+                    
+                    // 상대방 팔로워에 추가
+                    if (targetUser?.googleEmail) {
+                        const targetRef = db.collection('users').doc(targetUser.googleEmail);
+                        const targetDoc = await targetRef.get();
+                        let targetFollowers = targetDoc.data()?.followers || [];
+                        if (!targetFollowers.includes(currentUser.code)) {
+                            targetFollowers.push(currentUser.code);
+                            await targetRef.update({ followers: targetFollowers });
+                        }
+                    }
+                    
+                    showToast('팔로우했습니다');
+                }
+                
+                updateFollowUI();
+                loadDiscoverList();
+                
+                // 프로필 모달 열려있으면 버튼 업데이트
+                if (selectedUserForProfile === targetCode) {
+                    updateProfileModalFollowBtn();
+                }
+            } catch (error) {
+                console.error('팔로우 처리 실패:', error);
+                showToast('처리에 실패했습니다');
+            }
         }
         
-        async function searchFriends() {
-            const query = document.getElementById('friendSearchInput').value.trim().toLowerCase();
-            if (!query) {
-                document.getElementById('friendSearchResults').classList.add('hidden');
-                return;
+        // 유저 프로필 모달 열기
+        async function openUserProfile(userCode) {
+            const user = data.users.find(u => u.code === userCode);
+            if (!user) return;
+            
+            selectedUserForProfile = userCode;
+            
+            const userSales = data.sales.filter(s => s.userCode === userCode);
+            const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
+            const grade = getUserGrade(totalAmount);
+            
+            // 상대방 팔로워/팔로잉 수 가져오기
+            let userFollowers = 0;
+            let userFollowing = 0;
+            if (user.googleEmail) {
+                try {
+                    const userDoc = await db.collection('users').doc(user.googleEmail).get();
+                    const userData = userDoc.data();
+                    userFollowers = userData?.followers?.length || 0;
+                    userFollowing = userData?.following?.length || 0;
+                } catch (e) {}
             }
             
-            // 승인된 사용자 중 검색 (본인 제외)
-            const results = data.users.filter(u => 
-                u.status === 'approved' && 
-                u.code !== currentUser.code &&
-                (u.name?.toLowerCase().includes(query) || u.code?.toLowerCase().includes(query))
-            );
+            document.getElementById('profileModalAvatar').innerHTML = user.profileImage 
+                ? `<img src="${user.profileImage}" alt="">` 
+                : user.name?.charAt(0) || 'U';
+            document.getElementById('profileModalAvatar').style.background = grade.bgColor;
+            document.getElementById('profileModalAvatar').style.color = grade.color;
+            document.getElementById('profileModalName').textContent = user.name || '-';
+            document.getElementById('profileModalUsername').textContent = '@' + user.code;
+            document.getElementById('profileModalGrade').innerHTML = `${grade.icon} ${grade.name}`;
+            document.getElementById('profileModalGrade').style.background = grade.bgColor;
+            document.getElementById('profileModalGrade').style.color = grade.color;
+            document.getElementById('profileModalFollowers').textContent = userFollowers;
+            document.getElementById('profileModalFollowing').textContent = userFollowing;
             
-            const container = document.getElementById('friendSearchList');
-            const resultsDiv = document.getElementById('friendSearchResults');
+            updateProfileModalFollowBtn();
             
-            if (results.length === 0) {
-                container.innerHTML = '<p style="color:var(--text-muted);font-size:13px;padding:12px">검색 결과가 없습니다</p>';
+            document.getElementById('userProfileModal').classList.add('show');
+        }
+        
+        function updateProfileModalFollowBtn() {
+            const btn = document.getElementById('profileModalFollowBtn');
+            const isFollowing = followData.following.includes(selectedUserForProfile);
+            
+            if (isFollowing) {
+                btn.textContent = '팔로잉';
+                btn.classList.add('following');
             } else {
-                container.innerHTML = results.map(user => {
-                    const isFriend = friendsData.friends.includes(user.code);
-                    const hasSentRequest = friendsData.sent.some(r => r.to === user.code);
-                    const hasReceivedRequest = friendsData.requests.some(r => r.from === user.code);
-                    
-                    const userSales = data.sales.filter(s => s.userCode === user.code);
-                    const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
-                    const grade = getUserGrade(totalAmount);
-                    
-                    let actionBtn = '';
-                    if (isFriend) {
-                        actionBtn = '<button class="friend-btn" disabled>친구</button>';
-                    } else if (hasSentRequest) {
-                        actionBtn = '<button class="friend-btn" disabled>요청됨</button>';
-                    } else if (hasReceivedRequest) {
-                        actionBtn = '<button class="friend-btn primary" onclick="acceptFriendRequest(\'\', \'' + user.code + '\')">수락</button>';
-                    } else {
-                        actionBtn = `<button class="friend-btn primary" onclick="sendFriendRequest('${user.code}')">친구 요청</button>`;
-                    }
-                    
-                    return `
-                        <div class="friend-search-result">
-                            <div class="friend-avatar" style="background:${grade.bgColor};color:${grade.color}">
-                                ${user.profileImage ? `<img src="${user.profileImage}" alt="">` : user.name?.charAt(0) || 'U'}
-                            </div>
-                            <div class="friend-info">
-                                <div class="friend-name">${user.name || '-'}</div>
-                                <div class="friend-code">${user.code || '-'}</div>
-                            </div>
-                            <div class="friend-actions">
-                                ${actionBtn}
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-            }
-            
-            resultsDiv.classList.remove('hidden');
-        }
-        
-        // 친구 요청 보내기
-        async function sendFriendRequest(toCode) {
-            if (!currentUser || !db) return;
-            
-            try {
-                await db.collection('friendRequests').add({
-                    from: currentUser.code,
-                    fromName: currentUser.name,
-                    to: toCode,
-                    status: 'pending',
-                    createdAt: new Date().toISOString()
-                });
-                
-                showToast('친구 요청을 보냈습니다');
-                loadFriendsData();
-                searchFriends(); // 검색 결과 갱신
-            } catch (error) {
-                console.error('친구 요청 실패:', error);
-                showToast('요청에 실패했습니다', 'error');
+                btn.textContent = '팔로우';
+                btn.classList.remove('following');
             }
         }
         
-        // 친구 요청 수락
-        async function acceptFriendRequest(reqId, fromCode) {
-            if (!currentUser || !db) return;
-            
-            try {
-                // 요청 ID가 없으면 찾기
-                if (!reqId) {
-                    const req = friendsData.requests.find(r => r.from === fromCode);
-                    if (req) reqId = req.id;
-                }
-                
-                // 요청 상태 업데이트
-                if (reqId) {
-                    await db.collection('friendRequests').doc(reqId).update({ status: 'accepted' });
-                }
-                
-                // 양쪽 친구 목록에 추가
-                const myRef = db.collection('users').doc(currentUser.googleEmail);
-                const myDoc = await myRef.get();
-                const myFriends = myDoc.data()?.friends || [];
-                if (!myFriends.includes(fromCode)) {
-                    myFriends.push(fromCode);
-                    await myRef.update({ friends: myFriends });
-                }
-                
-                // 상대방 친구 목록에도 추가
-                const fromUser = data.users.find(u => u.code === fromCode);
-                if (fromUser?.googleEmail) {
-                    const theirRef = db.collection('users').doc(fromUser.googleEmail);
-                    const theirDoc = await theirRef.get();
-                    const theirFriends = theirDoc.data()?.friends || [];
-                    if (!theirFriends.includes(currentUser.code)) {
-                        theirFriends.push(currentUser.code);
-                        await theirRef.update({ friends: theirFriends });
-                    }
-                }
-                
-                showToast('친구가 되었습니다!');
-                loadFriendsData();
-            } catch (error) {
-                console.error('친구 수락 실패:', error);
-                showToast('처리에 실패했습니다', 'error');
+        function toggleFollowFromModal() {
+            if (selectedUserForProfile) {
+                toggleFollow(selectedUserForProfile);
             }
         }
         
-        // 친구 요청 거절
-        async function rejectFriendRequest(reqId) {
-            if (!db) return;
-            
-            try {
-                await db.collection('friendRequests').doc(reqId).update({ status: 'rejected' });
-                showToast('요청을 거절했습니다');
-                loadFriendsData();
-            } catch (error) {
-                console.error('거절 실패:', error);
-            }
+        function closeUserProfileModal() {
+            document.getElementById('userProfileModal').classList.remove('show');
+            selectedUserForProfile = null;
         }
         
-        // 보낸 요청 취소
-        async function cancelFriendRequest(reqId) {
-            if (!db) return;
+        function sendMessageFromModal() {
+            if (!selectedUserForProfile) return;
+            const user = data.users.find(u => u.code === selectedUserForProfile);
+            if (!user) return;
             
-            try {
-                await db.collection('friendRequests').doc(reqId).delete();
-                showToast('요청을 취소했습니다');
-                loadFriendsData();
-            } catch (error) {
-                console.error('취소 실패:', error);
-            }
-        }
-        
-        // 친구 삭제
-        async function removeFriend(friendCode) {
-            if (!confirm('정말 친구를 삭제하시겠습니까?')) return;
-            if (!currentUser || !db) return;
-            
-            try {
-                // 내 친구 목록에서 삭제
-                const myRef = db.collection('users').doc(currentUser.googleEmail);
-                const myDoc = await myRef.get();
-                let myFriends = myDoc.data()?.friends || [];
-                myFriends = myFriends.filter(c => c !== friendCode);
-                await myRef.update({ friends: myFriends });
-                
-                // 상대방 친구 목록에서도 삭제
-                const friendUser = data.users.find(u => u.code === friendCode);
-                if (friendUser?.googleEmail) {
-                    const theirRef = db.collection('users').doc(friendUser.googleEmail);
-                    const theirDoc = await theirRef.get();
-                    let theirFriends = theirDoc.data()?.friends || [];
-                    theirFriends = theirFriends.filter(c => c !== currentUser.code);
-                    await theirRef.update({ friends: theirFriends });
-                }
-                
-                showToast('친구를 삭제했습니다');
-                loadFriendsData();
-            } catch (error) {
-                console.error('삭제 실패:', error);
-            }
-        }
-        
-        // 친구에게 쪽지 보내기
-        function sendMessageToFriend(code, name) {
-            // 쪽지 작성 모달 열기
+            closeUserProfileModal();
             document.getElementById('messageComposeModal').classList.add('show');
-            document.getElementById('composeRecipient').value = name;
-            document.getElementById('composeRecipient').dataset.code = code;
-            document.getElementById('composeContent').value = '';
-            document.getElementById('composeContent').focus();
+            document.getElementById('msgTo').value = user.name;
+            document.getElementById('msgContent').value = '';
         }
     </script>
 </body>
