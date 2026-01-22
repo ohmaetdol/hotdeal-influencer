@@ -521,6 +521,71 @@
         .profile-edit-item input[type="text"]{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:4px;font-size:13px;font-family:inherit}
         .profile-edit-item input[type="text"]:focus{outline:none;border-color:var(--primary)}
         
+        /* 인스타그램 스타일 프로필 */
+        .insta-profile-header{display:flex;align-items:center;gap:24px;margin-bottom:16px}
+        .insta-profile-avatar-wrap{position:relative;flex-shrink:0}
+        .insta-profile-avatar{width:86px;height:86px;border-radius:50%;background:var(--bg-secondary);display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:600;color:var(--text-light);overflow:hidden;border:3px solid #fff;box-shadow:0 0 0 1px var(--border)}
+        .insta-profile-avatar img{width:100%;height:100%;object-fit:cover}
+        .insta-avatar-edit{position:absolute;bottom:0;right:0;width:28px;height:28px;border-radius:50%;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,0.1)}
+        .insta-avatar-edit:hover{background:var(--bg-secondary)}
+        .insta-profile-stats{display:flex;gap:24px;flex:1;justify-content:center}
+        .insta-stat{text-align:center;cursor:pointer}
+        .insta-stat:hover{opacity:0.7}
+        .insta-stat-count{display:block;font-size:18px;font-weight:700}
+        .insta-stat-label{font-size:13px;color:var(--text-muted)}
+        
+        .insta-profile-info{margin-bottom:16px}
+        .insta-profile-name{font-size:16px;font-weight:600;margin-bottom:4px}
+        .insta-profile-grade{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:2px 10px;border-radius:12px;background:var(--bg-secondary);margin-bottom:8px}
+        .insta-profile-bio{font-size:14px;color:var(--text);line-height:1.5;margin-bottom:8px;white-space:pre-wrap}
+        .insta-profile-channels{display:flex;gap:12px;flex-wrap:wrap}
+        .insta-channel-icon{width:32px;height:32px;border-radius:50%;background:var(--bg-secondary);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;text-decoration:none}
+        .insta-channel-icon:hover{background:#e5e5e5;transform:scale(1.1)}
+        .insta-channel-icon svg{width:16px;height:16px;fill:var(--text)}
+        
+        .insta-edit-profile-btn{width:100%;padding:8px 16px;border:1px solid var(--border);border-radius:8px;background:#fff;font-size:14px;font-weight:600;cursor:pointer;margin-bottom:20px;transition:background .2s}
+        .insta-edit-profile-btn:hover{background:var(--bg-secondary)}
+        
+        .profile-activity-card{padding:16px;background:#fff;border:1px solid var(--border);border-radius:12px;margin-bottom:12px}
+        .profile-activity-card h3{font-size:14px;font-weight:600;margin-bottom:12px}
+        .profile-activity-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+        .activity-stat{text-align:center;padding:12px 8px;background:var(--bg-secondary);border-radius:8px}
+        .activity-stat-value{display:block;font-size:16px;font-weight:700;margin-bottom:2px}
+        .activity-stat-label{font-size:11px;color:var(--text-muted)}
+        
+        .profile-code-section{display:flex;align-items:center;gap:8px;padding:12px 16px;background:var(--bg-secondary);border-radius:8px;font-size:13px}
+        .profile-code-label{color:var(--text-muted)}
+        .profile-code-value{font-weight:600;font-family:monospace}
+        .profile-code-copy{padding:4px 12px;border:1px solid var(--border);border-radius:4px;background:#fff;font-size:12px;cursor:pointer}
+        .profile-code-copy:hover{background:var(--primary-light)}
+        
+        /* 프로필 편집 모달 */
+        .edit-profile-modal{background:#fff;border-radius:16px;width:90%;max-width:480px;max-height:85vh;overflow:hidden;display:flex;flex-direction:column}
+        .edit-profile-modal-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+        .edit-profile-modal-header h3{font-size:16px;font-weight:600}
+        .edit-profile-modal-body{padding:20px;flex:1;overflow-y:auto}
+        .edit-profile-field{margin-bottom:20px}
+        .edit-profile-field label{display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:var(--text-muted)}
+        .edit-profile-field input,.edit-profile-field textarea{width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit}
+        .edit-profile-field input:focus,.edit-profile-field textarea:focus{outline:none;border-color:var(--primary)}
+        .edit-profile-field textarea{resize:vertical;min-height:80px}
+        .edit-profile-field small{display:block;margin-top:4px;font-size:11px;color:var(--text-muted)}
+        .edit-profile-channels-grid{display:grid;gap:12px}
+        .edit-channel-item{display:flex;align-items:center;gap:8px}
+        .edit-channel-item input[type="checkbox"]{width:18px;height:18px}
+        .edit-channel-item label{font-size:13px;font-weight:500;min-width:80px}
+        .edit-channel-item input[type="text"]{flex:1}
+        .edit-profile-modal-footer{padding:16px 20px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end}
+        
+        @media(max-width:600px){
+            .insta-profile-header{flex-direction:column;text-align:center;gap:16px}
+            .insta-profile-avatar{width:72px;height:72px;font-size:28px}
+            .insta-profile-stats{gap:16px}
+            .insta-stat-count{font-size:16px}
+            .profile-activity-stats{grid-template-columns:1fr}
+            .activity-stat{padding:10px 8px}
+        }
+        
         @media(max-width:600px){
             .profile-card{padding:16px}
             .profile-header{flex-direction:column;text-align:center;gap:12px}
@@ -1314,7 +1379,6 @@
         .my-followers-card{text-align:center;padding:32px 20px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:16px;color:#fff;margin-bottom:20px}
         .my-followers-count{font-size:56px;font-weight:800;line-height:1}
         .my-followers-label{font-size:16px;font-weight:600;margin-top:4px;opacity:0.9}
-        .my-followers-sub{font-size:13px;margin-top:12px;opacity:0.7}
         
         /* 인기 인플루언서 */
         .popular-section{margin-bottom:24px}
@@ -1767,14 +1831,11 @@
                 <div class="my-followers-card">
                     <div class="my-followers-count" id="myFollowersCount">0</div>
                     <div class="my-followers-label">팔로워</div>
-                    <div class="my-followers-sub">
-                        <span id="followingCountSmall">0</span> 팔로잉
-                    </div>
                 </div>
                 
                 <!-- 인기 인플루언서 랭킹 -->
                 <div class="popular-section">
-                    <h3 class="section-subtitle">인기 인플루언서</h3>
+                    <h3 class="section-subtitle">🔥 인기 인플루언서</h3>
                     <div class="popular-list" id="popularList">
                         <!-- 동적 생성 -->
                     </div>
@@ -1986,114 +2047,71 @@
                 <div style="margin-bottom:20px">
                     <button class="btn btn-secondary btn-small" onclick="showDashSection('home', document.querySelector('.dash-nav a'))">← 홈으로 돌아가기</button>
                 </div>
-                <h1 class="page-title">내 프로필</h1>
                 
-                <div class="profile-card">
-                    <div class="profile-header">
-                        <div class="profile-avatar-wrap">
-                            <div class="profile-avatar" id="profileAvatar">U</div>
-                            <button class="profile-avatar-edit" onclick="document.getElementById('profileImageInput').click()" title="프로필 사진 변경">✎</button>
-                            <input type="file" id="profileImageInput" accept="image/*" style="display:none" onchange="handleProfileImageUpload(event)">
+                <!-- 인스타그램 스타일 프로필 헤더 -->
+                <div class="insta-profile-header">
+                    <div class="insta-profile-avatar-wrap">
+                        <div class="insta-profile-avatar" id="profileAvatar">U</div>
+                        <button class="insta-avatar-edit" onclick="document.getElementById('profileImageInput').click()">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                        </button>
+                        <input type="file" id="profileImageInput" accept="image/*" style="display:none" onchange="handleProfileImageUpload(event)">
+                    </div>
+                    <div class="insta-profile-stats">
+                        <div class="insta-stat">
+                            <span class="insta-stat-count" id="profilePostCount">0</span>
+                            <span class="insta-stat-label">게시물</span>
                         </div>
-                        <div class="profile-info">
-                            <h2 id="profileName">사용자</h2>
-                            <p class="profile-code">추천코드: <strong id="profileCode">-</strong></p>
+                        <div class="insta-stat" onclick="showDashSection('follow', null);switchFollowTab('followers', document.querySelector('.follow-tab'))">
+                            <span class="insta-stat-count" id="profileFollowers">0</span>
+                            <span class="insta-stat-label">팔로워</span>
                         </div>
                     </div>
-                    
-                    <!-- 프로필 이미지 URL 입력 -->
-                    <div class="profile-section">
-                        <h3>프로필 사진 <button class="btn btn-small" style="margin-left:8px;padding:4px 12px;font-size:11px" onclick="toggleEditProfileImage()">변경</button></h3>
-                        <div class="profile-image-edit hidden" id="profileImageEdit">
-                            <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px">이미지 URL을 입력하거나 위 프로필 사진의 버튼을 눌러 업로드하세요</p>
-                            <input type="text" id="profileImageUrl" placeholder="https://이미지주소.jpg" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:4px;font-size:13px;margin-bottom:8px">
-                            <div style="display:flex;gap:8px">
-                                <button class="btn btn-primary btn-small" onclick="saveProfileImage()">저장</button>
-                                <button class="btn btn-secondary btn-small" onclick="toggleEditProfileImage()">취소</button>
-                            </div>
+                </div>
+                
+                <div class="insta-profile-info">
+                    <h2 class="insta-profile-name" id="profileName">사용자</h2>
+                    <div class="insta-profile-grade" id="profileGradeBadge">🌱 씨앗</div>
+                    <p class="insta-profile-bio" id="profileBio">자기소개를 입력해주세요</p>
+                    <div class="insta-profile-channels" id="profileChannelIcons">
+                        <!-- 채널 아이콘들 -->
+                    </div>
+                </div>
+                
+                <button class="insta-edit-profile-btn" onclick="openEditProfileModal()">프로필 편집</button>
+                
+                <!-- 활동 요약 카드 -->
+                <div class="profile-activity-card">
+                    <h3>활동 요약</h3>
+                    <div class="profile-activity-stats">
+                        <div class="activity-stat">
+                            <span class="activity-stat-value" id="profileTotalSales">0건</span>
+                            <span class="activity-stat-label">총 판매</span>
+                        </div>
+                        <div class="activity-stat">
+                            <span class="activity-stat-value" id="profileTotalEarnings">₩0</span>
+                            <span class="activity-stat-label">총 수익</span>
+                        </div>
+                        <div class="activity-stat">
+                            <span class="activity-stat-value" id="profileJoinDate">-</span>
+                            <span class="activity-stat-label">가입일</span>
                         </div>
                     </div>
-                    
-                    <div class="profile-section">
-                        <h3>연결된 채널 <button class="btn btn-small" style="margin-left:8px;padding:4px 12px;font-size:11px" onclick="toggleEditChannels()">수정</button></h3>
-                        <div class="profile-channels" id="profileChannels">
-                            <!-- 채널 링크가 여기 표시됨 -->
-                        </div>
-                        <!-- 채널 수정 폼 -->
-                        <div class="profile-edit-channels hidden" id="profileEditChannels">
-                            <div class="profile-edit-item">
-                                <label><input type="checkbox" id="editChYoutube"> YouTube</label>
-                                <input type="text" id="editUrlYoutube" placeholder="https://youtube.com/@채널명">
-                            </div>
-                            <div class="profile-edit-item">
-                                <label><input type="checkbox" id="editChInstagram"> Instagram</label>
-                                <input type="text" id="editUrlInstagram" placeholder="https://instagram.com/아이디">
-                            </div>
-                            <div class="profile-edit-item">
-                                <label><input type="checkbox" id="editChBlog"> 블로그</label>
-                                <input type="text" id="editUrlBlog" placeholder="https://blog.naver.com/아이디">
-                            </div>
-                            <div class="profile-edit-item">
-                                <label><input type="checkbox" id="editChTiktok"> TikTok</label>
-                                <input type="text" id="editUrlTiktok" placeholder="https://tiktok.com/@아이디">
-                            </div>
-                            <div style="margin-top:12px;display:flex;gap:8px">
-                                <button class="btn btn-primary btn-small" onclick="saveChannelUrls()">저장</button>
-                                <button class="btn btn-secondary btn-small" onclick="toggleEditChannels()">취소</button>
-                            </div>
-                        </div>
+                </div>
+                
+                <!-- 관심 카테고리 -->
+                <div class="profile-activity-card">
+                    <h3>관심 카테고리</h3>
+                    <div class="profile-categories" id="profileCategories">
+                        <!-- 카테고리가 여기 표시됨 -->
                     </div>
-                    
-                    <div class="profile-section">
-                        <h3>관심 카테고리</h3>
-                        <div class="profile-categories" id="profileCategories">
-                            <!-- 카테고리가 여기 표시됨 -->
-                        </div>
-                    </div>
-                    
-                    <div class="profile-section">
-                        <h3>내 공구방 링크 <button class="btn btn-small" style="margin-left:8px;padding:4px 12px;font-size:11px" onclick="toggleEditShopLink()">설정</button></h3>
-                        <div id="profileShopDisplay">
-                            <!-- 공구방 링크 표시 -->
-                        </div>
-                        <div class="profile-edit-channels hidden" id="profileEditShopLink">
-                            <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px">다른 사람들이 내 프로필에서 공구방으로 바로 방문할 수 있어요</p>
-                            <div class="profile-edit-item">
-                                <label>공구방 이름</label>
-                                <input type="text" id="editShopTitle" placeholder="예: 사찍남의 맛집 공구방">
-                            </div>
-                            <div class="profile-edit-item">
-                                <label>공구방 링크</label>
-                                <input type="text" id="editShopLink" placeholder="https://open.kakao.com/...">
-                            </div>
-                            <div class="profile-edit-item">
-                                <label>한줄 소개</label>
-                                <input type="text" id="editShopDesc" placeholder="예: 매주 맛있는 공구 진행해요!">
-                            </div>
-                            <div style="margin-top:12px;display:flex;gap:8px">
-                                <button class="btn btn-primary btn-small" onclick="saveShopLink()">저장</button>
-                                <button class="btn btn-secondary btn-small" onclick="toggleEditShopLink()">취소</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="profile-section">
-                        <h3>활동 요약</h3>
-                        <div class="profile-stats">
-                            <div class="profile-stat">
-                                <span class="profile-stat-value" id="profileTotalSales">0건</span>
-                                <span class="profile-stat-label">총 판매</span>
-                            </div>
-                            <div class="profile-stat">
-                                <span class="profile-stat-value" id="profileTotalEarnings">₩0</span>
-                                <span class="profile-stat-label">총 수익</span>
-                            </div>
-                            <div class="profile-stat">
-                                <span class="profile-stat-value" id="profileJoinDate">-</span>
-                                <span class="profile-stat-label">가입일</span>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+                
+                <!-- 추천코드 (작게) -->
+                <div class="profile-code-section">
+                    <span class="profile-code-label">내 추천코드</span>
+                    <span class="profile-code-value" id="profileCode">-</span>
+                    <button class="profile-code-copy" onclick="copyMyCode()">복사</button>
                 </div>
             </div>
         </main>
@@ -2215,16 +2233,67 @@
                         <div class="user-profile-stat-count" id="profileModalFollowers">0</div>
                         <div class="user-profile-stat-label">팔로워</div>
                     </div>
-                    <div class="user-profile-stat">
-                        <div class="user-profile-stat-count" id="profileModalFollowing">0</div>
-                        <div class="user-profile-stat-label">팔로잉</div>
-                    </div>
                 </div>
             </div>
             <div class="user-profile-actions">
                 <button class="follow-btn" id="profileModalFollowBtn" onclick="toggleFollowFromModal()">팔로우</button>
                 <button class="msg-btn" onclick="sendMessageFromModal()">쪽지</button>
                 <button class="msg-btn" onclick="closeUserProfileModal()">닫기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 프로필 편집 모달 -->
+    <div class="modal-overlay" id="editProfileModal">
+        <div class="edit-profile-modal">
+            <div class="edit-profile-modal-header">
+                <h3>프로필 편집</h3>
+                <button class="message-modal-close" onclick="closeEditProfileModal()">×</button>
+            </div>
+            <div class="edit-profile-modal-body">
+                <div class="edit-profile-field">
+                    <label>이름</label>
+                    <input type="text" id="editProfileName" placeholder="표시될 이름">
+                </div>
+                <div class="edit-profile-field">
+                    <label>자기소개</label>
+                    <textarea id="editProfileBio" placeholder="자기소개를 입력하세요"></textarea>
+                    <small>최대 150자</small>
+                </div>
+                <div class="edit-profile-field">
+                    <label>프로필 이미지 URL</label>
+                    <input type="text" id="editProfileImageUrl" placeholder="https://이미지주소.jpg">
+                    <small>또는 프로필 페이지에서 직접 업로드</small>
+                </div>
+                <div class="edit-profile-field">
+                    <label>SNS 채널</label>
+                    <div class="edit-profile-channels-grid">
+                        <div class="edit-channel-item">
+                            <input type="checkbox" id="editChYoutube2">
+                            <label>YouTube</label>
+                            <input type="text" id="editUrlYoutube2" placeholder="https://youtube.com/@채널명">
+                        </div>
+                        <div class="edit-channel-item">
+                            <input type="checkbox" id="editChInstagram2">
+                            <label>Instagram</label>
+                            <input type="text" id="editUrlInstagram2" placeholder="https://instagram.com/아이디">
+                        </div>
+                        <div class="edit-channel-item">
+                            <input type="checkbox" id="editChBlog2">
+                            <label>블로그</label>
+                            <input type="text" id="editUrlBlog2" placeholder="https://blog.naver.com/아이디">
+                        </div>
+                        <div class="edit-channel-item">
+                            <input type="checkbox" id="editChTiktok2">
+                            <label>TikTok</label>
+                            <input type="text" id="editUrlTiktok2" placeholder="https://tiktok.com/@아이디">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="edit-profile-modal-footer">
+                <button class="btn btn-secondary" onclick="closeEditProfileModal()">취소</button>
+                <button class="btn btn-primary" onclick="saveEditProfile()">저장</button>
             </div>
         </div>
     </div>
@@ -4190,10 +4259,9 @@
             }
         }
         
-        function updateProfileSection() {
+        async function updateProfileSection() {
             if (!currentUser) return;
             
-            // 기본 정보
             // 프로필 이미지
             const avatarEl = document.getElementById('profileAvatar');
             if (currentUser.profileImage) {
@@ -4201,59 +4269,54 @@
             } else {
                 avatarEl.textContent = currentUser.name.charAt(0);
             }
+            
+            // 기본 정보
             document.getElementById('profileName').textContent = currentUser.name;
             document.getElementById('profileCode').textContent = currentUser.code || '-';
             
-            // 채널 링크
-            const channelsContainer = document.getElementById('profileChannels');
-            const channelUrls = currentUser.channelUrls || {};
-            const channelConfig = {
-                youtube: { name: 'YouTube', icon: 'YT', class: 'youtube' },
-                instagram: { name: 'Instagram', icon: 'IG', class: 'instagram' },
-                blog: { name: '블로그', icon: 'B', class: 'blog' },
-                tiktok: { name: 'TikTok', icon: 'TT', class: 'tiktok' }
-            };
+            // 등급 표시
+            const mySales = data.sales.filter(s => s.userCode === currentUser.code);
+            const totalAmount = mySales.reduce((sum, s) => sum + (s.amount || 0), 0);
+            const grade = getUserGrade(totalAmount);
+            document.getElementById('profileGradeBadge').innerHTML = `${grade.icon} ${grade.name}`;
+            document.getElementById('profileGradeBadge').style.background = grade.bgColor;
+            document.getElementById('profileGradeBadge').style.color = grade.color;
             
-            let channelHtml = '';
-            let hasChannel = false;
+            // 자기소개
+            document.getElementById('profileBio').textContent = currentUser.bio || '자기소개를 입력해주세요';
             
-            Object.keys(channelConfig).forEach(key => {
-                if (currentUser.channels && currentUser.channels[key]) {
-                    hasChannel = true;
-                    const config = channelConfig[key];
-                    const url = channelUrls[key] || '';
-                    channelHtml += `
-                        <div class="profile-channel-item">
-                            <div class="profile-channel-icon ${config.class}">${config.icon}</div>
-                            <div class="profile-channel-info">
-                                <div class="profile-channel-name">${config.name}</div>
-                                ${url ? `<a href="${url}" target="_blank" class="profile-channel-url">${url}</a>` : '<span style="font-size:12px;color:var(--text-muted)">URL 미등록</span>'}
-                            </div>
-                        </div>
-                    `;
-                }
-            });
-            
-            channelsContainer.innerHTML = hasChannel ? channelHtml : '<p class="no-channel">등록된 채널이 없습니다</p>';
-            
-            // 공구방 링크 표시
-            const shopDisplay = document.getElementById('profileShopDisplay');
-            if (currentUser.shopLink && currentUser.shopLink.trim()) {
-                const shopTitle = currentUser.shopTitle || `${currentUser.name}의 공구방`;
-                const shopDesc = currentUser.shopDesc || '';
-                shopDisplay.innerHTML = `
-                    <a href="${currentUser.shopLink}" target="_blank" style="display:flex;align-items:center;gap:12px;padding:12px;background:#f8f9fa;border-radius:8px;text-decoration:none;color:var(--text);margin-top:10px">
-                        <span style="font-size:20px">🛒</span>
-                        <div style="flex:1">
-                            <div style="font-size:14px;font-weight:600">${shopTitle}</div>
-                            ${shopDesc ? `<div style="font-size:12px;color:var(--text-muted)">${shopDesc}</div>` : ''}
-                        </div>
-                        <span style="color:var(--text-muted)">→</span>
-                    </a>
-                `;
-            } else {
-                shopDisplay.innerHTML = '<p class="no-channel" style="margin-top:10px">등록된 공구방 링크가 없습니다</p>';
+            // 팔로워 수
+            try {
+                const userDoc = await db.collection('users').doc(currentUser.googleEmail).get();
+                const userData = userDoc.data();
+                document.getElementById('profileFollowers').textContent = userData?.followers?.length || 0;
+            } catch (e) {
+                document.getElementById('profileFollowers').textContent = '0';
             }
+            
+            // 게시물 수 (커뮤니티 글)
+            const myPosts = communityPosts.filter(p => p.author?.code === currentUser.code);
+            document.getElementById('profilePostCount').textContent = myPosts.length;
+            
+            // 채널 아이콘들
+            const channelIcons = document.getElementById('profileChannelIcons');
+            const channelUrls = currentUser.channelUrls || {};
+            let iconHtml = '';
+            
+            if (currentUser.channels?.youtube && channelUrls.youtube) {
+                iconHtml += `<a href="${channelUrls.youtube}" target="_blank" class="insta-channel-icon" title="YouTube"><svg viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg></a>`;
+            }
+            if (currentUser.channels?.instagram && channelUrls.instagram) {
+                iconHtml += `<a href="${channelUrls.instagram}" target="_blank" class="insta-channel-icon" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>`;
+            }
+            if (currentUser.channels?.blog && channelUrls.blog) {
+                iconHtml += `<a href="${channelUrls.blog}" target="_blank" class="insta-channel-icon" title="블로그"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></a>`;
+            }
+            if (currentUser.channels?.tiktok && channelUrls.tiktok) {
+                iconHtml += `<a href="${channelUrls.tiktok}" target="_blank" class="insta-channel-icon" title="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></a>`;
+            }
+            
+            channelIcons.innerHTML = iconHtml || '<span style="font-size:12px;color:var(--text-muted)">등록된 채널이 없습니다</span>';
             
             // 관심 카테고리
             const categoriesContainer = document.getElementById('profileCategories');
@@ -4270,13 +4333,88 @@
             categoriesContainer.innerHTML = catHtml || '<p class="no-channel">등록된 카테고리가 없습니다</p>';
             
             // 활동 요약
-            const mySales = data.sales.filter(s => s.userCode === currentUser.code);
             document.getElementById('profileTotalSales').textContent = mySales.reduce((s,x) => s + (x.quantity || 0), 0) + '건';
             document.getElementById('profileTotalEarnings').textContent = '₩' + mySales.reduce((s,x) => s + (x.commission || 0), 0).toLocaleString();
             document.getElementById('profileJoinDate').textContent = currentUser.createdAt ? new Date(currentUser.createdAt).toLocaleDateString('ko-KR') : '-';
         }
         
+        // 프로필 편집 모달
+        function openEditProfileModal() {
+            document.getElementById('editProfileName').value = currentUser.name || '';
+            document.getElementById('editProfileBio').value = currentUser.bio || '';
+            document.getElementById('editProfileImageUrl').value = currentUser.profileImage || '';
+            
+            document.getElementById('editChYoutube2').checked = currentUser.channels?.youtube || false;
+            document.getElementById('editChInstagram2').checked = currentUser.channels?.instagram || false;
+            document.getElementById('editChBlog2').checked = currentUser.channels?.blog || false;
+            document.getElementById('editChTiktok2').checked = currentUser.channels?.tiktok || false;
+            
+            document.getElementById('editUrlYoutube2').value = currentUser.channelUrls?.youtube || '';
+            document.getElementById('editUrlInstagram2').value = currentUser.channelUrls?.instagram || '';
+            document.getElementById('editUrlBlog2').value = currentUser.channelUrls?.blog || '';
+            document.getElementById('editUrlTiktok2').value = currentUser.channelUrls?.tiktok || '';
+            
+            document.getElementById('editProfileModal').classList.add('show');
+        }
+        
+        function closeEditProfileModal() {
+            document.getElementById('editProfileModal').classList.remove('show');
+        }
+        
+        async function saveEditProfile() {
+            if (!currentUser || !db) return;
+            
+            const name = document.getElementById('editProfileName').value.trim();
+            const bio = document.getElementById('editProfileBio').value.trim().substring(0, 150);
+            const profileImage = document.getElementById('editProfileImageUrl').value.trim();
+            
+            const channels = {
+                youtube: document.getElementById('editChYoutube2').checked,
+                instagram: document.getElementById('editChInstagram2').checked,
+                blog: document.getElementById('editChBlog2').checked,
+                tiktok: document.getElementById('editChTiktok2').checked
+            };
+            
+            const channelUrls = {
+                youtube: document.getElementById('editUrlYoutube2').value.trim(),
+                instagram: document.getElementById('editUrlInstagram2').value.trim(),
+                blog: document.getElementById('editUrlBlog2').value.trim(),
+                tiktok: document.getElementById('editUrlTiktok2').value.trim()
+            };
+            
+            try {
+                await db.collection('users').doc(currentUser.googleEmail).update({
+                    name,
+                    bio,
+                    profileImage,
+                    channels,
+                    channelUrls
+                });
+                
+                currentUser.name = name;
+                currentUser.bio = bio;
+                currentUser.profileImage = profileImage;
+                currentUser.channels = channels;
+                currentUser.channelUrls = channelUrls;
+                
+                closeEditProfileModal();
+                updateProfileSection();
+                showToast('프로필이 저장되었습니다');
+            } catch (error) {
+                console.error('프로필 저장 실패:', error);
+                showToast('저장에 실패했습니다');
+            }
+        }
+        
+        function copyMyCode() {
+            if (!currentUser?.code) return;
+            navigator.clipboard.writeText(currentUser.code).then(() => {
+                showToast('추천코드가 복사되었습니다');
+            });
+        }
+        
         function toggleEditChannels() {
+            // 기존 함수 유지 (호환성)
             const editSection = document.getElementById('profileEditChannels');
             const isHidden = editSection.classList.contains('hidden');
             
@@ -5296,7 +5434,6 @@
         // UI 업데이트
         function updateFollowUI() {
             document.getElementById('myFollowersCount').textContent = followData.followers.length;
-            document.getElementById('followingCountSmall').textContent = followData.following.length;
             
             renderFollowersList();
             renderFollowingList();
