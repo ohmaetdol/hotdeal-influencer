@@ -642,9 +642,29 @@
             .section-header{margin-bottom:12px}
             .section-header h2{font-size:14px}
             
-            /* 쪽지 모바일 */
-            .message-dropdown{width:calc(100vw - 24px);right:-60px}
-            .message-modal{width:95%;max-width:none}
+            /* 쪽지 모바일 최적화 */
+            .message-dropdown{position:fixed;top:auto;bottom:0;left:0;right:0;width:100%;max-width:100%;max-height:70vh;border-radius:16px 16px 0 0;box-shadow:0 -4px 24px rgba(0,0,0,0.15)}
+            .message-dropdown-header{padding:14px 16px}
+            .message-dropdown-header h3{font-size:15px}
+            .message-list{max-height:calc(70vh - 140px)}
+            .message-item{padding:12px 16px}
+            .message-item-avatar{width:36px;height:36px;font-size:13px}
+            .message-item-sender{font-size:13px}
+            .message-item-preview{font-size:12px}
+            .message-compose-btn{margin:10px 16px;width:calc(100% - 32px)}
+            
+            .message-modal{width:100%;max-width:100%;height:100vh;max-height:100vh;border-radius:0}
+            .message-modal-header{padding:14px 16px;position:sticky;top:0;background:#fff;z-index:10}
+            .message-modal-header h3{font-size:15px}
+            .message-modal-body{padding:16px;flex:1;overflow-y:auto}
+            .message-detail-sender{margin-bottom:14px;padding-bottom:14px}
+            .message-detail-avatar{width:42px;height:42px;font-size:16px}
+            .message-detail-info h4{font-size:14px}
+            .message-detail-content{font-size:14px;line-height:1.6}
+            .message-compose-form textarea{min-height:200px;font-size:16px}
+            .message-compose-form .input-group input{font-size:16px;padding:14px}
+            .message-modal-footer{padding:14px 16px;position:sticky;bottom:0;background:#fff}
+            
             .message-btn{width:32px;height:32px;font-size:16px}
             
             /* 상단 카테고리 바 모바일 */
@@ -1275,6 +1295,52 @@
             font-size:12px;
             display:none;
         }
+
+        /* 친구 기능 CSS */
+        .friends-section{margin-top:24px}
+        .friends-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+        .friends-header h3{font-size:16px;font-weight:600}
+        .friends-tabs{display:flex;gap:8px;margin-bottom:16px}
+        .friends-tab{padding:8px 16px;border:1px solid var(--border);border-radius:20px;background:#fff;font-size:13px;cursor:pointer;transition:all .2s}
+        .friends-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+        .friends-tab .count{margin-left:4px;opacity:0.8}
+        .friend-search{display:flex;gap:8px;margin-bottom:16px}
+        .friend-search input{flex:1;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px}
+        .friend-search input:focus{outline:none;border-color:var(--primary)}
+        .friend-list{display:flex;flex-direction:column;gap:8px}
+        .friend-item{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#fff;border:1px solid var(--border);border-radius:12px;transition:all .2s}
+        .friend-item:hover{border-color:#ccc;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+        .friend-avatar{width:48px;height:48px;border-radius:50%;background:var(--bg-secondary);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;color:var(--text-light);overflow:hidden}
+        .friend-avatar img{width:100%;height:100%;object-fit:cover}
+        .friend-info{flex:1;min-width:0}
+        .friend-name{font-size:14px;font-weight:600;margin-bottom:2px}
+        .friend-code{font-size:12px;color:var(--text-muted)}
+        .friend-grade{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:2px 8px;border-radius:10px;background:var(--bg-secondary)}
+        .friend-actions{display:flex;gap:6px}
+        .friend-btn{padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;border:1px solid var(--border);background:#fff;transition:all .2s}
+        .friend-btn:hover{background:var(--bg-secondary)}
+        .friend-btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+        .friend-btn.primary:hover{background:#1557b0}
+        .friend-btn.danger{color:var(--error);border-color:var(--error)}
+        .friend-btn.danger:hover{background:#fef2f2}
+        .friend-empty{text-align:center;padding:40px 20px;color:var(--text-muted)}
+        .friend-empty-icon{font-size:48px;margin-bottom:12px;opacity:0.5}
+        .friend-empty p{font-size:14px}
+        .friend-request-badge{background:var(--error);color:#fff;font-size:11px;padding:2px 6px;border-radius:10px;margin-left:4px}
+        
+        /* 친구 검색 결과 */
+        .friend-search-results{margin-top:16px}
+        .friend-search-result{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg-secondary);border-radius:12px;margin-bottom:8px}
+        
+        /* 반응형 */
+        @media(max-width:480px){
+            .friends-tabs{flex-wrap:wrap}
+            .friends-tab{padding:6px 12px;font-size:12px}
+            .friend-item{padding:10px 12px}
+            .friend-avatar{width:40px;height:40px;font-size:16px}
+            .friend-name{font-size:13px}
+            .friend-btn{padding:5px 10px;font-size:11px}
+        }
     </style>
 </head>
 <body>
@@ -1463,6 +1529,7 @@
                 <nav class="dash-nav">
                     <a class="active" onclick="showDashSection('home', this)">홈</a>
                     <a onclick="showDashSection('report', this)">리포트</a>
+                    <a onclick="showDashSection('friends', this)">친구</a>
                     <a onclick="showDashSection('community', this)">커뮤니티</a>
                 </nav>
             </div>
@@ -1626,6 +1693,55 @@
                                 <p class="ranking-note">판매 데이터 집계 중...</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 친구 섹션 -->
+            <div id="dashFriends" class="hidden">
+                <h1 class="page-title">친구</h1>
+                
+                <!-- 친구 검색 -->
+                <div class="friend-search">
+                    <input type="text" id="friendSearchInput" placeholder="이름 또는 추천코드로 검색" onkeyup="handleFriendSearch(event)">
+                    <button class="btn btn-primary btn-small" onclick="searchFriends()">검색</button>
+                </div>
+                
+                <!-- 검색 결과 -->
+                <div class="friend-search-results hidden" id="friendSearchResults">
+                    <h4 style="font-size:14px;margin-bottom:12px;color:var(--text-light)">검색 결과</h4>
+                    <div id="friendSearchList"></div>
+                </div>
+                
+                <!-- 친구 탭 -->
+                <div class="friends-tabs">
+                    <button class="friends-tab active" onclick="switchFriendsTab('list', this)">내 친구 <span class="count" id="friendCount">0</span></button>
+                    <button class="friends-tab" onclick="switchFriendsTab('requests', this)">받은 요청 <span class="count" id="requestCount">0</span></button>
+                    <button class="friends-tab" onclick="switchFriendsTab('sent', this)">보낸 요청 <span class="count" id="sentCount">0</span></button>
+                </div>
+                
+                <!-- 내 친구 목록 -->
+                <div id="friendsListTab" class="friend-list">
+                    <div class="friend-empty">
+                        <div class="friend-empty-icon">👥</div>
+                        <p>아직 친구가 없습니다</p>
+                        <p style="font-size:12px;margin-top:8px">위에서 검색해서 친구를 추가해보세요!</p>
+                    </div>
+                </div>
+                
+                <!-- 받은 요청 -->
+                <div id="friendsRequestsTab" class="friend-list hidden">
+                    <div class="friend-empty">
+                        <div class="friend-empty-icon">📬</div>
+                        <p>받은 친구 요청이 없습니다</p>
+                    </div>
+                </div>
+                
+                <!-- 보낸 요청 -->
+                <div id="friendsSentTab" class="friend-list hidden">
+                    <div class="friend-empty">
+                        <div class="friend-empty-icon">📤</div>
+                        <p>보낸 친구 요청이 없습니다</p>
                     </div>
                 </div>
             </div>
@@ -1936,6 +2052,9 @@
                 </button>
                 <button class="mobile-nav-item" onclick="showDashSectionMobile('report', this)" data-section="report">
                     <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg></span>
+                </button>
+                <button class="mobile-nav-item" onclick="showDashSectionMobile('friends', this)" data-section="friends">
+                    <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></span>
                 </button>
                 <button class="mobile-nav-item" onclick="showDashSectionMobile('community', this)" data-section="community">
                     <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/></svg></span>
@@ -3613,6 +3732,7 @@
             document.getElementById('dashCommunity').classList.add('hidden');
             document.getElementById('dashReport').classList.add('hidden');
             document.getElementById('dashProfile').classList.add('hidden');
+            document.getElementById('dashFriends').classList.add('hidden');
             if (section === 'home') document.getElementById('dashHome').classList.remove('hidden');
             if (section === 'community') {
                 document.getElementById('dashCommunity').classList.remove('hidden');
@@ -3626,6 +3746,10 @@
             if (section === 'profile') {
                 document.getElementById('dashProfile').classList.remove('hidden');
                 updateProfileSection();
+            }
+            if (section === 'friends') {
+                document.getElementById('dashFriends').classList.remove('hidden');
+                loadFriendsData();
             }
             document.querySelectorAll('.dash-nav a').forEach(a => a.classList.remove('active'));
             if (el) el.classList.add('active');
@@ -3646,6 +3770,7 @@
             document.getElementById('dashCommunity').classList.add('hidden');
             document.getElementById('dashReport').classList.add('hidden');
             document.getElementById('dashProfile').classList.add('hidden');
+            document.getElementById('dashFriends').classList.add('hidden');
             
             if (section === 'home') document.getElementById('dashHome').classList.remove('hidden');
             if (section === 'community') {
@@ -3660,6 +3785,10 @@
             if (section === 'profile') {
                 document.getElementById('dashProfile').classList.remove('hidden');
                 updateProfileSection();
+            }
+            if (section === 'friends') {
+                document.getElementById('dashFriends').classList.remove('hidden');
+                loadFriendsData();
             }
             
             // 모바일 하단 네비게이션 활성화 상태 업데이트
@@ -4755,6 +4884,397 @@
                 el.textContent = '-';
                 el.className = 'scorecard-stat-change neutral';
             }
+        }
+
+        // ============================================
+        // 친구 기능
+        // ============================================
+        
+        let friendsData = {
+            friends: [],
+            requests: [],
+            sent: []
+        };
+        
+        // 친구 데이터 로드
+        async function loadFriendsData() {
+            if (!currentUser || !db) return;
+            
+            try {
+                // 내 친구 목록 (user 문서에서)
+                const userDoc = await db.collection('users').doc(currentUser.googleEmail).get();
+                const userData = userDoc.data();
+                friendsData.friends = userData?.friends || [];
+                
+                // 받은 요청
+                const requestsSnapshot = await db.collection('friendRequests')
+                    .where('to', '==', currentUser.code)
+                    .where('status', '==', 'pending')
+                    .get();
+                friendsData.requests = requestsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                
+                // 보낸 요청
+                const sentSnapshot = await db.collection('friendRequests')
+                    .where('from', '==', currentUser.code)
+                    .where('status', '==', 'pending')
+                    .get();
+                friendsData.sent = sentSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                
+                updateFriendsUI();
+            } catch (error) {
+                console.error('친구 데이터 로드 실패:', error);
+            }
+        }
+        
+        // UI 업데이트
+        function updateFriendsUI() {
+            // 카운트 업데이트
+            document.getElementById('friendCount').textContent = friendsData.friends.length;
+            document.getElementById('requestCount').textContent = friendsData.requests.length;
+            document.getElementById('sentCount').textContent = friendsData.sent.length;
+            
+            // 현재 탭 렌더링
+            renderFriendsList();
+            renderRequestsList();
+            renderSentList();
+        }
+        
+        // 친구 목록 렌더링
+        function renderFriendsList() {
+            const container = document.getElementById('friendsListTab');
+            
+            if (friendsData.friends.length === 0) {
+                container.innerHTML = `
+                    <div class="friend-empty">
+                        <div class="friend-empty-icon">👥</div>
+                        <p>아직 친구가 없습니다</p>
+                        <p style="font-size:12px;margin-top:8px">위에서 검색해서 친구를 추가해보세요!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // 친구 코드로 사용자 정보 가져오기
+            const friendUsers = friendsData.friends.map(code => {
+                const user = data.users.find(u => u.code === code);
+                return user;
+            }).filter(Boolean);
+            
+            container.innerHTML = friendUsers.map(friend => {
+                const userSales = data.sales.filter(s => s.userCode === friend.code);
+                const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
+                const grade = getUserGrade(totalAmount);
+                
+                return `
+                    <div class="friend-item">
+                        <div class="friend-avatar" style="background:${grade.bgColor};color:${grade.color}">
+                            ${friend.profileImage ? `<img src="${friend.profileImage}" alt="">` : friend.name?.charAt(0) || 'U'}
+                        </div>
+                        <div class="friend-info">
+                            <div class="friend-name">${friend.name || '-'}</div>
+                            <div class="friend-code">${friend.code || '-'}</div>
+                            <span class="friend-grade" style="background:${grade.bgColor};color:${grade.color}">${grade.icon} ${grade.name}</span>
+                        </div>
+                        <div class="friend-actions">
+                            <button class="friend-btn" onclick="sendMessageToFriend('${friend.code}', '${friend.name}')">쪽지</button>
+                            <button class="friend-btn danger" onclick="removeFriend('${friend.code}')">삭제</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // 받은 요청 목록 렌더링
+        function renderRequestsList() {
+            const container = document.getElementById('friendsRequestsTab');
+            
+            if (friendsData.requests.length === 0) {
+                container.innerHTML = `
+                    <div class="friend-empty">
+                        <div class="friend-empty-icon">📬</div>
+                        <p>받은 친구 요청이 없습니다</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = friendsData.requests.map(req => {
+                const fromUser = data.users.find(u => u.code === req.from);
+                if (!fromUser) return '';
+                
+                const userSales = data.sales.filter(s => s.userCode === fromUser.code);
+                const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
+                const grade = getUserGrade(totalAmount);
+                
+                return `
+                    <div class="friend-item">
+                        <div class="friend-avatar" style="background:${grade.bgColor};color:${grade.color}">
+                            ${fromUser.profileImage ? `<img src="${fromUser.profileImage}" alt="">` : fromUser.name?.charAt(0) || 'U'}
+                        </div>
+                        <div class="friend-info">
+                            <div class="friend-name">${fromUser.name || '-'}</div>
+                            <div class="friend-code">${fromUser.code || '-'}</div>
+                            <span class="friend-grade" style="background:${grade.bgColor};color:${grade.color}">${grade.icon} ${grade.name}</span>
+                        </div>
+                        <div class="friend-actions">
+                            <button class="friend-btn primary" onclick="acceptFriendRequest('${req.id}', '${req.from}')">수락</button>
+                            <button class="friend-btn danger" onclick="rejectFriendRequest('${req.id}')">거절</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // 보낸 요청 목록 렌더링
+        function renderSentList() {
+            const container = document.getElementById('friendsSentTab');
+            
+            if (friendsData.sent.length === 0) {
+                container.innerHTML = `
+                    <div class="friend-empty">
+                        <div class="friend-empty-icon">📤</div>
+                        <p>보낸 친구 요청이 없습니다</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = friendsData.sent.map(req => {
+                const toUser = data.users.find(u => u.code === req.to);
+                if (!toUser) return '';
+                
+                const userSales = data.sales.filter(s => s.userCode === toUser.code);
+                const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
+                const grade = getUserGrade(totalAmount);
+                
+                return `
+                    <div class="friend-item">
+                        <div class="friend-avatar" style="background:${grade.bgColor};color:${grade.color}">
+                            ${toUser.profileImage ? `<img src="${toUser.profileImage}" alt="">` : toUser.name?.charAt(0) || 'U'}
+                        </div>
+                        <div class="friend-info">
+                            <div class="friend-name">${toUser.name || '-'}</div>
+                            <div class="friend-code">${toUser.code || '-'}</div>
+                            <span class="friend-grade" style="background:${grade.bgColor};color:${grade.color}">${grade.icon} ${grade.name}</span>
+                        </div>
+                        <div class="friend-actions">
+                            <button class="friend-btn danger" onclick="cancelFriendRequest('${req.id}')">취소</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // 탭 전환
+        function switchFriendsTab(tab, el) {
+            document.querySelectorAll('.friends-tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            
+            document.getElementById('friendsListTab').classList.add('hidden');
+            document.getElementById('friendsRequestsTab').classList.add('hidden');
+            document.getElementById('friendsSentTab').classList.add('hidden');
+            
+            if (tab === 'list') document.getElementById('friendsListTab').classList.remove('hidden');
+            if (tab === 'requests') document.getElementById('friendsRequestsTab').classList.remove('hidden');
+            if (tab === 'sent') document.getElementById('friendsSentTab').classList.remove('hidden');
+        }
+        
+        // 친구 검색
+        function handleFriendSearch(e) {
+            if (e.key === 'Enter') searchFriends();
+        }
+        
+        async function searchFriends() {
+            const query = document.getElementById('friendSearchInput').value.trim().toLowerCase();
+            if (!query) {
+                document.getElementById('friendSearchResults').classList.add('hidden');
+                return;
+            }
+            
+            // 승인된 사용자 중 검색 (본인 제외)
+            const results = data.users.filter(u => 
+                u.status === 'approved' && 
+                u.code !== currentUser.code &&
+                (u.name?.toLowerCase().includes(query) || u.code?.toLowerCase().includes(query))
+            );
+            
+            const container = document.getElementById('friendSearchList');
+            const resultsDiv = document.getElementById('friendSearchResults');
+            
+            if (results.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-muted);font-size:13px;padding:12px">검색 결과가 없습니다</p>';
+            } else {
+                container.innerHTML = results.map(user => {
+                    const isFriend = friendsData.friends.includes(user.code);
+                    const hasSentRequest = friendsData.sent.some(r => r.to === user.code);
+                    const hasReceivedRequest = friendsData.requests.some(r => r.from === user.code);
+                    
+                    const userSales = data.sales.filter(s => s.userCode === user.code);
+                    const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
+                    const grade = getUserGrade(totalAmount);
+                    
+                    let actionBtn = '';
+                    if (isFriend) {
+                        actionBtn = '<button class="friend-btn" disabled>친구</button>';
+                    } else if (hasSentRequest) {
+                        actionBtn = '<button class="friend-btn" disabled>요청됨</button>';
+                    } else if (hasReceivedRequest) {
+                        actionBtn = '<button class="friend-btn primary" onclick="acceptFriendRequest(\'\', \'' + user.code + '\')">수락</button>';
+                    } else {
+                        actionBtn = `<button class="friend-btn primary" onclick="sendFriendRequest('${user.code}')">친구 요청</button>`;
+                    }
+                    
+                    return `
+                        <div class="friend-search-result">
+                            <div class="friend-avatar" style="background:${grade.bgColor};color:${grade.color}">
+                                ${user.profileImage ? `<img src="${user.profileImage}" alt="">` : user.name?.charAt(0) || 'U'}
+                            </div>
+                            <div class="friend-info">
+                                <div class="friend-name">${user.name || '-'}</div>
+                                <div class="friend-code">${user.code || '-'}</div>
+                            </div>
+                            <div class="friend-actions">
+                                ${actionBtn}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+            
+            resultsDiv.classList.remove('hidden');
+        }
+        
+        // 친구 요청 보내기
+        async function sendFriendRequest(toCode) {
+            if (!currentUser || !db) return;
+            
+            try {
+                await db.collection('friendRequests').add({
+                    from: currentUser.code,
+                    fromName: currentUser.name,
+                    to: toCode,
+                    status: 'pending',
+                    createdAt: new Date().toISOString()
+                });
+                
+                showToast('친구 요청을 보냈습니다');
+                loadFriendsData();
+                searchFriends(); // 검색 결과 갱신
+            } catch (error) {
+                console.error('친구 요청 실패:', error);
+                showToast('요청에 실패했습니다', 'error');
+            }
+        }
+        
+        // 친구 요청 수락
+        async function acceptFriendRequest(reqId, fromCode) {
+            if (!currentUser || !db) return;
+            
+            try {
+                // 요청 ID가 없으면 찾기
+                if (!reqId) {
+                    const req = friendsData.requests.find(r => r.from === fromCode);
+                    if (req) reqId = req.id;
+                }
+                
+                // 요청 상태 업데이트
+                if (reqId) {
+                    await db.collection('friendRequests').doc(reqId).update({ status: 'accepted' });
+                }
+                
+                // 양쪽 친구 목록에 추가
+                const myRef = db.collection('users').doc(currentUser.googleEmail);
+                const myDoc = await myRef.get();
+                const myFriends = myDoc.data()?.friends || [];
+                if (!myFriends.includes(fromCode)) {
+                    myFriends.push(fromCode);
+                    await myRef.update({ friends: myFriends });
+                }
+                
+                // 상대방 친구 목록에도 추가
+                const fromUser = data.users.find(u => u.code === fromCode);
+                if (fromUser?.googleEmail) {
+                    const theirRef = db.collection('users').doc(fromUser.googleEmail);
+                    const theirDoc = await theirRef.get();
+                    const theirFriends = theirDoc.data()?.friends || [];
+                    if (!theirFriends.includes(currentUser.code)) {
+                        theirFriends.push(currentUser.code);
+                        await theirRef.update({ friends: theirFriends });
+                    }
+                }
+                
+                showToast('친구가 되었습니다! 🎉');
+                loadFriendsData();
+            } catch (error) {
+                console.error('친구 수락 실패:', error);
+                showToast('처리에 실패했습니다', 'error');
+            }
+        }
+        
+        // 친구 요청 거절
+        async function rejectFriendRequest(reqId) {
+            if (!db) return;
+            
+            try {
+                await db.collection('friendRequests').doc(reqId).update({ status: 'rejected' });
+                showToast('요청을 거절했습니다');
+                loadFriendsData();
+            } catch (error) {
+                console.error('거절 실패:', error);
+            }
+        }
+        
+        // 보낸 요청 취소
+        async function cancelFriendRequest(reqId) {
+            if (!db) return;
+            
+            try {
+                await db.collection('friendRequests').doc(reqId).delete();
+                showToast('요청을 취소했습니다');
+                loadFriendsData();
+            } catch (error) {
+                console.error('취소 실패:', error);
+            }
+        }
+        
+        // 친구 삭제
+        async function removeFriend(friendCode) {
+            if (!confirm('정말 친구를 삭제하시겠습니까?')) return;
+            if (!currentUser || !db) return;
+            
+            try {
+                // 내 친구 목록에서 삭제
+                const myRef = db.collection('users').doc(currentUser.googleEmail);
+                const myDoc = await myRef.get();
+                let myFriends = myDoc.data()?.friends || [];
+                myFriends = myFriends.filter(c => c !== friendCode);
+                await myRef.update({ friends: myFriends });
+                
+                // 상대방 친구 목록에서도 삭제
+                const friendUser = data.users.find(u => u.code === friendCode);
+                if (friendUser?.googleEmail) {
+                    const theirRef = db.collection('users').doc(friendUser.googleEmail);
+                    const theirDoc = await theirRef.get();
+                    let theirFriends = theirDoc.data()?.friends || [];
+                    theirFriends = theirFriends.filter(c => c !== currentUser.code);
+                    await theirRef.update({ friends: theirFriends });
+                }
+                
+                showToast('친구를 삭제했습니다');
+                loadFriendsData();
+            } catch (error) {
+                console.error('삭제 실패:', error);
+            }
+        }
+        
+        // 친구에게 쪽지 보내기
+        function sendMessageToFriend(code, name) {
+            // 쪽지 작성 모달 열기
+            document.getElementById('messageComposeModal').classList.add('show');
+            document.getElementById('composeRecipient').value = name;
+            document.getElementById('composeRecipient').dataset.code = code;
+            document.getElementById('composeContent').value = '';
+            document.getElementById('composeContent').focus();
         }
     </script>
 </body>
