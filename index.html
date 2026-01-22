@@ -288,17 +288,17 @@
         .growth-grade-icon{font-size:48px}
         .growth-grade-info{display:flex;flex-direction:column;gap:4px}
         .growth-grade-name{font-size:24px;font-weight:700}
-        .growth-grade-commission{font-size:14px;color:var(--primary);font-weight:600;background:var(--primary-light);padding:4px 12px;border-radius:20px;display:inline-block}
+        .growth-grade-commission{font-size:14px;color:var(--text-light);font-weight:500;background:var(--bg-secondary);padding:4px 12px;border-radius:20px;display:inline-block}
         .growth-benefit{text-align:right}
         .growth-benefit-label{font-size:12px;color:var(--text-muted);display:block;margin-bottom:4px}
-        .growth-benefit-value{font-size:16px;font-weight:600;color:var(--success)}
+        .growth-benefit-value{font-size:16px;font-weight:600;color:var(--text)}
         
         .growth-progress-section{margin-bottom:24px}
         .growth-progress-header{display:flex;justify-content:space-between;margin-bottom:8px}
         .growth-progress-header span{font-size:13px;color:var(--text-muted)}
-        .growth-progress-header span:last-child{font-weight:600;color:var(--primary)}
+        .growth-progress-header span:last-child{font-weight:600;color:var(--text)}
         .growth-progress-bar{height:12px;background:var(--bg-secondary);border-radius:6px;overflow:hidden;position:relative}
-        .growth-progress-fill{height:100%;background:linear-gradient(90deg,#1a73e8,#1e8e3e);border-radius:6px;transition:width .5s}
+        .growth-progress-fill{height:100%;background:var(--primary);border-radius:6px;transition:width .5s}
         .growth-progress-grades{display:flex;justify-content:space-between;margin-top:8px;padding:0 4px}
         .growth-progress-grades span{font-size:16px;opacity:0.5;transition:all .2s}
         .growth-progress-grades span.active{opacity:1;transform:scale(1.2)}
@@ -307,26 +307,26 @@
         .growth-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
         .growth-stat-item{text-align:left;padding:20px;background:var(--bg-secondary);border-radius:12px;display:flex;flex-direction:column}
         .growth-stat-label{font-size:14px;color:var(--text-muted);margin-bottom:10px;font-weight:500}
-        .growth-stat-value{font-size:28px;font-weight:700;color:var(--primary);display:block}
+        .growth-stat-value{font-size:28px;font-weight:700;color:var(--text);display:block}
         
-        .growth-next-grade{background:linear-gradient(135deg,#1a73e8 0%,#4f46e5 100%);border-radius:16px;padding:24px;color:#fff;display:flex;align-items:center;gap:16px}
-        .growth-next-grade-icon{font-size:40px;background:rgba(255,255,255,0.2);padding:12px;border-radius:50%}
+        .growth-next-grade{background:var(--bg-secondary);border:1px solid var(--border);border-radius:16px;padding:24px;color:var(--text);display:flex;align-items:center;gap:16px}
+        .growth-next-grade-icon{font-size:40px;background:#fff;padding:12px;border-radius:50%;border:1px solid var(--border)}
         .growth-next-grade-info{flex:1}
-        .growth-next-grade-title{font-size:14px;opacity:0.9;margin-bottom:4px}
-        .growth-next-grade-name{font-size:20px;font-weight:700}
-        .growth-next-grade-benefit{font-size:13px;opacity:0.85;margin-top:6px}
+        .growth-next-grade-title{font-size:14px;color:var(--text-muted);margin-bottom:4px}
+        .growth-next-grade-name{font-size:20px;font-weight:700;color:var(--text)}
+        .growth-next-grade-benefit{font-size:13px;color:var(--text-light);margin-top:6px}
         .growth-next-grade-remaining{text-align:right}
-        .growth-next-grade-remaining .num{font-size:36px;font-weight:700}
-        .growth-next-grade-remaining .label{font-size:13px;opacity:0.85}
+        .growth-next-grade-remaining .num{font-size:36px;font-weight:700;color:var(--primary)}
+        .growth-next-grade-remaining .label{font-size:13px;color:var(--text-muted)}
 
         .report-section{margin-bottom:32px}
         .report-title{font-size:16px;font-weight:600;margin-bottom:16px;color:var(--text)}
         .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
         .stat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;flex-direction:column}
         .stat-label{font-size:14px;color:var(--text-muted);margin-bottom:10px;font-weight:500}
-        .stat-value{font-size:28px;font-weight:700}
+        .stat-value{font-size:28px;font-weight:700;color:var(--text)}
         .stat-value.primary{color:var(--primary)}
-        .stat-value.success{color:var(--success)}
+        .stat-value.success{color:var(--text)}
         .report-card{background:#fff;border:1px solid var(--border);border-radius:8px;overflow:hidden}
         .report-filter{padding:16px;border-bottom:1px solid var(--border)}
         .report-filter select{padding:8px 12px;border:1px solid var(--border);border-radius:4px;font-size:14px;font-family:inherit}
@@ -482,37 +482,38 @@
         
         /* 프로필 섹션 */
         .profile-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;max-width:600px}
-        .profile-header{display:flex;align-items:center;gap:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
-        .profile-avatar{width:80px;height:80px;background:var(--primary);border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:600;overflow:hidden}
+        .profile-header{display:flex;align-items:center;gap:20px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+        .profile-avatar{width:80px;height:80px;background:#e5e5e5;border-radius:50%;color:#666;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:600;overflow:hidden}
         .profile-avatar img{width:100%;height:100%;object-fit:cover}
         .profile-avatar-wrap{position:relative}
-        .profile-avatar-edit{position:absolute;bottom:0;right:0;width:28px;height:28px;background:#fff;border:2px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:all .2s}
-        .profile-avatar-edit:hover{background:var(--primary-light);border-color:var(--primary)}
+        .profile-avatar-edit{position:absolute;bottom:0;right:0;width:28px;height:28px;background:#fff;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px;transition:all .2s;color:var(--text-light)}
+        .profile-avatar-edit:hover{background:var(--bg-secondary);border-color:#ccc}
         .profile-image-edit{margin-top:12px;padding:16px;background:var(--bg-secondary);border-radius:8px}
-        .profile-info h2{font-size:22px;margin-bottom:4px}
-        .profile-code{font-size:14px;color:var(--text-light)}
-        .profile-code strong{color:var(--primary);font-size:16px}
-        .profile-section{padding:20px 0;border-bottom:1px solid var(--border)}
+        .profile-info h2{font-size:22px;margin-bottom:6px;font-weight:600}
+        .profile-code{font-size:14px;color:var(--text-muted)}
+        .profile-code strong{color:var(--text);font-weight:600}
+        .profile-section{padding:24px 0;border-bottom:1px solid var(--border)}
         .profile-section:last-child{border-bottom:none;padding-bottom:0}
-        .profile-section h3{font-size:14px;color:var(--text-light);margin-bottom:12px}
+        .profile-section h3{font-size:13px;color:var(--text-muted);margin-bottom:16px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px}
         .profile-channels{display:flex;flex-direction:column;gap:10px}
-        .profile-channel-item{display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg-secondary);border-radius:8px}
-        .profile-channel-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
-        .profile-channel-icon.youtube{background:#fee2e2;color:#dc2626}
-        .profile-channel-icon.instagram{background:#fce7f3;color:#db2777}
-        .profile-channel-icon.blog{background:#dcfce7;color:#16a34a}
-        .profile-channel-icon.tiktok{background:#f3e8ff;color:#7c3aed}
+        .profile-channel-item{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--bg-secondary);border-radius:8px;border:1px solid transparent;transition:all .2s}
+        .profile-channel-item:hover{border-color:var(--border)}
+        .profile-channel-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:12px;background:#e5e5e5;color:#666}
+        .profile-channel-icon.youtube{background:#f5f5f5;color:#666}
+        .profile-channel-icon.instagram{background:#f5f5f5;color:#666}
+        .profile-channel-icon.blog{background:#f5f5f5;color:#666}
+        .profile-channel-icon.tiktok{background:#f5f5f5;color:#666}
         .profile-channel-info{flex:1;min-width:0}
-        .profile-channel-name{font-size:14px;font-weight:500}
+        .profile-channel-name{font-size:14px;font-weight:500;color:var(--text)}
         .profile-channel-url{font-size:12px;color:var(--primary);text-decoration:none;word-break:break-all}
         .profile-channel-url:hover{text-decoration:underline}
         .profile-categories{display:flex;flex-wrap:wrap;gap:8px}
-        .profile-category-tag{padding:6px 12px;background:var(--primary-light);color:var(--primary);border-radius:16px;font-size:13px}
-        .profile-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-        .profile-stat{text-align:center;padding:16px;background:var(--bg-secondary);border-radius:8px}
-        .profile-stat-value{display:block;font-size:20px;font-weight:700;color:var(--primary);margin-bottom:4px}
+        .profile-category-tag{padding:8px 16px;background:var(--bg-secondary);color:var(--text);border-radius:20px;font-size:13px;border:1px solid var(--border)}
+        .profile-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+        .profile-stat{text-align:center;padding:20px 16px;background:var(--bg-secondary);border-radius:8px;border:1px solid var(--border)}
+        .profile-stat-value{display:block;font-size:18px;font-weight:600;color:var(--text);margin-bottom:6px}
         .profile-stat-label{font-size:12px;color:var(--text-muted)}
-        .no-channel{color:var(--text-muted);font-size:14px;padding:12px;text-align:center}
+        .no-channel{color:var(--text-muted);font-size:14px;padding:16px;text-align:center;background:var(--bg-secondary);border-radius:8px}
         .profile-edit-channels{margin-top:16px;padding:16px;background:var(--bg-secondary);border-radius:8px}
         .profile-edit-item{margin-bottom:12px}
         .profile-edit-item label{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;margin-bottom:6px}
@@ -571,6 +572,49 @@
         .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:#333;color:#fff;padding:12px 24px;border-radius:8px;font-size:14px;opacity:0;transition:all .3s;z-index:2000}
         .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
+        /* 쪽지함 스타일 */
+        .message-btn{position:relative;width:36px;height:36px;border-radius:50%;background:var(--bg-secondary);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;font-size:18px}
+        .message-btn:hover{background:var(--primary-light);border-color:var(--primary)}
+        .message-badge{position:absolute;top:-4px;right:-4px;background:var(--error);color:#fff;font-size:10px;font-weight:600;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+        .message-dropdown{position:absolute;top:calc(100% + 8px);right:0;width:360px;max-height:480px;background:#fff;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.15);overflow:hidden;z-index:200;display:none}
+        .message-dropdown.show{display:block}
+        .message-dropdown-header{padding:16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+        .message-dropdown-header h3{font-size:16px;font-weight:600}
+        .message-dropdown-tabs{display:flex;gap:8px}
+        .message-tab{padding:6px 12px;border-radius:16px;font-size:12px;cursor:pointer;background:var(--bg-secondary);border:none;font-family:inherit}
+        .message-tab.active{background:var(--primary);color:#fff}
+        .message-list{max-height:360px;overflow-y:auto}
+        .message-item{padding:14px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s;display:flex;gap:12px;align-items:flex-start}
+        .message-item:hover{background:var(--bg-secondary)}
+        .message-item.unread{background:var(--primary-light)}
+        .message-item-avatar{width:40px;height:40px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;flex-shrink:0}
+        .message-item-avatar.admin{background:#333}
+        .message-item-content{flex:1;min-width:0}
+        .message-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+        .message-item-sender{font-size:14px;font-weight:600}
+        .message-item-time{font-size:11px;color:var(--text-muted)}
+        .message-item-preview{font-size:13px;color:var(--text-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .message-empty{padding:40px 20px;text-align:center;color:var(--text-muted);font-size:14px}
+        .message-compose-btn{margin:12px 16px;width:calc(100% - 32px)}
+        
+        /* 쪽지 상세/작성 모달 */
+        .message-modal{background:#fff;border-radius:16px;width:90%;max-width:500px;max-height:80vh;overflow:hidden;display:flex;flex-direction:column}
+        .message-modal-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+        .message-modal-header h3{font-size:16px;font-weight:600}
+        .message-modal-close{background:none;border:none;font-size:24px;cursor:pointer;color:var(--text-muted);line-height:1}
+        .message-modal-body{padding:20px;flex:1;overflow-y:auto}
+        .message-detail-sender{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+        .message-detail-avatar{width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:18px}
+        .message-detail-avatar.admin{background:#333}
+        .message-detail-info h4{font-size:15px;font-weight:600;margin-bottom:2px}
+        .message-detail-info span{font-size:12px;color:var(--text-muted)}
+        .message-detail-content{font-size:14px;line-height:1.7;color:var(--text)}
+        .message-compose-form{display:flex;flex-direction:column;gap:16px}
+        .message-compose-form .input-group{margin-bottom:0}
+        .message-compose-form textarea{width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;min-height:150px}
+        .message-compose-form textarea:focus{outline:none;border-color:var(--primary)}
+        .message-modal-footer{padding:16px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+
         @media(max-width:900px){
             .recommend-layout{grid-template-columns:1fr}
             .recommend-sidebar{display:block}
@@ -597,6 +641,11 @@
             .page-title{font-size:16px;margin-bottom:12px}
             .section-header{margin-bottom:12px}
             .section-header h2{font-size:14px}
+            
+            /* 쪽지 모바일 */
+            .message-dropdown{width:calc(100vw - 24px);right:-60px}
+            .message-modal{width:95%;max-width:none}
+            .message-btn{width:32px;height:32px;font-size:16px}
             
             /* 상단 카테고리 바 모바일 */
             .top-category-bar{flex-direction:column;gap:12px;padding:12px 16px}
@@ -1418,6 +1467,26 @@
                 </nav>
             </div>
             <div class="user-info">
+                <!-- 쪽지 버튼 -->
+                <div style="position:relative">
+                    <div class="message-btn" onclick="toggleMessageDropdown(event)">
+                        💬
+                        <span class="message-badge hidden" id="messageBadge">0</span>
+                    </div>
+                    <div class="message-dropdown" id="messageDropdown">
+                        <div class="message-dropdown-header">
+                            <h3>쪽지함</h3>
+                            <div class="message-dropdown-tabs">
+                                <button class="message-tab active" onclick="filterMessages('all', this)">전체</button>
+                                <button class="message-tab" onclick="filterMessages('unread', this)">안읽음</button>
+                            </div>
+                        </div>
+                        <div class="message-list" id="messageList">
+                            <div class="message-empty">쪽지가 없습니다</div>
+                        </div>
+                        <button class="btn btn-primary message-compose-btn" onclick="openComposeMessage()">새 쪽지 작성</button>
+                    </div>
+                </div>
                 <div class="user-avatar" id="userAvatar" onclick="showDashSection('profile', null)" style="cursor:pointer" title="프로필 보기">U</div>
                 <span id="userName">사용자</span>
                 <button class="btn btn-secondary btn-small" onclick="logout()">로그아웃</button>
@@ -1681,7 +1750,7 @@
                         </div>
                         <div class="stat-card">
                             <div class="stat-label">현재 수익률</div>
-                            <div class="stat-value success" id="reportCommissionRate">8%</div>
+                            <div class="stat-value" id="reportCommissionRate">8%</div>
                         </div>
                     </div>
                 </div>
@@ -1730,16 +1799,16 @@
 
             <!-- 프로필 섹션 -->
             <div id="dashProfile" class="hidden">
-                <div style="margin-bottom:16px">
+                <div style="margin-bottom:20px">
                     <button class="btn btn-secondary btn-small" onclick="showDashSection('home', document.querySelector('.dash-nav a'))">← 홈으로 돌아가기</button>
                 </div>
-                <h1 class="page-title">👤 내 프로필</h1>
+                <h1 class="page-title">내 프로필</h1>
                 
                 <div class="profile-card">
                     <div class="profile-header">
                         <div class="profile-avatar-wrap">
                             <div class="profile-avatar" id="profileAvatar">U</div>
-                            <button class="profile-avatar-edit" onclick="document.getElementById('profileImageInput').click()" title="프로필 사진 변경">📷</button>
+                            <button class="profile-avatar-edit" onclick="document.getElementById('profileImageInput').click()" title="프로필 사진 변경">✎</button>
                             <input type="file" id="profileImageInput" accept="image/*" style="display:none" onchange="handleProfileImageUpload(event)">
                         </div>
                         <div class="profile-info">
@@ -1750,9 +1819,9 @@
                     
                     <!-- 프로필 이미지 URL 입력 -->
                     <div class="profile-section">
-                        <h3>🖼️ 프로필 사진 <button class="btn btn-small" style="margin-left:8px;padding:4px 10px;font-size:11px" onclick="toggleEditProfileImage()">변경</button></h3>
+                        <h3>프로필 사진 <button class="btn btn-small" style="margin-left:8px;padding:4px 12px;font-size:11px" onclick="toggleEditProfileImage()">변경</button></h3>
                         <div class="profile-image-edit hidden" id="profileImageEdit">
-                            <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px">이미지 URL을 입력하거나 위 프로필 사진의 📷 버튼을 눌러 업로드하세요</p>
+                            <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px">이미지 URL을 입력하거나 위 프로필 사진의 버튼을 눌러 업로드하세요</p>
                             <input type="text" id="profileImageUrl" placeholder="https://이미지주소.jpg" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:4px;font-size:13px;margin-bottom:8px">
                             <div style="display:flex;gap:8px">
                                 <button class="btn btn-primary btn-small" onclick="saveProfileImage()">저장</button>
@@ -1762,7 +1831,7 @@
                     </div>
                     
                     <div class="profile-section">
-                        <h3>📱 연결된 채널 <button class="btn btn-small" style="margin-left:8px;padding:4px 10px;font-size:11px" onclick="toggleEditChannels()">수정</button></h3>
+                        <h3>연결된 채널 <button class="btn btn-small" style="margin-left:8px;padding:4px 12px;font-size:11px" onclick="toggleEditChannels()">수정</button></h3>
                         <div class="profile-channels" id="profileChannels">
                             <!-- 채널 링크가 여기 표시됨 -->
                         </div>
@@ -1792,14 +1861,14 @@
                     </div>
                     
                     <div class="profile-section">
-                        <h3>🏷️ 관심 카테고리</h3>
+                        <h3>관심 카테고리</h3>
                         <div class="profile-categories" id="profileCategories">
                             <!-- 카테고리가 여기 표시됨 -->
                         </div>
                     </div>
                     
                     <div class="profile-section">
-                        <h3>🛒 내 공구방 링크 <button class="btn btn-small" style="margin-left:8px;padding:4px 10px;font-size:11px" onclick="toggleEditShopLink()">설정</button></h3>
+                        <h3>내 공구방 링크 <button class="btn btn-small" style="margin-left:8px;padding:4px 12px;font-size:11px" onclick="toggleEditShopLink()">설정</button></h3>
                         <div id="profileShopDisplay">
                             <!-- 공구방 링크 표시 -->
                         </div>
@@ -1825,10 +1894,10 @@
                     </div>
                     
                     <div class="profile-section">
-                        <h3>📊 활동 요약</h3>
+                        <h3>활동 요약</h3>
                         <div class="profile-stats">
                             <div class="profile-stat">
-                                <span class="profile-stat-value" id="profileTotalSales">0</span>
+                                <span class="profile-stat-value" id="profileTotalSales">0건</span>
                                 <span class="profile-stat-label">총 판매</span>
                             </div>
                             <div class="profile-stat">
@@ -1890,6 +1959,58 @@
             <div class="category-modal-footer">
                 <p class="category-modal-hint">1개부터 최대 5개까지 선택 가능</p>
                 <button class="btn btn-primary" onclick="applyCategoryFilter()">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 쪽지 상세 모달 -->
+    <div class="modal-overlay" id="messageDetailModal">
+        <div class="message-modal">
+            <div class="message-modal-header">
+                <h3>쪽지 상세</h3>
+                <button class="message-modal-close" onclick="closeMessageModal('messageDetailModal')">×</button>
+            </div>
+            <div class="message-modal-body">
+                <div class="message-detail-sender">
+                    <div class="message-detail-avatar" id="msgDetailAvatar">관</div>
+                    <div class="message-detail-info">
+                        <h4 id="msgDetailSender">관리자</h4>
+                        <span id="msgDetailTime">2025.01.22 10:30</span>
+                    </div>
+                </div>
+                <div class="message-detail-content" id="msgDetailContent">
+                    쪽지 내용이 여기에 표시됩니다.
+                </div>
+            </div>
+            <div class="message-modal-footer">
+                <button class="btn btn-secondary" onclick="closeMessageModal('messageDetailModal')">닫기</button>
+                <button class="btn btn-primary" onclick="replyMessage()">답장하기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 쪽지 작성 모달 -->
+    <div class="modal-overlay" id="messageComposeModal">
+        <div class="message-modal">
+            <div class="message-modal-header">
+                <h3 id="composeModalTitle">새 쪽지 작성</h3>
+                <button class="message-modal-close" onclick="closeMessageModal('messageComposeModal')">×</button>
+            </div>
+            <div class="message-modal-body">
+                <div class="message-compose-form">
+                    <div class="input-group">
+                        <label>받는 사람</label>
+                        <input type="text" id="msgTo" value="관리자" readonly style="background:var(--bg-secondary)">
+                    </div>
+                    <div class="input-group">
+                        <label>내용</label>
+                        <textarea id="msgContent" placeholder="쪽지 내용을 입력하세요..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="message-modal-footer">
+                <button class="btn btn-secondary" onclick="closeMessageModal('messageComposeModal')">취소</button>
+                <button class="btn btn-primary" onclick="sendMessage()">보내기</button>
             </div>
         </div>
     </div>
@@ -2128,20 +2249,19 @@
         
         // 🏆 인플루언서 등급 시스템 (유튜브 스타일)
         const gradeSystem = [
-            { id: 'seed', name: '씨앗', icon: '🌱', minSales: 0, commission: 8, color: '#8B4513', bgColor: '#FFF8DC', benefit: '일반 상품', benefitDetail: '기본 상품에 접근할 수 있어요' },
-            { id: 'sprout', name: '새싹', icon: '🌿', minSales: 5, commission: 9, color: '#228B22', bgColor: '#F0FFF0', benefit: '신상품 1일 선공개', benefitDetail: '신상품을 하루 먼저 볼 수 있어요' },
-            { id: 'bronze', name: '브론즈', icon: '🥉', minSales: 20, commission: 10, color: '#CD7F32', bgColor: '#FDF5E6', benefit: '신상품 3일 선공개', benefitDetail: '신상품을 3일 먼저 볼 수 있어요' },
-            { id: 'silver', name: '실버', icon: '🥈', minSales: 50, commission: 11, color: '#C0C0C0', bgColor: '#F5F5F5', benefit: '전용 상품 접근', benefitDetail: '실버 전용 상품에 접근할 수 있어요' },
-            { id: 'gold', name: '골드', icon: '🥇', minSales: 100, commission: 12, color: '#FFD700', bgColor: '#FFFACD', benefit: '프리미엄 상품', benefitDetail: '고수익 프리미엄 상품에 접근할 수 있어요' },
-            { id: 'diamond', name: '다이아', icon: '💎', minSales: 300, commission: 13, color: '#00CED1', bgColor: '#E0FFFF', benefit: '한정판 우선권', benefitDetail: '한정판 상품을 먼저 선택할 수 있어요' },
-            { id: 'master', name: '마스터', icon: '👑', minSales: 500, commission: 15, color: '#9400D3', bgColor: '#F8F0FF', benefit: 'VIP 전용 딜', benefitDetail: '최고 수익의 VIP 전용 딜에 참여할 수 있어요' }
+            { id: 'seed', name: '씨앗', icon: '🌱', minAmount: 0, commission: 8, color: '#8B4513', bgColor: '#FFF8DC', benefit: '일반 상품', benefitDetail: '기본 상품에 접근할 수 있어요' },
+            { id: 'sprout', name: '새싹', icon: '🌿', minAmount: 5000000, commission: 9, color: '#228B22', bgColor: '#F0FFF0', benefit: '샘플 제공', benefitDetail: '공구 전 무료 샘플을 받을 수 있어요' },
+            { id: 'bronze', name: '브론즈', icon: '🥉', minAmount: 20000000, commission: 10, color: '#CD7F32', bgColor: '#FDF5E6', benefit: '신상품 1일 선공개 + 재고 우선', benefitDetail: '신상품을 1일 먼저 보고, 재고를 우선 확보해드려요' },
+            { id: 'silver', name: '실버', icon: '🥈', minAmount: 50000000, commission: 11, color: '#C0C0C0', bgColor: '#F5F5F5', benefit: '신상품 3일 선공개 + 정산 격주', benefitDetail: '신상품을 3일 먼저 보고, 정산을 격주로 받아요' },
+            { id: 'gold', name: '골드', icon: '🥇', minAmount: 100000000, commission: 12, color: '#FFD700', bgColor: '#FFFACD', benefit: '단독 상품 + 추가 할인가', benefitDetail: '골드 전용 상품과 더 낮은 공급가를 제공받아요' },
+            { id: 'diamond', name: '다이아', icon: '💎', minAmount: 300000000, commission: 13, color: '#00CED1', bgColor: '#E0FFFF', benefit: '독점 공구 + 정산 주1회 + CS대행', benefitDetail: '독점 공구 기간, 주 1회 정산, CS 대행까지 모든 혜택!' }
         ];
         
-        // 등급 계산 함수
-        function getUserGrade(totalSales) {
+        // 등급 계산 함수 (매출 기준)
+        function getUserGrade(totalAmount) {
             let grade = gradeSystem[0];
             for (let i = gradeSystem.length - 1; i >= 0; i--) {
-                if (totalSales >= gradeSystem[i].minSales) {
+                if (totalAmount >= gradeSystem[i].minAmount) {
                     grade = gradeSystem[i];
                     break;
                 }
@@ -2149,13 +2269,13 @@
             return grade;
         }
         
-        // 다음 등급까지 남은 판매 수
-        function getNextGradeInfo(totalSales) {
+        // 다음 등급까지 남은 매출
+        function getNextGradeInfo(totalAmount) {
             for (let i = 0; i < gradeSystem.length; i++) {
-                if (totalSales < gradeSystem[i].minSales) {
+                if (totalAmount < gradeSystem[i].minAmount) {
                     return {
                         nextGrade: gradeSystem[i],
-                        remaining: gradeSystem[i].minSales - totalSales
+                        remaining: gradeSystem[i].minAmount - totalAmount
                     };
                 }
             }
@@ -2491,8 +2611,230 @@
 
         function logout() { currentUser = null; showPage('landing'); }
 
+        // ============================================
+        // 쪽지 기능
+        // ============================================
+        let currentMessages = [];
+        let currentMessageFilter = 'all';
+        let replyToMessage = null;
+
+        function toggleMessageDropdown(e) {
+            e.stopPropagation();
+            const dropdown = document.getElementById('messageDropdown');
+            dropdown.classList.toggle('show');
+            if (dropdown.classList.contains('show')) {
+                loadMessages();
+            }
+        }
+
+        // 드롭다운 외부 클릭시 닫기
+        document.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('messageDropdown');
+            if (dropdown && !e.target.closest('.message-btn') && !e.target.closest('.message-dropdown')) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        async function loadMessages() {
+            if (!currentUser || !db) return;
+            
+            try {
+                const snapshot = await db.collection('messages')
+                    .where('to', '==', currentUser.code)
+                    .orderBy('createdAt', 'desc')
+                    .limit(50)
+                    .get();
+                
+                currentMessages = [];
+                snapshot.forEach(doc => {
+                    currentMessages.push({ id: doc.id, ...doc.data() });
+                });
+                
+                renderMessages();
+                updateMessageBadge();
+            } catch (error) {
+                console.log('메시지 로드:', error);
+                // 인덱스 없을 경우 기본 쿼리
+                try {
+                    const snapshot = await db.collection('messages')
+                        .where('to', '==', currentUser.code)
+                        .get();
+                    currentMessages = [];
+                    snapshot.forEach(doc => {
+                        currentMessages.push({ id: doc.id, ...doc.data() });
+                    });
+                    currentMessages.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+                    renderMessages();
+                    updateMessageBadge();
+                } catch (e) {
+                    console.log('메시지 로드 실패:', e);
+                }
+            }
+        }
+
+        function renderMessages() {
+            const list = document.getElementById('messageList');
+            let filtered = currentMessages;
+            
+            if (currentMessageFilter === 'unread') {
+                filtered = currentMessages.filter(m => !m.read);
+            }
+            
+            if (filtered.length === 0) {
+                list.innerHTML = '<div class="message-empty">쪽지가 없습니다</div>';
+                return;
+            }
+            
+            list.innerHTML = filtered.map(msg => {
+                const isAdmin = msg.from === 'admin';
+                const avatar = isAdmin ? '관' : (msg.fromName || '?').charAt(0);
+                const avatarClass = isAdmin ? 'admin' : '';
+                const time = msg.createdAt ? formatMessageTime(msg.createdAt) : '';
+                const unreadClass = msg.read ? '' : 'unread';
+                
+                return `
+                    <div class="message-item ${unreadClass}" onclick="openMessageDetail('${msg.id}')">
+                        <div class="message-item-avatar ${avatarClass}">${avatar}</div>
+                        <div class="message-item-content">
+                            <div class="message-item-header">
+                                <span class="message-item-sender">${isAdmin ? '관리자' : msg.fromName}</span>
+                                <span class="message-item-time">${time}</span>
+                            </div>
+                            <div class="message-item-preview">${msg.content || ''}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function formatMessageTime(timestamp) {
+            if (!timestamp) return '';
+            const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+            const now = new Date();
+            const diff = now - date;
+            
+            if (diff < 60000) return '방금 전';
+            if (diff < 3600000) return Math.floor(diff / 60000) + '분 전';
+            if (diff < 86400000) return Math.floor(diff / 3600000) + '시간 전';
+            if (diff < 604800000) return Math.floor(diff / 86400000) + '일 전';
+            
+            return `${date.getMonth() + 1}/${date.getDate()}`;
+        }
+
+        function updateMessageBadge() {
+            const unreadCount = currentMessages.filter(m => !m.read).length;
+            const badge = document.getElementById('messageBadge');
+            if (unreadCount > 0) {
+                badge.textContent = unreadCount > 99 ? '99+' : unreadCount;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function filterMessages(filter, btn) {
+            currentMessageFilter = filter;
+            document.querySelectorAll('.message-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            renderMessages();
+        }
+
+        async function openMessageDetail(msgId) {
+            const msg = currentMessages.find(m => m.id === msgId);
+            if (!msg) return;
+            
+            const isAdmin = msg.from === 'admin';
+            document.getElementById('msgDetailAvatar').textContent = isAdmin ? '관' : (msg.fromName || '?').charAt(0);
+            document.getElementById('msgDetailAvatar').className = 'message-detail-avatar' + (isAdmin ? ' admin' : '');
+            document.getElementById('msgDetailSender').textContent = isAdmin ? '관리자' : msg.fromName;
+            document.getElementById('msgDetailTime').textContent = msg.createdAt ? formatMessageTime(msg.createdAt) : '';
+            document.getElementById('msgDetailContent').textContent = msg.content || '';
+            
+            replyToMessage = msg;
+            
+            document.getElementById('messageDetailModal').classList.add('show');
+            document.getElementById('messageDropdown').classList.remove('show');
+            
+            // 읽음 처리
+            if (!msg.read && db) {
+                try {
+                    await db.collection('messages').doc(msgId).update({ read: true });
+                    msg.read = true;
+                    updateMessageBadge();
+                } catch (e) {
+                    console.log('읽음 처리 실패:', e);
+                }
+            }
+        }
+
+        function openComposeMessage() {
+            replyToMessage = null;
+            document.getElementById('composeModalTitle').textContent = '새 쪽지 작성';
+            document.getElementById('msgTo').value = '관리자';
+            document.getElementById('msgContent').value = '';
+            document.getElementById('messageComposeModal').classList.add('show');
+            document.getElementById('messageDropdown').classList.remove('show');
+        }
+
+        function replyMessage() {
+            if (!replyToMessage) return;
+            const isAdmin = replyToMessage.from === 'admin';
+            document.getElementById('composeModalTitle').textContent = '답장하기';
+            document.getElementById('msgTo').value = isAdmin ? '관리자' : replyToMessage.fromName;
+            document.getElementById('msgContent').value = '';
+            document.getElementById('messageDetailModal').classList.remove('show');
+            document.getElementById('messageComposeModal').classList.add('show');
+        }
+
+        function closeMessageModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        }
+
+        async function sendMessage() {
+            const content = document.getElementById('msgContent').value.trim();
+            if (!content) {
+                showToast('내용을 입력하세요');
+                return;
+            }
+            
+            if (!currentUser || !db) {
+                showToast('로그인이 필요합니다');
+                return;
+            }
+            
+            try {
+                await db.collection('messages').add({
+                    from: currentUser.code,
+                    fromName: currentUser.name,
+                    to: 'admin',
+                    toName: '관리자',
+                    content: content,
+                    read: false,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                closeMessageModal('messageComposeModal');
+                showToast('쪽지를 보냈습니다');
+                document.getElementById('msgContent').value = '';
+            } catch (error) {
+                console.error('쪽지 전송 실패:', error);
+                showToast('전송에 실패했습니다');
+            }
+        }
+
+        // 페이지 로드시 메시지 확인
+        function initMessages() {
+            if (currentUser) {
+                loadMessages();
+            }
+        }
+        // ============================================
+
         function updateDashboard() {
             if (!currentUser) return;
+            
+            // 쪽지 로드
+            initMessages();
             const mySales = data.sales.filter(s => s.userCode === currentUser.code);
             const now = new Date();
             const thisMonth = mySales.filter(s => {
@@ -2953,7 +3295,8 @@
         
         // 🏆 등급 카드 업데이트
         function updateGradeCard(mySales) {
-            const totalSales = mySales.reduce((sum, s) => sum + (s.quantity || 1), 0);
+            const totalSalesCount = mySales.reduce((sum, s) => sum + (s.quantity || 1), 0);
+            const totalAmount = mySales.reduce((sum, s) => sum + (s.amount || 0), 0); // 총 매출
             const totalEarnings = mySales.reduce((sum, s) => sum + (s.commission || 0), 0);
             
             const now = new Date();
@@ -2967,8 +3310,8 @@
             const monthSalesCount = monthSales.reduce((sum, s) => sum + (s.quantity || 1), 0);
             const monthEarnings = monthSales.reduce((sum, s) => sum + (s.commission || 0), 0);
             
-            const grade = getUserGrade(totalSales);
-            const nextInfo = getNextGradeInfo(totalSales);
+            const grade = getUserGrade(totalAmount);
+            const nextInfo = getNextGradeInfo(totalAmount);
             
             // 등급 정보
             document.getElementById('scorecardGradeIcon').textContent = grade.icon;
@@ -2976,7 +3319,7 @@
             document.getElementById('scorecardGradeCommission').textContent = `수수료 ${grade.commission}%`;
             
             // 통계
-            document.getElementById('statTotalSales').textContent = totalSales + '건';
+            document.getElementById('statTotalSales').textContent = totalSalesCount + '건';
             document.getElementById('statTotalEarnings').textContent = '₩' + totalEarnings.toLocaleString();
             document.getElementById('statMonthSales').textContent = monthSalesCount + '건';
             document.getElementById('statMonthEarnings').textContent = '₩' + monthEarnings.toLocaleString();
@@ -3013,8 +3356,15 @@
         // 등급 모달 열기
         function openGradeModal() {
             const mySales = data.sales.filter(s => s.userCode === currentUser.code);
-            const totalSales = mySales.reduce((sum, s) => sum + (s.quantity || 1), 0);
-            const currentGrade = getUserGrade(totalSales);
+            const totalAmount = mySales.reduce((sum, s) => sum + (s.amount || 0), 0);
+            const currentGrade = getUserGrade(totalAmount);
+            
+            const formatAmount = (amt) => {
+                if (amt >= 100000000) return (amt / 100000000) + '억원';
+                if (amt >= 10000000) return (amt / 10000000) + '천만원';
+                if (amt >= 10000) return (amt / 10000) + '만원';
+                return amt.toLocaleString() + '원';
+            };
             
             const container = document.getElementById('gradeList');
             container.innerHTML = gradeSystem.map(g => `
@@ -3022,7 +3372,7 @@
                     <div class="grade-list-icon">${g.icon}</div>
                     <div class="grade-list-info">
                         <div class="grade-list-name" style="color:${g.color}">${g.name}</div>
-                        <div class="grade-list-condition">${g.minSales === 0 ? '신규 가입' : `누적 ${g.minSales}건 이상`}</div>
+                        <div class="grade-list-condition">${g.minAmount === 0 ? '신규 가입' : `누적 매출 ${formatAmount(g.minAmount)} 이상`}</div>
                         <div class="grade-list-benefit">${g.benefit}</div>
                     </div>
                     <div class="grade-list-commission">${g.commission}%</div>
@@ -3037,10 +3387,18 @@
             document.getElementById('gradeModal').classList.remove('show');
         }
         
+        // 금액 포맷 함수
+        function formatAmountShort(amt) {
+            if (amt >= 100000000) return (amt / 100000000).toFixed(1) + '억';
+            if (amt >= 10000) return Math.floor(amt / 10000) + '만원';
+            return amt.toLocaleString() + '원';
+        }
+        
         // 리포트 성장 현황 업데이트
         function updateReportGrowth() {
             const mySales = data.sales.filter(s => s.userCode === currentUser.code);
-            const totalSales = mySales.reduce((sum, s) => sum + (s.quantity || 1), 0);
+            const totalSalesCount = mySales.reduce((sum, s) => sum + (s.quantity || 1), 0);
+            const totalAmount = mySales.reduce((sum, s) => sum + (s.amount || 0), 0); // 총 매출
             const totalEarnings = mySales.reduce((sum, s) => sum + (s.commission || 0), 0);
             
             const now = new Date();
@@ -3055,8 +3413,8 @@
             const monthSalesCount = monthSales.reduce((sum, s) => sum + (s.quantity || 1), 0);
             const weekSalesCount = weekSales.reduce((sum, s) => sum + (s.quantity || 1), 0);
             
-            const grade = getUserGrade(totalSales);
-            const nextInfo = getNextGradeInfo(totalSales);
+            const grade = getUserGrade(totalAmount);
+            const nextInfo = getNextGradeInfo(totalAmount);
             
             // 등급 정보 업데이트
             document.getElementById('reportGradeIcon').textContent = grade.icon;
@@ -3067,7 +3425,7 @@
             document.getElementById('reportCommissionRate').textContent = grade.commission + '%';
             
             // 통계 업데이트
-            document.getElementById('reportTotalSalesNum').textContent = totalSales;
+            document.getElementById('reportTotalSalesNum').textContent = totalSalesCount;
             document.getElementById('reportMonthSalesNum').textContent = monthSalesCount;
             document.getElementById('reportWeekSalesNum').textContent = weekSalesCount;
             
@@ -3083,13 +3441,11 @@
             
             // 진행률 바
             if (nextInfo) {
-                const currentGradeMin = grade.minSales;
-                const nextGradeMin = nextInfo.nextGrade.minSales;
-                const maxGradeMin = gradeSystem[gradeSystem.length - 1].minSales;
-                const overallProgress = (totalSales / maxGradeMin) * 100;
+                const maxGradeMin = gradeSystem[gradeSystem.length - 1].minAmount;
+                const overallProgress = (totalAmount / maxGradeMin) * 100;
                 
                 document.getElementById('reportProgressLabel').textContent = `다음 등급 ${nextInfo.nextGrade.icon} ${nextInfo.nextGrade.name}까지`;
-                document.getElementById('reportProgressCount').textContent = `${nextInfo.remaining}건 남음`;
+                document.getElementById('reportProgressCount').textContent = formatAmountShort(nextInfo.remaining) + ' 남음';
                 document.getElementById('reportProgressFill').style.width = Math.min(100, overallProgress) + '%';
                 
                 // 다음 등급 정보
@@ -3098,30 +3454,30 @@
                     <div class="growth-next-grade-info">
                         <div class="growth-next-grade-title">다음 등급</div>
                         <div class="growth-next-grade-name">${nextInfo.nextGrade.name}</div>
-                        <div class="growth-next-grade-benefit">🎁 ${nextInfo.nextGrade.benefit} · 수수료 ${nextInfo.nextGrade.commission}%</div>
+                        <div class="growth-next-grade-benefit">${nextInfo.nextGrade.benefit} · 수수료 ${nextInfo.nextGrade.commission}%</div>
                     </div>
                     <div class="growth-next-grade-remaining">
-                        <div class="num">${nextInfo.remaining}</div>
-                        <div class="label">건 남음</div>
+                        <div class="num">${formatAmountShort(nextInfo.remaining)}</div>
+                        <div class="label">남음</div>
                     </div>
                 `;
             } else {
-                document.getElementById('reportProgressLabel').textContent = '🎉 최고 등급 달성!';
+                document.getElementById('reportProgressLabel').textContent = '최고 등급 달성!';
                 document.getElementById('reportProgressCount').textContent = '';
                 document.getElementById('reportProgressFill').style.width = '100%';
                 document.getElementById('reportNextGradeInfo').innerHTML = `
                     <div class="growth-next-grade-icon">👑</div>
                     <div class="growth-next-grade-info">
                         <div class="growth-next-grade-title">축하합니다!</div>
-                        <div class="growth-next-grade-name">최고 등급 마스터</div>
-                        <div class="growth-next-grade-benefit">🎁 모든 혜택을 누리고 계세요!</div>
+                        <div class="growth-next-grade-name">최고 등급 다이아</div>
+                        <div class="growth-next-grade-benefit">모든 혜택을 누리고 계세요!</div>
                     </div>
                 `;
             }
             
             // 등급 마커
             document.getElementById('reportGradeMarkers').innerHTML = gradeSystem.map(g => {
-                const isActive = totalSales >= g.minSales;
+                const isActive = totalAmount >= g.minAmount;
                 const isCurrent = g.id === grade.id;
                 return `<span class="${isActive ? 'active' : ''} ${isCurrent ? 'current' : ''}">${g.icon}</span>`;
             }).join('');
@@ -3900,8 +4256,8 @@
             
             // 등급
             const userSales = data.sales.filter(s => s.userCode === user.code);
-            const totalSales = userSales.reduce((sum, s) => sum + (s.quantity || 1), 0);
-            const grade = getUserGrade(totalSales);
+            const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
+            const grade = getUserGrade(totalAmount);
             document.getElementById('userProfileGradeIcon').textContent = grade.icon;
             document.getElementById('userProfileGradeName').textContent = grade.name;
             
@@ -4259,7 +4615,7 @@
             }
 
             // 새 글 작성 모드
-            const grade = getUserGrade(data.sales.filter(s => s.userCode === currentUser.code).reduce((sum, s) => sum + (s.quantity || 1), 0));
+            const grade = getUserGrade(data.sales.filter(s => s.userCode === currentUser.code).reduce((sum, s) => sum + (s.amount || 0), 0));
 
             const newPost = {
                 content: content,

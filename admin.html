@@ -584,6 +584,7 @@
                     <a onclick="showSectionMobile('analytics',this)">성과분석</a>
                     <a onclick="showSectionMobile('products',this)">상품 관리</a>
                     <a onclick="showSectionMobile('sales',this)">판매 입력</a>
+                    <a onclick="showSectionMobile('messages',this)">📬 쪽지함</a>
                     <a onclick="logout()">로그아웃</a>
                 </div>
             </nav>
@@ -600,6 +601,7 @@
                 <a onclick="showSection('analytics',this)">성과분석</a>
                 <a onclick="showSection('products',this)">상품 관리</a>
                 <a onclick="showSection('sales',this)">판매 입력</a>
+                <a onclick="showSection('messages',this)">📬 쪽지함 <span id="adminMsgBadge" class="header-badge hidden">0</span></a>
                 <a onclick="logout()">로그아웃</a>
             </nav>
         </aside>
@@ -1206,7 +1208,74 @@
                     <table><thead><tr><th>날짜</th><th>상품</th><th>인플루언서</th><th>수량</th><th>금액</th><th>수익</th><th>관리</th></tr></thead><tbody id="allSalesTable"></tbody></table>
                 </div>
             </div>
+
+            <!-- 쪽지함 섹션 -->
+            <div id="sectionMessages" class="hidden">
+                <h1 class="page-title">📬 쪽지함</h1>
+                
+                <div class="card">
+                    <div class="card-header" style="display:flex;justify-content:space-between;align-items:center">
+                        <span>받은 쪽지</span>
+                        <button class="btn btn-primary btn-small" onclick="openAdminCompose()">새 쪽지 보내기</button>
+                    </div>
+                    <div class="card-body">
+                        <div id="adminMessageList">
+                            <div class="empty">받은 쪽지가 없습니다</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
+    </div>
+
+    <!-- 관리자 쪽지 작성 모달 -->
+    <div class="modal-overlay" id="adminComposeModal" onclick="if(event.target===this)closeAdminComposeModal()">
+        <div style="background:#fff;border-radius:12px;width:90%;max-width:500px;overflow:hidden">
+            <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+                <h3 style="font-size:16px;font-weight:600">쪽지 보내기</h3>
+                <button onclick="closeAdminComposeModal()" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--text-light)">×</button>
+            </div>
+            <div style="padding:20px">
+                <div class="input-group">
+                    <label>받는 사람</label>
+                    <select id="adminMsgTo">
+                        <option value="">선택하세요</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>내용</label>
+                    <textarea id="adminMsgContent" style="width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;min-height:150px;font-family:inherit;font-size:14px;resize:vertical" placeholder="쪽지 내용을 입력하세요..."></textarea>
+                </div>
+            </div>
+            <div style="padding:16px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px">
+                <button class="btn" onclick="closeAdminComposeModal()">취소</button>
+                <button class="btn btn-primary" onclick="sendAdminMessage()">보내기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 쪽지 상세 모달 -->
+    <div class="modal-overlay" id="adminMsgDetailModal" onclick="if(event.target===this)this.classList.remove('show')">
+        <div style="background:#fff;border-radius:12px;width:90%;max-width:500px;overflow:hidden">
+            <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+                <h3 style="font-size:16px;font-weight:600">쪽지 상세</h3>
+                <button onclick="document.getElementById('adminMsgDetailModal').classList.remove('show')" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--text-light)">×</button>
+            </div>
+            <div style="padding:20px">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border)">
+                    <div id="adminMsgDetailAvatar" style="width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:18px">U</div>
+                    <div>
+                        <h4 id="adminMsgDetailSender" style="font-size:15px;font-weight:600;margin-bottom:2px">사용자</h4>
+                        <span id="adminMsgDetailTime" style="font-size:12px;color:var(--text-light)">시간</span>
+                    </div>
+                </div>
+                <div id="adminMsgDetailContent" style="font-size:14px;line-height:1.7">내용</div>
+            </div>
+            <div style="padding:16px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px">
+                <button class="btn" onclick="document.getElementById('adminMsgDetailModal').classList.remove('show')">닫기</button>
+                <button class="btn btn-primary" onclick="replyAdminMessage()">답장하기</button>
+            </div>
+        </div>
     </div>
 
     <div id="toast" class="toast"></div>
@@ -1247,20 +1316,19 @@
         
         // 인플루언서 등급 시스템
         const gradeSystem = [
-            { id: 'seed', name: '씨앗', icon: '🌱', minSales: 0, commission: 8, color: '#8B4513', bgColor: '#FFF8DC', benefit: '일반 상품' },
-            { id: 'sprout', name: '새싹', icon: '🌿', minSales: 5, commission: 9, color: '#228B22', bgColor: '#F0FFF0', benefit: '신상품 1일 선공개' },
-            { id: 'bronze', name: '브론즈', icon: '🥉', minSales: 20, commission: 10, color: '#CD7F32', bgColor: '#FDF5E6', benefit: '신상품 3일 선공개' },
-            { id: 'silver', name: '실버', icon: '🥈', minSales: 50, commission: 11, color: '#C0C0C0', bgColor: '#F5F5F5', benefit: '전용 상품 접근' },
-            { id: 'gold', name: '골드', icon: '🥇', minSales: 100, commission: 12, color: '#FFD700', bgColor: '#FFFACD', benefit: '프리미엄 상품 접근' },
-            { id: 'diamond', name: '다이아', icon: '💎', minSales: 300, commission: 13, color: '#00CED1', bgColor: '#E0FFFF', benefit: '한정판 우선 접근' },
-            { id: 'master', name: '마스터', icon: '👑', minSales: 500, commission: 15, color: '#9400D3', bgColor: '#F8F0FF', benefit: 'VIP 전용 딜' }
+            { id: 'seed', name: '씨앗', icon: '🌱', minAmount: 0, commission: 8, color: '#8B4513', bgColor: '#FFF8DC', benefit: '일반 상품' },
+            { id: 'sprout', name: '새싹', icon: '🌿', minAmount: 5000000, commission: 9, color: '#228B22', bgColor: '#F0FFF0', benefit: '샘플 제공' },
+            { id: 'bronze', name: '브론즈', icon: '🥉', minAmount: 20000000, commission: 10, color: '#CD7F32', bgColor: '#FDF5E6', benefit: '신상품 1일 선공개 + 재고 우선' },
+            { id: 'silver', name: '실버', icon: '🥈', minAmount: 50000000, commission: 11, color: '#C0C0C0', bgColor: '#F5F5F5', benefit: '신상품 3일 선공개 + 정산 격주' },
+            { id: 'gold', name: '골드', icon: '🥇', minAmount: 100000000, commission: 12, color: '#FFD700', bgColor: '#FFFACD', benefit: '단독 상품 + 추가 할인가' },
+            { id: 'diamond', name: '다이아', icon: '💎', minAmount: 300000000, commission: 13, color: '#00CED1', bgColor: '#E0FFFF', benefit: '독점 공구 + 정산 주1회 + CS대행' }
         ];
         
-        // 등급 계산 함수
-        function getUserGrade(totalSales) {
+        // 등급 계산 함수 (매출 기준)
+        function getUserGrade(totalAmount) {
             let grade = gradeSystem[0];
             for (let i = gradeSystem.length - 1; i >= 0; i--) {
-                if (totalSales >= gradeSystem[i].minSales) {
+                if (totalAmount >= gradeSystem[i].minAmount) {
                     grade = gradeSystem[i];
                     break;
                 }
@@ -1268,13 +1336,13 @@
             return grade;
         }
         
-        // 다음 등급까지 남은 판매 수
-        function getNextGradeInfo(totalSales) {
+        // 다음 등급까지 남은 매출
+        function getNextGradeInfo(totalAmount) {
             for (let i = 0; i < gradeSystem.length; i++) {
-                if (totalSales < gradeSystem[i].minSales) {
+                if (totalAmount < gradeSystem[i].minAmount) {
                     return {
                         nextGrade: gradeSystem[i],
-                        remaining: gradeSystem[i].minSales - totalSales
+                        remaining: gradeSystem[i].minAmount - totalAmount
                     };
                 }
             }
@@ -1398,6 +1466,7 @@
                     document.getElementById('dashboard').classList.remove('hidden');
                     await loadData();
                     updateAll();
+                    initAdminMessages(); // 쪽지 배지 업데이트
                 } else { 
                     showToast('ID 또는 비밀번호가 틀립니다', 'error'); 
                 }
@@ -1414,8 +1483,8 @@
         }
 
         function showSection(section, el) {
-            ['sectionOverview','sectionApplications','sectionInfluencers','sectionInfluencerDB','sectionMatching','sectionAnalytics','sectionProducts','sectionSales'].forEach(s => document.getElementById(s).classList.add('hidden'));
-            document.getElementById('section' + section.charAt(0).toUpperCase() + section.slice(1)).classList.remove('hidden');
+            ['sectionOverview','sectionApplications','sectionInfluencers','sectionInfluencerDB','sectionMatching','sectionAnalytics','sectionProducts','sectionSales','sectionMessages'].forEach(s => document.getElementById(s)?.classList.add('hidden'));
+            document.getElementById('section' + section.charAt(0).toUpperCase() + section.slice(1))?.classList.remove('hidden');
             document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
             if (el) el.classList.add('active');
             if (section === 'analytics') {
@@ -1424,6 +1493,8 @@
                 renderInfluencerDB();
             } else if (section === 'matching') {
                 initMatchingSection();
+            } else if (section === 'messages') {
+                loadAdminMessages();
             } else {
                 updateAll();
             }
@@ -1732,8 +1803,8 @@
             
             approved.forEach(u => {
                 const userSales = data.sales.filter(s => s.userCode === u.code);
-                const totalSales = userSales.reduce((sum, s) => sum + (s.quantity || 0), 0);
-                const grade = getUserGrade(totalSales);
+                const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
+                const grade = getUserGrade(totalAmount);
                 gradeCount[grade.id]++;
             });
             
@@ -2118,6 +2189,228 @@
         }
 
         // ============================================
+        // 관리자 쪽지 기능
+        // ============================================
+        let adminMessages = [];
+        let currentReplyTo = null;
+
+        async function loadAdminMessages() {
+            if (!db) return;
+            
+            try {
+                const snapshot = await db.collection('messages')
+                    .where('to', '==', 'admin')
+                    .get();
+                
+                adminMessages = [];
+                snapshot.forEach(doc => {
+                    adminMessages.push({ id: doc.id, ...doc.data() });
+                });
+                adminMessages.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+                
+                renderAdminMessages();
+                updateAdminMessageBadge();
+            } catch (error) {
+                console.log('관리자 메시지 로드 실패:', error);
+            }
+        }
+
+        function renderAdminMessages() {
+            const container = document.getElementById('adminMessageList');
+            
+            if (adminMessages.length === 0) {
+                container.innerHTML = '<div class="empty">받은 쪽지가 없습니다</div>';
+                return;
+            }
+            
+            container.innerHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>상태</th>
+                            <th>보낸 사람</th>
+                            <th>내용</th>
+                            <th>시간</th>
+                            <th>관리</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${adminMessages.map(msg => {
+                            const time = msg.createdAt ? formatAdminMsgTime(msg.createdAt) : '';
+                            const readBadge = msg.read ? '<span class="badge badge-success">읽음</span>' : '<span class="badge badge-pending">안읽음</span>';
+                            const preview = (msg.content || '').substring(0, 30) + ((msg.content || '').length > 30 ? '...' : '');
+                            return `
+                                <tr style="cursor:pointer" onclick="openAdminMsgDetail('${msg.id}')">
+                                    <td>${readBadge}</td>
+                                    <td><strong>${msg.fromName || '알수없음'}</strong></td>
+                                    <td>${preview}</td>
+                                    <td>${time}</td>
+                                    <td><button class="btn btn-small" onclick="event.stopPropagation();deleteAdminMessage('${msg.id}')">삭제</button></td>
+                                </tr>
+                            `;
+                        }).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        function formatAdminMsgTime(timestamp) {
+            if (!timestamp) return '';
+            const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+            return `${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
+        }
+
+        function updateAdminMessageBadge() {
+            const unreadCount = adminMessages.filter(m => !m.read).length;
+            const badge = document.getElementById('adminMsgBadge');
+            if (unreadCount > 0) {
+                badge.textContent = unreadCount;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        async function openAdminMsgDetail(msgId) {
+            const msg = adminMessages.find(m => m.id === msgId);
+            if (!msg) return;
+            
+            document.getElementById('adminMsgDetailAvatar').textContent = (msg.fromName || '?').charAt(0);
+            document.getElementById('adminMsgDetailSender').textContent = msg.fromName || '알수없음';
+            document.getElementById('adminMsgDetailTime').textContent = msg.createdAt ? formatAdminMsgTime(msg.createdAt) : '';
+            document.getElementById('adminMsgDetailContent').textContent = msg.content || '';
+            
+            currentReplyTo = msg;
+            document.getElementById('adminMsgDetailModal').classList.add('show');
+            
+            // 읽음 처리
+            if (!msg.read && db) {
+                try {
+                    await db.collection('messages').doc(msgId).update({ read: true });
+                    msg.read = true;
+                    renderAdminMessages();
+                    updateAdminMessageBadge();
+                } catch (e) {
+                    console.log('읽음 처리 실패:', e);
+                }
+            }
+        }
+
+        function openAdminCompose() {
+            currentReplyTo = null;
+            const select = document.getElementById('adminMsgTo');
+            select.innerHTML = '<option value="">선택하세요</option>';
+            
+            // 승인된 인플루언서 목록
+            const approved = data.users.filter(u => u.status === 'approved');
+            approved.forEach(u => {
+                const opt = document.createElement('option');
+                opt.value = u.code;
+                opt.textContent = `${u.name} (${u.code})`;
+                select.appendChild(opt);
+            });
+            
+            // 전체 발송 옵션
+            const allOpt = document.createElement('option');
+            allOpt.value = 'all';
+            allOpt.textContent = '📢 전체 인플루언서에게 발송';
+            select.insertBefore(allOpt, select.options[1]);
+            
+            document.getElementById('adminMsgContent').value = '';
+            document.getElementById('adminComposeModal').classList.add('show');
+        }
+
+        function replyAdminMessage() {
+            if (!currentReplyTo) return;
+            
+            const select = document.getElementById('adminMsgTo');
+            select.innerHTML = `<option value="${currentReplyTo.from}">${currentReplyTo.fromName}</option>`;
+            
+            document.getElementById('adminMsgContent').value = '';
+            document.getElementById('adminMsgDetailModal').classList.remove('show');
+            document.getElementById('adminComposeModal').classList.add('show');
+        }
+
+        function closeAdminComposeModal() {
+            document.getElementById('adminComposeModal').classList.remove('show');
+        }
+
+        async function sendAdminMessage() {
+            const to = document.getElementById('adminMsgTo').value;
+            const content = document.getElementById('adminMsgContent').value.trim();
+            
+            if (!to) {
+                showToast('받는 사람을 선택하세요', 'error');
+                return;
+            }
+            if (!content) {
+                showToast('내용을 입력하세요', 'error');
+                return;
+            }
+            if (!db) {
+                showToast('데이터베이스 연결 실패', 'error');
+                return;
+            }
+            
+            try {
+                if (to === 'all') {
+                    // 전체 발송
+                    const approved = data.users.filter(u => u.status === 'approved');
+                    for (const user of approved) {
+                        await db.collection('messages').add({
+                            from: 'admin',
+                            fromName: '관리자',
+                            to: user.code,
+                            toName: user.name,
+                            content: content,
+                            read: false,
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                        });
+                    }
+                    showToast(`${approved.length}명에게 쪽지를 보냈습니다`);
+                } else {
+                    // 개별 발송
+                    const user = data.users.find(u => u.code === to);
+                    await db.collection('messages').add({
+                        from: 'admin',
+                        fromName: '관리자',
+                        to: to,
+                        toName: user?.name || to,
+                        content: content,
+                        read: false,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    showToast('쪽지를 보냈습니다');
+                }
+                
+                closeAdminComposeModal();
+            } catch (error) {
+                console.error('쪽지 전송 실패:', error);
+                showToast('전송에 실패했습니다', 'error');
+            }
+        }
+
+        async function deleteAdminMessage(msgId) {
+            if (!confirm('쪽지를 삭제하시겠습니까?')) return;
+            
+            try {
+                await db.collection('messages').doc(msgId).delete();
+                adminMessages = adminMessages.filter(m => m.id !== msgId);
+                renderAdminMessages();
+                showToast('삭제되었습니다');
+            } catch (error) {
+                console.error('삭제 실패:', error);
+                showToast('삭제에 실패했습니다', 'error');
+            }
+        }
+
+        // 페이지 로드시 메시지 배지 업데이트
+        async function initAdminMessages() {
+            await loadAdminMessages();
+        }
+        // ============================================
+
+        // ============================================
         // 엑셀 업로드 관련 함수
         // ============================================
         
@@ -2345,7 +2638,7 @@
                     } catch (e) {}
                 }
                 
-                const grade = getUserGrade(getUserTotalSales(user.code));
+                const grade = getUserGrade(getUserTotalAmount(user.code));
                 const commission = Math.floor(amount * (grade.commission / 100));
                 
                 const sale = {
@@ -2373,8 +2666,8 @@
             showToast(`${imported}건 등록 완료 (${skipped}건 스킵)`);
         }
         
-        function getUserTotalSales(userCode) {
-            return data.sales.filter(s => s.userCode === userCode).reduce((sum, s) => sum + (s.quantity || 1), 0);
+        function getUserTotalAmount(userCode) {
+            return data.sales.filter(s => s.userCode === userCode).reduce((sum, s) => sum + (s.amount || 0), 0);
         }
         
         function closeExcelPreview() {
@@ -2658,13 +2951,20 @@
             
             container.innerHTML = filtered.map(u => {
                 const userSales = data.sales.filter(s => s.userCode === u.code);
-                const totalSales = userSales.reduce((sum, s) => sum + (s.quantity || 0), 0);
+                const totalSalesCount = userSales.reduce((sum, s) => sum + (s.quantity || 0), 0);
                 const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
                 const totalCommission = userSales.reduce((sum, s) => sum + (s.commission || 0), 0);
                 
-                // 새로운 등급 시스템 적용
-                const grade = getUserGrade(totalSales);
-                const nextInfo = getNextGradeInfo(totalSales);
+                // 새로운 등급 시스템 적용 (매출 기준)
+                const grade = getUserGrade(totalAmount);
+                const nextInfo = getNextGradeInfo(totalAmount);
+                
+                // 금액 포맷
+                const formatAmt = (amt) => {
+                    if (amt >= 100000000) return (amt / 100000000).toFixed(1) + '억';
+                    if (amt >= 10000) return Math.floor(amt / 10000) + '만원';
+                    return amt.toLocaleString() + '원';
+                };
                 
                 // 채널
                 let channels = [];
@@ -2708,16 +3008,16 @@
                     </div>
                     <div class="influencer-card-grade-info">
                         <span class="grade-commission">수수료 ${grade.commission}%</span>
-                        <span class="grade-benefit">🎁 ${grade.benefit}</span>
+                        <span class="grade-benefit">${grade.benefit}</span>
                     </div>
                     <div class="influencer-card-progress">
-                        <div class="progress-bar"><div class="progress-fill" style="width:${nextInfo ? Math.min(100, (totalSales / nextInfo.nextGrade.minSales) * 100) : 100}%"></div></div>
-                        <span class="progress-text">${nextInfo ? `다음 등급까지 ${nextInfo.remaining}건` : '최고 등급!'}</span>
+                        <div class="progress-bar"><div class="progress-fill" style="width:${nextInfo ? Math.min(100, (totalAmount / nextInfo.nextGrade.minAmount) * 100) : 100}%"></div></div>
+                        <span class="progress-text">${nextInfo ? `다음 등급까지 ${formatAmt(nextInfo.remaining)}` : '최고 등급!'}</span>
                     </div>
                     <div class="influencer-card-channels">${channels.join('') || '<span style="color:var(--text-light);font-size:11px">채널 미등록</span>'}</div>
-                    <div class="influencer-card-categories">🏷️ ${cats.length > 0 ? cats.join(', ') : '카테고리 미선택'}</div>
+                    <div class="influencer-card-categories">${cats.length > 0 ? cats.join(', ') : '카테고리 미선택'}</div>
                     <div class="influencer-card-stats">
-                        <div class="influencer-card-stat"><span class="num">${totalSales}</span><span class="label">판매</span></div>
+                        <div class="influencer-card-stat"><span class="num">${totalSalesCount}</span><span class="label">판매</span></div>
                         <div class="influencer-card-stat"><span class="num">₩${totalAmount.toLocaleString()}</span><span class="label">매출</span></div>
                         <div class="influencer-card-stat"><span class="num">₩${totalCommission.toLocaleString()}</span><span class="label">수익</span></div>
                     </div>
@@ -2740,22 +3040,29 @@
             document.getElementById('modalEmail').textContent = user.googleEmail || '-';
             document.getElementById('modalJoinDate').textContent = user.createdAt ? new Date(user.createdAt).toLocaleDateString('ko-KR') : '-';
             
-            // 등급 정보 계산
+            // 등급 정보 계산 (매출 기준)
             const userSales = data.sales.filter(s => s.userCode === user.code);
-            const totalSales = userSales.reduce((sum, s) => sum + (s.quantity || 0), 0);
-            const grade = getUserGrade(totalSales);
-            const nextInfo = getNextGradeInfo(totalSales);
+            const totalSalesCount = userSales.reduce((sum, s) => sum + (s.quantity || 0), 0);
+            const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
+            const grade = getUserGrade(totalAmount);
+            const nextInfo = getNextGradeInfo(totalAmount);
+            
+            const formatAmt = (amt) => {
+                if (amt >= 100000000) return (amt / 100000000).toFixed(1) + '억';
+                if (amt >= 10000) return Math.floor(amt / 10000) + '만원';
+                return amt.toLocaleString() + '원';
+            };
             
             // 등급 표시
             document.getElementById('modalGradeIcon').textContent = grade.icon;
             document.getElementById('modalGradeName').textContent = grade.name;
             document.getElementById('modalGradeCommission').textContent = `수수료 ${grade.commission}%`;
-            document.getElementById('modalGradeBenefit').textContent = `🎁 ${grade.benefit}`;
+            document.getElementById('modalGradeBenefit').textContent = grade.benefit;
             
             if (nextInfo) {
-                const progress = ((totalSales - grade.minSales) / (nextInfo.nextGrade.minSales - grade.minSales)) * 100;
+                const progress = ((totalAmount - grade.minAmount) / (nextInfo.nextGrade.minAmount - grade.minAmount)) * 100;
                 document.getElementById('modalGradeProgressFill').style.width = Math.min(100, progress) + '%';
-                document.getElementById('modalGradeProgressText').textContent = `다음 등급 ${nextInfo.nextGrade.icon} ${nextInfo.nextGrade.name}까지 ${nextInfo.remaining}건 남음`;
+                document.getElementById('modalGradeProgressText').textContent = `다음 등급 ${nextInfo.nextGrade.icon} ${nextInfo.nextGrade.name}까지 ${formatAmt(nextInfo.remaining)} 남음`;
             } else {
                 document.getElementById('modalGradeProgressFill').style.width = '100%';
                 document.getElementById('modalGradeProgressText').textContent = '🎉 최고 등급 달성!';
@@ -2790,10 +3097,9 @@
             document.getElementById('modalCategories').innerHTML = catHtml || '<p style="color:var(--text-light);font-size:13px">선택된 카테고리가 없습니다</p>';
             
             // 판매 실적
-            const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
             const totalCommission = userSales.reduce((sum, s) => sum + (s.commission || 0), 0);
             
-            document.getElementById('modalTotalSales').textContent = totalSales + '건';
+            document.getElementById('modalTotalSales').textContent = totalSalesCount + '건';
             document.getElementById('modalTotalAmount').textContent = '₩' + totalAmount.toLocaleString();
             document.getElementById('modalTotalCommission').textContent = '₩' + totalCommission.toLocaleString();
             
