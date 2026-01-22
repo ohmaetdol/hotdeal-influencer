@@ -8,7 +8,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <style>
-        :root{--primary:#1a73e8;--primary-light:#e8f0fe;--secondary:#202124;--text:#3c4043;--text-light:#5f6368;--bg:#fff;--bg-secondary:#f8f9fa;--border:#dadce0;--success:#1e8e3e;--error:#d93025;--warning:#f9ab00}
+        :root{--primary:#1a73e8;--primary-light:#e8f0fe;--secondary:#1a73e8;--text:#3c4043;--text-light:#5f6368;--bg:#fff;--bg-secondary:#f8f9fa;--border:#e0e0e0;--success:#1a73e8;--error:#1a73e8;--warning:#1a73e8}
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Noto Sans KR',sans-serif;background:var(--bg-secondary);color:var(--text)}
         .hidden{display:none!important}
@@ -22,38 +22,38 @@
         .input-group input,.input-group select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:4px;font-size:14px;font-family:inherit}
         .input-group input:focus,.input-group select:focus{outline:none;border-color:var(--primary)}
 
-        .login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--secondary)}
+        .login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:#f8f9fa}
         .login-box{background:var(--bg);border-radius:8px;padding:40px;width:100%;max-width:400px}
         .login-box h1{font-size:20px;text-align:center;margin-bottom:24px}
 
         .layout{display:flex;min-height:100vh}
-        .sidebar{width:220px;background:var(--secondary);color:#fff;padding:20px 0;position:fixed;height:100vh}
-        .sidebar-logo{padding:0 20px 20px;font-size:14px;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.1)}
+        .sidebar{width:220px;background:#fff;color:var(--text);padding:20px 0;position:fixed;height:100vh;border-right:1px solid var(--border)}
+        .sidebar-logo{padding:0 20px 20px;font-size:14px;font-weight:600;border-bottom:1px solid var(--border)}
         .sidebar-logo span{color:var(--primary)}
         .sidebar-menu{padding:20px 0}
-        .sidebar-menu a{display:block;padding:12px 20px;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;cursor:pointer}
-        .sidebar-menu a:hover{background:rgba(255,255,255,0.05);color:#fff}
-        .sidebar-menu a.active{background:var(--primary);color:#fff}
+        .sidebar-menu a{display:block;padding:12px 20px;color:var(--text-light);text-decoration:none;font-size:14px;cursor:pointer;border-radius:0 25px 25px 0;margin-right:12px}
+        .sidebar-menu a:hover{background:var(--primary-light);color:var(--primary)}
+        .sidebar-menu a.active{background:var(--primary-light);color:var(--primary);font-weight:500}
         
         .main{flex:1;margin-left:220px;padding:24px}
         .page-title{font-size:22px;font-weight:500;margin-bottom:24px}
 
         .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
         .stat-card{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:20px}
-        .stat-card.highlight{border-left:4px solid var(--warning)}
+        .stat-card.highlight{border-left:4px solid var(--primary)}
         .stat-label{font-size:12px;color:var(--text-light);margin-bottom:4px}
         .stat-value{font-size:24px;font-weight:500}
         .stat-value.primary{color:var(--primary)}
-        .stat-value.success{color:var(--success)}
-        .stat-value.warning{color:var(--warning)}
+        .stat-value.success{color:var(--primary)}
+        .stat-value.warning{color:var(--primary)}
 
         .dashboard-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px}
 
         .todo-card{margin-bottom:24px}
         .todo-list{display:flex;flex-direction:column;gap:12px}
         .todo-item{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--bg-secondary);border-radius:8px;border-left:4px solid var(--primary)}
-        .todo-item.urgent{border-left-color:var(--error)}
-        .todo-item.success{border-left-color:var(--success);opacity:0.7}
+        .todo-item.urgent{border-left-color:var(--primary)}
+        .todo-item.success{border-left-color:var(--primary);opacity:0.7}
         .todo-icon{font-size:20px}
         .todo-content{flex:1}
         .todo-title{font-size:14px;font-weight:500;margin-bottom:2px}
@@ -76,9 +76,9 @@
         .top-info{flex:1}
         .top-name{font-size:13px;font-weight:500}
         .top-stats{font-size:11px;color:var(--text-light)}
-        .top-amount{font-size:14px;font-weight:600;color:var(--success)}
+        .top-amount{font-size:14px;font-weight:600;color:var(--primary)}
 
-        .header-badge{background:var(--error);color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-left:8px}
+        .header-badge{background:var(--primary);color:#fff;padding:2px 8px;border-radius:10px;font-size:12px;margin-left:8px}
 
         .card{background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:24px;overflow:hidden}
         .card-header{padding:16px 20px;border-bottom:1px solid var(--border);font-weight:500}
@@ -91,8 +91,8 @@
         tr:last-child td{border-bottom:none}
 
         .badge{display:inline-block;padding:4px 8px;border-radius:4px;font-size:11px;font-weight:500}
-        .badge-pending{background:#fef7e0;color:#b45309}
-        .badge-success{background:#e6f4ea;color:var(--success)}
+        .badge-pending{background:var(--primary-light);color:var(--primary)}
+        .badge-success{background:var(--primary-light);color:var(--primary)}
         .badge-primary{background:var(--primary-light);color:var(--primary)}
 
         .form-row{display:flex;gap:12px;align-items:end}
@@ -100,9 +100,9 @@
 
         .empty{text-align:center;padding:40px;color:var(--text-light)}
 
-        .toast{position:fixed;bottom:24px;right:24px;background:var(--success);color:#fff;padding:12px 20px;border-radius:4px;opacity:0;transition:all .3s}
+        .toast{position:fixed;bottom:24px;right:24px;background:var(--primary);color:#fff;padding:12px 20px;border-radius:4px;opacity:0;transition:all .3s}
         .toast.show{opacity:1}
-        .toast.error{background:var(--error)}
+        .toast.error{background:#5f6368}
         
         .loading{text-align:center;padding:40px;color:var(--text-light)}
         .loading::after{content:'';display:inline-block;width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin 1s linear infinite;margin-left:10px;vertical-align:middle}
@@ -114,21 +114,21 @@
         .influencer-card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.1);border-color:var(--primary)}
         .influencer-card-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
         .influencer-card-avatar{width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600}
-        .influencer-card-avatar.silver{background:linear-gradient(135deg,#c0c0c0,#e8e8e8)}
-        .influencer-card-avatar.gold{background:linear-gradient(135deg,#ffd700,#ffec8b)}
-        .influencer-card-avatar.vip{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff}
+        .influencer-card-avatar.silver{background:var(--primary-light);color:var(--primary)}
+        .influencer-card-avatar.gold{background:var(--primary-light);color:var(--primary)}
+        .influencer-card-avatar.vip{background:var(--primary);color:#fff}
         .influencer-card-info h4{font-size:15px;margin-bottom:4px}
         .influencer-card-info p{font-size:12px;color:var(--text-light)}
         .influencer-card-grade{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--bg-secondary)}
-        .influencer-card-grade.silver{background:#e8e8e8;color:#666}
-        .influencer-card-grade.gold{background:#fff3cd;color:#856404}
-        .influencer-card-grade.vip{background:#e8f0fe;color:var(--primary)}
+        .influencer-card-grade.silver{background:var(--primary-light);color:var(--primary)}
+        .influencer-card-grade.gold{background:var(--primary-light);color:var(--primary)}
+        .influencer-card-grade.vip{background:var(--primary-light);color:var(--primary)}
         .influencer-card-channels{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
-        .influencer-card-channel{font-size:11px;padding:4px 8px;border-radius:4px;background:var(--bg-secondary)}
-        .influencer-card-channel.youtube{background:#fee2e2;color:#dc2626}
-        .influencer-card-channel.instagram{background:#fce7f3;color:#db2777}
-        .influencer-card-channel.blog{background:#dcfce7;color:#16a34a}
-        .influencer-card-channel.tiktok{background:#f3e8ff;color:#7c3aed}
+        .influencer-card-channel{font-size:11px;padding:4px 8px;border-radius:4px;background:var(--primary-light);color:var(--primary)}
+        .influencer-card-channel.youtube{background:var(--primary-light);color:var(--primary)}
+        .influencer-card-channel.instagram{background:var(--primary-light);color:var(--primary)}
+        .influencer-card-channel.blog{background:var(--primary-light);color:var(--primary)}
+        .influencer-card-channel.tiktok{background:var(--primary-light);color:var(--primary)}
         .influencer-card-categories{font-size:11px;color:var(--text-light);margin-bottom:12px;line-height:1.5}
         .influencer-card-stats{display:flex;gap:16px;padding-top:12px;border-top:1px solid var(--border)}
         .influencer-card-stat{text-align:center}
@@ -143,10 +143,10 @@
         /* 등급 관련 스타일 */
         .influencer-card-grade-info{display:flex;gap:12px;margin-bottom:10px;align-items:center}
         .grade-commission{font-size:12px;font-weight:600;color:var(--primary)}
-        .grade-benefit{font-size:11px;color:var(--success)}
+        .grade-benefit{font-size:11px;color:var(--primary)}
         .influencer-card-progress{margin-bottom:12px}
         .influencer-card-progress .progress-bar{height:6px;background:var(--bg-secondary);border-radius:3px;overflow:hidden;margin-bottom:4px}
-        .influencer-card-progress .progress-fill{height:100%;background:linear-gradient(90deg,var(--primary),#4f46e5);border-radius:3px}
+        .influencer-card-progress .progress-fill{height:100%;background:var(--primary);border-radius:3px}
         .influencer-card-progress .progress-text{font-size:10px;color:var(--text-light)}
 
         /* 인플루언서 상세 모달 */
@@ -167,10 +167,10 @@
         .modal-channels{display:flex;flex-direction:column;gap:8px}
         .modal-channel-item{display:flex;align-items:center;gap:12px;padding:10px;background:var(--bg-secondary);border-radius:6px}
         .modal-channel-icon{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
-        .modal-channel-icon.youtube{background:#fee2e2;color:#dc2626}
-        .modal-channel-icon.instagram{background:#fce7f3;color:#db2777}
-        .modal-channel-icon.blog{background:#dcfce7;color:#16a34a}
-        .modal-channel-icon.tiktok{background:#f3e8ff;color:#7c3aed}
+        .modal-channel-icon.youtube{background:var(--primary-light);color:var(--primary)}
+        .modal-channel-icon.instagram{background:var(--primary-light);color:var(--primary)}
+        .modal-channel-icon.blog{background:var(--primary-light);color:var(--primary)}
+        .modal-channel-icon.tiktok{background:var(--primary-light);color:var(--primary)}
         .modal-channel-url{font-size:12px;color:var(--primary);word-break:break-all}
         .modal-categories{display:flex;flex-wrap:wrap;gap:6px}
         .modal-category-tag{padding:6px 12px;background:var(--primary-light);color:var(--primary);border-radius:16px;font-size:12px}
@@ -194,16 +194,16 @@
         .btn-secondary{background:var(--bg-secondary);color:var(--text);border:1px solid var(--border)}
         
         /* 모달 등급 카드 */
-        .modal-grade-card{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:12px;padding:20px;color:#fff}
+        .modal-grade-card{background:var(--primary-light);border-radius:12px;padding:20px;color:var(--primary)}
         .modal-grade-header{display:flex;align-items:center;gap:16px;margin-bottom:16px}
         .modal-grade-icon{font-size:40px}
         .modal-grade-info{flex:1}
         .modal-grade-name{font-size:24px;font-weight:700;display:block}
         .modal-grade-commission{font-size:14px;opacity:0.9}
-        .modal-grade-benefit{font-size:13px;background:rgba(255,255,255,0.2);padding:8px 16px;border-radius:20px}
+        .modal-grade-benefit{font-size:13px;background:rgba(26,115,232,0.2);padding:8px 16px;border-radius:20px}
         .modal-grade-progress{margin-top:12px}
-        .modal-grade-progress-bar{height:8px;background:rgba(255,255,255,0.3);border-radius:4px;overflow:hidden;margin-bottom:8px}
-        .modal-grade-progress-fill{height:100%;background:#fff;border-radius:4px}
+        .modal-grade-progress-bar{height:8px;background:rgba(26,115,232,0.3);border-radius:4px;overflow:hidden;margin-bottom:8px}
+        .modal-grade-progress-fill{height:100%;background:var(--primary);border-radius:4px}
         .modal-grade-progress-text{font-size:12px;opacity:0.9}
         
         /* 등급 분포 */
@@ -245,10 +245,10 @@
         .matching-meta{font-size:12px;color:var(--text-light);margin-bottom:6px}
         .matching-channels{display:flex;gap:6px;flex-wrap:wrap}
         .matching-channel{font-size:11px;padding:3px 8px;border-radius:4px;font-weight:500}
-        .matching-channel.instagram{background:#fce7f3;color:#db2777}
-        .matching-channel.youtube{background:#fee2e2;color:#dc2626}
-        .matching-channel.blog{background:#dcfce7;color:#16a34a}
-        .matching-channel.tiktok{background:#f3e8ff;color:#7c3aed}
+        .matching-channel.instagram{background:var(--primary-light);color:var(--primary)}
+        .matching-channel.youtube{background:var(--primary-light);color:var(--primary)}
+        .matching-channel.blog{background:var(--primary-light);color:var(--primary)}
+        .matching-channel.tiktok{background:var(--primary-light);color:var(--primary)}
         .matching-score{text-align:right;flex-shrink:0}
         .matching-score-value{font-size:24px;font-weight:700;color:var(--primary)}
         .matching-score-label{font-size:11px;color:var(--text-light)}
@@ -258,10 +258,10 @@
         
         .matching-contact-btns{display:flex;gap:8px;margin-top:10px}
         .contact-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:500;text-decoration:none;transition:all .2s}
-        .contact-btn.call{background:#dcfce7;color:#16a34a}
-        .contact-btn.call:hover{background:#bbf7d0}
-        .contact-btn.sms{background:#e0f2fe;color:#0284c7}
-        .contact-btn.sms:hover{background:#bae6fd}
+        .contact-btn.call{background:var(--primary-light);color:var(--primary)}
+        .contact-btn.call:hover{background:#d2e3fc}
+        .contact-btn.sms{background:var(--primary-light);color:var(--primary)}
+        .contact-btn.sms:hover{background:#d2e3fc}
         .no-contact{font-size:11px;color:var(--text-light);padding:6px 0}
         
         /* 상품 상태 탭 */
@@ -269,15 +269,15 @@
         .status-tab,.section-tab{padding:6px 12px;border:1px solid var(--border);border-radius:4px;background:#fff;font-size:12px;cursor:pointer;font-family:inherit;color:var(--text-light);transition:all .2s}
         .status-tab:hover,.section-tab:hover{border-color:var(--primary);color:var(--primary)}
         .status-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
-        .section-tab.active{background:var(--success);color:#fff;border-color:var(--success)}
+        .section-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
         .badge-status{padding:4px 8px;border-radius:4px;font-size:11px;font-weight:500}
-        .badge-status.pending{background:#fef3c7;color:#b45309}
-        .badge-status.active{background:#dcfce7;color:#16a34a}
+        .badge-status.pending{background:var(--primary-light);color:var(--primary)}
+        .badge-status.active{background:var(--primary-light);color:var(--primary)}
         .badge-status.ended{background:#f3f4f6;color:#6b7280}
         .badge-section{padding:4px 8px;border-radius:4px;font-size:11px;font-weight:500}
-        .badge-section.recommend{background:#e0f2fe;color:#0284c7}
-        .badge-section.new{background:#fce7f3;color:#db2777}
-        .badge-section.best{background:#fef3c7;color:#b45309}
+        .badge-section.recommend{background:var(--primary-light);color:var(--primary)}
+        .badge-section.new{background:var(--primary-light);color:var(--primary)}
+        .badge-section.best{background:var(--primary-light);color:var(--primary)}
         .order-input{width:50px;padding:4px 8px;border:1px solid var(--border);border-radius:4px;font-size:12px;text-align:center}
         .order-btn{padding:4px 8px;border:none;background:var(--bg-secondary);border-radius:4px;cursor:pointer;font-size:11px}
         .order-btn:hover{background:var(--primary-light)}
@@ -289,7 +289,38 @@
         .draggable-row.dragging{opacity:0.5;background:var(--primary-light)}
         .draggable-row.drag-over{background:#e3f2fd;border-top:2px solid var(--primary)}
 
-        @media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.stats-grid{grid-template-columns:1fr 1fr}.influencer-card-list{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}.filter-row{flex-direction:column}.filter-group{min-width:100%}.product-status-tabs{flex-wrap:wrap}}
+        /* 엑셀 업로드 스타일 */
+        .excel-upload-area{border:2px dashed var(--border);border-radius:12px;padding:40px 20px;text-align:center;cursor:pointer;transition:all .2s;background:var(--bg-secondary)}
+        .excel-upload-area:hover{border-color:var(--primary);background:var(--primary-light)}
+        .excel-upload-area.dragover{border-color:var(--primary);background:var(--primary-light);transform:scale(1.01)}
+        .excel-upload-icon{font-size:48px;margin-bottom:12px}
+        .excel-upload-text{font-size:15px;font-weight:500;color:var(--text);margin-bottom:8px}
+        .excel-upload-hint{font-size:12px;color:var(--text-light)}
+        .excel-preview{margin-top:20px;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+        .excel-preview-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--bg-secondary);border-bottom:1px solid var(--border)}
+        .excel-preview-header span{font-weight:500}
+        .excel-mapping{padding:16px;background:#fff;border-bottom:1px solid var(--border)}
+        .mapping-row{display:flex;gap:12px;flex-wrap:wrap}
+        .mapping-row .input-group{flex:1;min-width:140px;margin-bottom:0}
+        .mapping-row .input-group label{font-size:12px}
+        .mapping-row .input-group select{padding:8px;font-size:13px}
+        .excel-preview-table-wrap{max-height:300px;overflow:auto}
+        .excel-preview-table{width:100%;font-size:12px}
+        .excel-preview-table th{background:var(--bg-secondary);position:sticky;top:0;z-index:1}
+        .excel-preview-table td,.excel-preview-table th{padding:8px 12px;white-space:nowrap}
+        .excel-preview-table tr.matched{background:#e8f5e9}
+        .excel-preview-table tr.unmatched{background:#fff3e0}
+        .excel-preview-summary{padding:12px 16px;background:var(--bg-secondary);border-top:1px solid var(--border);font-size:13px;display:flex;justify-content:space-between}
+        .match-summary .matched{color:var(--primary);font-weight:500}
+        .match-summary .unmatched{color:#f57c00;font-weight:500}
+        .excel-preview-actions{padding:16px;display:flex;gap:12px;justify-content:flex-end;border-top:1px solid var(--border)}
+        .excel-help{margin-top:16px;font-size:13px;color:var(--text-light)}
+        .excel-help details{background:var(--bg-secondary);border-radius:8px;padding:12px 16px}
+        .excel-help summary{cursor:pointer;font-weight:500;color:var(--text)}
+        .excel-help ol{margin:12px 0 0 20px;line-height:1.8}
+        .excel-help li{margin-bottom:4px}
+
+        @media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.stats-grid{grid-template-columns:1fr 1fr}.influencer-card-list{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}.filter-row{flex-direction:column}.filter-group{min-width:100%}.product-status-tabs{flex-wrap:wrap}.mapping-row{flex-direction:column}.mapping-row .input-group{min-width:100%}.excel-preview-actions{flex-direction:column}.excel-preview-actions .btn{width:100%}}
 
         /* ============================================
            🔥 관리자 모바일 최적화 스타일
@@ -303,12 +334,13 @@
             left:0;
             right:0;
             height:56px;
-            background:var(--secondary);
-            color:#fff;
+            background:#fff;
+            color:var(--text);
             padding:0 16px;
             z-index:200;
             align-items:center;
             justify-content:space-between;
+            border-bottom:1px solid var(--border);
         }
         .mobile-header-logo{
             font-size:14px;
@@ -318,7 +350,7 @@
         .mobile-menu-btn{
             background:none;
             border:none;
-            color:#fff;
+            color:var(--text);
             font-size:24px;
             padding:8px;
             cursor:pointer;
@@ -344,31 +376,32 @@
             left:-280px;
             width:280px;
             height:100vh;
-            background:var(--secondary);
+            background:#fff;
             z-index:301;
             transition:left .3s ease;
             overflow-y:auto;
+            border-right:1px solid var(--border);
         }
         .mobile-sidebar-overlay.show .mobile-sidebar{
             left:0;
         }
         .mobile-sidebar-header{
             padding:20px;
-            border-bottom:1px solid rgba(255,255,255,0.1);
+            border-bottom:1px solid var(--border);
             display:flex;
             justify-content:space-between;
             align-items:center;
         }
         .mobile-sidebar-header h2{
             font-size:16px;
-            color:#fff;
+            color:var(--text);
             margin:0;
         }
         .mobile-sidebar-header h2 span{color:var(--primary)}
         .mobile-sidebar-close{
             background:none;
             border:none;
-            color:rgba(255,255,255,0.7);
+            color:var(--text-light);
             font-size:24px;
             cursor:pointer;
         }
@@ -380,15 +413,15 @@
             align-items:center;
             gap:12px;
             padding:14px 20px;
-            color:rgba(255,255,255,0.7);
+            color:var(--text-light);
             text-decoration:none;
             font-size:15px;
             transition:all .2s;
         }
         .mobile-sidebar-menu a:hover,
         .mobile-sidebar-menu a.active{
-            background:var(--primary);
-            color:#fff;
+            background:var(--primary-light);
+            color:var(--primary);
         }
         .mobile-sidebar-menu a .menu-icon{
             font-size:18px;
@@ -1086,8 +1119,78 @@
 
             <div id="sectionSales" class="hidden">
                 <h1 class="page-title">판매 입력</h1>
+                
+                <!-- 엑셀 업로드 카드 -->
                 <div class="card">
-                    <div class="card-header">판매 등록</div>
+                    <div class="card-header">📊 엑셀 일괄 업로드</div>
+                    <div class="card-body">
+                        <div class="excel-upload-area" id="excelUploadArea" onclick="document.getElementById('excelFile').click()" ondrop="handleExcelDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+                            <div class="excel-upload-icon">📁</div>
+                            <div class="excel-upload-text">엑셀 파일을 드래그하거나 클릭하여 업로드</div>
+                            <div class="excel-upload-hint">스마트스토어, 쿠팡 주문내역 엑셀 지원 (.xlsx, .xls, .csv)</div>
+                            <input type="file" id="excelFile" accept=".xlsx,.xls,.csv" onchange="handleExcelUpload(event)" style="display:none">
+                        </div>
+                        <div id="excelPreview" class="excel-preview hidden">
+                            <div class="excel-preview-header">
+                                <span>📋 업로드 미리보기</span>
+                                <button class="btn btn-small" onclick="closeExcelPreview()">취소</button>
+                            </div>
+                            <div class="excel-mapping">
+                                <div class="mapping-row">
+                                    <div class="input-group">
+                                        <label>추천코드/쿠폰코드 열</label>
+                                        <select id="mappingCode"></select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>상품명 열</label>
+                                        <select id="mappingProduct"></select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>수량 열</label>
+                                        <select id="mappingQty"></select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>금액 열</label>
+                                        <select id="mappingAmount"></select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>주문일 열 (선택)</label>
+                                        <select id="mappingDate"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="excel-preview-table-wrap">
+                                <table class="excel-preview-table">
+                                    <thead id="excelPreviewHead"></thead>
+                                    <tbody id="excelPreviewBody"></tbody>
+                                </table>
+                            </div>
+                            <div class="excel-preview-summary">
+                                <span id="excelSummary">총 0건</span>
+                                <span id="excelMatchSummary" class="match-summary">매칭: 0건 / 미매칭: 0건</span>
+                            </div>
+                            <div class="excel-preview-actions">
+                                <button class="btn" onclick="previewExcelMatch()">매칭 미리보기</button>
+                                <button class="btn btn-primary" onclick="importExcelSales()">판매 등록하기</button>
+                            </div>
+                        </div>
+                        <div class="excel-help">
+                            <details>
+                                <summary>💡 사용 방법</summary>
+                                <ol>
+                                    <li><strong>추천코드 설정:</strong> 인플루언서 관리에서 각 인플루언서에게 고유 추천코드를 부여하세요</li>
+                                    <li><strong>쿠폰 생성:</strong> 스마트스토어/쿠팡에서 추천코드와 동일한 쿠폰코드를 생성하세요</li>
+                                    <li><strong>주문 다운로드:</strong> 판매처에서 주문내역을 엑셀로 다운로드하세요</li>
+                                    <li><strong>업로드:</strong> 엑셀 파일을 업로드하고 열을 매칭한 후 등록하세요</li>
+                                </ol>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 수동 등록 카드 -->
+                <div class="card">
+                    <div class="card-header">✏️ 수동 판매 등록</div>
                     <div class="card-body">
                         <div class="form-row">
                             <div class="input-group"><label>상품</label><select id="saleProduct"></select></div>
@@ -1108,6 +1211,7 @@
 
     <div id="toast" class="toast"></div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script>
         // Firebase 설정
         const firebaseConfig = {
@@ -1120,6 +1224,8 @@
         };
         
         let db = null;
+        let excelData = null; // 엑셀 데이터 임시 저장
+        let excelHeaders = []; // 엑셀 헤더
         
         function initFirebase() {
             if (typeof firebase !== 'undefined') {
@@ -2010,6 +2116,275 @@
             t.className = 'toast ' + (type || '') + ' show'; 
             setTimeout(() => t.classList.remove('show'), 2500); 
         }
+
+        // ============================================
+        // 엑셀 업로드 관련 함수
+        // ============================================
+        
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.getElementById('excelUploadArea').classList.add('dragover');
+        }
+        
+        function handleDragLeave(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.getElementById('excelUploadArea').classList.remove('dragover');
+        }
+        
+        function handleExcelDrop(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.getElementById('excelUploadArea').classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                processExcelFile(files[0]);
+            }
+        }
+        
+        function handleExcelUpload(e) {
+            const file = e.target.files[0];
+            if (file) {
+                processExcelFile(file);
+            }
+        }
+        
+        function processExcelFile(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+                    
+                    if (jsonData.length < 2) {
+                        showToast('데이터가 없습니다', 'error');
+                        return;
+                    }
+                    
+                    excelHeaders = jsonData[0].map(h => String(h || '').trim());
+                    excelData = jsonData.slice(1).filter(row => row.some(cell => cell !== null && cell !== ''));
+                    
+                    showExcelPreview();
+                    showToast(`${excelData.length}개 행 로드됨`);
+                } catch (err) {
+                    console.error(err);
+                    showToast('파일을 읽을 수 없습니다', 'error');
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+        
+        function showExcelPreview() {
+            document.getElementById('excelPreview').classList.remove('hidden');
+            
+            // 매핑 셀렉트박스 채우기
+            const selects = ['mappingCode', 'mappingProduct', 'mappingQty', 'mappingAmount', 'mappingDate'];
+            selects.forEach(id => {
+                const select = document.getElementById(id);
+                select.innerHTML = '<option value="">-- 선택 --</option>';
+                excelHeaders.forEach((h, i) => {
+                    const opt = document.createElement('option');
+                    opt.value = i;
+                    opt.textContent = h;
+                    select.appendChild(opt);
+                });
+            });
+            
+            // 자동 매핑 시도
+            autoMapColumns();
+            
+            // 미리보기 테이블
+            renderExcelPreviewTable();
+        }
+        
+        function autoMapColumns() {
+            const codeKeywords = ['추천', '쿠폰', '할인코드', '프로모션', 'coupon', 'code', '코드'];
+            const productKeywords = ['상품', '품명', '제품', 'product', 'item', '옵션'];
+            const qtyKeywords = ['수량', 'qty', 'quantity', '개수'];
+            const amountKeywords = ['금액', '결제', '총액', 'amount', 'price', '판매가', '실결제'];
+            const dateKeywords = ['일자', '날짜', '주문일', 'date', '결제일'];
+            
+            excelHeaders.forEach((h, i) => {
+                const lower = h.toLowerCase();
+                if (codeKeywords.some(k => lower.includes(k))) {
+                    document.getElementById('mappingCode').value = i;
+                }
+                if (productKeywords.some(k => lower.includes(k))) {
+                    document.getElementById('mappingProduct').value = i;
+                }
+                if (qtyKeywords.some(k => lower.includes(k))) {
+                    document.getElementById('mappingQty').value = i;
+                }
+                if (amountKeywords.some(k => lower.includes(k))) {
+                    document.getElementById('mappingAmount').value = i;
+                }
+                if (dateKeywords.some(k => lower.includes(k))) {
+                    document.getElementById('mappingDate').value = i;
+                }
+            });
+        }
+        
+        function renderExcelPreviewTable() {
+            const thead = document.getElementById('excelPreviewHead');
+            const tbody = document.getElementById('excelPreviewBody');
+            
+            // 헤더
+            thead.innerHTML = '<tr>' + excelHeaders.map(h => `<th>${h}</th>`).join('') + '</tr>';
+            
+            // 바디 (최대 50행)
+            const previewRows = excelData.slice(0, 50);
+            tbody.innerHTML = previewRows.map(row => 
+                '<tr>' + excelHeaders.map((_, i) => `<td>${row[i] || ''}</td>`).join('') + '</tr>'
+            ).join('');
+            
+            document.getElementById('excelSummary').textContent = `총 ${excelData.length}건`;
+        }
+        
+        function previewExcelMatch() {
+            const codeIdx = parseInt(document.getElementById('mappingCode').value);
+            const productIdx = parseInt(document.getElementById('mappingProduct').value);
+            const qtyIdx = parseInt(document.getElementById('mappingQty').value);
+            const amountIdx = parseInt(document.getElementById('mappingAmount').value);
+            
+            if (isNaN(codeIdx)) {
+                showToast('추천코드 열을 선택하세요', 'error');
+                return;
+            }
+            
+            let matched = 0;
+            let unmatched = 0;
+            
+            const tbody = document.getElementById('excelPreviewBody');
+            const rows = tbody.querySelectorAll('tr');
+            
+            excelData.slice(0, 50).forEach((row, i) => {
+                const code = String(row[codeIdx] || '').trim();
+                const user = data.users.find(u => u.code && u.code.toLowerCase() === code.toLowerCase());
+                
+                if (user) {
+                    matched++;
+                    rows[i]?.classList.add('matched');
+                    rows[i]?.classList.remove('unmatched');
+                } else if (code) {
+                    unmatched++;
+                    rows[i]?.classList.add('unmatched');
+                    rows[i]?.classList.remove('matched');
+                }
+            });
+            
+            // 전체 데이터 매칭 카운트
+            let totalMatched = 0;
+            let totalUnmatched = 0;
+            excelData.forEach(row => {
+                const code = String(row[codeIdx] || '').trim();
+                const user = data.users.find(u => u.code && u.code.toLowerCase() === code.toLowerCase());
+                if (user) totalMatched++;
+                else if (code) totalUnmatched++;
+            });
+            
+            document.getElementById('excelMatchSummary').innerHTML = 
+                `<span class="matched">매칭: ${totalMatched}건</span> / <span class="unmatched">미매칭: ${totalUnmatched}건</span>`;
+            
+            showToast(`매칭 완료: ${totalMatched}건 매칭됨`);
+        }
+        
+        async function importExcelSales() {
+            const codeIdx = parseInt(document.getElementById('mappingCode').value);
+            const productIdx = parseInt(document.getElementById('mappingProduct').value);
+            const qtyIdx = parseInt(document.getElementById('mappingQty').value);
+            const amountIdx = parseInt(document.getElementById('mappingAmount').value);
+            const dateIdx = parseInt(document.getElementById('mappingDate').value);
+            
+            if (isNaN(codeIdx)) {
+                showToast('추천코드 열을 선택하세요', 'error');
+                return;
+            }
+            if (isNaN(amountIdx)) {
+                showToast('금액 열을 선택하세요', 'error');
+                return;
+            }
+            
+            let imported = 0;
+            let skipped = 0;
+            
+            for (const row of excelData) {
+                const code = String(row[codeIdx] || '').trim();
+                const user = data.users.find(u => u.code && u.code.toLowerCase() === code.toLowerCase());
+                
+                if (!user) {
+                    skipped++;
+                    continue;
+                }
+                
+                const productName = productIdx >= 0 ? String(row[productIdx] || '') : '';
+                const qty = qtyIdx >= 0 ? parseInt(row[qtyIdx]) || 1 : 1;
+                const amount = parseInt(String(row[amountIdx] || '0').replace(/[^0-9]/g, '')) || 0;
+                
+                if (amount <= 0) {
+                    skipped++;
+                    continue;
+                }
+                
+                // 상품 매칭 시도
+                let product = data.products.find(p => productName.includes(p.name) || p.name.includes(productName));
+                if (!product && data.products.length > 0) {
+                    product = data.products[0]; // 기본 상품
+                }
+                
+                // 날짜 파싱
+                let saleDate = new Date().toISOString();
+                if (!isNaN(dateIdx) && row[dateIdx]) {
+                    try {
+                        const d = new Date(row[dateIdx]);
+                        if (!isNaN(d.getTime())) {
+                            saleDate = d.toISOString();
+                        }
+                    } catch (e) {}
+                }
+                
+                const grade = getUserGrade(getUserTotalSales(user.code));
+                const commission = Math.floor(amount * (grade.commission / 100));
+                
+                const sale = {
+                    id: Date.now() + imported,
+                    productId: product?.id || 0,
+                    productName: product?.name || productName || '외부상품',
+                    userCode: user.code,
+                    userName: user.name,
+                    quantity: qty,
+                    amount: amount,
+                    commission: commission,
+                    date: saleDate,
+                    source: 'excel'
+                };
+                
+                data.sales.push(sale);
+                await saveSaleToFirebase(sale);
+                imported++;
+            }
+            
+            saveDataLocal();
+            updateAll();
+            closeExcelPreview();
+            
+            showToast(`${imported}건 등록 완료 (${skipped}건 스킵)`);
+        }
+        
+        function getUserTotalSales(userCode) {
+            return data.sales.filter(s => s.userCode === userCode).reduce((sum, s) => sum + (s.quantity || 1), 0);
+        }
+        
+        function closeExcelPreview() {
+            document.getElementById('excelPreview').classList.add('hidden');
+            document.getElementById('excelFile').value = '';
+            excelData = null;
+            excelHeaders = [];
+        }
+        
+        // ============================================
         
         // 성과분석 업데이트
         function updateAnalytics() {
