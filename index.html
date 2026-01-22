@@ -1413,6 +1413,7 @@
                 <h1>로그인</h1>
                 <p>핫딜공구인플루언서에 오신 것을 환영합니다</p>
                 <div id="googleLoginBtn" style="display:flex;justify-content:center;margin-top:24px"></div>
+                <button onclick="loginWithDifferentAccount()" style="margin-top:16px;background:none;border:none;color:var(--primary);font-size:13px;cursor:pointer;text-decoration:underline">다른 계정으로 로그인</button>
             </div>
         </div>
     </div>
@@ -1542,7 +1543,6 @@
                     <a class="active" onclick="showDashSection('home', this)">홈</a>
                     <a onclick="showDashSection('report', this)">리포트</a>
                     <a onclick="showDashSection('friends', this)">친구</a>
-                    <a onclick="showDashSection('messages', this)">쪽지</a>
                     <a onclick="showDashSection('community', this)">커뮤니티</a>
                 </nav>
             </div>
@@ -2077,12 +2077,6 @@
                 <button class="mobile-nav-item" onclick="showDashSectionMobile('report', this)" data-section="report">
                     <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg></span>
                 </button>
-                <button class="mobile-nav-item" onclick="showDashSectionMobile('messages', this)" data-section="messages">
-                    <span class="nav-icon" style="position:relative">
-                        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
-                        <span class="mobile-msg-badge hidden" id="mobileMsgBadge"></span>
-                    </span>
-                </button>
                 <button class="mobile-nav-item" onclick="showDashSectionMobile('friends', this)" data-section="friends">
                     <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></span>
                 </button>
@@ -2400,9 +2394,9 @@
         const gradeSystem = [
             { id: 'seed', name: '씨앗', icon: '🌱', minAmount: 0, commission: 8, color: '#8B4513', bgColor: '#FFF8DC', benefit: '일반 상품', benefitDetail: '기본 상품에 접근할 수 있어요' },
             { id: 'sprout', name: '새싹', icon: '🌿', minAmount: 5000000, commission: 9, color: '#228B22', bgColor: '#F0FFF0', benefit: '샘플 제공', benefitDetail: '공구 전 무료 샘플을 받을 수 있어요' },
-            { id: 'bronze', name: '브론즈', icon: '🥉', minAmount: 20000000, commission: 10, color: '#CD7F32', bgColor: '#FDF5E6', benefit: '신상품 1일 선공개 + 재고 우선', benefitDetail: '신상품을 1일 먼저 보고, 재고를 우선 확보해드려요' },
-            { id: 'silver', name: '실버', icon: '🥈', minAmount: 50000000, commission: 11, color: '#C0C0C0', bgColor: '#F5F5F5', benefit: '신상품 3일 선공개 + 정산 격주', benefitDetail: '신상품을 3일 먼저 보고, 정산을 격주로 받아요' },
-            { id: 'gold', name: '골드', icon: '🥇', minAmount: 100000000, commission: 12, color: '#FFD700', bgColor: '#FFFACD', benefit: '단독 상품 + 추가 할인가', benefitDetail: '골드 전용 상품과 더 낮은 공급가를 제공받아요' },
+            { id: 'bronze', name: '브론즈', icon: '🌳', minAmount: 20000000, commission: 10, color: '#CD7F32', bgColor: '#FDF5E6', benefit: '신상품 1일 선공개 + 재고 우선', benefitDetail: '신상품을 1일 먼저 보고, 재고를 우선 확보해드려요' },
+            { id: 'silver', name: '실버', icon: '⭐', minAmount: 50000000, commission: 11, color: '#C0C0C0', bgColor: '#F5F5F5', benefit: '신상품 3일 선공개 + 정산 격주', benefitDetail: '신상품을 3일 먼저 보고, 정산을 격주로 받아요' },
+            { id: 'gold', name: '골드', icon: '🌟', minAmount: 100000000, commission: 12, color: '#FFD700', bgColor: '#FFFACD', benefit: '단독 상품 + 추가 할인가', benefitDetail: '골드 전용 상품과 더 낮은 공급가를 제공받아요' },
             { id: 'diamond', name: '다이아', icon: '💎', minAmount: 300000000, commission: 13, color: '#00CED1', bgColor: '#E0FFFF', benefit: '독점 공구 + 정산 주1회 + CS대행', benefitDetail: '독점 공구 기간, 주 1회 정산, CS 대행까지 모든 혜택!' }
         ];
         
@@ -2758,7 +2752,14 @@
             updateDashboard();
         }
 
-        function logout() { currentUser = null; showPage('landing'); }
+        function logout() { 
+            currentUser = null; 
+            // 구글 자동 로그인 비활성화
+            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                google.accounts.id.disableAutoSelect();
+            }
+            showPage('landing'); 
+        }
 
         // ============================================
         // 쪽지 기능
@@ -3910,8 +3911,72 @@
             }
         }
         
+        // 다른 계정으로 로그인 (계정 선택 팝업)
+        function loginWithDifferentAccount() {
+            if (typeof google !== 'undefined') {
+                google.accounts.id.disableAutoSelect();
+                // OAuth2 팝업으로 계정 선택
+                const clientId = '287250123455-nmlqbq2ckkorsutvc0cvak3shkq7cihv.apps.googleusercontent.com';
+                const redirectUri = encodeURIComponent(window.location.origin + window.location.pathname);
+                const scope = encodeURIComponent('email profile');
+                const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token&scope=${scope}&prompt=select_account`;
+                
+                const popup = window.open(authUrl, 'Google Login', 'width=500,height=600');
+                
+                // 팝업에서 토큰 받기
+                window.addEventListener('message', function(event) {
+                    if (event.data.type === 'google-auth') {
+                        // 토큰으로 사용자 정보 가져오기
+                        fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+                            headers: { Authorization: `Bearer ${event.data.token}` }
+                        })
+                        .then(res => res.json())
+                        .then(userInfo => {
+                            handleOAuthLogin(userInfo);
+                        });
+                    }
+                });
+            }
+        }
+        
+        // OAuth 로그인 처리
+        async function handleOAuthLogin(userInfo) {
+            await loadData();
+            const email = userInfo.email;
+            const name = userInfo.name;
+            
+            let user = data.users.find(u => u.googleEmail === email);
+            
+            if (user) {
+                if (user.status === 'pending') {
+                    currentUser = user;
+                    showPendingScreen();
+                } else if (user.status === 'approved') {
+                    currentUser = user;
+                    showDashboard();
+                    updateDashboard();
+                }
+            } else {
+                document.getElementById('landing').classList.add('hidden');
+                document.getElementById('auth').classList.remove('hidden');
+                document.getElementById('signupName').value = name || '';
+                window.pendingGoogleEmail = email;
+                window.pendingGoogleName = name;
+            }
+        }
+        
         window.onload = function() {
             initGoogleLogin();
+            
+            // OAuth 리다이렉트 처리
+            if (window.location.hash.includes('access_token')) {
+                const params = new URLSearchParams(window.location.hash.substring(1));
+                const token = params.get('access_token');
+                if (token && window.opener) {
+                    window.opener.postMessage({ type: 'google-auth', token: token }, '*');
+                    window.close();
+                }
+            }
         }
 
         async function handleGoogleLogin(response) {
