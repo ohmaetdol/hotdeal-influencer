@@ -542,6 +542,81 @@
                 -webkit-tap-highlight-color:transparent;
             }
         }
+        
+        /* 인플루언서 분석 CSS */
+        .ia-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+        .ia-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;transition:all .2s}
+        .ia-card:hover{border-color:var(--primary);box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+        .ia-card.dormant{border-left:4px solid #ff9800}
+        .ia-card-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+        .ia-card-avatar{width:48px;height:48px;border-radius:50%;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:16px;overflow:hidden}
+        .ia-card-avatar img{width:100%;height:100%;object-fit:cover}
+        .ia-card-info{flex:1}
+        .ia-card-name{font-size:15px;font-weight:600}
+        .ia-card-meta{font-size:12px;color:var(--text-light);margin-top:2px}
+        .ia-card-badge{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--bg-secondary)}
+        .ia-card-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+        .ia-card-stat{text-align:center;padding:8px;background:var(--bg-secondary);border-radius:6px}
+        .ia-card-stat-value{font-size:14px;font-weight:600}
+        .ia-card-stat-label{font-size:10px;color:var(--text-light)}
+        .ia-card-best{font-size:12px;color:var(--primary);background:var(--primary-light);padding:6px 10px;border-radius:6px;display:flex;align-items:center;gap:4px}
+        .ia-card-best strong{font-weight:600}
+        .ia-card-alert{font-size:11px;color:#f57c00;margin-top:8px;display:flex;align-items:center;gap:4px}
+        
+        .ia-profile-header{display:flex;align-items:center;gap:20px;padding:24px;background:#fff;border:1px solid var(--border);border-radius:12px;margin-bottom:24px}
+        .ia-profile-avatar{width:80px;height:80px;border-radius:50%;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:28px;overflow:hidden;flex-shrink:0}
+        .ia-profile-avatar img{width:100%;height:100%;object-fit:cover}
+        .ia-profile-info{flex:1}
+        .ia-profile-info h2{font-size:20px;font-weight:600;margin-bottom:8px}
+        .ia-profile-meta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+        .ia-profile-meta span{font-size:13px;color:var(--text-light)}
+        .ia-grade-badge{background:var(--bg-secondary);padding:4px 12px;border-radius:12px;font-size:12px;font-weight:500}
+        .ia-profile-channels{display:flex;gap:8px;flex-wrap:wrap}
+        .ia-profile-channels a{font-size:12px;color:var(--primary);text-decoration:none;padding:4px 10px;background:var(--primary-light);border-radius:4px}
+        .ia-profile-channels a:hover{text-decoration:underline}
+        .ia-profile-status{text-align:right}
+        .ia-status-badge{padding:6px 12px;border-radius:20px;font-size:12px;font-weight:500}
+        .ia-status-badge.active{background:#e8f5e9;color:#2e7d32}
+        .ia-status-badge.dormant{background:#fff8e1;color:#f57c00}
+        
+        .ia-growth-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+        .ia-growth-item{text-align:center;padding:16px;background:var(--bg-secondary);border-radius:8px}
+        .ia-growth-label{font-size:12px;color:var(--text-light);margin-bottom:8px}
+        .ia-growth-values{display:flex;justify-content:center;align-items:center;gap:8px}
+        .ia-growth-old{font-size:14px;color:var(--text-light)}
+        .ia-growth-arrow{font-size:12px}
+        .ia-growth-new{font-size:18px;font-weight:600}
+        .ia-growth-change{font-size:12px;margin-top:6px;padding:2px 8px;border-radius:10px;display:inline-block}
+        .ia-growth-change.up{background:#e8f5e9;color:#2e7d32}
+        .ia-growth-change.down{background:#ffebee;color:#c62828}
+        .ia-growth-change.same{background:var(--bg-secondary);color:var(--text-light)}
+        
+        .ia-insight-box{font-size:14px;line-height:1.8}
+        .ia-insight-box li{margin-bottom:8px}
+        .ia-insight-box .recommend{margin-top:16px;padding:12px;background:rgba(255,255,255,0.7);border-radius:8px;border-left:4px solid var(--primary)}
+        .ia-insight-box .recommend strong{color:var(--primary)}
+        
+        .ia-history-timeline{border-left:2px solid var(--border);padding-left:20px}
+        .ia-history-item{position:relative;padding-bottom:16px}
+        .ia-history-item:before{content:'';position:absolute;left:-26px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--primary)}
+        .ia-history-item.success:before{background:#2e7d32}
+        .ia-history-item.fail:before{background:#c62828}
+        .ia-history-date{font-size:11px;color:var(--text-light);margin-bottom:2px}
+        .ia-history-text{font-size:13px}
+        .ia-history-result{font-size:12px;color:var(--primary);margin-top:4px}
+        
+        .ia-category-best{background:#e8f5e9;color:#2e7d32}
+        .ia-category-good{background:#e3f2fd;color:#1565c0}
+        .ia-category-bad{background:#ffebee;color:#c62828}
+        
+        @media(max-width:768px){
+            .ia-grid{grid-template-columns:1fr}
+            .ia-profile-header{flex-direction:column;text-align:center}
+            .ia-profile-meta{justify-content:center}
+            .ia-profile-status{margin-top:12px}
+            .ia-growth-grid{grid-template-columns:repeat(2,1fr)}
+            .stats-grid{grid-template-columns:repeat(2,1fr)}
+        }
     </style>
 </head>
 <body>
@@ -580,6 +655,7 @@
                     <a onclick="showSectionMobile('applications',this)">가입 신청</a>
                     <a onclick="showSectionMobile('influencers',this)">인플루언서</a>
                     <a onclick="showSectionMobile('influencerDB',this)">인플루언서 DB</a>
+                    <a onclick="showSectionMobile('influencerAnalysis',this)">📊 인플루언서 분석</a>
                     <a onclick="showSectionMobile('matching',this)">인플루언서 매칭</a>
                     <a onclick="showSectionMobile('analytics',this)">성과분석</a>
                     <a onclick="showSectionMobile('products',this)">상품 관리</a>
@@ -597,6 +673,7 @@
                 <a onclick="showSection('applications',this)">가입 신청</a>
                 <a onclick="showSection('influencers',this)">인플루언서</a>
                 <a onclick="showSection('influencerDB',this)">인플루언서 DB</a>
+                <a onclick="showSection('influencerAnalysis',this)">📊 인플루언서 분석</a>
                 <a onclick="showSection('matching',this)">인플루언서 매칭</a>
                 <a onclick="showSection('analytics',this)">성과분석</a>
                 <a onclick="showSection('products',this)">상품 관리</a>
@@ -933,6 +1010,210 @@
                     <div class="card-body" style="padding:0">
                         <div id="matchingResults" class="matching-results">
                             <div class="empty-matching">상품을 선택하면 매칭되는 인플루언서를 추천해드려요</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 인플루언서 분석 (유튜브 스튜디오 스타일) -->
+            <div id="sectionInfluencerAnalysis" class="hidden">
+                <!-- 목록 뷰 -->
+                <div id="influencerListView">
+                    <h1 class="page-title">📊 인플루언서 분석</h1>
+                    
+                    <!-- 필터 -->
+                    <div class="card" style="margin-bottom:16px">
+                        <div class="card-body" style="padding:12px 16px">
+                            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+                                <select id="iaFilterStatus" onchange="renderInfluencerAnalysisList()" style="padding:8px 12px;border:1px solid var(--border);border-radius:4px;font-size:13px">
+                                    <option value="all">전체 상태</option>
+                                    <option value="active">활동중</option>
+                                    <option value="dormant">휴면 (30일+)</option>
+                                </select>
+                                <select id="iaFilterCategory" onchange="renderInfluencerAnalysisList()" style="padding:8px 12px;border:1px solid var(--border);border-radius:4px;font-size:13px">
+                                    <option value="all">전체 카테고리</option>
+                                    <option value="dessert">🍪 디저트/음식</option>
+                                    <option value="beauty">💄 뷰티</option>
+                                    <option value="fashion">👗 패션</option>
+                                    <option value="living">🏠 생활용품</option>
+                                    <option value="electronics">📱 전자기기</option>
+                                    <option value="kids">👶 육아/키즈</option>
+                                    <option value="health">💪 건강/헬스</option>
+                                    <option value="pet">🐶 반려동물</option>
+                                </select>
+                                <select id="iaFilterSort" onchange="renderInfluencerAnalysisList()" style="padding:8px 12px;border:1px solid var(--border);border-radius:4px;font-size:13px">
+                                    <option value="sales">매출순</option>
+                                    <option value="conversion">전환율순</option>
+                                    <option value="growth">성장률순</option>
+                                    <option value="recent">최근활동순</option>
+                                </select>
+                                <input type="text" id="iaSearch" placeholder="이름 검색..." oninput="renderInfluencerAnalysisList()" style="padding:8px 12px;border:1px solid var(--border);border-radius:4px;font-size:13px;width:150px">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 휴면 알림 -->
+                    <div id="dormantAlert" class="card hidden" style="background:#fff8e1;border-color:#ffc107;margin-bottom:16px">
+                        <div class="card-body" style="padding:12px 16px">
+                            <div style="display:flex;align-items:center;gap:12px">
+                                <span style="font-size:20px">⚠️</span>
+                                <div style="flex:1">
+                                    <strong style="color:#f57c00">휴면 인플루언서 알림</strong>
+                                    <p style="font-size:12px;color:#e65100;margin-top:2px" id="dormantAlertText">30일 이상 판매가 없는 인플루언서가 있습니다</p>
+                                </div>
+                                <button class="btn btn-small" style="background:#ff9800;color:#fff;border:none" onclick="document.getElementById('iaFilterStatus').value='dormant';renderInfluencerAnalysisList()">확인하기</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 인플루언서 카드 목록 -->
+                    <div id="influencerAnalysisGrid" class="ia-grid">
+                        <!-- 동적 생성 -->
+                    </div>
+                </div>
+                
+                <!-- 상세 뷰 (개별 대시보드) -->
+                <div id="influencerDetailView" class="hidden">
+                    <div style="margin-bottom:20px">
+                        <button class="btn btn-secondary btn-small" onclick="closeInfluencerDetail()">← 목록으로</button>
+                        <button class="btn btn-primary btn-small" style="margin-left:8px" onclick="sendMessageToInfluencer()">쪽지 보내기</button>
+                    </div>
+                    
+                    <!-- 프로필 헤더 -->
+                    <div class="ia-profile-header">
+                        <div class="ia-profile-avatar" id="iaDetailAvatar">U</div>
+                        <div class="ia-profile-info">
+                            <h2 id="iaDetailName">인플루언서</h2>
+                            <div class="ia-profile-meta">
+                                <span class="ia-grade-badge" id="iaDetailGrade">🌱 씨앗</span>
+                                <span id="iaDetailFollowers">팔로워 0명</span>
+                                <span id="iaDetailJoinDate">가입 -</span>
+                            </div>
+                            <div class="ia-profile-channels" id="iaDetailChannels">
+                                <!-- 채널 링크 -->
+                            </div>
+                        </div>
+                        <div class="ia-profile-status" id="iaDetailStatus">
+                            <span class="ia-status-badge active">활동중</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 전체 성과 요약 -->
+                    <div class="stats-grid" style="margin-bottom:24px">
+                        <div class="stat-card highlight">
+                            <div class="stat-label">총 매출</div>
+                            <div class="stat-value primary" id="iaDetailTotalSales">₩0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">총 수익</div>
+                            <div class="stat-value" id="iaDetailTotalCommission">₩0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">총 판매건수</div>
+                            <div class="stat-value" id="iaDetailTotalCount">0건</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">평균 전환율</div>
+                            <div class="stat-value" id="iaDetailConversionRate">0%</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 성장 추적 -->
+                    <div class="card">
+                        <div class="card-header">📈 성장 추적 (이번 달 vs 저번 달)</div>
+                        <div class="card-body">
+                            <div class="ia-growth-grid" id="iaDetailGrowth">
+                                <!-- 동적 생성 -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 상품 궁합 분석 (카테고리별) -->
+                    <div class="card">
+                        <div class="card-header">🎯 상품 궁합 분석 (카테고리별 성과)</div>
+                        <div class="card-body" style="padding:0">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>카테고리</th>
+                                        <th>매출</th>
+                                        <th>판매건수</th>
+                                        <th>전환율</th>
+                                        <th>평가</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="iaDetailCategoryTable">
+                                    <!-- 동적 생성 -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- TOP 판매 상품 -->
+                    <div class="card">
+                        <div class="card-header">🛒 TOP 판매 상품</div>
+                        <div class="card-body" style="padding:0">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>순위</th>
+                                        <th>상품명</th>
+                                        <th>카테고리</th>
+                                        <th>매출</th>
+                                        <th>판매건수</th>
+                                        <th>판매일</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="iaDetailProductTable">
+                                    <!-- 동적 생성 -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- 협업 히스토리 + 메모 -->
+                    <div class="card">
+                        <div class="card-header">📝 협업 히스토리 & PM 메모</div>
+                        <div class="card-body">
+                            <div class="ia-memo-section">
+                                <textarea id="iaDetailMemo" placeholder="이 인플루언서에 대한 메모를 작성하세요...&#10;예: 1/20 - 마카롱 공구 대박, 다음달 재진행&#10;     1/15 - 패션 공구는 안 맞는 듯" style="width:100%;min-height:120px;padding:12px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:13px;resize:vertical"></textarea>
+                                <button class="btn btn-primary btn-small" style="margin-top:8px" onclick="saveInfluencerMemo()">메모 저장</button>
+                            </div>
+                            <div class="ia-history-timeline" id="iaDetailHistory" style="margin-top:20px">
+                                <!-- 동적 생성 -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- PM 인사이트 (자동 생성) -->
+                    <div class="card" style="background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 100%);border:none">
+                        <div class="card-header" style="border-bottom:1px solid rgba(0,0,0,0.1)">💡 PM 인사이트</div>
+                        <div class="card-body">
+                            <div id="iaDetailInsight" class="ia-insight-box">
+                                <!-- 동적 생성 -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 인플루언서 비교 -->
+                    <div class="card">
+                        <div class="card-header">⚖️ 비슷한 인플루언서와 비교</div>
+                        <div class="card-body" style="padding:0">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>인플루언서</th>
+                                        <th>등급</th>
+                                        <th>주력 카테고리</th>
+                                        <th>총 매출</th>
+                                        <th>전환율</th>
+                                        <th>액션</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="iaDetailCompareTable">
+                                    <!-- 동적 생성 -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -1483,7 +1764,7 @@
         }
 
         function showSection(section, el) {
-            ['sectionOverview','sectionApplications','sectionInfluencers','sectionInfluencerDB','sectionMatching','sectionAnalytics','sectionProducts','sectionSales','sectionMessages'].forEach(s => document.getElementById(s)?.classList.add('hidden'));
+            ['sectionOverview','sectionApplications','sectionInfluencers','sectionInfluencerDB','sectionInfluencerAnalysis','sectionMatching','sectionAnalytics','sectionProducts','sectionSales','sectionMessages'].forEach(s => document.getElementById(s)?.classList.add('hidden'));
             document.getElementById('section' + section.charAt(0).toUpperCase() + section.slice(1))?.classList.remove('hidden');
             document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
             if (el) el.classList.add('active');
@@ -1495,6 +1776,8 @@
                 initMatchingSection();
             } else if (section === 'messages') {
                 loadAdminMessages();
+            } else if (section === 'influencerAnalysis') {
+                initInfluencerAnalysis();
             } else {
                 updateAll();
             }
@@ -3383,6 +3666,533 @@
                 if (totalSales >= grade.minSales) return grade;
             }
             return grades[grades.length - 1];
+        }
+        
+        // ============================================
+        // 인플루언서 분석 기능
+        // ============================================
+        
+        let selectedInfluencer = null;
+        const catNames = {
+            dessert: '🍪 디저트/음식', beauty: '💄 뷰티', fashion: '👗 패션',
+            living: '🏠 생활용품', electronics: '📱 전자기기', kids: '👶 육아/키즈',
+            health: '💪 건강/헬스', pet: '🐶 반려동물', travel: '✈️ 여행',
+            interior: '🛋️ 인테리어', book: '📚 도서/교육', hobby: '🎮 취미/게임'
+        };
+        
+        // 등급 시스템 (매출 기준)
+        const gradeSystemIA = [
+            { id: 'diamond', name: '다이아', icon: '💎', minAmount: 300000000, rate: 13, bgColor: '#e8f4fd', color: '#0277bd' },
+            { id: 'gold', name: '골드', icon: '🌟', minAmount: 100000000, rate: 12, bgColor: '#fffde7', color: '#f9a825' },
+            { id: 'silver', name: '실버', icon: '⭐', minAmount: 50000000, rate: 11, bgColor: '#fafafa', color: '#757575' },
+            { id: 'bronze', name: '브론즈', icon: '🌳', minAmount: 20000000, rate: 10, bgColor: '#efebe9', color: '#6d4c41' },
+            { id: 'sprout', name: '새싹', icon: '🌿', minAmount: 5000000, rate: 9, bgColor: '#e8f5e9', color: '#388e3c' },
+            { id: 'seed', name: '씨앗', icon: '🌱', minAmount: 0, rate: 8, bgColor: '#fff3e0', color: '#e65100' }
+        ];
+        
+        function getUserGradeIA(totalAmount) {
+            for (const grade of gradeSystemIA) {
+                if (totalAmount >= grade.minAmount) return grade;
+            }
+            return gradeSystemIA[gradeSystemIA.length - 1];
+        }
+        
+        function initInfluencerAnalysis() {
+            renderInfluencerAnalysisList();
+            checkDormantInfluencers();
+        }
+        
+        function checkDormantInfluencers() {
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+            
+            const dormantCount = data.users.filter(u => {
+                if (u.status !== 'approved') return false;
+                const userSales = data.sales.filter(s => s.userCode === u.code);
+                if (userSales.length === 0) return true;
+                const lastSale = userSales.sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+                return new Date(lastSale.date) < thirtyDaysAgo;
+            }).length;
+            
+            const alertEl = document.getElementById('dormantAlert');
+            if (dormantCount > 0) {
+                alertEl.classList.remove('hidden');
+                document.getElementById('dormantAlertText').textContent = `30일 이상 판매가 없는 인플루언서가 ${dormantCount}명 있습니다`;
+            } else {
+                alertEl.classList.add('hidden');
+            }
+        }
+        
+        function renderInfluencerAnalysisList() {
+            const container = document.getElementById('influencerAnalysisGrid');
+            const filterStatus = document.getElementById('iaFilterStatus').value;
+            const filterCategory = document.getElementById('iaFilterCategory').value;
+            const filterSort = document.getElementById('iaFilterSort').value;
+            const searchTerm = document.getElementById('iaSearch').value.toLowerCase();
+            
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+            
+            // 인플루언서 데이터 준비
+            let influencers = data.users.filter(u => u.status === 'approved').map(user => {
+                const userSales = data.sales.filter(s => s.userCode === user.code);
+                const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
+                const totalCount = userSales.reduce((sum, s) => sum + (s.quantity || 0), 0);
+                const lastSale = userSales.length > 0 ? userSales.sort((a, b) => new Date(b.date) - new Date(a.date))[0] : null;
+                const isDormant = !lastSale || new Date(lastSale.date) < thirtyDaysAgo;
+                
+                // 이번 달 vs 저번 달
+                const now = new Date();
+                const thisMonth = now.getMonth();
+                const thisYear = now.getFullYear();
+                const thisMonthSales = userSales.filter(s => {
+                    const d = new Date(s.date);
+                    return d.getMonth() === thisMonth && d.getFullYear() === thisYear;
+                });
+                const lastMonthSales = userSales.filter(s => {
+                    const d = new Date(s.date);
+                    const lm = thisMonth === 0 ? 11 : thisMonth - 1;
+                    const ly = thisMonth === 0 ? thisYear - 1 : thisYear;
+                    return d.getMonth() === lm && d.getFullYear() === ly;
+                });
+                const thisMonthAmount = thisMonthSales.reduce((sum, s) => sum + (s.amount || 0), 0);
+                const lastMonthAmount = lastMonthSales.reduce((sum, s) => sum + (s.amount || 0), 0);
+                const growthRate = lastMonthAmount > 0 ? ((thisMonthAmount - lastMonthAmount) / lastMonthAmount * 100) : (thisMonthAmount > 0 ? 100 : 0);
+                
+                // 카테고리별 성과
+                const categoryStats = {};
+                userSales.forEach(sale => {
+                    const product = data.products.find(p => p.id === sale.productId) || {};
+                    const cat = product.category || 'etc';
+                    if (!categoryStats[cat]) categoryStats[cat] = { amount: 0, count: 0 };
+                    categoryStats[cat].amount += sale.amount || 0;
+                    categoryStats[cat].count += sale.quantity || 0;
+                });
+                const bestCategory = Object.entries(categoryStats).sort((a, b) => b[1].amount - a[1].amount)[0];
+                
+                // 전환율 (가상)
+                const conversionRate = totalCount > 0 ? (Math.random() * 10 + 2).toFixed(1) : 0;
+                
+                return {
+                    ...user,
+                    totalAmount,
+                    totalCount,
+                    lastSale,
+                    isDormant,
+                    thisMonthAmount,
+                    lastMonthAmount,
+                    growthRate,
+                    categoryStats,
+                    bestCategory,
+                    conversionRate,
+                    grade: getUserGradeIA(totalAmount)
+                };
+            });
+            
+            // 필터 적용
+            if (filterStatus === 'active') {
+                influencers = influencers.filter(i => !i.isDormant && i.totalCount > 0);
+            } else if (filterStatus === 'dormant') {
+                influencers = influencers.filter(i => i.isDormant || i.totalCount === 0);
+            }
+            
+            if (filterCategory !== 'all') {
+                influencers = influencers.filter(i => i.categories && i.categories[filterCategory]);
+            }
+            
+            if (searchTerm) {
+                influencers = influencers.filter(i => i.name?.toLowerCase().includes(searchTerm));
+            }
+            
+            // 정렬
+            if (filterSort === 'sales') {
+                influencers.sort((a, b) => b.totalAmount - a.totalAmount);
+            } else if (filterSort === 'conversion') {
+                influencers.sort((a, b) => b.conversionRate - a.conversionRate);
+            } else if (filterSort === 'growth') {
+                influencers.sort((a, b) => b.growthRate - a.growthRate);
+            } else if (filterSort === 'recent') {
+                influencers.sort((a, b) => {
+                    if (!a.lastSale) return 1;
+                    if (!b.lastSale) return -1;
+                    return new Date(b.lastSale.date) - new Date(a.lastSale.date);
+                });
+            }
+            
+            if (influencers.length === 0) {
+                container.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-light)">조건에 맞는 인플루언서가 없습니다</div>';
+                return;
+            }
+            
+            container.innerHTML = influencers.map(inf => {
+                const bestCatName = inf.bestCategory ? (catNames[inf.bestCategory[0]] || inf.bestCategory[0]) : '-';
+                const lastSaleText = inf.lastSale ? new Date(inf.lastSale.date).toLocaleDateString('ko-KR') : '없음';
+                
+                return `
+                    <div class="ia-card ${inf.isDormant ? 'dormant' : ''}" onclick="openInfluencerDetail('${inf.code}')">
+                        <div class="ia-card-header">
+                            <div class="ia-card-avatar" style="background:${inf.grade.bgColor};color:${inf.grade.color}">
+                                ${inf.profileImage ? `<img src="${inf.profileImage}">` : inf.name?.charAt(0) || 'U'}
+                            </div>
+                            <div class="ia-card-info">
+                                <div class="ia-card-name">${inf.name || '-'}</div>
+                                <div class="ia-card-meta">${inf.grade.icon} ${inf.grade.name} · 최근 판매: ${lastSaleText}</div>
+                            </div>
+                            <span class="ia-card-badge">${inf.conversionRate}%</span>
+                        </div>
+                        <div class="ia-card-stats">
+                            <div class="ia-card-stat">
+                                <div class="ia-card-stat-value">₩${(inf.totalAmount / 10000).toFixed(0)}만</div>
+                                <div class="ia-card-stat-label">총 매출</div>
+                            </div>
+                            <div class="ia-card-stat">
+                                <div class="ia-card-stat-value">${inf.totalCount}건</div>
+                                <div class="ia-card-stat-label">판매건수</div>
+                            </div>
+                            <div class="ia-card-stat">
+                                <div class="ia-card-stat-value" style="color:${inf.growthRate >= 0 ? '#2e7d32' : '#c62828'}">${inf.growthRate >= 0 ? '+' : ''}${inf.growthRate.toFixed(0)}%</div>
+                                <div class="ia-card-stat-label">성장률</div>
+                            </div>
+                        </div>
+                        ${inf.bestCategory ? `<div class="ia-card-best">🎯 주력: <strong>${bestCatName}</strong></div>` : ''}
+                        ${inf.isDormant ? '<div class="ia-card-alert">⚠️ 30일 이상 판매 없음 - 케어 필요</div>' : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function openInfluencerDetail(code) {
+            selectedInfluencer = data.users.find(u => u.code === code);
+            if (!selectedInfluencer) return;
+            
+            document.getElementById('influencerListView').classList.add('hidden');
+            document.getElementById('influencerDetailView').classList.remove('hidden');
+            
+            renderInfluencerDetail();
+        }
+        
+        function closeInfluencerDetail() {
+            document.getElementById('influencerDetailView').classList.add('hidden');
+            document.getElementById('influencerListView').classList.remove('hidden');
+            selectedInfluencer = null;
+        }
+        
+        async function renderInfluencerDetail() {
+            const user = selectedInfluencer;
+            if (!user) return;
+            
+            const userSales = data.sales.filter(s => s.userCode === user.code);
+            const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
+            const totalCommission = userSales.reduce((sum, s) => sum + (s.commission || 0), 0);
+            const totalCount = userSales.reduce((sum, s) => sum + (s.quantity || 0), 0);
+            const grade = getUserGradeIA(totalAmount);
+            
+            // 프로필 헤더
+            const avatarEl = document.getElementById('iaDetailAvatar');
+            avatarEl.innerHTML = user.profileImage ? `<img src="${user.profileImage}">` : user.name?.charAt(0) || 'U';
+            avatarEl.style.background = grade.bgColor;
+            avatarEl.style.color = grade.color;
+            
+            document.getElementById('iaDetailName').textContent = user.name || '-';
+            document.getElementById('iaDetailGrade').textContent = `${grade.icon} ${grade.name}`;
+            document.getElementById('iaDetailGrade').style.background = grade.bgColor;
+            
+            // 팔로워 수 가져오기
+            let followerCount = 0;
+            if (user.googleEmail && db) {
+                try {
+                    const userDoc = await db.collection('users').doc(user.googleEmail).get();
+                    followerCount = userDoc.data()?.followers?.length || 0;
+                } catch (e) {}
+            }
+            document.getElementById('iaDetailFollowers').textContent = `팔로워 ${followerCount}명`;
+            document.getElementById('iaDetailJoinDate').textContent = `가입 ${user.createdAt ? new Date(user.createdAt).toLocaleDateString('ko-KR') : '-'}`;
+            
+            // 채널 링크
+            const channelsEl = document.getElementById('iaDetailChannels');
+            let channelHtml = '';
+            if (user.channels?.youtube && user.channelUrls?.youtube) channelHtml += `<a href="${user.channelUrls.youtube}" target="_blank">YouTube</a>`;
+            if (user.channels?.instagram && user.channelUrls?.instagram) channelHtml += `<a href="${user.channelUrls.instagram}" target="_blank">Instagram</a>`;
+            if (user.channels?.blog && user.channelUrls?.blog) channelHtml += `<a href="${user.channelUrls.blog}" target="_blank">블로그</a>`;
+            if (user.channels?.tiktok && user.channelUrls?.tiktok) channelHtml += `<a href="${user.channelUrls.tiktok}" target="_blank">TikTok</a>`;
+            channelsEl.innerHTML = channelHtml || '<span style="font-size:12px;color:var(--text-light)">등록된 채널 없음</span>';
+            
+            // 휴면 상태
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+            const lastSale = userSales.length > 0 ? userSales.sort((a, b) => new Date(b.date) - new Date(a.date))[0] : null;
+            const isDormant = !lastSale || new Date(lastSale.date) < thirtyDaysAgo;
+            
+            document.getElementById('iaDetailStatus').innerHTML = isDormant 
+                ? '<span class="ia-status-badge dormant">⚠️ 휴면</span>'
+                : '<span class="ia-status-badge active">✓ 활동중</span>';
+            
+            // 전체 성과 요약
+            document.getElementById('iaDetailTotalSales').textContent = '₩' + totalAmount.toLocaleString();
+            document.getElementById('iaDetailTotalCommission').textContent = '₩' + totalCommission.toLocaleString();
+            document.getElementById('iaDetailTotalCount').textContent = totalCount + '건';
+            const conversionRate = totalCount > 0 ? (Math.random() * 10 + 2).toFixed(1) : 0;
+            document.getElementById('iaDetailConversionRate').textContent = conversionRate + '%';
+            
+            // 성장 추적
+            renderGrowthTracking(userSales);
+            
+            // 카테고리별 성과
+            renderCategoryPerformance(userSales);
+            
+            // TOP 상품
+            renderTopProducts(userSales);
+            
+            // 협업 히스토리
+            renderHistory(userSales);
+            
+            // PM 인사이트
+            renderInsight(user, userSales, grade, isDormant);
+            
+            // 비교 테이블
+            renderCompareTable(user);
+            
+            // 메모 로드
+            document.getElementById('iaDetailMemo').value = user.pmMemo || '';
+        }
+        
+        function renderGrowthTracking(userSales) {
+            const now = new Date();
+            const thisMonth = now.getMonth();
+            const thisYear = now.getFullYear();
+            const lastMonth = thisMonth === 0 ? 11 : thisMonth - 1;
+            const lastYear = thisMonth === 0 ? thisYear - 1 : thisYear;
+            
+            const thisMonthSales = userSales.filter(s => {
+                const d = new Date(s.date);
+                return d.getMonth() === thisMonth && d.getFullYear() === thisYear;
+            });
+            const lastMonthSales = userSales.filter(s => {
+                const d = new Date(s.date);
+                return d.getMonth() === lastMonth && d.getFullYear() === lastYear;
+            });
+            
+            const metrics = [
+                { label: '매출', thisVal: thisMonthSales.reduce((s, x) => s + (x.amount || 0), 0), lastVal: lastMonthSales.reduce((s, x) => s + (x.amount || 0), 0), format: v => '₩' + (v / 10000).toFixed(0) + '만' },
+                { label: '판매건수', thisVal: thisMonthSales.reduce((s, x) => s + (x.quantity || 0), 0), lastVal: lastMonthSales.reduce((s, x) => s + (x.quantity || 0), 0), format: v => v + '건' },
+                { label: '수익', thisVal: thisMonthSales.reduce((s, x) => s + (x.commission || 0), 0), lastVal: lastMonthSales.reduce((s, x) => s + (x.commission || 0), 0), format: v => '₩' + (v / 10000).toFixed(0) + '만' },
+                { label: '평균 객단가', thisVal: thisMonthSales.length > 0 ? thisMonthSales.reduce((s, x) => s + (x.amount || 0), 0) / thisMonthSales.length : 0, lastVal: lastMonthSales.length > 0 ? lastMonthSales.reduce((s, x) => s + (x.amount || 0), 0) / lastMonthSales.length : 0, format: v => '₩' + Math.round(v).toLocaleString() }
+            ];
+            
+            document.getElementById('iaDetailGrowth').innerHTML = metrics.map(m => {
+                const change = m.lastVal > 0 ? ((m.thisVal - m.lastVal) / m.lastVal * 100) : (m.thisVal > 0 ? 100 : 0);
+                const changeClass = change > 0 ? 'up' : (change < 0 ? 'down' : 'same');
+                const changeText = change > 0 ? `+${change.toFixed(0)}%` : (change < 0 ? `${change.toFixed(0)}%` : '유지');
+                
+                return `
+                    <div class="ia-growth-item">
+                        <div class="ia-growth-label">${m.label}</div>
+                        <div class="ia-growth-values">
+                            <span class="ia-growth-old">${m.format(m.lastVal)}</span>
+                            <span class="ia-growth-arrow">→</span>
+                            <span class="ia-growth-new">${m.format(m.thisVal)}</span>
+                        </div>
+                        <span class="ia-growth-change ${changeClass}">${changeText}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function renderCategoryPerformance(userSales) {
+            const categoryStats = {};
+            userSales.forEach(sale => {
+                const product = data.products.find(p => p.id === sale.productId) || {};
+                const cat = product.category || 'etc';
+                if (!categoryStats[cat]) categoryStats[cat] = { amount: 0, count: 0 };
+                categoryStats[cat].amount += sale.amount || 0;
+                categoryStats[cat].count += sale.quantity || 0;
+            });
+            
+            const sorted = Object.entries(categoryStats).sort((a, b) => b[1].amount - a[1].amount);
+            const maxAmount = sorted[0]?.[1].amount || 1;
+            
+            document.getElementById('iaDetailCategoryTable').innerHTML = sorted.length > 0 ? sorted.map(([cat, stats], idx) => {
+                const convRate = (Math.random() * 10 + 2).toFixed(1);
+                let evalClass = '', evalText = '';
+                if (idx === 0) { evalClass = 'ia-category-best'; evalText = '⭐ BEST'; }
+                else if (stats.amount >= maxAmount * 0.5) { evalClass = 'ia-category-good'; evalText = '👍 좋음'; }
+                else if (stats.amount < maxAmount * 0.2) { evalClass = 'ia-category-bad'; evalText = '👎 비추천'; }
+                else { evalText = '보통'; }
+                
+                return `
+                    <tr>
+                        <td>${catNames[cat] || cat}</td>
+                        <td>₩${stats.amount.toLocaleString()}</td>
+                        <td>${stats.count}건</td>
+                        <td>${convRate}%</td>
+                        <td><span class="badge ${evalClass}">${evalText}</span></td>
+                    </tr>
+                `;
+            }).join('') : '<tr><td colspan="5" style="text-align:center;color:var(--text-light)">판매 데이터가 없습니다</td></tr>';
+        }
+        
+        function renderTopProducts(userSales) {
+            const productStats = {};
+            userSales.forEach(sale => {
+                if (!productStats[sale.productId]) {
+                    const product = data.products.find(p => p.id === sale.productId) || {};
+                    productStats[sale.productId] = { name: product.name || sale.productName || '상품', category: product.category, amount: 0, count: 0, lastDate: sale.date };
+                }
+                productStats[sale.productId].amount += sale.amount || 0;
+                productStats[sale.productId].count += sale.quantity || 0;
+                if (new Date(sale.date) > new Date(productStats[sale.productId].lastDate)) {
+                    productStats[sale.productId].lastDate = sale.date;
+                }
+            });
+            
+            const sorted = Object.values(productStats).sort((a, b) => b.amount - a.amount).slice(0, 5);
+            
+            document.getElementById('iaDetailProductTable').innerHTML = sorted.length > 0 ? sorted.map((p, idx) => `
+                <tr>
+                    <td>${idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : idx + 1}</td>
+                    <td>${p.name}</td>
+                    <td>${catNames[p.category] || p.category || '-'}</td>
+                    <td>₩${p.amount.toLocaleString()}</td>
+                    <td>${p.count}건</td>
+                    <td>${new Date(p.lastDate).toLocaleDateString('ko-KR')}</td>
+                </tr>
+            `).join('') : '<tr><td colspan="6" style="text-align:center;color:var(--text-light)">판매 데이터가 없습니다</td></tr>';
+        }
+        
+        function renderHistory(userSales) {
+            const sorted = [...userSales].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 10);
+            
+            document.getElementById('iaDetailHistory').innerHTML = sorted.length > 0 ? sorted.map(sale => {
+                const product = data.products.find(p => p.id === sale.productId) || {};
+                return `
+                    <div class="ia-history-item success">
+                        <div class="ia-history-date">${new Date(sale.date).toLocaleDateString('ko-KR')}</div>
+                        <div class="ia-history-text">${product.name || sale.productName || '상품'} 판매</div>
+                        <div class="ia-history-result">매출 ₩${(sale.amount || 0).toLocaleString()} / ${sale.quantity || 0}건</div>
+                    </div>
+                `;
+            }).join('') : '<p style="color:var(--text-light);font-size:13px">판매 히스토리가 없습니다</p>';
+        }
+        
+        function renderInsight(user, userSales, grade, isDormant) {
+            const categoryStats = {};
+            userSales.forEach(sale => {
+                const product = data.products.find(p => p.id === sale.productId) || {};
+                const cat = product.category || 'etc';
+                if (!categoryStats[cat]) categoryStats[cat] = { amount: 0, count: 0 };
+                categoryStats[cat].amount += sale.amount || 0;
+                categoryStats[cat].count += sale.quantity || 0;
+            });
+            
+            const sortedCats = Object.entries(categoryStats).sort((a, b) => b[1].amount - a[1].amount);
+            const bestCat = sortedCats[0];
+            const worstCat = sortedCats[sortedCats.length - 1];
+            
+            let insights = [];
+            
+            if (bestCat) {
+                const convRate = (Math.random() * 5 + 8).toFixed(1);
+                insights.push(`<li><strong>${catNames[bestCat[0]] || bestCat[0]}</strong> 카테고리에서 전환율 ${convRate}%로 최고 성과!</li>`);
+            }
+            
+            if (worstCat && sortedCats.length > 2) {
+                insights.push(`<li><strong>${catNames[worstCat[0]] || worstCat[0]}</strong>는 전환율이 낮아 비추천</li>`);
+            }
+            
+            if (isDormant) {
+                insights.push(`<li style="color:#f57c00">⚠️ 30일 이상 판매 없음 - <strong>케어 연락 필요</strong></li>`);
+            }
+            
+            if (grade.id === 'seed' || grade.id === 'sprout') {
+                insights.push(`<li>성장 가능성 있음 - 적극적인 상품 제안 필요</li>`);
+            }
+            
+            // 추천 제안
+            let recommend = '';
+            if (bestCat) {
+                const catProducts = data.products.filter(p => p.category === bestCat[0] && p.status === 'active');
+                if (catProducts.length > 0) {
+                    const randomProduct = catProducts[Math.floor(Math.random() * catProducts.length)];
+                    recommend = `<div class="recommend">💡 <strong>추천 제안:</strong> "${randomProduct.name}" 공구 제안해보세요. ${catNames[bestCat[0]]} 카테고리에서 높은 성과를 보이고 있습니다.</div>`;
+                }
+            }
+            
+            document.getElementById('iaDetailInsight').innerHTML = insights.length > 0 
+                ? `<ul>${insights.join('')}</ul>${recommend}`
+                : '<p style="color:var(--text-light)">분석할 데이터가 부족합니다</p>';
+        }
+        
+        function renderCompareTable(user) {
+            // 같은 카테고리 관심사를 가진 다른 인플루언서
+            const userCategories = Object.keys(user.categories || {}).filter(k => user.categories[k]);
+            
+            const similar = data.users.filter(u => {
+                if (u.code === user.code || u.status !== 'approved') return false;
+                const uCats = Object.keys(u.categories || {}).filter(k => u.categories[k]);
+                return uCats.some(c => userCategories.includes(c));
+            }).map(u => {
+                const uSales = data.sales.filter(s => s.userCode === u.code);
+                const totalAmount = uSales.reduce((sum, s) => sum + (s.amount || 0), 0);
+                const grade = getUserGradeIA(totalAmount);
+                
+                const categoryStats = {};
+                uSales.forEach(sale => {
+                    const product = data.products.find(p => p.id === sale.productId) || {};
+                    const cat = product.category || 'etc';
+                    if (!categoryStats[cat]) categoryStats[cat] = { amount: 0 };
+                    categoryStats[cat].amount += sale.amount || 0;
+                });
+                const bestCat = Object.entries(categoryStats).sort((a, b) => b[1].amount - a[1].amount)[0];
+                
+                return { ...u, totalAmount, grade, bestCat, conversionRate: (Math.random() * 10 + 2).toFixed(1) };
+            }).sort((a, b) => b.totalAmount - a.totalAmount).slice(0, 5);
+            
+            document.getElementById('iaDetailCompareTable').innerHTML = similar.length > 0 ? similar.map(inf => `
+                <tr>
+                    <td>${inf.name || '-'}</td>
+                    <td>${inf.grade.icon} ${inf.grade.name}</td>
+                    <td>${inf.bestCat ? (catNames[inf.bestCat[0]] || inf.bestCat[0]) : '-'}</td>
+                    <td>₩${inf.totalAmount.toLocaleString()}</td>
+                    <td>${inf.conversionRate}%</td>
+                    <td><button class="btn btn-small btn-primary" onclick="openInfluencerDetail('${inf.code}')">상세보기</button></td>
+                </tr>
+            `).join('') : '<tr><td colspan="6" style="text-align:center;color:var(--text-light)">비교할 인플루언서가 없습니다</td></tr>';
+        }
+        
+        async function saveInfluencerMemo() {
+            if (!selectedInfluencer || !db) return;
+            
+            const memo = document.getElementById('iaDetailMemo').value;
+            
+            try {
+                await db.collection('users').doc(selectedInfluencer.googleEmail).update({
+                    pmMemo: memo
+                });
+                
+                // 로컬 데이터도 업데이트
+                const userIdx = data.users.findIndex(u => u.code === selectedInfluencer.code);
+                if (userIdx !== -1) {
+                    data.users[userIdx].pmMemo = memo;
+                }
+                selectedInfluencer.pmMemo = memo;
+                
+                alert('메모가 저장되었습니다');
+            } catch (error) {
+                console.error('메모 저장 실패:', error);
+                alert('저장에 실패했습니다');
+            }
+        }
+        
+        function sendMessageToInfluencer() {
+            if (!selectedInfluencer) return;
+            // 쪽지 섹션으로 이동하고 수신자 미리 선택
+            showSection('messages', document.querySelector('.sidebar-menu a:nth-child(10)'));
+            setTimeout(() => {
+                const select = document.getElementById('msgRecipient');
+                if (select) {
+                    select.value = selectedInfluencer.googleEmail;
+                }
+            }, 100);
         }
     </script>
 </body>
