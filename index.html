@@ -1308,12 +1308,31 @@
             display:none;
         }
 
-        /* 팔로워/팔로잉 CSS (스레드 스타일) */
-        .follow-stats{display:flex;gap:24px;margin-bottom:20px;padding:16px;background:#fff;border-radius:12px;border:1px solid var(--border)}
-        .follow-stat{text-align:center;cursor:pointer;padding:8px 16px;border-radius:8px;transition:background .2s}
-        .follow-stat:hover{background:var(--bg-secondary)}
-        .follow-stat-count{font-size:20px;font-weight:700;color:var(--text)}
-        .follow-stat-label{font-size:12px;color:var(--text-muted);margin-top:2px}
+        /* 팔로워/팔로잉 CSS (팔로워 중심) */
+        
+        /* 내 팔로워 카드 (메인) */
+        .my-followers-card{text-align:center;padding:32px 20px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:16px;color:#fff;margin-bottom:20px}
+        .my-followers-count{font-size:56px;font-weight:800;line-height:1}
+        .my-followers-label{font-size:16px;font-weight:600;margin-top:4px;opacity:0.9}
+        .my-followers-sub{font-size:13px;margin-top:12px;opacity:0.7}
+        
+        /* 인기 인플루언서 */
+        .popular-section{margin-bottom:24px}
+        .section-subtitle{font-size:15px;font-weight:600;margin-bottom:12px;color:var(--text)}
+        .popular-list{display:flex;flex-direction:column;gap:8px}
+        .popular-item{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#fff;border:1px solid var(--border);border-radius:12px;transition:all .2s}
+        .popular-item:hover{border-color:#ccc;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+        .popular-rank{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+        .popular-rank.gold{background:#FFD700;color:#000}
+        .popular-rank.silver{background:#C0C0C0;color:#000}
+        .popular-rank.bronze{background:#CD7F32;color:#fff}
+        .popular-rank.normal{background:var(--bg-secondary);color:var(--text-muted)}
+        .popular-avatar{width:40px;height:40px;border-radius:50%;background:var(--bg-secondary);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--text-light);overflow:hidden;cursor:pointer}
+        .popular-avatar img{width:100%;height:100%;object-fit:cover}
+        .popular-info{flex:1;min-width:0}
+        .popular-name{font-size:14px;font-weight:600}
+        .popular-followers{font-size:12px;color:var(--text-muted)}
+        .popular-followers strong{color:var(--primary);font-weight:600}
         
         .follow-tabs{display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid var(--border)}
         .follow-tab{flex:1;padding:12px 16px;text-align:center;font-size:14px;font-weight:500;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;background:none;border-top:none;border-left:none;border-right:none}
@@ -1329,7 +1348,8 @@
         .follow-info{flex:1;min-width:0;cursor:pointer}
         .follow-name{font-size:14px;font-weight:600;margin-bottom:1px}
         .follow-username{font-size:13px;color:var(--text-muted)}
-        .follow-bio{font-size:13px;color:var(--text-light);margin-top:4px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+        .follow-meta{font-size:12px;color:var(--text-muted);margin-top:2px}
+        .follow-meta strong{color:var(--primary)}
         
         .follow-btn{padding:8px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--text);background:#fff;color:var(--text);transition:all .2s}
         .follow-btn:hover{background:var(--bg-secondary)}
@@ -1350,8 +1370,8 @@
         .user-profile-username{font-size:14px;color:var(--text-muted);margin-bottom:12px}
         .user-profile-grade{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:4px 12px;border-radius:12px;background:var(--bg-secondary)}
         .user-profile-stats{display:flex;justify-content:center;gap:32px;margin-top:16px}
-        .user-profile-stat{text-align:center}
-        .user-profile-stat-count{font-size:16px;font-weight:700}
+        .user-profile-stat{text-align:center;cursor:pointer}
+        .user-profile-stat-count{font-size:18px;font-weight:700}
         .user-profile-stat-label{font-size:11px;color:var(--text-muted)}
         .user-profile-actions{padding:16px 20px;display:flex;gap:8px}
         .user-profile-actions .follow-btn{flex:1}
@@ -1359,8 +1379,14 @@
         
         /* 반응형 */
         @media(max-width:480px){
-            .follow-stats{gap:16px;padding:12px}
-            .follow-stat-count{font-size:18px}
+            .my-followers-card{padding:24px 16px}
+            .my-followers-count{font-size:44px}
+            .my-followers-label{font-size:14px}
+            .popular-item{padding:10px 12px}
+            .popular-rank{width:22px;height:22px;font-size:11px}
+            .popular-avatar{width:36px;height:36px;font-size:13px}
+            .popular-name{font-size:13px}
+            .popular-followers{font-size:11px}
             .follow-tab{padding:10px 12px;font-size:13px}
             .follow-item{padding:12px 0}
             .follow-avatar{width:40px;height:40px;font-size:14px}
@@ -1735,26 +1761,29 @@
                 </div>
             </div>
 
-            <!-- 팔로우 섹션 (스레드 스타일) -->
+            <!-- 팔로우 섹션 (팔로워 중심) -->
             <div id="dashFollow" class="hidden">
-                <h1 class="page-title">팔로우</h1>
-                
-                <!-- 팔로워/팔로잉 통계 -->
-                <div class="follow-stats">
-                    <div class="follow-stat" onclick="switchFollowTab('followers', this)">
-                        <div class="follow-stat-count" id="followersCount">0</div>
-                        <div class="follow-stat-label">팔로워</div>
+                <!-- 내 팔로워 카드 (메인) -->
+                <div class="my-followers-card">
+                    <div class="my-followers-count" id="myFollowersCount">0</div>
+                    <div class="my-followers-label">팔로워</div>
+                    <div class="my-followers-sub">
+                        <span id="followingCountSmall">0</span> 팔로잉
                     </div>
-                    <div class="follow-stat" onclick="switchFollowTab('following', this)">
-                        <div class="follow-stat-count" id="followingCount">0</div>
-                        <div class="follow-stat-label">팔로잉</div>
+                </div>
+                
+                <!-- 인기 인플루언서 랭킹 -->
+                <div class="popular-section">
+                    <h3 class="section-subtitle">인기 인플루언서</h3>
+                    <div class="popular-list" id="popularList">
+                        <!-- 동적 생성 -->
                     </div>
                 </div>
                 
                 <!-- 탭 -->
                 <div class="follow-tabs">
-                    <button class="follow-tab active" onclick="switchFollowTab('followers', this)">팔로워</button>
-                    <button class="follow-tab" onclick="switchFollowTab('following', this)">팔로잉</button>
+                    <button class="follow-tab active" onclick="switchFollowTab('followers', this)">내 팔로워</button>
+                    <button class="follow-tab" onclick="switchFollowTab('following', this)">내 팔로잉</button>
                     <button class="follow-tab" onclick="switchFollowTab('discover', this)">추천</button>
                 </div>
                 
@@ -1772,7 +1801,7 @@
                     <div class="follow-empty">
                         <div class="follow-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
                         <p>아직 팔로잉이 없습니다</p>
-                        <p class="follow-empty-sub">커뮤니티에서 다른 인플루언서를 팔로우해보세요!</p>
+                        <p class="follow-empty-sub">인기 인플루언서를 팔로우해보세요!</p>
                     </div>
                 </div>
                 
@@ -5257,6 +5286,7 @@
                 followData.following = userData?.following || [];
                 
                 updateFollowUI();
+                loadPopularList();
                 loadDiscoverList();
             } catch (error) {
                 console.error('팔로우 데이터 로드 실패:', error);
@@ -5265,11 +5295,71 @@
         
         // UI 업데이트
         function updateFollowUI() {
-            document.getElementById('followersCount').textContent = followData.followers.length;
-            document.getElementById('followingCount').textContent = followData.following.length;
+            document.getElementById('myFollowersCount').textContent = followData.followers.length;
+            document.getElementById('followingCountSmall').textContent = followData.following.length;
             
             renderFollowersList();
             renderFollowingList();
+        }
+        
+        // 인기 인플루언서 랭킹 로드
+        async function loadPopularList() {
+            const container = document.getElementById('popularList');
+            
+            // 모든 승인된 사용자의 팔로워 수 가져오기
+            const usersWithFollowers = [];
+            
+            for (const user of data.users.filter(u => u.status === 'approved')) {
+                let followerCount = 0;
+                if (user.googleEmail) {
+                    try {
+                        const userDoc = await db.collection('users').doc(user.googleEmail).get();
+                        followerCount = userDoc.data()?.followers?.length || 0;
+                    } catch (e) {}
+                }
+                usersWithFollowers.push({ ...user, followerCount });
+            }
+            
+            // 팔로워 수로 정렬
+            usersWithFollowers.sort((a, b) => b.followerCount - a.followerCount);
+            const top5 = usersWithFollowers.slice(0, 5);
+            
+            if (top5.length === 0) {
+                container.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:20px">아직 활동 중인 인플루언서가 없습니다</p>';
+                return;
+            }
+            
+            container.innerHTML = top5.map((user, idx) => {
+                const userSales = data.sales.filter(s => s.userCode === user.code);
+                const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
+                const grade = getUserGrade(totalAmount);
+                const isFollowing = followData.following.includes(user.code);
+                const isMe = user.code === currentUser.code;
+                
+                let rankClass = 'normal';
+                let rankIcon = idx + 1;
+                if (idx === 0) { rankClass = 'gold'; rankIcon = '🥇'; }
+                else if (idx === 1) { rankClass = 'silver'; rankIcon = '🥈'; }
+                else if (idx === 2) { rankClass = 'bronze'; rankIcon = '🥉'; }
+                
+                return `
+                    <div class="popular-item">
+                        <div class="popular-rank ${rankClass}">${rankIcon}</div>
+                        <div class="popular-avatar" onclick="openUserProfile('${user.code}')" style="background:${grade.bgColor};color:${grade.color}">
+                            ${user.profileImage ? `<img src="${user.profileImage}" alt="">` : user.name?.charAt(0) || 'U'}
+                        </div>
+                        <div class="popular-info" onclick="openUserProfile('${user.code}')">
+                            <div class="popular-name">${user.name || '-'} ${isMe ? '(나)' : ''}</div>
+                            <div class="popular-followers">팔로워 <strong>${user.followerCount}</strong>명</div>
+                        </div>
+                        ${!isMe ? `
+                            <button class="follow-btn ${isFollowing ? 'following' : ''}" onclick="toggleFollow('${user.code}')">
+                                ${isFollowing ? '팔로잉' : '팔로우'}
+                            </button>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
         }
         
         // 팔로워 목록 렌더링
@@ -5302,10 +5392,10 @@
                         </div>
                         <div class="follow-info" onclick="openUserProfile('${user.code}')">
                             <div class="follow-name">${user.name || '-'}</div>
-                            <div class="follow-username">@${user.code}</div>
+                            <div class="follow-meta">${grade.icon} ${grade.name}</div>
                         </div>
                         <button class="follow-btn ${isFollowing ? 'following' : ''}" onclick="toggleFollow('${user.code}')">
-                            ${isFollowing ? '팔로잉' : '팔로우'}
+                            ${isFollowing ? '팔로잉' : '맞팔로우'}
                         </button>
                     </div>
                 `;
@@ -5313,7 +5403,7 @@
         }
         
         // 팔로잉 목록 렌더링
-        function renderFollowingList() {
+        async function renderFollowingList() {
             const container = document.getElementById('followingTab');
             
             if (followData.following.length === 0) {
@@ -5321,7 +5411,7 @@
                     <div class="follow-empty">
                         <div class="follow-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
                         <p>아직 팔로잉이 없습니다</p>
-                        <p class="follow-empty-sub">커뮤니티에서 다른 인플루언서를 팔로우해보세요!</p>
+                        <p class="follow-empty-sub">인기 인플루언서를 팔로우해보세요!</p>
                     </div>
                 `;
                 return;
@@ -5329,28 +5419,39 @@
             
             const followingUsers = followData.following.map(code => data.users.find(u => u.code === code)).filter(Boolean);
             
-            container.innerHTML = followingUsers.map(user => {
+            // 각 사용자의 팔로워 수 가져오기
+            const usersHtml = [];
+            for (const user of followingUsers) {
+                let followerCount = 0;
+                if (user.googleEmail) {
+                    try {
+                        const userDoc = await db.collection('users').doc(user.googleEmail).get();
+                        followerCount = userDoc.data()?.followers?.length || 0;
+                    } catch (e) {}
+                }
                 const userSales = data.sales.filter(s => s.userCode === user.code);
                 const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
                 const grade = getUserGrade(totalAmount);
                 
-                return `
+                usersHtml.push(`
                     <div class="follow-item">
                         <div class="follow-avatar" onclick="openUserProfile('${user.code}')" style="background:${grade.bgColor};color:${grade.color}">
                             ${user.profileImage ? `<img src="${user.profileImage}" alt="">` : user.name?.charAt(0) || 'U'}
                         </div>
                         <div class="follow-info" onclick="openUserProfile('${user.code}')">
                             <div class="follow-name">${user.name || '-'}</div>
-                            <div class="follow-username">@${user.code}</div>
+                            <div class="follow-meta">팔로워 <strong>${followerCount}</strong>명</div>
                         </div>
                         <button class="follow-btn following" onclick="toggleFollow('${user.code}')">팔로잉</button>
                     </div>
-                `;
-            }).join('');
+                `);
+            }
+            
+            container.innerHTML = usersHtml.join('');
         }
         
         // 추천 목록 로드
-        function loadDiscoverList() {
+        async function loadDiscoverList() {
             const container = document.getElementById('discoverTab');
             
             // 승인된 사용자 중 본인과 이미 팔로잉한 사람 제외
@@ -5370,24 +5471,35 @@
                 return;
             }
             
-            container.innerHTML = suggestions.map(user => {
+            // 각 사용자의 팔로워 수 가져오기
+            const usersHtml = [];
+            for (const user of suggestions) {
+                let followerCount = 0;
+                if (user.googleEmail) {
+                    try {
+                        const userDoc = await db.collection('users').doc(user.googleEmail).get();
+                        followerCount = userDoc.data()?.followers?.length || 0;
+                    } catch (e) {}
+                }
                 const userSales = data.sales.filter(s => s.userCode === user.code);
                 const totalAmount = userSales.reduce((sum, s) => sum + (s.amount || 0), 0);
                 const grade = getUserGrade(totalAmount);
                 
-                return `
+                usersHtml.push(`
                     <div class="follow-item">
                         <div class="follow-avatar" onclick="openUserProfile('${user.code}')" style="background:${grade.bgColor};color:${grade.color}">
                             ${user.profileImage ? `<img src="${user.profileImage}" alt="">` : user.name?.charAt(0) || 'U'}
                         </div>
                         <div class="follow-info" onclick="openUserProfile('${user.code}')">
                             <div class="follow-name">${user.name || '-'}</div>
-                            <div class="follow-username">@${user.code}</div>
+                            <div class="follow-meta">팔로워 <strong>${followerCount}</strong>명 · ${grade.icon} ${grade.name}</div>
                         </div>
                         <button class="follow-btn" onclick="toggleFollow('${user.code}')">팔로우</button>
                     </div>
-                `;
-            }).join('');
+                `);
+            }
+            
+            container.innerHTML = usersHtml.join('');
         }
         
         // 탭 전환
