@@ -653,11 +653,9 @@
                 <div class="mobile-sidebar-menu">
                     <a class="active" onclick="showSectionMobile('overview',this)">대시보드</a>
                     <a onclick="showSectionMobile('applications',this)">가입 신청</a>
-                    <a onclick="showSectionMobile('influencers',this)">인플루언서</a>
-                    <a onclick="showSectionMobile('influencerDB',this)">인플루언서 DB</a>
-                    <a onclick="showSectionMobile('influencerAnalysis',this)">📊 인플루언서 분석</a>
-                    <a onclick="showSectionMobile('matching',this)">인플루언서 매칭</a>
-                    <a onclick="showSectionMobile('analytics',this)">성과분석</a>
+                    <a onclick="showSectionMobile('influencerDB',this)">인플루언서 관리</a>
+                    <a onclick="showSectionMobile('influencerAnalysis',this)">성과 분석</a>
+                    <a onclick="showSectionMobile('matching',this)">상품 매칭</a>
                     <a onclick="showSectionMobile('products',this)">상품 관리</a>
                     <a onclick="showSectionMobile('sales',this)">판매 입력</a>
                     <a onclick="showSectionMobile('messages',this)">쪽지함</a>
@@ -671,11 +669,9 @@
             <nav class="sidebar-menu">
                 <a class="active" onclick="showSection('overview',this)">대시보드</a>
                 <a onclick="showSection('applications',this)">가입 신청</a>
-                <a onclick="showSection('influencers',this)">인플루언서</a>
-                <a onclick="showSection('influencerDB',this)">인플루언서 DB</a>
-                <a onclick="showSection('influencerAnalysis',this)">📊 인플루언서 분석</a>
-                <a onclick="showSection('matching',this)">인플루언서 매칭</a>
-                <a onclick="showSection('analytics',this)">성과분석</a>
+                <a onclick="showSection('influencerDB',this)">인플루언서 관리</a>
+                <a onclick="showSection('influencerAnalysis',this)">성과 분석</a>
+                <a onclick="showSection('matching',this)">상품 매칭</a>
                 <a onclick="showSection('products',this)">상품 관리</a>
                 <a onclick="showSection('sales',this)">판매 입력</a>
                 <a onclick="showSection('messages',this)">쪽지함 <span id="adminMsgBadge" class="header-badge hidden">0</span></a>
@@ -753,16 +749,8 @@
                 </div>
             </div>
 
-            <div id="sectionInfluencers" class="hidden">
-                <h1 class="page-title">인플루언서 관리</h1>
-                <div class="card">
-                    <div class="card-header">승인된 인플루언서</div>
-                    <table><thead><tr><th>이름</th><th>추천코드</th><th>채널</th><th>판매</th><th>매출</th><th>수익</th></tr></thead><tbody id="influencersTable"></tbody></table>
-                </div>
-            </div>
-
             <div id="sectionInfluencerDB" class="hidden">
-                <h1 class="page-title">인플루언서 DB</h1>
+                <h1 class="page-title">인플루언서 관리</h1>
                 
                 <!-- 검색/필터 -->
                 <div class="card" style="margin-bottom:20px">
@@ -844,7 +832,7 @@
                             <h3>등급 정보</h3>
                             <div class="modal-grade-card" id="modalGradeCard">
                                 <div class="modal-grade-header">
-                                    <span class="modal-grade-icon" id="modalGradeIcon">🌱</span>
+                                    <span class="modal-grade-icon" id="modalGradeIcon"></span>
                                     <div class="modal-grade-info">
                                         <span class="modal-grade-name" id="modalGradeName">씨앗</span>
                                         <span class="modal-grade-commission" id="modalGradeCommission">수수료 8%</span>
@@ -922,9 +910,9 @@
                 </div>
             </div>
 
-            <!-- 인플루언서 매칭 섹션 -->
+            <!-- 상품 매칭 섹션 -->
             <div id="sectionMatching" class="hidden">
-                <h1 class="page-title">인플루언서 매칭</h1>
+                <h1 class="page-title">상품 매칭</h1>
                 
                 <!-- 상품 선택 -->
                 <div class="card">
@@ -1019,7 +1007,7 @@
             <div id="sectionInfluencerAnalysis" class="hidden">
                 <!-- 목록 뷰 -->
                 <div id="influencerListView">
-                    <h1 class="page-title">📊 인플루언서 분석</h1>
+                    <h1 class="page-title">성과 분석</h1>
                     
                     <!-- 필터 -->
                     <div class="card" style="margin-bottom:16px">
@@ -1032,14 +1020,14 @@
                                 </select>
                                 <select id="iaFilterCategory" onchange="renderInfluencerAnalysisList()" style="padding:8px 12px;border:1px solid var(--border);border-radius:4px;font-size:13px">
                                     <option value="all">전체 카테고리</option>
-                                    <option value="dessert">🍪 디저트/음식</option>
-                                    <option value="beauty">💄 뷰티</option>
-                                    <option value="fashion">👗 패션</option>
-                                    <option value="living">🏠 생활용품</option>
-                                    <option value="electronics">📱 전자기기</option>
-                                    <option value="kids">👶 육아/키즈</option>
-                                    <option value="health">💪 건강/헬스</option>
-                                    <option value="pet">🐶 반려동물</option>
+                                    <option value="dessert">디저트/음식</option>
+                                    <option value="beauty">뷰티</option>
+                                    <option value="fashion">패션</option>
+                                    <option value="living">생활용품</option>
+                                    <option value="electronics">전자기기</option>
+                                    <option value="kids">육아/키즈</option>
+                                    <option value="health">건강/헬스</option>
+                                    <option value="pet">반려동물</option>
                                 </select>
                                 <select id="iaFilterSort" onchange="renderInfluencerAnalysisList()" style="padding:8px 12px;border:1px solid var(--border);border-radius:4px;font-size:13px">
                                     <option value="sales">매출순</option>
@@ -1056,7 +1044,7 @@
                     <div id="dormantAlert" class="card hidden" style="background:#fff8e1;border-color:#ffc107;margin-bottom:16px">
                         <div class="card-body" style="padding:12px 16px">
                             <div style="display:flex;align-items:center;gap:12px">
-                                <span style="font-size:20px">⚠️</span>
+                                <span style="font-size:20px;color:#f57c00">●</span>
                                 <div style="flex:1">
                                     <strong style="color:#f57c00">휴면 인플루언서 알림</strong>
                                     <p style="font-size:12px;color:#e65100;margin-top:2px" id="dormantAlertText">30일 이상 판매가 없는 인플루언서가 있습니다</p>
@@ -1085,7 +1073,7 @@
                         <div class="ia-profile-info">
                             <h2 id="iaDetailName">인플루언서</h2>
                             <div class="ia-profile-meta">
-                                <span class="ia-grade-badge" id="iaDetailGrade">🌱 씨앗</span>
+                                <span class="ia-grade-badge" id="iaDetailGrade">씨앗</span>
                                 <span id="iaDetailFollowers">팔로워 0명</span>
                                 <span id="iaDetailJoinDate">가입 -</span>
                             </div>
@@ -1120,7 +1108,7 @@
                     
                     <!-- 성장 추적 -->
                     <div class="card">
-                        <div class="card-header">📈 성장 추적 (이번 달 vs 저번 달)</div>
+                        <div class="card-header">성장 추적 (이번 달 vs 저번 달)</div>
                         <div class="card-body">
                             <div class="ia-growth-grid" id="iaDetailGrowth">
                                 <!-- 동적 생성 -->
@@ -1130,7 +1118,7 @@
                     
                     <!-- 상품 궁합 분석 (카테고리별) -->
                     <div class="card">
-                        <div class="card-header">🎯 상품 궁합 분석 (카테고리별 성과)</div>
+                        <div class="card-header">상품 궁합 분석 (카테고리별 성과)</div>
                         <div class="card-body" style="padding:0">
                             <table>
                                 <thead>
@@ -1151,7 +1139,7 @@
                     
                     <!-- TOP 판매 상품 -->
                     <div class="card">
-                        <div class="card-header">🛒 TOP 판매 상품</div>
+                        <div class="card-header">TOP 판매 상품</div>
                         <div class="card-body" style="padding:0">
                             <table>
                                 <thead>
@@ -1173,7 +1161,7 @@
                     
                     <!-- 협업 히스토리 + 메모 -->
                     <div class="card">
-                        <div class="card-header">📝 협업 히스토리 & PM 메모</div>
+                        <div class="card-header">협업 히스토리 & PM 메모</div>
                         <div class="card-body">
                             <div class="ia-memo-section">
                                 <textarea id="iaDetailMemo" placeholder="이 인플루언서에 대한 메모를 작성하세요...&#10;예: 1/20 - 마카롱 공구 대박, 다음달 재진행&#10;     1/15 - 패션 공구는 안 맞는 듯" style="width:100%;min-height:120px;padding:12px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:13px;resize:vertical"></textarea>
@@ -1187,7 +1175,7 @@
                     
                     <!-- PM 인사이트 (자동 생성) -->
                     <div class="card" style="background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 100%);border:none">
-                        <div class="card-header" style="border-bottom:1px solid rgba(0,0,0,0.1)">💡 PM 인사이트</div>
+                        <div class="card-header" style="border-bottom:1px solid rgba(0,0,0,0.1)">PM 인사이트</div>
                         <div class="card-body">
                             <div id="iaDetailInsight" class="ia-insight-box">
                                 <!-- 동적 생성 -->
@@ -1197,7 +1185,7 @@
                     
                     <!-- 인플루언서 비교 -->
                     <div class="card">
-                        <div class="card-header">⚖️ 비슷한 인플루언서와 비교</div>
+                        <div class="card-header">비슷한 인플루언서와 비교</div>
                         <div class="card-body" style="padding:0">
                             <table>
                                 <thead>
@@ -1216,88 +1204,6 @@
                             </table>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div id="sectionAnalytics" class="hidden">
-                <h1 class="page-title">성과분석</h1>
-                
-                <!-- 요약 카드 -->
-                <div class="stats-grid" style="margin-bottom:24px">
-                    <div class="stat-card">
-                        <div class="stat-label">총 인플루언서</div>
-                        <div class="stat-value" id="analyticsTotalInfluencers">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">활동 인플루언서</div>
-                        <div class="stat-value" id="analyticsActiveInfluencers">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">평균 매출/인</div>
-                        <div class="stat-value" id="analyticsAvgSales">₩0</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">이번 달 총 매출</div>
-                        <div class="stat-value" id="analyticsMonthSales">₩0</div>
-                    </div>
-                </div>
-
-                <!-- TOP 인플루언서 -->
-                <div class="card">
-                    <div class="card-header">TOP 인플루언서 (매출 순위)</div>
-                    <table>
-                        <thead><tr><th>순위</th><th>이름</th><th>채널</th><th>판매건수</th><th>총 매출</th><th>총 수익</th><th>최근 판매</th></tr></thead>
-                        <tbody id="topInfluencersTable"></tbody>
-                    </table>
-                </div>
-
-                <!-- 카테고리별 성과 -->
-                <div class="card">
-                    <div class="card-header">카테고리별 성과</div>
-                    <table>
-                        <thead><tr><th>카테고리</th><th>판매건수</th><th>총 매출</th><th>TOP 인플루언서</th><th>상품 수</th></tr></thead>
-                        <tbody id="categoryAnalyticsTable"></tbody>
-                    </table>
-                </div>
-
-                <!-- 채널별 성과 -->
-                <div class="card">
-                    <div class="card-header">채널별 성과</div>
-                    <table>
-                        <thead><tr><th>채널</th><th>인플루언서 수</th><th>총 판매건수</th><th>총 매출</th><th>평균 매출/인</th></tr></thead>
-                        <tbody id="channelAnalyticsTable"></tbody>
-                    </table>
-                </div>
-
-                <!-- 인플루언서 상세 DB -->
-                <div class="card">
-                    <div class="card-header">
-                        인플루언서 상세 DB
-                        <select id="analyticsFilter" onchange="updateAnalytics()" style="margin-left:12px;padding:4px 8px;font-size:12px">
-                            <option value="all">전체</option>
-                            <option value="active">활동중 (판매 있음)</option>
-                            <option value="inactive">미활동 (판매 없음)</option>
-                        </select>
-                        <select id="analyticsCategoryFilter" onchange="updateAnalytics()" style="margin-left:8px;padding:4px 8px;font-size:12px">
-                            <option value="all">전체 카테고리</option>
-                            <option value="dessert">디저트/음식</option>
-                            <option value="beauty">뷰티</option>
-                            <option value="fashion">패션</option>
-                            <option value="living">생활용품</option>
-                            <option value="electronics">전자기기</option>
-                            <option value="kids">육아/키즈</option>
-                            <option value="health">건강/헬스</option>
-                            <option value="pet">반려동물</option>
-                            <option value="travel">여행</option>
-                            <option value="interior">인테리어</option>
-                            <option value="book">도서/교육</option>
-                            <option value="hobby">취미/게임</option>
-                        </select>
-                    </div>
-                    <table>
-                        <thead><tr><th>이름</th><th>연락처</th><th>채널</th><th>관심 카테고리</th><th>판매건수</th><th>총 매출</th><th>가입일</th><th>메모</th></tr></thead>
-                        <tbody id="influencerDBTable"></tbody>
-                    </table>
                 </div>
             </div>
 
@@ -1597,12 +1503,12 @@
         
         // 인플루언서 등급 시스템
         const gradeSystem = [
-            { id: 'seed', name: '씨앗', icon: '🌱', minAmount: 0, commission: 8, color: '#8B4513', bgColor: '#FFF8DC', benefit: '일반 상품' },
-            { id: 'sprout', name: '새싹', icon: '🌿', minAmount: 5000000, commission: 9, color: '#228B22', bgColor: '#F0FFF0', benefit: '샘플 제공' },
-            { id: 'bronze', name: '브론즈', icon: '🌳', minAmount: 20000000, commission: 10, color: '#CD7F32', bgColor: '#FDF5E6', benefit: '신상품 1일 선공개 + 재고 우선' },
-            { id: 'silver', name: '실버', icon: '⭐', minAmount: 50000000, commission: 11, color: '#C0C0C0', bgColor: '#F5F5F5', benefit: '신상품 3일 선공개 + 정산 격주' },
-            { id: 'gold', name: '골드', icon: '🌟', minAmount: 100000000, commission: 12, color: '#FFD700', bgColor: '#FFFACD', benefit: '단독 상품 + 추가 할인가' },
-            { id: 'diamond', name: '다이아', icon: '💎', minAmount: 300000000, commission: 13, color: '#00CED1', bgColor: '#E0FFFF', benefit: '독점 공구 + 정산 주1회 + CS대행' }
+            { id: 'seed', name: '씨앗', icon: '', minAmount: 0, commission: 8, color: '#8B4513', bgColor: '#FFF8DC', benefit: '일반 상품' },
+            { id: 'sprout', name: '새싹', icon: '', minAmount: 5000000, commission: 9, color: '#228B22', bgColor: '#F0FFF0', benefit: '샘플 제공' },
+            { id: 'bronze', name: '브론즈', icon: '', minAmount: 20000000, commission: 10, color: '#CD7F32', bgColor: '#FDF5E6', benefit: '신상품 1일 선공개 + 재고 우선' },
+            { id: 'silver', name: '실버', icon: '', minAmount: 50000000, commission: 11, color: '#C0C0C0', bgColor: '#F5F5F5', benefit: '신상품 3일 선공개 + 정산 격주' },
+            { id: 'gold', name: '골드', icon: '', minAmount: 100000000, commission: 12, color: '#FFD700', bgColor: '#FFFACD', benefit: '단독 상품 + 추가 할인가' },
+            { id: 'diamond', name: '다이아', icon: '', minAmount: 300000000, commission: 13, color: '#00CED1', bgColor: '#E0FFFF', benefit: '독점 공구 + 정산 주1회 + CS대행' }
         ];
         
         // 등급 계산 함수 (매출 기준)
@@ -1764,13 +1670,11 @@
         }
 
         function showSection(section, el) {
-            ['sectionOverview','sectionApplications','sectionInfluencers','sectionInfluencerDB','sectionInfluencerAnalysis','sectionMatching','sectionAnalytics','sectionProducts','sectionSales','sectionMessages'].forEach(s => document.getElementById(s)?.classList.add('hidden'));
+            ['sectionOverview','sectionApplications','sectionInfluencerDB','sectionInfluencerAnalysis','sectionMatching','sectionProducts','sectionSales','sectionMessages'].forEach(s => document.getElementById(s)?.classList.add('hidden'));
             document.getElementById('section' + section.charAt(0).toUpperCase() + section.slice(1))?.classList.remove('hidden');
             document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
             if (el) el.classList.add('active');
-            if (section === 'analytics') {
-                updateAnalytics();
-            } else if (section === 'influencerDB') {
+            if (section === 'influencerDB') {
                 renderInfluencerDB();
             } else if (section === 'matching') {
                 initMatchingSection();
@@ -2113,7 +2017,7 @@
             if (gradeFilterEl) {
                 gradeFilterEl.value = gradeId;
             }
-            showSection('influencerDB', document.querySelector('.sidebar-menu a:nth-child(4)'));
+            showSection('influencerDB', document.querySelector('.sidebar-menu a:nth-child(3)'));
         }
         
         // 오늘의 할 일 업데이트
@@ -2142,7 +2046,7 @@
                         <div class="todo-title">${unmatchedCount}명에게 상품 매칭 필요</div>
                         <div class="todo-desc">아직 추천 상품이 설정되지 않은 인플루언서가 있어요</div>
                     </div>
-                    <button class="todo-action" onclick="showSection('influencerDB', document.querySelectorAll('.sidebar-menu a')[3])">매칭하기</button>
+                    <button class="todo-action" onclick="showSection('matching', document.querySelectorAll('.sidebar-menu a')[4])">매칭하기</button>
                 </div>`;
             }
             
@@ -2244,7 +2148,7 @@
                 return;
             }
             
-            const medals = ['🥇', '🥈', '🥉', '4', '5'];
+            const medals = ['1', '2', '3', '4', '5'];
             container.innerHTML = influencerStats.slice(0, 5).map((u, i) => `
                 <div class="top-item">
                     <div class="top-rank">${medals[i]}</div>
@@ -3008,7 +2912,7 @@
             document.getElementById('topInfluencersTable').innerHTML = topInfluencers.length === 0
                 ? '<tr><td colspan="7" class="empty">인플루언서가 없습니다</td></tr>'
                 : topInfluencers.slice(0, 10).map((u, idx) => {
-                    const medal = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : (idx + 1);
+                    const medal = idx === 0 ? '1' : idx === 1 ? '2' : idx === 2 ? '3' : (idx + 1);
                     const ch = [u.channels?.youtube && 'YT', u.channels?.instagram && 'IG', u.channels?.tiktok && 'TT', u.channels?.blog && 'Blog'].filter(Boolean).join(', ');
                     let channelLinks = [];
                     if (u.channelUrls?.youtube) channelLinks.push(`<a href="${u.channelUrls.youtube}" target="_blank" style="color:var(--primary)">YT</a>`);
@@ -3304,7 +3208,7 @@
                         <div class="influencer-card-stat"><span class="num">₩${totalAmount.toLocaleString()}</span><span class="label">매출</span></div>
                         <div class="influencer-card-stat"><span class="num">₩${totalCommission.toLocaleString()}</span><span class="label">수익</span></div>
                     </div>
-                    ${u.memo ? `<div class="influencer-card-memo">📝 ${u.memo}</div>` : ''}
+                    ${u.memo ? `<div class="influencer-card-memo">${u.memo}</div>` : ''}
                     ${matchedHtml}
                 </div>
                 `;
@@ -3583,12 +3487,12 @@
             
             const channelLabels = { youtube: 'YouTube', instagram: 'Instagram', blog: '블로그', tiktok: 'TikTok' };
             const gradeInfo = {
-                seed: { icon: '🌱', name: '씨앗' },
-                sprout: { icon: '🌿', name: '새싹' },
-                bronze: { icon: '🥉', name: '브론즈' },
-                silver: { icon: '🥈', name: '실버' },
-                gold: { icon: '🥇', name: '골드' },
-                diamond: { icon: '💎', name: '다이아' },
+                seed: { icon: '', name: '씨앗' },
+                sprout: { icon: '', name: '새싹' },
+                bronze: { icon: '', name: '브론즈' },
+                silver: { icon: '', name: '실버' },
+                gold: { icon: '', name: '골드' },
+                diamond: { icon: '', name: '다이아' },
                 vip: { icon: '👑', name: 'VIP' }
             };
             
@@ -3654,12 +3558,12 @@
         function getUserGradeByTotalSales(totalSales) {
             const grades = [
                 { id: 'vip', name: 'VIP', icon: '👑', minSales: 500 },
-                { id: 'diamond', name: '다이아', icon: '💎', minSales: 300 },
-                { id: 'gold', name: '골드', icon: '🥇', minSales: 100 },
-                { id: 'silver', name: '실버', icon: '🥈', minSales: 50 },
-                { id: 'bronze', name: '브론즈', icon: '🥉', minSales: 20 },
-                { id: 'sprout', name: '새싹', icon: '🌿', minSales: 5 },
-                { id: 'seed', name: '씨앗', icon: '🌱', minSales: 0 }
+                { id: 'diamond', name: '다이아', icon: '', minSales: 300 },
+                { id: 'gold', name: '골드', icon: '', minSales: 100 },
+                { id: 'silver', name: '실버', icon: '', minSales: 50 },
+                { id: 'bronze', name: '브론즈', icon: '', minSales: 20 },
+                { id: 'sprout', name: '새싹', icon: '', minSales: 5 },
+                { id: 'seed', name: '씨앗', icon: '', minSales: 0 }
             ];
             
             for (const grade of grades) {
@@ -3674,20 +3578,20 @@
         
         let selectedInfluencer = null;
         const catNames = {
-            dessert: '🍪 디저트/음식', beauty: '💄 뷰티', fashion: '👗 패션',
-            living: '🏠 생활용품', electronics: '📱 전자기기', kids: '👶 육아/키즈',
-            health: '💪 건강/헬스', pet: '🐶 반려동물', travel: '✈️ 여행',
-            interior: '🛋️ 인테리어', book: '📚 도서/교육', hobby: '🎮 취미/게임'
+            dessert: '디저트/음식', beauty: '뷰티', fashion: '패션',
+            living: '생활용품', electronics: '전자기기', kids: '육아/키즈',
+            health: '건강/헬스', pet: '반려동물', travel: '여행',
+            interior: '인테리어', book: '도서/교육', hobby: '취미/게임'
         };
         
         // 등급 시스템 (매출 기준)
         const gradeSystemIA = [
-            { id: 'diamond', name: '다이아', icon: '💎', minAmount: 300000000, rate: 13, bgColor: '#e8f4fd', color: '#0277bd' },
-            { id: 'gold', name: '골드', icon: '🌟', minAmount: 100000000, rate: 12, bgColor: '#fffde7', color: '#f9a825' },
-            { id: 'silver', name: '실버', icon: '⭐', minAmount: 50000000, rate: 11, bgColor: '#fafafa', color: '#757575' },
+            { id: 'diamond', name: '다이아', icon: '', minAmount: 300000000, rate: 13, bgColor: '#e8f4fd', color: '#0277bd' },
+            { id: 'gold', name: '골드', icon: '', minAmount: 100000000, rate: 12, bgColor: '#fffde7', color: '#f9a825' },
+            { id: 'silver', name: '실버', icon: '', minAmount: 50000000, rate: 11, bgColor: '#fafafa', color: '#757575' },
             { id: 'bronze', name: '브론즈', icon: '🌳', minAmount: 20000000, rate: 10, bgColor: '#efebe9', color: '#6d4c41' },
-            { id: 'sprout', name: '새싹', icon: '🌿', minAmount: 5000000, rate: 9, bgColor: '#e8f5e9', color: '#388e3c' },
-            { id: 'seed', name: '씨앗', icon: '🌱', minAmount: 0, rate: 8, bgColor: '#fff3e0', color: '#e65100' }
+            { id: 'sprout', name: '새싹', icon: '', minAmount: 5000000, rate: 9, bgColor: '#e8f5e9', color: '#388e3c' },
+            { id: 'seed', name: '씨앗', icon: '', minAmount: 0, rate: 8, bgColor: '#fff3e0', color: '#e65100' }
         ];
         
         function getUserGradeIA(totalAmount) {
@@ -3854,8 +3758,8 @@
                                 <div class="ia-card-stat-label">성장률</div>
                             </div>
                         </div>
-                        ${inf.bestCategory ? `<div class="ia-card-best">🎯 주력: <strong>${bestCatName}</strong></div>` : ''}
-                        ${inf.isDormant ? '<div class="ia-card-alert">⚠️ 30일 이상 판매 없음 - 케어 필요</div>' : ''}
+                        ${inf.bestCategory ? `<div class="ia-card-best">주력: <strong>${bestCatName}</strong></div>` : ''}
+                        ${inf.isDormant ? '<div class="ia-card-alert">30일 이상 판매 없음 - 케어 필요</div>' : ''}
                     </div>
                 `;
             }).join('');
@@ -3924,8 +3828,8 @@
             const isDormant = !lastSale || new Date(lastSale.date) < thirtyDaysAgo;
             
             document.getElementById('iaDetailStatus').innerHTML = isDormant 
-                ? '<span class="ia-status-badge dormant">⚠️ 휴면</span>'
-                : '<span class="ia-status-badge active">✓ 활동중</span>';
+                ? '<span class="ia-status-badge dormant">휴면</span>'
+                : '<span class="ia-status-badge active">활동중</span>';
             
             // 전체 성과 요약
             document.getElementById('iaDetailTotalSales').textContent = '₩' + totalAmount.toLocaleString();
@@ -4014,9 +3918,9 @@
             document.getElementById('iaDetailCategoryTable').innerHTML = sorted.length > 0 ? sorted.map(([cat, stats], idx) => {
                 const convRate = (Math.random() * 10 + 2).toFixed(1);
                 let evalClass = '', evalText = '';
-                if (idx === 0) { evalClass = 'ia-category-best'; evalText = '⭐ BEST'; }
-                else if (stats.amount >= maxAmount * 0.5) { evalClass = 'ia-category-good'; evalText = '👍 좋음'; }
-                else if (stats.amount < maxAmount * 0.2) { evalClass = 'ia-category-bad'; evalText = '👎 비추천'; }
+                if (idx === 0) { evalClass = 'ia-category-best'; evalText = 'BEST'; }
+                else if (stats.amount >= maxAmount * 0.5) { evalClass = 'ia-category-good'; evalText = '좋음'; }
+                else if (stats.amount < maxAmount * 0.2) { evalClass = 'ia-category-bad'; evalText = '비추천'; }
                 else { evalText = '보통'; }
                 
                 return `
@@ -4049,7 +3953,7 @@
             
             document.getElementById('iaDetailProductTable').innerHTML = sorted.length > 0 ? sorted.map((p, idx) => `
                 <tr>
-                    <td>${idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : idx + 1}</td>
+                    <td>${idx + 1}</td>
                     <td>${p.name}</td>
                     <td>${catNames[p.category] || p.category || '-'}</td>
                     <td>₩${p.amount.toLocaleString()}</td>
@@ -4100,7 +4004,7 @@
             }
             
             if (isDormant) {
-                insights.push(`<li style="color:#f57c00">⚠️ 30일 이상 판매 없음 - <strong>케어 연락 필요</strong></li>`);
+                insights.push(`<li style="color:#f57c00">30일 이상 판매 없음 - <strong>케어 연락 필요</strong></li>`);
             }
             
             if (grade.id === 'seed' || grade.id === 'sprout') {
@@ -4113,7 +4017,7 @@
                 const catProducts = data.products.filter(p => p.category === bestCat[0] && p.status === 'active');
                 if (catProducts.length > 0) {
                     const randomProduct = catProducts[Math.floor(Math.random() * catProducts.length)];
-                    recommend = `<div class="recommend">💡 <strong>추천 제안:</strong> "${randomProduct.name}" 공구 제안해보세요. ${catNames[bestCat[0]]} 카테고리에서 높은 성과를 보이고 있습니다.</div>`;
+                    recommend = `<div class="recommend"><strong>추천 제안:</strong> "${randomProduct.name}" 공구 제안해보세요. ${catNames[bestCat[0]]} 카테고리에서 높은 성과를 보이고 있습니다.</div>`;
                 }
             }
             
@@ -4186,7 +4090,7 @@
         function sendMessageToInfluencer() {
             if (!selectedInfluencer) return;
             // 쪽지 섹션으로 이동하고 수신자 미리 선택
-            showSection('messages', document.querySelector('.sidebar-menu a:nth-child(10)'));
+            showSection('messages', document.querySelector('.sidebar-menu a:nth-child(8)'));
             setTimeout(() => {
                 const select = document.getElementById('msgRecipient');
                 if (select) {
