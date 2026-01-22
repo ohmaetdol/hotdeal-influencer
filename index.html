@@ -576,26 +576,37 @@
         .message-btn{position:relative;width:36px;height:36px;border-radius:50%;background:var(--bg-secondary);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;font-size:18px}
         .message-btn:hover{background:var(--primary-light);border-color:var(--primary)}
         .message-badge{position:absolute;top:-4px;right:-4px;background:var(--error);color:#fff;font-size:10px;font-weight:600;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
-        .message-dropdown{position:absolute;top:calc(100% + 8px);right:0;width:360px;max-height:480px;background:#fff;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.15);overflow:hidden;z-index:200;display:none}
-        .message-dropdown.show{display:block}
-        .message-dropdown-header{padding:16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-        .message-dropdown-header h3{font-size:16px;font-weight:600}
-        .message-dropdown-tabs{display:flex;gap:8px}
-        .message-tab{padding:6px 12px;border-radius:16px;font-size:12px;cursor:pointer;background:var(--bg-secondary);border:none;font-family:inherit}
-        .message-tab.active{background:var(--primary);color:#fff}
-        .message-list{max-height:360px;overflow-y:auto}
-        .message-item{padding:14px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s;display:flex;gap:12px;align-items:flex-start}
-        .message-item:hover{background:var(--bg-secondary)}
-        .message-item.unread{background:var(--primary-light)}
-        .message-item-avatar{width:40px;height:40px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;flex-shrink:0}
-        .message-item-avatar.admin{background:#333}
-        .message-item-content{flex:1;min-width:0}
-        .message-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
-        .message-item-sender{font-size:14px;font-weight:600}
-        .message-item-time{font-size:11px;color:var(--text-muted)}
-        .message-item-preview{font-size:13px;color:var(--text-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-        .message-empty{padding:40px 20px;text-align:center;color:var(--text-muted);font-size:14px}
-        .message-compose-btn{margin:12px 16px;width:calc(100% - 32px)}
+        
+        /* 쪽지 전용 페이지 (당근마켓 스타일) */
+        .messages-page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+        .messages-filter-tabs{display:flex;gap:8px;margin-bottom:16px;border-bottom:1px solid var(--border);padding-bottom:12px}
+        .messages-filter-tab{padding:8px 16px;border-radius:20px;font-size:13px;cursor:pointer;background:var(--bg-secondary);border:none;font-family:inherit;transition:all .2s}
+        .messages-filter-tab:hover{background:#e5e5e5}
+        .messages-filter-tab.active{background:var(--primary);color:#fff}
+        .messages-page-list{display:flex;flex-direction:column;gap:0}
+        .messages-empty{text-align:center;padding:60px 20px;color:var(--text-muted)}
+        .messages-empty-icon{font-size:48px;margin-bottom:12px;opacity:0.5}
+        
+        /* 쪽지 아이템 (당근 스타일) */
+        .msg-item{display:flex;gap:14px;padding:16px;background:#fff;border:1px solid var(--border);border-radius:12px;margin-bottom:8px;cursor:pointer;transition:all .2s;position:relative}
+        .msg-item:hover{border-color:#ccc;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+        .msg-item.unread{background:var(--primary-light);border-color:var(--primary)}
+        .msg-item.unread::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:4px;height:60%;background:var(--primary);border-radius:0 2px 2px 0}
+        .msg-item-avatar{width:52px;height:52px;border-radius:50%;background:var(--bg-secondary);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:600;color:var(--text-light);flex-shrink:0}
+        .msg-item-avatar.admin{background:#333;color:#fff}
+        .msg-item-body{flex:1;min-width:0}
+        .msg-item-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+        .msg-item-sender{font-size:15px;font-weight:600}
+        .msg-item-time{font-size:12px;color:var(--text-muted)}
+        .msg-item-preview{font-size:14px;color:var(--text-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:8px}
+        .msg-item-actions{display:flex;gap:8px}
+        .msg-item-btn{padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;border:1px solid var(--border);background:#fff;transition:all .2s}
+        .msg-item-btn:hover{background:var(--bg-secondary)}
+        .msg-item-btn.delete{color:var(--error);border-color:var(--error)}
+        .msg-item-btn.delete:hover{background:#fef2f2}
+        
+        /* 모바일 쪽지 뱃지 */
+        .mobile-msg-badge{position:absolute;top:-2px;right:-2px;width:8px;height:8px;background:var(--error);border-radius:50%}
         
         /* 쪽지 상세/작성 모달 */
         .message-modal{background:#fff;border-radius:16px;width:90%;max-width:500px;max-height:80vh;overflow:hidden;display:flex;flex-direction:column}
@@ -642,16 +653,17 @@
             .section-header{margin-bottom:12px}
             .section-header h2{font-size:14px}
             
-            /* 쪽지 모바일 최적화 */
-            .message-dropdown{position:fixed;top:auto;bottom:0;left:0;right:0;width:100%;max-width:100%;max-height:70vh;border-radius:16px 16px 0 0;box-shadow:0 -4px 24px rgba(0,0,0,0.15)}
-            .message-dropdown-header{padding:14px 16px}
-            .message-dropdown-header h3{font-size:15px}
-            .message-list{max-height:calc(70vh - 140px)}
-            .message-item{padding:12px 16px}
-            .message-item-avatar{width:36px;height:36px;font-size:13px}
-            .message-item-sender{font-size:13px}
-            .message-item-preview{font-size:12px}
-            .message-compose-btn{margin:10px 16px;width:calc(100% - 32px)}
+            /* 쪽지 페이지 모바일 */
+            .messages-page-header{margin-bottom:12px}
+            .messages-page-header .page-title{font-size:18px}
+            .messages-filter-tabs{gap:6px;margin-bottom:12px;padding-bottom:10px;overflow-x:auto;flex-wrap:nowrap}
+            .messages-filter-tab{padding:6px 14px;font-size:12px;white-space:nowrap}
+            .msg-item{padding:14px;gap:12px}
+            .msg-item-avatar{width:46px;height:46px;font-size:18px}
+            .msg-item-sender{font-size:14px}
+            .msg-item-preview{font-size:13px}
+            .msg-item-actions{margin-top:6px}
+            .msg-item-btn{padding:5px 10px;font-size:11px}
             
             .message-modal{width:100%;max-width:100%;height:100vh;max-height:100vh;border-radius:0}
             .message-modal-header{padding:14px 16px;position:sticky;top:0;background:#fff;z-index:10}
@@ -1367,8 +1379,8 @@
             </div>
             <div class="landing-features">
                 <div class="features-grid">
-                    <div class="feature-item"><div class="feature-icon">💰</div><h3>높은 수익률 10%</h3><p>업계 최고 수준의 수익률</p></div>
-                    <div class="feature-item"><div class="feature-icon">🎯</div><h3>맞춤 상품 추천</h3><p>채널에 맞는 상품 추천</p></div>
+                    <div class="feature-item"><div class="feature-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><h3>높은 수익률 10%</h3><p>업계 최고 수준의 수익률</p></div>
+                    <div class="feature-item"><div class="feature-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><h3>맞춤 상품 추천</h3><p>채널에 맞는 상품 추천</p></div>
                     <div class="feature-item"><div class="feature-icon">📊</div><h3>실시간 수익 확인</h3><p>투명한 정산 시스템</p></div>
                 </div>
             </div>
@@ -1530,28 +1542,16 @@
                     <a class="active" onclick="showDashSection('home', this)">홈</a>
                     <a onclick="showDashSection('report', this)">리포트</a>
                     <a onclick="showDashSection('friends', this)">친구</a>
+                    <a onclick="showDashSection('messages', this)">쪽지</a>
                     <a onclick="showDashSection('community', this)">커뮤니티</a>
                 </nav>
             </div>
             <div class="user-info">
-                <!-- 쪽지 버튼 -->
+                <!-- 쪽지 버튼 (아이콘만) -->
                 <div style="position:relative">
-                    <div class="message-btn" onclick="toggleMessageDropdown(event)">
-                        💬
+                    <div class="message-btn" onclick="showDashSection('messages', null)">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
                         <span class="message-badge hidden" id="messageBadge">0</span>
-                    </div>
-                    <div class="message-dropdown" id="messageDropdown">
-                        <div class="message-dropdown-header">
-                            <h3>쪽지함</h3>
-                            <div class="message-dropdown-tabs">
-                                <button class="message-tab active" onclick="filterMessages('all', this)">전체</button>
-                                <button class="message-tab" onclick="filterMessages('unread', this)">안읽음</button>
-                            </div>
-                        </div>
-                        <div class="message-list" id="messageList">
-                            <div class="message-empty">쪽지가 없습니다</div>
-                        </div>
-                        <button class="btn btn-primary message-compose-btn" onclick="openComposeMessage()">새 쪽지 작성</button>
                     </div>
                 </div>
                 <div class="user-avatar" id="userAvatar" onclick="showDashSection('profile', null)" style="cursor:pointer" title="프로필 보기">U</div>
@@ -1568,7 +1568,7 @@
                         <!-- 선택된 카테고리 칩들 -->
                     </div>
                     <button class="category-select-btn-top" onclick="openCategoryModal()">
-                        카테고리 선택 <span>☰</span>
+                        카테고리 선택 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="vertical-align:middle"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
                     </button>
                 </div>
 
@@ -1616,14 +1616,14 @@
                         </div>
                     </div>
                     <div class="insight-card match-card">
-                        <div class="insight-icon">🎯</div>
+                        <div class="insight-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="#1a73e8"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
                         <div class="insight-content">
                             <h3>상품 매칭률</h3>
                             <p id="matchScore">추천 상품과의 궁합을 분석 중...</p>
                         </div>
                     </div>
                     <div class="insight-card tip-card">
-                        <div class="insight-icon">💡</div>
+                        <div class="insight-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="#f9a825"><path d="M9 21c0 .5.4 1 1 1h4c.6 0 1-.5 1-1v-1H9v1zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .5.4 1 1 1h6c.6 0 1-.5 1-1v-2.3c1.8-1.3 3-3.4 3-5.7 0-3.9-3.1-7-7-7z"/></svg></div>
                         <div class="insight-content">
                             <h3>오늘의 팁</h3>
                             <p id="dailyTip">프로필을 완성하면 더 정확한 상품 추천을 받을 수 있어요!</p>
@@ -1697,6 +1697,30 @@
                 </div>
             </div>
 
+            <!-- 쪽지함 섹션 (당근마켓 스타일) -->
+            <div id="dashMessages" class="hidden">
+                <div class="messages-page-header">
+                    <h1 class="page-title">쪽지함</h1>
+                    <button class="btn btn-primary btn-small" onclick="openComposeMessage()">새 쪽지</button>
+                </div>
+                
+                <!-- 필터 탭 -->
+                <div class="messages-filter-tabs">
+                    <button class="messages-filter-tab active" onclick="filterMessagesPage('all', this)">전체</button>
+                    <button class="messages-filter-tab" onclick="filterMessagesPage('unread', this)">안읽음</button>
+                    <button class="messages-filter-tab" onclick="filterMessagesPage('sent', this)">보낸 쪽지</button>
+                </div>
+                
+                <!-- 쪽지 목록 -->
+                <div class="messages-page-list" id="messagesPageList">
+                    <div class="messages-empty">
+                        <div class="messages-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg></div>
+                        <p>쪽지가 없습니다</p>
+                        <p style="font-size:12px;margin-top:8px;color:var(--text-muted)">새 쪽지를 작성해보세요!</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- 친구 섹션 -->
             <div id="dashFriends" class="hidden">
                 <h1 class="page-title">친구</h1>
@@ -1723,7 +1747,7 @@
                 <!-- 내 친구 목록 -->
                 <div id="friendsListTab" class="friend-list">
                     <div class="friend-empty">
-                        <div class="friend-empty-icon">👥</div>
+                        <div class="friend-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
                         <p>아직 친구가 없습니다</p>
                         <p style="font-size:12px;margin-top:8px">위에서 검색해서 친구를 추가해보세요!</p>
                     </div>
@@ -1732,7 +1756,7 @@
                 <!-- 받은 요청 -->
                 <div id="friendsRequestsTab" class="friend-list hidden">
                     <div class="friend-empty">
-                        <div class="friend-empty-icon">📬</div>
+                        <div class="friend-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
                         <p>받은 친구 요청이 없습니다</p>
                     </div>
                 </div>
@@ -1740,7 +1764,7 @@
                 <!-- 보낸 요청 -->
                 <div id="friendsSentTab" class="friend-list hidden">
                     <div class="friend-empty">
-                        <div class="friend-empty-icon">📤</div>
+                        <div class="friend-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z"/></svg></div>
                         <p>보낸 친구 요청이 없습니다</p>
                     </div>
                 </div>
@@ -1755,8 +1779,8 @@
                 
                 <!-- 탭 (추천/최신) -->
                 <div class="community-tabs">
-                    <button class="community-tab active" onclick="switchFeedTab('hot', this)">🔥 추천</button>
-                    <button class="community-tab" onclick="switchFeedTab('latest', this)">🕐 최신</button>
+                    <button class="community-tab active" onclick="switchFeedTab('hot', this)"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>추천</button>
+                    <button class="community-tab" onclick="switchFeedTab('latest', this)"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="vertical-align:-2px;margin-right:4px"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>최신</button>
                 </div>
 
                 <!-- 피드 -->
@@ -2053,6 +2077,12 @@
                 <button class="mobile-nav-item" onclick="showDashSectionMobile('report', this)" data-section="report">
                     <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg></span>
                 </button>
+                <button class="mobile-nav-item" onclick="showDashSectionMobile('messages', this)" data-section="messages">
+                    <span class="nav-icon" style="position:relative">
+                        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+                        <span class="mobile-msg-badge hidden" id="mobileMsgBadge"></span>
+                    </span>
+                </button>
                 <button class="mobile-nav-item" onclick="showDashSectionMobile('friends', this)" data-section="friends">
                     <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></span>
                 </button>
@@ -2103,7 +2133,7 @@
             </div>
             <div class="message-modal-footer">
                 <button class="btn btn-secondary" onclick="closeMessageModal('messageDetailModal')">닫기</button>
-                <button class="btn btn-primary" onclick="replyMessage()">답장하기</button>
+                <button class="btn btn-primary" id="msgReplyBtn" onclick="replyMessage()">답장하기</button>
             </div>
         </div>
     </div>
@@ -2138,7 +2168,7 @@
     <div class="modal-overlay" id="gradeModal">
         <div class="modal grade-modal">
             <div class="grade-modal-header">
-                <h2>🏆 인플루언서 등급 안내</h2>
+                <h2>인플루언서 등급 안내</h2>
                 <button class="close-btn" onclick="closeGradeModal()">✕</button>
             </div>
             <div class="grade-modal-body">
@@ -2843,11 +2873,14 @@
         function updateMessageBadge() {
             const unreadCount = currentMessages.filter(m => !m.read).length;
             const badge = document.getElementById('messageBadge');
+            const mobileBadge = document.getElementById('mobileMsgBadge');
             if (unreadCount > 0) {
                 badge.textContent = unreadCount > 99 ? '99+' : unreadCount;
                 badge.classList.remove('hidden');
+                if (mobileBadge) mobileBadge.classList.remove('hidden');
             } else {
                 badge.classList.add('hidden');
+                if (mobileBadge) mobileBadge.classList.add('hidden');
             }
         }
 
@@ -2947,6 +2980,204 @@
                 loadMessages();
             }
         }
+        
+        // ============================================
+        // 쪽지함 페이지 (당근마켓 스타일)
+        // ============================================
+        
+        let messagesPageFilter = 'all';
+        let sentMessages = [];
+        
+        async function loadMessagesPage() {
+            if (!currentUser || !db) return;
+            
+            try {
+                // 받은 쪽지
+                const receivedSnapshot = await db.collection('messages')
+                    .where('to', '==', currentUser.code)
+                    .get();
+                
+                currentMessages = [];
+                receivedSnapshot.forEach(doc => {
+                    currentMessages.push({ id: doc.id, type: 'received', ...doc.data() });
+                });
+                
+                // 보낸 쪽지
+                const sentSnapshot = await db.collection('messages')
+                    .where('from', '==', currentUser.code)
+                    .get();
+                
+                sentMessages = [];
+                sentSnapshot.forEach(doc => {
+                    sentMessages.push({ id: doc.id, type: 'sent', ...doc.data() });
+                });
+                
+                // 시간순 정렬
+                currentMessages.sort((a, b) => {
+                    const aTime = a.createdAt?.seconds || 0;
+                    const bTime = b.createdAt?.seconds || 0;
+                    return bTime - aTime;
+                });
+                
+                sentMessages.sort((a, b) => {
+                    const aTime = a.createdAt?.seconds || 0;
+                    const bTime = b.createdAt?.seconds || 0;
+                    return bTime - aTime;
+                });
+                
+                renderMessagesPage();
+                updateMessageBadge();
+                updateMobileMsgBadge();
+            } catch (error) {
+                console.error('쪽지 로드 실패:', error);
+            }
+        }
+        
+        function renderMessagesPage() {
+            const container = document.getElementById('messagesPageList');
+            let messages = [];
+            
+            if (messagesPageFilter === 'all') {
+                messages = currentMessages;
+            } else if (messagesPageFilter === 'unread') {
+                messages = currentMessages.filter(m => !m.read);
+            } else if (messagesPageFilter === 'sent') {
+                messages = sentMessages;
+            }
+            
+            if (messages.length === 0) {
+                let emptyText = '쪽지가 없습니다';
+                if (messagesPageFilter === 'unread') emptyText = '읽지 않은 쪽지가 없습니다';
+                if (messagesPageFilter === 'sent') emptyText = '보낸 쪽지가 없습니다';
+                
+                container.innerHTML = `
+                    <div class="messages-empty">
+                        <div class="messages-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg></div>
+                        <p>${emptyText}</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = messages.map(msg => {
+                const isAdmin = msg.from === 'admin';
+                const isSent = msg.type === 'sent';
+                const avatar = isSent ? (msg.toName || '?').charAt(0) : (isAdmin ? '관' : (msg.fromName || '?').charAt(0));
+                const avatarClass = (isAdmin && !isSent) ? 'admin' : '';
+                const time = msg.createdAt ? formatMessageTime(msg.createdAt) : '';
+                const unreadClass = (!isSent && !msg.read) ? 'unread' : '';
+                const senderName = isSent ? `To: ${msg.toName || '관리자'}` : (isAdmin ? '관리자' : msg.fromName);
+                
+                return `
+                    <div class="msg-item ${unreadClass}" onclick="openMessageDetailPage('${msg.id}', '${msg.type || 'received'}')">
+                        <div class="msg-item-avatar ${avatarClass}">${avatar}</div>
+                        <div class="msg-item-body">
+                            <div class="msg-item-top">
+                                <span class="msg-item-sender">${senderName}</span>
+                                <span class="msg-item-time">${time}</span>
+                            </div>
+                            <div class="msg-item-preview">${msg.content || ''}</div>
+                            <div class="msg-item-actions">
+                                ${!isSent ? `<button class="msg-item-btn" onclick="event.stopPropagation();replyMessagePage('${msg.id}')">답장</button>` : ''}
+                                <button class="msg-item-btn delete" onclick="event.stopPropagation();deleteMessage('${msg.id}', '${msg.type || 'received'}')">삭제</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function filterMessagesPage(filter, btn) {
+            messagesPageFilter = filter;
+            document.querySelectorAll('.messages-filter-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            renderMessagesPage();
+        }
+        
+        async function openMessageDetailPage(msgId, type) {
+            const messages = type === 'sent' ? sentMessages : currentMessages;
+            const msg = messages.find(m => m.id === msgId);
+            if (!msg) return;
+            
+            const isAdmin = msg.from === 'admin';
+            const isSent = type === 'sent';
+            document.getElementById('msgDetailAvatar').textContent = isSent ? (msg.toName || '?').charAt(0) : (isAdmin ? '관' : (msg.fromName || '?').charAt(0));
+            document.getElementById('msgDetailAvatar').className = 'message-detail-avatar' + ((isAdmin && !isSent) ? ' admin' : '');
+            document.getElementById('msgDetailSender').textContent = isSent ? `To: ${msg.toName || '관리자'}` : (isAdmin ? '관리자' : msg.fromName);
+            document.getElementById('msgDetailTime').textContent = msg.createdAt ? formatMessageTime(msg.createdAt) : '';
+            document.getElementById('msgDetailContent').textContent = msg.content || '';
+            
+            replyToMessage = isSent ? null : msg;
+            
+            // 답장 버튼 표시/숨김
+            const replyBtn = document.getElementById('msgReplyBtn');
+            if (replyBtn) {
+                replyBtn.style.display = isSent ? 'none' : 'inline-flex';
+            }
+            
+            document.getElementById('messageDetailModal').classList.add('show');
+            
+            // 읽음 처리 (받은 쪽지만)
+            if (!isSent && !msg.read && db) {
+                try {
+                    await db.collection('messages').doc(msgId).update({ read: true });
+                    msg.read = true;
+                    updateMessageBadge();
+                    updateMobileMsgBadge();
+                    renderMessagesPage();
+                } catch (e) {
+                    console.log('읽음 처리 실패:', e);
+                }
+            }
+        }
+        
+        function replyMessagePage(msgId) {
+            const msg = currentMessages.find(m => m.id === msgId);
+            if (!msg) return;
+            
+            const isAdmin = msg.from === 'admin';
+            replyToMessage = msg;
+            document.getElementById('composeModalTitle').textContent = '답장하기';
+            document.getElementById('msgTo').value = isAdmin ? '관리자' : msg.fromName;
+            document.getElementById('msgContent').value = '';
+            document.getElementById('messageComposeModal').classList.add('show');
+        }
+        
+        async function deleteMessage(msgId, type) {
+            if (!confirm('이 쪽지를 삭제하시겠습니까?')) return;
+            if (!db) return;
+            
+            try {
+                await db.collection('messages').doc(msgId).delete();
+                
+                if (type === 'sent') {
+                    sentMessages = sentMessages.filter(m => m.id !== msgId);
+                } else {
+                    currentMessages = currentMessages.filter(m => m.id !== msgId);
+                }
+                
+                renderMessagesPage();
+                updateMessageBadge();
+                updateMobileMsgBadge();
+                showToast('삭제되었습니다');
+            } catch (error) {
+                console.error('삭제 실패:', error);
+                showToast('삭제에 실패했습니다');
+            }
+        }
+        
+        function updateMobileMsgBadge() {
+            const unreadCount = currentMessages.filter(m => !m.read).length;
+            const badge = document.getElementById('mobileMsgBadge');
+            if (badge) {
+                if (unreadCount > 0) {
+                    badge.classList.remove('hidden');
+                } else {
+                    badge.classList.add('hidden');
+                }
+            }
+        }
+        
         // ============================================
 
         function updateDashboard() {
@@ -3219,7 +3450,7 @@
             const tips = [
                 '프로필 사진을 설정하면 신뢰도가 올라가요! 📸',
                 '채널 URL을 등록하면 관리자가 맞춤 상품을 추천해줘요! 🔗',
-                '관심 카테고리를 다양하게 설정해보세요! 🏷️',
+                '관심 카테고리를 다양하게 설정해보세요! ',
                 '꾸준한 판매가 등급 승급의 비결이에요! ⭐',
                 '새로운 상품이 매일 업데이트돼요! 자주 확인해보세요! 🆕',
                 '추천인 코드를 SNS에 공유해보세요! 📱'
@@ -3250,7 +3481,7 @@
             document.getElementById('goalFill').style.width = goalPercent + '%';
             
             if (weekCount >= 5) {
-                document.getElementById('goalReward').innerHTML = '🎉 목표 달성! 축하해요!';
+                document.getElementById('goalReward').innerHTML = '목표 달성! 축하해요!';
                 document.getElementById('goalReward').style.color = 'var(--primary)';
             }
         }
@@ -3611,7 +3842,7 @@
             const productCode = currentUser.code + '_' + productId;
             
             navigator.clipboard.writeText(productCode).then(() => {
-                showToast('추천인코드가 복사되었습니다! 📋');
+                showToast('추천인코드가 복사되었습니다!');
             }).catch(() => {
                 // 클립보드 API 실패 시 대체 방법
                 const textArea = document.createElement('textarea');
@@ -3620,7 +3851,7 @@
                 textArea.select();
                 document.execCommand('copy');
                 document.body.removeChild(textArea);
-                showToast('추천인코드가 복사되었습니다! 📋');
+                showToast('추천인코드가 복사되었습니다!');
             });
             
             if (!copiedProducts.find(p => String(p.id) === String(productId))) {
@@ -3733,6 +3964,7 @@
             document.getElementById('dashReport').classList.add('hidden');
             document.getElementById('dashProfile').classList.add('hidden');
             document.getElementById('dashFriends').classList.add('hidden');
+            document.getElementById('dashMessages').classList.add('hidden');
             if (section === 'home') document.getElementById('dashHome').classList.remove('hidden');
             if (section === 'community') {
                 document.getElementById('dashCommunity').classList.remove('hidden');
@@ -3750,6 +3982,10 @@
             if (section === 'friends') {
                 document.getElementById('dashFriends').classList.remove('hidden');
                 loadFriendsData();
+            }
+            if (section === 'messages') {
+                document.getElementById('dashMessages').classList.remove('hidden');
+                loadMessagesPage();
             }
             document.querySelectorAll('.dash-nav a').forEach(a => a.classList.remove('active'));
             if (el) el.classList.add('active');
@@ -3771,6 +4007,7 @@
             document.getElementById('dashReport').classList.add('hidden');
             document.getElementById('dashProfile').classList.add('hidden');
             document.getElementById('dashFriends').classList.add('hidden');
+            document.getElementById('dashMessages').classList.add('hidden');
             
             if (section === 'home') document.getElementById('dashHome').classList.remove('hidden');
             if (section === 'community') {
@@ -3789,6 +4026,10 @@
             if (section === 'friends') {
                 document.getElementById('dashFriends').classList.remove('hidden');
                 loadFriendsData();
+            }
+            if (section === 'messages') {
+                document.getElementById('dashMessages').classList.remove('hidden');
+                loadMessagesPage();
             }
             
             // 모바일 하단 네비게이션 활성화 상태 업데이트
@@ -4266,7 +4507,7 @@
             if (posts.length === 0) {
                 feed.innerHTML = `
                     <div class="empty-feed">
-                        <div class="empty-feed-icon">💬</div>
+                        <div class="empty-feed-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/></svg></div>
                         <p>아직 글이 없어요.<br>첫 번째 글을 작성해보세요!</p>
                     </div>
                 `;
@@ -4946,7 +5187,7 @@
             if (friendsData.friends.length === 0) {
                 container.innerHTML = `
                     <div class="friend-empty">
-                        <div class="friend-empty-icon">👥</div>
+                        <div class="friend-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
                         <p>아직 친구가 없습니다</p>
                         <p style="font-size:12px;margin-top:8px">위에서 검색해서 친구를 추가해보세요!</p>
                     </div>
@@ -4991,7 +5232,7 @@
             if (friendsData.requests.length === 0) {
                 container.innerHTML = `
                     <div class="friend-empty">
-                        <div class="friend-empty-icon">📬</div>
+                        <div class="friend-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
                         <p>받은 친구 요청이 없습니다</p>
                     </div>
                 `;
@@ -5032,7 +5273,7 @@
             if (friendsData.sent.length === 0) {
                 container.innerHTML = `
                     <div class="friend-empty">
-                        <div class="friend-empty-icon">📤</div>
+                        <div class="friend-empty-icon"><svg viewBox="0 0 24 24" width="48" height="48" fill="#ccc"><path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z"/></svg></div>
                         <p>보낸 친구 요청이 없습니다</p>
                     </div>
                 `;
@@ -5203,7 +5444,7 @@
                     }
                 }
                 
-                showToast('친구가 되었습니다! 🎉');
+                showToast('친구가 되었습니다!');
                 loadFriendsData();
             } catch (error) {
                 console.error('친구 수락 실패:', error);

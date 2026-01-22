@@ -1124,7 +1124,7 @@
                 
                 <!-- 엑셀 업로드 카드 -->
                 <div class="card">
-                    <div class="card-header">📊 엑셀 일괄 업로드</div>
+                    <div class="card-header">엑셀 일괄 업로드</div>
                     <div class="card-body">
                         <div class="excel-upload-area" id="excelUploadArea" onclick="document.getElementById('excelFile').click()" ondrop="handleExcelDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
                             <div class="excel-upload-icon">📁</div>
@@ -1134,7 +1134,7 @@
                         </div>
                         <div id="excelPreview" class="excel-preview hidden">
                             <div class="excel-preview-header">
-                                <span>📋 업로드 미리보기</span>
+                                <span>업로드 미리보기</span>
                                 <button class="btn btn-small" onclick="closeExcelPreview()">취소</button>
                             </div>
                             <div class="excel-mapping">
@@ -1178,7 +1178,7 @@
                         </div>
                         <div class="excel-help">
                             <details>
-                                <summary>💡 사용 방법</summary>
+                                <summary>사용 방법</summary>
                                 <ol>
                                     <li><strong>추천코드 설정:</strong> 인플루언서 관리에서 각 인플루언서에게 고유 추천코드를 부여하세요</li>
                                     <li><strong>쿠폰 생성:</strong> 스마트스토어/쿠팡에서 추천코드와 동일한 쿠폰코드를 생성하세요</li>
@@ -1841,7 +1841,7 @@
             // 승인 대기
             if (pending.length > 0) {
                 html += `<div class="todo-item urgent">
-                    <div class="todo-icon">🔔</div>
+                    <div class="todo-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg></div>
                     <div class="todo-content">
                         <div class="todo-title">${pending.length}명의 가입 승인 대기 중</div>
                         <div class="todo-desc">새로운 인플루언서가 승인을 기다리고 있어요</div>
@@ -1854,7 +1854,7 @@
             const unmatchedCount = approved.filter(u => !u.matchedProducts || u.matchedProducts.length === 0).length;
             if (unmatchedCount > 0) {
                 html += `<div class="todo-item">
-                    <div class="todo-icon">🎯</div>
+                    <div class="todo-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
                     <div class="todo-content">
                         <div class="todo-title">${unmatchedCount}명에게 상품 매칭 필요</div>
                         <div class="todo-desc">아직 추천 상품이 설정되지 않은 인플루언서가 있어요</div>
